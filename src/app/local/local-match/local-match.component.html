@@ -1,0 +1,36 @@
+<div class="booking-list changePdding" *ngIf="matchs.length>0" id="channel">
+  <div class="local-team-detail-clum" id="local-team-detail-clum-id" *ngFor="let item of matchs">
+    <div class="team-detail-header">
+      <img src="{{item.iconUrl||defaultTeamIcon}}" alt="" class="team-detail-img">
+      <div class="team-detail-font">
+        <div class="team-detail-font-text">{{item.nickName}}</div>
+      </div>
+      <span></span>
+    </div>
+    <div class="team-detail-spell" (click)="goToMatchDetailPage(item.id)">
+      <p class="team-spell">约战：{{item.sportType}}<span *ngIf="item.sportForm">，{{item.sportForm}}</span><span *ngIf="item.fightArea">，{{item.fightArea}}</span></p>
+      <div class="team-time">
+        <i></i>
+        <span>{{item.startTime |date:'yyyy-MM-dd'}}</span> <span>周{{item.startTime|ChineseWeek}}{{item.startTime|date:'HH:mm'}}-{{item.endTime | date:'HH:mm'}}</span>
+      </div>
+      <div class="team-location">
+        <i></i>
+        <span>{{item.fightArea?item.fightArea:'待定'}}</span>
+        <span class="team-distance">{{item.distance?(item.distance|Distance):'未知'}}</span>
+        <!--<span class="team-distance">{{item.distance|Distance}}</span>-->
+        <!--<span class="team-distance" *ngIf="!item.distance">未知</span>-->
+      </div>
+      <p class="team-expense">
+        <i></i>
+        <span>{{item.fightCost}}</span>
+      </p>
+    </div>
+    <div class="team-icon">
+      <div class="team-icon-img" [class.teamSpell4]="item.fightStatus===0" [class.teamSpell1]="item.fightStatus===1" [class.teamSpell2]="item.fightStatus===2"
+        [class.teamSpell3]="item.fightStatus===3">{{item.fightStatus==1?'约战中':(item.fightStatus==2?'约战成功':(item.fightStatus==3?'约战失败':'已取消')) }}
+      </div>
+    </div>
+  </div>
+  <go-down-app *ngIf="haveMore"></go-down-app>
+</div>
+<missing-default-content [text]="'暂时没有该类约战信息，去看看其他吧~'" [srcurl]="'../../../../assets/icon/image_ddress.png'" *ngIf="!haveData"></missing-default-content>

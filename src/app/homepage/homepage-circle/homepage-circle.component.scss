@@ -1,0 +1,103 @@
+@import '../../../app/shared/styles/theming.scss';
+.person-circle-page{
+  .circle-launch{
+    width:100%;
+    .launch-team{
+      width:100%;
+      padding:pxTorem(30) 0 pxTorem(40);
+      overflow: hidden;
+      padding-right:pxTorem(20);
+      box-sizing: border-box;
+      .launch-team-name{
+        float:left;
+        border-left:6px solid #01A87C;
+        padding-left:pxTorem(20);
+        @include font-dpr(28px);
+        color:color($h5,c2);
+
+      }
+      .launch-team-more{
+        float:right;
+        span{
+
+        }
+        i{
+          display: inline-block;
+          width:pxTorem(20);
+          height:pxTorem(11);
+          vertical-align: middle;
+          margin:pxTorem(-4) 0 0 pxTorem(10);
+          background:url('../../../assets/icon/arrow.png') no-repeat;
+          background-size: pxTorem(20) pxTorem(11);
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
+    .launch-team-info{
+      //padding-bottom:pxTorem(50);
+      .img-out{
+        margin-left:pxTorem(26);
+        margin-right:pxTorem(20);
+        display: flex;
+        justify-content: center;
+        img{
+          width:pxTorem(100);
+          height:pxTorem(100);
+          border-radius: 50%;
+          margin-right:pxTorem(20);
+        }
+        .launch-team-detail{
+          width:100%;
+          .launch-team-name{
+            width:100%;
+            @include font-dpr(30px);
+            color:color($h5,c2);
+          }
+          ul li{
+            display: flex;
+            p{
+              width:10%;
+              padding:pxTorem(30) 0;
+              padding-right:pxTorem(20);
+              @include font-dpr(24px);
+              color:color($h5,c4);
+              text-align: center;
+            }
+            div{
+              width:90%;
+              border-bottom: 1px solid color($h5,c9);
+              @include font-dpr(24px);
+              color:color($h5,c2);
+              padding:pxTorem(30) 0;
+            }
+          }
+          ul li:last-child{
+            div{
+              border-bottom:1px solid transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+  .circle-join:before{
+    content: '';
+    display: block;
+    width:100%;
+    height:pxTorem(15);
+    background:color($h5,c9);
+  }
+  .circle-join .launch-team-info .img-out:last-child{
+    margin:pxTorem(50) pxTorem(20) pxTorem(50) pxTorem(26);
+  }
+  missing-default-content .spellMissingPage1{
+    padding-top:0;
+  }
+}
+
+
+
+
+
+

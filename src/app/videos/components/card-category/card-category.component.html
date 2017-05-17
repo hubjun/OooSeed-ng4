@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <div class="list-item" *ngFor="let v of tvCateObj">
+    <div class="header">
+      <span class="title">
+        <!--<label class="icon-hot"></label>-->
+        <!--<img [src]="v.cateIcon" class="icon-hot" alt="">-->
+        {{v.cateName}}
+      </span>
+      <span (click)="toggleCateMore($event,v.cateId)" class="get-more">更多></span>
+    </div>
+    <div class="content">
+      <div *ngFor="let l of v.videoRespVOList"  (click)="goDetail(l.videoId,v.cateId)" class="col-list">
+        <!--(click)="gotoDetail($event,l.videoId,v.cateId)"-->
+          <div class="imgBox">
+            <img [src]="l.videoCover" alt="">
+            <span class="videoTime">{{l.videoTime}}</span>
+          </div>
+          <div class="item-info">
+            <div class="title">
+              <span class="name">{{l.videoName}}</span>
+            </div>
+            <div class="detail">
+              <div class="left-item">
+                <i class="icon1"></i>
+                <span>{{l.nickName | slice: 0: 10}}</span>
+              </div>
+              <div class="right-item">
+                <i class="icon2"></i>
+                <span>{{l.playCount}}</span>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <gap-bg></gap-bg>
+  </div>
+</div>

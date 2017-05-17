@@ -1,0 +1,26 @@
+@import '../../../shared/styles/theming.scss';
+
+.divider{
+  width: 100%;
+  height:pxTorem(15px);
+  background: color($h5,c9);
+}
+.login-header{
+  position: relative;
+  height: pxTorem(90px);
+  color: color($h5,c2);
+  text-align: center;
+  @include font-dpr(34px);
+  line-height: pxTorem(90px);
+  padding: 0 pxTorem(47px);
+  .login-back{
+    width: pxTorem(42px);
+    height:pxTorem(42px);
+    background: url('../../../../assets/icon/arrow.png') no-repeat center/contain;
+    transform: rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    position: absolute;
+    top: pxTorem(26px);
+    left: pxTorem(45px);
+  }
+}

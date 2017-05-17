@@ -1,0 +1,12 @@
+
+<seed-content class="my-spell-inner">
+  <div class="my-spell-clum">
+    <div class="my-launch-spell my-spell-current" (click)="myLaunch()" [class.my-spell-current]="classTag=='LaunchClass'" [routerLink]="['my-launch']">
+      <span>我发起的</span>
+    </div>
+    <div class="my-activities-spell" (click)="myActivities()" [class.my-spell-current]="classTag=='activitiesClass'" [routerLink]="['my-join']">
+      <span>我参与的</span>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</seed-content>

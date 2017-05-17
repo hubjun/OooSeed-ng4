@@ -1,0 +1,418 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./app/shared/styles/theming.scss";
+@import "./app/shared/components/toolbar/toolbar.scss";
+
+/*********************
+*全局样式格式化开始
+********************/
+html{
+  font-size: 62.5%;
+  text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+html,body {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+li {
+  list-style-type: none
+}
+
+a,a:hover,input {
+  outline: 0
+}
+
+html hr,section {
+  background: 0 0!important
+}
+body {
+  position: fixed;
+  margin: 0;
+  max-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-user-drag: none;
+  -ms-content-zooming: none;
+  touch-action: manipulation;
+  word-wrap: break-word;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+  user-select: none
+}
+
+ins{
+  height:auto;
+  display: inline;
+}
+input[placeholder]{
+  color: color($h5,c4);
+}
+
+input, select, textarea {
+  font-size: 100%
+}
+
+img {
+  margin:0 auto;
+  border:none;
+  opacity: 1 ;
+  max-width: 100% ;
+  visibility: visible ;
+}
+:before,:after{
+  display: none;
+}
+fieldset, img {
+  border: 0
+}
+
+abbr, acronym {
+  border: 0;
+  font-variant: normal
+}
+html hr {
+  border: none;
+  background: none;
+  display: none;
+}
+
+del {
+  text-decoration: line-through
+}
+
+address, caption, cite, code, dfn, em, th, var {
+  font-style: normal;
+  font-weight: 500
+}
+
+ol, ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none
+}
+p{
+  margin: 0;
+}
+caption, th {
+  text-align: left
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: 500;
+}
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline
+}
+
+a:hover,a:link,a:visited {
+  border:none ;
+  text-decoration: none ;
+}
+
+ins, a {
+  text-decoration: none
+}
+ul li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #4f4f4f;
+  outline: none
+}
+a:hover{
+  outline:none;
+}
+a,button,input{
+  -webkit-tap-highlight-color:rgba(0,0,0,0) !important;
+}
+button {
+  border: 0;
+  font-family: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-appearance: button;
+  background: transparent;
+}
+input,button,select,textarea{
+  outline:none;
+}
+img {
+  border: 0 none;
+  margin:0 auto;
+  vertical-align: middle;
+  -webkit-tap-highlight-color:rgba(255,0,0,0) !important;
+}
+input {
+  _background-attachment: fixed;
+  border: none;
+  outline: none;
+  vertical-align: middle;
+  -webkit-tap-highlight-color:rgba(255,0,0,0) ;
+}
+section {
+  background: none !important;
+}
+
+label {
+  cursor: pointer;
+}
+i{
+  font-style: normal;
+}
+
+.fn_left {
+  float: left;
+}
+.fn_right {
+  float: right;
+}
+
+.length {
+  width: 100% !important;
+}
+.clear {
+  clear: both;
+  font-size: 0px;
+  line-height: 0px;
+}
+.clear:after {
+  content: "";
+  line-height: 0;
+  margin: 0;
+  clear: both;
+  height: 0;
+  display: block;
+  visibility: hidden;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: "";
+  line-height: 0;
+  margin: 0;
+  clear: both;
+  height: 0;
+  display: block;
+  visibility: hidden;
+}
+.transfer {
+  transition: all 0.2S ease-out 0s;
+}
+.transfer li {
+  transition: all 0.2S ease-out 0s;
+}
+.overFlow {
+  overflow: hidden;
+}
+
+.aHonver a:hover {
+  color: #0565B9 !important;
+  transition: all 0.2S ease-out 0s;
+}
+.aHover:hover {
+  color: #0565B9;
+  transition: all 0.2S ease-out 0s;
+}
+.colorHover a:hover {
+  color: #fe6700;
+  transition: all 0.2S ease-out 0s;
+}
+
+app-root{
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  word-break: break-all;
+  @include font-dpr(28px);
+  position: absolute;
+}
+.border {
+  border: 1px solid color($h5,c8);
+}
+.border-tom {
+  border-top: 1px solid color($h5,c8);
+}
+.border-left {
+  border-left: 1px solid color($h5,c8);
+}
+.border-right {
+  border-right: 1px solid color($h5,c8);
+}
+.border-bottom {
+  border-bottom: 1px solid color($h5,c8);
+}
+.padding-20{
+  padding: pxTorem(20px);
+}
+.padding-top-20{
+  padding-top: pxTorem(20px);
+}
+.padding-left-20{
+  padding-left: pxTorem(20px);
+}
+.padding-right-20{
+  padding-right: pxTorem(20px);
+}
+.padding-bottom-20{
+  padding-bottom: pxTorem(20px);
+}
+.padding-top-bottom-20{
+  padding-top: pxTorem(20px);
+  padding-bottom: pxTorem(20px);
+}
+.padding-left-right-20{
+  padding-left: pxTorem(20px);
+  padding-right: pxTorem(20px);
+}
+
+.padding-30{
+  padding: pxTorem(30px);
+}
+.padding-top-30{
+  padding-top: pxTorem(30px);
+}
+.padding-left-30{
+  padding-left: pxTorem(30px);
+}
+.padding-right-30{
+  padding-right: pxTorem(30px);
+}
+.padding-bottom-30{
+  padding-bottom: pxTorem(30px);
+}
+.padding-top-bottom-30{
+  padding-top: pxTorem(30px);
+  padding-bottom: pxTorem(30px);
+}
+.padding-left-right-30 {
+  padding-left: pxTorem(30px);
+  padding-right: pxTorem(30px);
+}
+
+/*gray background*/
+.gray-background{
+  background-color: color($h5, c9);
+}
+/*gray gap*/
+.top-gap{
+  margin-top: pxTorem(15);
+}
+.bottom-gap{
+  margin-bottom: pxTorem(15);
+}
+.distance-from-bottom {
+  padding-bottom: pxTorem(50px);
+}
+
+.toast{
+  max-width: 80%;
+  padding: pxTorem(12) pxTorem(20);
+  border-radius: 5%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: color($h5,c10);
+  @include font-dpr(24px);
+  line-height: pxTorem(30px);
+  text-align: justify;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  -webkit-transform: translateX(-50%);
+  transition: opacity 0.35s ease-out;
+  -webkit-transition: opacity 0.35s ease-in-out;
+
+  &.fadeIn{
+    opacity: 1;
+  }
+}
+
+.seed-confirm-bg{
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  background:black;
+  opacity: 0.5
+}
+.seed-body-Father{
+  display: flex;
+  width:100%;
+  height:100%;
+  align-items:center;
+  justify-content:center;
+  .seed-confirm-Body{
+    width:pxTorem(500);
+    height:pxTorem(200);
+    border-radius: pxTorem(15px);
+    background: color($h5,c10);
+    position: relative;
+    z-index: 10;
+    .confirm-title{
+      width:100%;
+      height:pxTorem(120);
+      line-height: pxTorem(120);
+      padding:0 pxTorem(20);
+      box-sizing: border-box;
+      text-align: center;
+      @include font-dpr(28px);
+      color:color($h5,c2);
+      border-top-left-radius: pxTorem(15);
+      border-top-right-radius: pxTorem(15);
+    }
+    .confirm-button{
+      width:100%;
+      overflow: hidden;
+      height:pxTorem(80);
+      border-top: 1px solid color($h5,c9);
+      box-sizing: border-box;
+      .confirm-yes{
+        width:50%;
+        height:pxTorem(80);
+        line-height: pxTorem(80);
+        @include font-dpr(30px);
+        color:color($h5,c1);
+        font-weight: bold;
+        text-align: center;
+        border-bottom-right-radius: pxTorem(15px);
+        float:left;
+      }
+      .confirm-no{
+        width:50%;
+        height:pxTorem(80);
+        line-height: pxTorem(80);
+        @include font-dpr(30px);
+        color:color($h5,c4);
+        font-weight: bold;
+        text-align: center;
+        float:left;
+        border-right:1px solid color($h5,c9);
+        border-bottom-left-radius: pxTorem(15px);
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+
+

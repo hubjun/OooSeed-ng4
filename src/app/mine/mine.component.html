@@ -1,0 +1,94 @@
+<seed-content>
+  <div class="mine-page" *ngIf="userInfo">
+    <div class="mine-page">
+      <div class="mine-person">
+        <div class="person-info">
+          <div class="person-info-img">
+            <img class="person-header-img" src="{{userInfo.iconUrl||defaulticon}}" >
+          </div>
+            <div class="person-info-detail"(click)="goedit()">
+              <div class="info-detail-name">
+                <span>{{userInfo.nickName}}</span>
+                <img src="{{userInfo.appImgUrl||' '}}" >
+              </div>
+              <div class="info-detail-place">
+                深圳南山
+              </div>
+            </div>
+            <img class="person-arrow" src="../../assets/icon/arrow.png"(click)="goedit()">
+        </div>
+        <div class="mine-care-love">
+          <div class="mine-care">
+            <span class="mine-care-font">关注</span>
+            <span class="mine-care-nomber">{{userInfo.concernNum?(userInfo.concernNum>999?'999+':userInfo.concernNum):0}}</span>
+          </div>
+          <div class="mine-love">
+            <span class="mine-love-line"></span>
+            <span class="mine-care-font">粉丝</span>
+            <span class="mine-care-nomber">{{userInfo.followNum?(userInfo.followNum>999?'999+':userInfo.followNum):0}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mine-schedule-spell">
+        <div class="person-shedule" (click)="jumpdetail(5)">
+          <img class="person-icon" src="../../assets/icon/icon_myhome_schedule.png">
+          <p class="person-shedule-font">个人日程</p>
+        </div>
+        <div class="my-spell-clum" (click)="goToMySpell()">
+          <img class="person-icon" src="../../assets/icon/icon_myhome_spell.png">
+          <p class="my-spell-font">我的拼球</p>
+        </div>
+      </div>
+
+      <div class="mine-new-team">
+        <ul>
+          <li (click)="jumpdetail(0)">
+            <img src="../../assets/icon/icon_myhome_message.png" class="mine-team-news">
+            <div class="mine-team-clum">
+              <span>消息</span>
+              <img class="person-arrow" src="../../assets/icon/arrow.png">
+              <!--<div class="mine-news-number">99</div>-->
+            </div>
+          </li>
+          <li (click)="jumpdetail(1)">
+            <img src="../../assets/icon/icon_myhome_myteam.png" class="mine-team-news">
+            <div class="mine-team-clum">
+              <span>我的球队</span>
+              <img class="person-arrow" src="../../assets/icon/arrow.png">
+            </div>
+          </li>
+          <li (click)="jumpdetail(2)">
+              <img src="../../assets/icon/icon_myhome_content.png" class="mine-team-news">
+              <div class="mine-team-clum">
+                <span>我的内容</span>
+                <img class="person-arrow" src="../../assets/icon/arrow.png">
+              </div>
+          </li>
+          <li (click)="jumpdetail(3)">
+            <img src="../../assets/icon/icon_myhome_more.png" class="mine-team-news">
+            <div class="mine-team-clum">
+              <span>更多</span>
+              <div>
+                <img class="person-arrow" src="../../assets/icon/arrow.png">
+              </div>
+            </div>
+          </li>
+          <li (click)="jumpdetail(4)">
+            <img src="../../assets/icon/icon_myhome_feedback.png" class="mine-team-news">
+            <div class="mine-team-clum">
+              <span>反馈</span>
+              <img class="person-arrow" src="../../assets/icon/arrow.png">
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    <div class="mine-get-off" (click)="goLogOut()">
+      退出当前账号
+    </div>
+    </div>
+  </div>
+</seed-content>
+
+

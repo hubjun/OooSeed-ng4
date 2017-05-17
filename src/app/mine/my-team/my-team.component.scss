@@ -1,0 +1,78 @@
+@import "../mine.component.scss";
+
+.team-miss {
+  background: #fff;
+  height: 60%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.spell-detail-inner{
+  background: color($h5,c9);
+
+}
+.teams-list {
+  margin-top: pxTorem(15);
+  background: #fff;
+  li {
+    padding: pxTorem(30) pxTorem(0) pxTorem(0) pxTorem(24);
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+    overflow: hidden;
+      .icon {
+        width: pxTorem(110);
+        height: pxTorem(110);
+        margin-right: pxTorem(30);
+        margin-bottom: pxTorem(23);
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+    .right {
+      flex:1;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid color($h5,c9);
+      padding-right: pxTorem(30);
+      padding-bottom: pxTorem(17);
+      width: 95%;
+      float: left;
+      .text {
+        flex:1;
+        .team-name {
+          span {
+            color: color($h5, c2);
+            font-size: pxTorem(30);
+            display: inline-block;
+          }
+        }
+        .addr {
+          font-size: pxTorem(24);
+          color: color($h5, c4);
+          margin-top: pxTorem(15);
+          .name-left{
+            display: inline-block;
+            margin-right: pxTorem(40);
+          }
+        }
+      }
+      .arrow {
+        float: right;
+        width: pxTorem(20);
+        display: flex;
+        align-items: center;
+        img {
+          transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg); /* IE 9 */
+          -moz-transform: rotate(-90deg); /* Firefox */
+          -webkit-transform: rotate(-90deg); /* Safari 和 Chrome */
+          -o-transform: rotate(-90deg); /* Opera */
+        }
+      }
+    }
+
+  }
+}

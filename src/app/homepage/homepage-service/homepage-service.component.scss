@@ -1,0 +1,30 @@
+@import '../../../app/shared/styles/theming.scss';
+.person-service-page{
+  width:100%;
+  ul{
+    padding-left:pxTorem(20);
+    li{
+      width:100%;
+      padding:pxTorem(30) 0;
+      overflow: hidden;
+      border-bottom: 1px solid color($h5,c9);
+      .service-name{
+        @include font-dpr(28px);
+        color:color($h5,c4);
+        float:left;
+        width: pxTorem(100);
+        margin-right:pxTorem(20);
+      }
+      .service-info{
+        float:left;
+        @include font-dpr(28px);
+        color:color($h5,c2);
+      }
+    }
+  }
+  missing-default-content .spellMissingPage1{
+    padding-top:0;
+  }
+}
+
+

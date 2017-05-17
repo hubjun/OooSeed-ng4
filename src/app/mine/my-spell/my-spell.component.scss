@@ -1,0 +1,25 @@
+@import '../../../app/shared/styles/theming.scss';
+.my-spell-clum{
+  width:100%;
+  overflow: hidden;
+  background:color($h5,c10);
+  >div{
+    width:50%;
+    float:left;
+    @include font-dpr(32px);
+    color:color($h5,c3);
+    text-align: center;
+    span{
+      display: inline-block;
+      height:100%;
+      padding-top:pxTorem(53);
+      padding-bottom:pxTorem(30);
+    }
+  }
+  .my-spell-current{
+    color:color($h5,c1);
+    span{
+      border-bottom:pxTorem(5) solid color($h5,c1);
+    }
+  }
+}

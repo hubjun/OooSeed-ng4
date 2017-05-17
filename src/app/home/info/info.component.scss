@@ -1,0 +1,26 @@
+@import "../../shared/styles/theming";
+
+seed-home-info {
+  .seed-info-roller {
+    width: 100%;
+    overflow: hidden;
+  }
+  .seed-cate-box {
+    padding: pxTorem(20px);
+  }
+  .cate-btn {
+    display: inline-block;
+    height: pxTorem(50px);
+    line-height: pxTorem(50px);
+    color: color($h5, c3);
+    @include font-dpr(24px);
+    border-radius: pxTorem(5px);
+    margin-right: pxTorem(30px);
+    padding: 0 pxTorem(40px);
+    background: color($h5, c9);
+    &.active {
+      color: color($h5, c10);
+      background: color($h5, c1);
+    }
+  }
+}

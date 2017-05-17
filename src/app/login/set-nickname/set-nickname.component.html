@@ -1,0 +1,25 @@
+<!--<div class="login-header">
+  <span class="login-back" (click)="goBack()"></span> 设置昵称
+  <span class="jump" (click)="jump()">跳过</span>
+</div>
+<div class="divider"></div>-->
+<seed-content>
+<form [formGroup]="nickNameForm">
+  <div class="set-password-content">
+    <!--<div class="prompt-text">
+      设置您的昵称(长度在24个字符以内)
+    </div>-->
+    <div class="register-box register-box-account">
+      <div class="register-box-input">
+        <input formControlName="nickName" type="text" name="set-password" id="set-password" placeholder="请输入4-20个字符">
+      </div>
+    </div>
+    <div *ngIf="checkValid">
+      <p class='error-msg'>{{msg}}</p>
+    </div>
+    <button ion-button block class="register-button-next" (click)="setNickName()" [disabled]="!nickNameForm.valid">完成</button>
+
+  </div>
+</form>
+<login-logo></login-logo>
+</seed-content>

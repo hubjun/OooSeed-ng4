@@ -1,0 +1,118 @@
+@import '../../shared/styles/theming.scss';
+
+.register-content {
+    padding:pxTorem(50px) pxTorem(45px) 0;
+    .register-box {
+        width: 100%;
+        display: flex;
+        padding: 0 0 pxTorem(35px) 0;
+        border-bottom: pxTorem(1) solid color($h5, c8);
+        position: relative;
+        border-bottom: pxTorem(2px) solid color($h5,c8);
+        .register-box-icon {
+            width: pxTorem(30px);
+            height:pxTorem(40px);
+            display: flex;
+            align-items: center;
+            // &.register-box-icon-account {
+            // background: url("../../../assets/icon/register_phone.png") no-repeat center center/contain;
+            // }
+            // &.register-box-icon-verify-code {
+            // background: url("../../../assets/icon/register_verifycode.png") no-repeat center center/contain;
+            // }
+        }
+        .register-box-input {
+            @include font-dpr(30px);
+            color: color($h5,c2);
+            flex-grow: 2;
+            display: inline-flex;
+            input{
+            // text-indent:pxTorem(35px);
+            }
+            &::-webkit-input-placeholder {
+            color: color($h5,c2);
+            }
+        }
+        &.register-box-verify-code{
+            margin-top: pxTorem(70px);
+            position: relative;
+
+        }
+        .register-timer {
+            position: relative;
+            right: 0px;
+            bottom: 0px;
+            position: absolute;
+            text-align: center;
+            width: pxTorem(200px);
+            height: pxTorem(80px);
+            line-height: pxTorem(80px);
+            @include font-dpr(30px);
+            color: color($h5,c12);
+            border-radius: pxTorem(8px);
+            border:pxTorem(2px) solid color($h5,c12);
+            &:after{
+                content: ' ';
+                display: block;
+                position: absolute;
+                width: 125%;
+                height: pxTorem(2px);
+                background: #fff;
+                bottom: pxTorem(-4px);
+                right: 0px;
+            }
+        }
+    }
+    .user-agreement{
+        text-align: center;
+        margin-top: pxTorem(20px);
+        color: color($h5,c3);
+        @include font-dpr(24px);
+        a{
+            color: color($h5,c1);
+        }
+    }
+    }
+    .logo{
+        position: absolute;
+        bottom:  pxTorem(80px);
+        left: 0;
+        width: 100%;
+        text-align: center;
+        img{
+        width: pxTorem(188px);
+        height:pxTorem(60px);
+    }
+    .button-ios{
+    padding: 0;
+    }
+    .is-register{
+    background-color:color($h5,c2);
+    }
+}
+.register-button-next {
+        border:0 ;
+        border-radius: 4px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        height: pxTorem(90px);
+        @include font-dpr(34px);
+        color: color($h5, c10);
+        margin-top: pxTorem(50px);
+        background: color($h5,c1);
+        &[disabled]{
+            background: rgba(color($h5,c1),0.6);
+        }
+    }
+    .error-msg{
+        color:color($h5,c11);
+        @include font-dpr(30px);
+    }
+    .phone-msg{
+        height: pxTorem(70px);
+        p{
+            line-height: pxTorem(70px);
+        }
+}

@@ -1,0 +1,31 @@
+<!--<seed-toolbar-header>-->
+  <!--<seed-toolbar-home>视频</seed-toolbar-home>-->
+  <!--<seed-toolbar-menu></seed-toolbar-menu>-->
+<!--</seed-toolbar-header>-->
+
+<seed-content>
+  <seed-slider [gallery]="bannerObj | async"></seed-slider>
+  <!--<div class="bg-content">-->
+  <gap-bg></gap-bg>
+  <seed-toolbar-roller class="scroll-x video-category">
+    <ul class="category-ul" id="category-ul">
+      <li class="itemLi" *ngFor="let item of cateObj; let i = indexs">
+        <div class="select-item" (click)="topCateMore($event,item.cateId)">
+          <!--<i class="icon video_hot"></i>-->
+          <img class="icon" [src]="item.cateIcon" alt="">
+          <span>{{item.cateName | slice: 0:5}}</span>
+        </div>
+      </li>
+      <!--<li>-->
+      <!--<div class="select-item" (click)="goVideoStorage()">-->
+      <!--<i class="icon video_video"></i>-->
+      <!--<span>视频库</span>-->
+      <!--</div>-->
+      <!--</li>-->
+    </ul>
+  </seed-toolbar-roller>
+  <gap-bg></gap-bg>
+
+  <video-card-category [tvCateObj]="cateObj" (cate)="cateIdChange($event)"></video-card-category>
+  <!--</div>-->
+</seed-content>

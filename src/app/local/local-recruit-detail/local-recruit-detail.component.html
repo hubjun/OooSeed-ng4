@@ -1,0 +1,86 @@
+
+<seed-content class="spell-detail-inner">
+  <div class="spellDetailPageBody1">
+    <div class="spellDetailGrayBg">
+      <div class="spellCardInfo">
+        <div class="spellTeamIntroduce">
+          <img src="{{detailObj.iconFileUrl||defaulticon}}">
+          <div class="spellName">
+            <div class="spellNameText">
+              {{detailObj.orgName|| ''}}
+            </div>
+            <img src="{{detailObj.appImgtxtUrl||' '}}" alt="" class="spellLittleUrlImg">
+          </div>
+        </div>
+        <div class="spellClass">
+          <p>类型：</p>
+          <span>{{detailObj.sportAttrName||''}}</span>
+        </div>
+        <div class="spellTime">
+          <p>时间：</p>
+          <span>{{ detailObj.weekSet|recruitWeek}}</span>
+        </div>
+        <div class="spellNumber">
+          <p>人数：</p>
+          <span>{{detailObj.total||0}}人</span>
+        </div>
+        <div class="spellExpense toggle-before">
+          <p>费用：</p>
+          <span>{{detailObj.consumptionPatternName||''}}</span>
+        </div>
+        <div class="spellToggle" *ngIf="spellToggle">
+          <div class="spellTime">
+            <p>赛制：</p>
+            <span>{{detailObj.formatName||'暂无'}}</span>
+          </div>
+          <div class="spellOnTime">
+            <p>年龄：</p>
+            <span>{{detailObj.minAge||''}}-{{detailObj.maxAge||''}}</span>
+          </div>
+          <div class="spellContact">
+            <p>位置：</p>
+            <span>{{detailObj.showInfo||'暂无'}}</span>
+          </div>
+          <div class="spellNotes">
+            <p>备注：</p>
+            <span>{{!detailObj.remarks ? '无' : detailObj.remarks}}</span>
+          </div>
+        </div>
+        <div class="spellMark">
+          <div class="spellMarkInner">
+            <div class="spellMarkBg" [class.spellMarkBgSpe1]="detailObj.status == 1"
+                 [class.spellMarkBgSpe2]="detailObj.status == 2"
+                 [class.spellMarkBgSpe3]="detailObj.status == 3">
+              <p class="spellMarkPf">
+                {{detailObj.status==1?'招募中':(detailObj.status==2?'招募成功':(detailObj.status==3?'招募失败':(detailObj.status== 4
+                ?'已关闭':'已结束'))) }}</p>
+              <p class="spellMarkPs">
+                <i></i>
+                <span>{{detailObj.validTime >99?'99':(!detailObj.validTime ?'00':detailObj.validTime )}}</span>
+                <span class="spellMarkPsSpe">天{{detailObj.validTime >99?'+':' '}}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="spellArrow"
+             [class.spellArrowRevise]="spellToggle==true"
+             (click)="spellDetailToggle()">
+          <i></i>
+        </div>
+      </div>
+
+      <div class="spellLocation">
+        <div class="spellLocationPlace">
+          <p class="spellLocationName">{{detailObj.place1||''}}</p>
+          <p class="spellLocationMap">
+            <i></i>
+            <span>{{!detailObj.courtAddr ? '未获取到详细地址' : detailObj.courtAddr}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="joinFixed">
+        <div class="applyJoin" (click)="tipClick()">申请加入</div>
+      </div>
+    </div>
+  </div>
+</seed-content>

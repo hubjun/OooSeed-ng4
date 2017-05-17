@@ -1,0 +1,75 @@
+$h5:(
+  c1:         #01a87c,
+  c2:         #333333,
+  c3:         #666666,
+  c4:         #999999,
+  c5:         #b5b5b5,
+  c6:         #c1c1c1,
+  c7:         #eeeeee,
+  c8:         #e5e5e5,
+  c9:         #f0f0f0,
+  c10:        #ffffff,
+  c11:        #e94141,
+  c12:        #ff7452,
+  c13:        #4192f3,
+  c14:        #000000,
+  c15:        #ff8e00,
+  c16:        #89d035
+);
+
+$app-default-font-size: 62.5%;//设置跟元素
+$images-path: "/assets/images"; // image path
+$icons-path: "/assets/icon"; // icon path
+/*
+* pxTorem
+* @param:$px为需要转换的字号
+*/
+
+@function pxTorem($px){
+  @if unitless($px){
+    @return pxTorem($px + 0px);
+  }
+  @return $px / 20px * 1rem;
+}
+
+/*
+* font-dpr
+* @param:为设置fontsize而写的函数，根据ps效果图750分辨率上面的标注的fontsize来调用此函数，@include font-dpr(30px);
+*/
+
+@mixin font-dpr($font-size){
+  font-size: $font-size / 20px * 1rem;
+}
+
+@mixin set-color($color){
+  color: color($h5,$color);
+}
+/*
+* icon
+* @param:icon 路径
+*/
+@mixin icon($width,$height,$url){
+  display: inline-block;
+  width: pxTorem($width);
+  height: pxTorem($height);
+  background: url($url) no-repeat center center/contain;
+}
+
+
+/*
+* text-overflow-ellipsis
+* @param:width 文字超过指定宽度显示省略号
+*/
+@mixin text-overflow-ellipsis($width){
+  overflow: hidden;
+  display: inline-block;
+  width: pxTorem($width);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+//获取颜色
+@function color($target,$key){
+  @return map_get($target,$key)
+}
+

@@ -1,0 +1,13 @@
+@import '../../../shared/styles/theming.scss';
+
+.logo{
+    position: absolute;
+    bottom:  pxTorem(80px);
+    left: 0;
+    width: 100%;
+    text-align: center;
+    img{
+      width: pxTorem(188px);
+      height:pxTorem(60px);
+    }
+  }

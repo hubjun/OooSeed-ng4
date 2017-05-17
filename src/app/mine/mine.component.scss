@@ -1,0 +1,189 @@
+@import '../../app/shared/styles/theming.scss';
+.mine-page{
+  width:100%;
+  height:100%;
+  background:color($h5,c9);
+}
+.mine-person{
+  padding:0 pxTorem(30) 0;
+  background:color($h5,c10);
+  .person-info{
+    padding-top:pxTorem(35);
+    box-sizing: border-box;
+    height:pxTorem(176);
+    overflow: hidden;
+    border-bottom: 1px solid color($h5,c9);
+    .person-info-img{
+      float:left;
+      .person-header-img{
+        width:pxTorem(100);
+        height:pxTorem(100);
+        border-radius: 50%;
+      }
+    }
+    .person-info-detail{
+      float:left;
+      padding-top:pxTorem(15);
+      margin-left:pxTorem(30);
+      .info-detail-name{
+        overflow: hidden;
+        span{
+          float:left;
+          @include font-dpr(32px);
+          color: color($h5,c2);
+        }
+        img{
+          float:left;
+          height:pxTorem(28);
+          margin-left:pxTorem(15);
+          vertical-align: middle;
+          margin-top:pxTorem(5);
+        }
+      }
+      .info-detail-place{
+        @include font-dpr(24px);
+        color: color($h5,c4);
+        margin-top:pxTorem(14);
+      }
+    }
+    .person-arrow{
+      float:right;
+      margin-top:pxTorem(60);
+      width:pxTorem(20);
+      height:pxTorem(11);
+      transform: rotate(-90deg); /* Safari 和 Chrome */
+    }
+  }
+  .mine-care-love{
+    width:100%;
+    height:pxTorem(90);
+    overflow: hidden;
+    .mine-care{
+      float:left;
+      width:50%;
+      text-align: center;
+      height:pxTorem(90);
+      line-height: pxTorem(90);
+    }
+    .mine-love{
+      float:left;
+      width:50%;
+      text-align: center;
+      height:pxTorem(90);
+      line-height: pxTorem(90);
+      .mine-love-line{
+        float:left;
+        height:pxTorem(30);
+        border-left: 1px solid color($h5,c9);
+        margin-top:pxTorem(30);
+      }
+    }
+    .mine-care-font{
+      @include font-dpr(24px);
+      color:color($h5,c4);
+      margin-right:pxTorem(20);
+    }
+    .mine-care-nomber{
+      @include font-dpr(28px);
+      color:color($h5,c2);
+    }
+  }
+}
+.mine-schedule-spell{
+  height:pxTorem(170);
+  width:100%;
+  margin-top:pxTorem(15);
+  overflow: hidden;
+  background:color($h5,c10);
+  .person-shedule{
+    height:pxTorem(170);
+    width:50%;
+    float:left;
+    text-align: center;
+    .person-shedule-font{
+      @include font-dpr(28px);
+      color: color($h5,c2)
+    }
+  }
+  .my-spell-clum{
+    height:pxTorem(170);
+    width:50%;
+    float:left;
+    text-align: center;
+    .my-spell-font{
+      @include font-dpr(28px);
+      color: color($h5,c2)
+    }
+  }
+  .person-icon{
+    width:pxTorem(44);
+    height:pxTorem(44);
+    margin:pxTorem(33) 0 pxTorem(35);
+  }
+}
+.mine-new-team{
+  margin-top:pxTorem(15);
+  width:100%;
+  background:color($h5,c10);
+  ul{
+    padding-left:pxTorem(30);
+    width:100%;
+    li{
+      display: flex;
+      align-items: center;
+      height:pxTorem(88);
+      .mine-team-news{
+        margin-right:pxTorem(24);
+        width:pxTorem(38);
+        height:pxTorem(38);
+      }
+      .mine-team-clum{
+        display: flex;
+        align-items: center;
+        position: relative;
+        width:100%;
+        height:pxTorem(88);
+        line-height: pxTorem(88);
+        border-bottom:1px solid color($h5,c9);
+        .person-arrow{
+          position: absolute;
+          right:pxTorem(60);
+          top:pxTorem(34);
+          width:pxTorem(20);
+          height:pxTorem(11);
+          transform: rotate(-90deg); /* Safari 和 Chrome */
+        }
+        .mine-news-number{
+          position: absolute;
+          right:pxTorem(60);
+          top:pxTorem(34);
+          width:pxTorem(30);
+          height:pxTorem(30);
+          @include font-dpr(18px);
+
+          color:color($h5,c10);
+          background:#EC4140;
+          -webkit-border-radius:50%;
+          -moz-border-radius:50%;
+          border-radius:50%;
+        }
+      }
+    }
+    li:last-child{
+      .mine-team-clum{
+        border-bottom: 1px solid transparent;
+      }
+    }
+  }
+}
+.mine-get-off{
+  margin-top:pxTorem(30);
+  text-align: center;
+  width:100%;
+  height:pxTorem(90);
+  line-height: pxTorem(90);
+  color:color($h5,c2);
+  @include font-dpr(28px);
+  background:color($h5,c10);
+}
+

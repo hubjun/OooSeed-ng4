@@ -1,0 +1,12 @@
+@import '../app/shared/styles/theming.scss';
+.myLoaing{
+  position:absolute;
+  left:40%;
+  top:40%;
+  width:20%;
+  height:20%;
+  display:flex;
+  alignItems:center;
+  text-align: center;
+  z-index: 100;
+}

@@ -1,0 +1,94 @@
+@import "../../shared/styles/theming.scss";
+local-city {
+  .title {
+    padding: 0 pxTorem(20);
+  } //当前城市
+  .current-city {
+    overflow-y: scroll;
+    max-height: 50%;
+    background-color: #fff;
+    p {
+      display: flex;
+      justify-content: space-between;
+      height: pxTorem(88);
+      line-height: pxTorem(88);
+    }
+    i {
+      @include font-dpr(22px);
+      color: color($h5, c3);
+    }
+    .no-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: pxTorem(386);
+      color: color($h5, c4);
+    }
+    .active{
+      color: color($h5, c1);
+    }
+  } //热门城市
+  .hot-city {
+    margin-bottom: pxTorem(20);
+    @include font-dpr(26px);
+    .title {
+      padding-left: pxTorem(20);
+      color: color($h5, c4);
+      font-weight: bold;
+    }
+  }
+  .city-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 pxTorem(10);
+    li {
+      width: 30%;
+      height: pxTorem(74);
+      margin-bottom: pxTorem(20);
+      padding: 0 pxTorem(10);
+      line-height: pxTorem(74);
+      text-align: center;
+    }
+    span {
+      display: inline-block;
+      overflow: hidden;
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      border-radius: pxTorem(8);
+      border: 1px solid color($h5, c8);
+      color: color($h5, c2);
+      background-color: #fff;
+    }
+  } //全部城市
+  .letter-city {
+    h3 {
+      color: color($h5, c4);
+      font-weight: bold;
+    }
+    p {
+      height: pxTorem(80);
+      padding-left: pxTorem(30);
+      line-height: pxTorem(80);
+      @include font-dpr(28px);
+      border-bottom: 1px solid color($h5, c8);
+      color: color($h5, c3);
+      background-color: #fff;
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+  } //字母导航
+  .letter-nav {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    width: pxTorem(28);
+    margin-top: pxTorem(90px);
+    text-align: center;
+    a {
+      color: color($h5, c1);
+    }
+  }
+}

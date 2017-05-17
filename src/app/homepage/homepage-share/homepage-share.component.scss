@@ -1,0 +1,153 @@
+@import '../../../app/shared/styles/theming.scss';
+
+.share-invitation{
+  width:100%;
+  box-sizing: border-box;
+  .share-invitation-header{
+    width:100%;
+    overflow: hidden;
+    padding:pxTorem(30) pxTorem(20) 0 0;
+    box-sizing: border-box;
+    .share-invitation-name{
+      float:left;
+      color:color($h5,c2);
+      @include font-dpr(30px);
+      border-left:6px solid #01A87C;
+      padding-left:pxTorem(10);
+    }
+    .share-invitation-more{
+      float:right;
+      i{
+        display: inline-block;
+        width:pxTorem(20);
+        height:pxTorem(20);
+        vertical-align: middle;
+        margin:pxTorem(-4) 0 0 pxTorem(10);
+        background:url('../../../assets/icon/arrow.png') no-repeat;
+        background-size: pxTorem(20) pxTorem(11);
+        transform: rotate(-90deg);
+      }
+    }
+  }
+  ul{
+    width:100%;
+    padding-bottom:pxTorem(30);
+    padding-right:pxTorem(20);
+    box-sizing: border-box;
+    padding-left:pxTorem(20);
+    li{
+      display: flex;
+      padding-top:pxTorem(30);
+      >img{
+        width:pxTorem(191);
+        height:pxTorem(146);
+        margin-right:pxTorem(20);
+      }
+      .invitation-clum-info{
+        width:100%;
+        .invitation-message{
+          width:100%;
+          height:pxTorem(116);
+          @include font-dpr(28px);
+          color:color($h5,c2);
+        }
+        .invitation-icon{
+          width:100%;
+          height:pxTorem(30);
+          .message-autho{
+            display: inline-block;
+            @include font-dpr(22px);
+            color:color($h5,c4);
+            margin-right:pxTorem(20);
+          }
+          .message-date{
+            display: inline-block;
+            @include font-dpr(22px);
+            color:color($h5,c4);
+          }
+          .message-icon{
+            float:right;
+            display: inline-block;
+            img{
+              width:pxTorem(25);
+              height:pxTorem(25);
+              margin-right:pxTorem(3);
+              vertical-align: sub;
+            }
+            span{
+              @include font-dpr(22px);
+              color:color($h5,c4);
+            }
+            .message-icon-font{
+              margin-right:pxTorem(20);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .share-picture{
+    margin-left:pxTorem(20);
+    margin-top:pxTorem(30);
+    .share-picture-out{
+      display: inline-block;
+      img{
+        width:pxTorem(210);
+        height:pxTorem(210);
+        margin-right:pxTorem(15);
+        margin-bottom:pxTorem(15);
+      }
+    }
+    .share-picture-out:nth-child(3n){
+      margin-right:0;
+      img{
+        margin-right:0;
+      }
+    }
+  }
+  .share-video{
+    margin-left:pxTorem(20);
+    margin-top:pxTorem(30);
+    overflow: hidden;
+    .share-video-inner{
+      position: relative;
+      float:left;
+      margin-right:pxTorem(15);
+      margin-bottom:pxTorem(15);
+      img{
+        width:pxTorem(210);
+        height:pxTorem(210);
+      }
+    }
+    .share-video-inner:nth-child(3n){
+      margin-right:0;
+      img{
+        margin-right:0;
+      }
+    }
+    .share-video-inner:after{
+      z-index: 9;
+      content: ' ';
+      display: block;
+      width:pxTorem(210);
+      height:pxTorem(210);
+      position: absolute;
+      top:0;
+      left:0;
+      background:url('../../../assets/images/icon_play.png') center no-repeat;
+      background-size:pxTorem(70) pxTorem(70);
+    }
+  }
+
+  missing-default-content .spellMissingPage1{
+    padding-top:0;
+  }
+}
+.share-invitation:after{
+  display: block;
+  content: ' ';
+  width:100%;
+  height:pxTorem(15);
+  background:color($h5,c9);
+}

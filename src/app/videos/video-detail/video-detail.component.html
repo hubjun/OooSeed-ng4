@@ -1,0 +1,70 @@
+<seed-content>
+<div class="video-detail">
+  <div class="video-player page-list">
+    <!--<img class="vplay" src="../../assets/icon/play.png"/>-->
+    <video [src]="deVideoInfo.videoUrl" webkit-playsinline="true" class="video" poster="{{deVideoInfo.videoCover}}" #player>
+      <p>设备暂不支持</p>
+    </video>
+
+    <div class="back-pop" name="arrow-back" (click)="goBack()"></div>
+    <div class="controls">
+      <!--<ion-icon name="arrow-back"></ion-icon>-->
+      <!-- 播放/暂停 -->
+      <div name="play" class="switch isplay" (click)="videoSwitch()" *ngIf="isPause"></div>
+      <div name="pause" class="switch ispause" (click)="videoSwitch()" *ngIf="!isPause"></div>
+      <!-- 全屏 -->
+      <!--<a href="javascript:;" class="expand fa fa-expand"></a>-->
+      <!-- 进度条 -->
+      <div class="progress" (click)="videoSkip($event)">
+        <div class="loaded"></div>
+        <div class="line"></div>
+        <div class="bar"></div>
+      </div>
+      <div class="timer">
+        <span class="current">00:00:00</span> /
+        <span class="total">00:00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-content page-list">
+    <div class="video-name">
+      <span>{{deVideoInfo.videoName}}</span>
+    </div>
+    <!--<ion-input class="input" placeholder="Text Input"></ion-input>-->
+    <div class="play-info">
+      <div class="parameter">
+        <div class="item-left">
+          <i class="play-count"></i>
+          <span>{{deVideoInfo.playCount}}次</span>
+        </div>
+        <div class="item-right" (click)="hiddenToggle()">
+          <span>简介</span>
+          <!--<i class="arrow"></i>-->
+          <span class="arrow-up" *ngIf="!isTextHidden"></span>
+          <span class="arrow-down" *ngIf="isTextHidden"></span>
+        </div>
+      </div>
+      <div class="content-text" *ngIf="isTextHidden">
+        <p>&nbsp;&nbsp;{{deVideoInfo.intro}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="button-box" (click)="goPersonalPage(deVideoInfo.userId)">
+    <div class="uploader-info">
+      <img src="../../assets/icon/concern_default_head.png" alt="" *ngIf="isHasUserIcon">
+      <img [src]="deVideoInfo.userIcon" *ngIf="!isHasUserIcon" alt="">
+      <!--</div>-->
+      <span>{{deVideoInfo.nickName}}</span>
+    </div>
+  </div>
+  <gap-bg></gap-bg>
+  <!--DIV recommand-list *ngIf="!isRcommend"-->
+  <div class="recommand-list item-list">
+    <div class="header">
+      <span class="title">列表</span>
+    </div>
+  </div>
+  <video-player-list [listObj]="videoCateList"></video-player-list>
+</div>
+</seed-content>

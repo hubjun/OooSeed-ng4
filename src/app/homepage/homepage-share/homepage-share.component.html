@@ -1,0 +1,108 @@
+<div class="share-invitation">
+  <div class="share-invitation-header">
+    <div class="share-invitation-name">
+      帖子
+    </div>
+    <div class="share-invitation-more">
+      <span>更多</span>
+      <i></i>
+    </div>
+  </div>
+  <ul>
+    <li>
+      <img src="../../../assets/images/subscript_gallery.png">
+      <div class="invitation-clum-info">
+        <div class="invitation-message">
+          赛事前瞻：詹姆斯找姚明踢足球，姚明说我喜欢打羽毛球，詹姆斯说我喜欢跳水
+        </div>
+        <div class="invitation-icon">
+          <div class="message-autho">张三丰</div>
+          <div class="message-date">今天 10：30</div>
+          <div class="message-icon">
+            <img src="../../../assets/icon/new_message.png">
+            <span class="message-icon-font">99</span>
+            <img src="../../../assets/icon/new_Likes.png">
+            <span>108</span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <img src="../../../assets/images/subscript_gallery.png">
+      <div class="invitation-clum-info">
+        <div class="invitation-message">
+          赛事前瞻：詹姆斯找姚明踢足球，姚明说我喜欢打羽毛球，詹姆斯说我喜欢跳水
+        </div>
+        <div class="invitation-icon">
+          <div class="message-autho">张三丰</div>
+          <div class="message-date">今天 10：30</div>
+          <div class="message-icon">
+            <img src="../../../assets/icon/new_message.png">
+            <span class="message-icon-font">99</span>
+            <img src="../../../assets/icon/new_Likes.png">
+            <span>108</span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <img src="../../../assets/images/subscript_gallery.png">
+      <div class="invitation-clum-info">
+        <div class="invitation-message">
+          赛事前瞻：詹姆斯找姚明踢足球，姚明说我喜欢打羽毛球，詹姆斯说我喜欢跳水
+        </div>
+        <div class="invitation-icon">
+          <div class="message-autho">张三丰</div>
+          <div class="message-date">今天 10：30</div>
+          <div class="message-icon">
+            <img src="../../../assets/icon/new_message.png">
+            <span class="message-icon-font">99</span>
+            <img src="../../../assets/icon/new_Likes.png">
+            <span>108</span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="share-invitation">
+  <div class="share-invitation-header">
+    <div class="share-invitation-name">
+      相册
+    </div>
+    <div class="share-invitation-more">
+      <span>更多</span>
+      <i></i>
+    </div>
+  </div>
+  <div class="share-picture" *ngIf="pictureSingle">
+    <div class="share-picture-out" *ngFor="let item of pictureSingle">
+      <img src="{{item.fileName||'../../../assets/images/placeholder_head_pic.png'}}">
+    </div>
+  </div>
+  <missing-default-content
+    [srcurl]="'../../../assets/images/personal_notalbum.png'"
+    *ngIf="pictureSingle?.length==0"
+  ></missing-default-content>
+</div>
+<div class="share-invitation">
+  <div class="share-invitation-header">
+    <div class="share-invitation-name">
+      视频
+    </div>
+    <div class="share-invitation-more">
+      <span>更多</span>
+      <i></i>
+    </div>
+  </div>
+  <div class="share-video" *ngIf="videoSingle">
+    <div class="share-video-inner" *ngFor="let item of videoSingle">
+      <img src="{{item.fileName}}&width=100&second=1" >
+    </div>
+  </div>
+  <missing-default-content
+    [srcurl]="'../../../assets/images/personal_notvideo.png'"
+    *ngIf="videoSingle?.length==0"
+  ></missing-default-content>
+</div>

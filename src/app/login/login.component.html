@@ -1,0 +1,48 @@
+<!--<div class="login-header">
+  <span class="login-cloesd" (click)="close()"></span>
+   登录
+</div>-->
+<seed-content>
+<div class="page-login " >
+  <div class="login-content">
+    <form [formGroup]="loginForm" (submit)="login() ">
+      <div class="phone-msg">
+        <div *ngIf="loginForm.controls.account.touched " >
+          <p class="error-msg" *ngIf="loginForm.hasError('required','account') " >{{phoneError}}</p>
+          <p class="error-msg" *ngIf="invalidPhoneNumber && !loginForm.hasError('required','account')" >{{phoneError}}</p>
+        </div>
+      </div>
+      <div class="login-box login-box-account">
+        <!--<div class="login-box-icon login-box-icon-account"></div>-->
+        <div class="login-box-input">
+          <input type="text" formControlName="account" name="login-account" id="login-account" placeholder="请输入手机号">
+        </div>
+      </div>
+      <div class="psw-msg">
+        <div *ngIf="passwordLimitLength" >
+          <p class="error-msg" >{{pswError}}</p>
+        </div>
+      </div>
+      <div class="login-box login-box-password">
+        <!--<div class="login-box-icon login-box-icon-password"></div>-->
+        <div class="login-box-input">
+          <input type="password" formControlName="loginPwd" name="login-password" id="login-password" placeholder="请输入密码">
+        </div>
+      </div>
+      <div class="login-button">
+        <button type="submit" [disabled]="!loginForm.valid">登录</button>
+      </div>
+    </form>
+    <div class="login-button register">
+      <button (click)="gotoRegister()" >立即注册</button>
+    </div>
+    <!--<div class="login-correlation-box">
+    </div>-->
+  </div>
+  <!--<div class="logo" *ngIf="!entrying">
+    <img src="../../assets/images/LOGO_dl.png" alt="">
+  </div>-->
+  <login-logo></login-logo>
+  <router-outlet></router-outlet>
+</div>
+</seed-content>

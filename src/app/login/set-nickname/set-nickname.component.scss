@@ -1,0 +1,63 @@
+@import '../../shared/styles/theming.scss';
+@import '../register/register.component.scss';
+
+.divider{
+  width: 100%;
+  height:pxTorem(15px);
+  background: color($h5,c9);
+}
+.login-header{
+  position: relative;
+  height: pxTorem(90px);
+  color: color($h5,c2);
+  text-align: center;
+  @include font-dpr(34px);
+  line-height: pxTorem(90px);
+  padding: 0 pxTorem(47px);
+  .login-back{
+    width: pxTorem(42px);
+    height:pxTorem(42px);
+    background: url('../../../assets/icon/arrow.png') no-repeat center/contain;
+    transform: rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    position: absolute;
+    top: pxTorem(26px);
+    left: pxTorem(45px);
+  }
+}
+.jump{
+    position: absolute;
+    right: pxTorem(45px);
+    top: pxTorem(5px);
+    color: color($h5,c2);
+    @include font-dpr(28px);
+}
+.set-password-content {
+    padding:0 pxTorem(45px);
+    .register-box {
+    width: 100%;
+    display: flex;
+    border-bottom: pxTorem(1) solid color($h5, c8);
+    position: relative;
+    padding: pxTorem(50px) 0px pxTorem(35px);
+    .register-box-icon {
+        width: pxTorem(30px);
+        height:pxTorem(40px);
+        display: flex;
+        align-items: center;
+    }
+    .register-box-input {
+        @include font-dpr(30px);
+        color: color($h5,c2);
+        flex-grow: 2;
+        display: inline-flex;
+        input{
+        text-indent:0px;
+        }
+        &::-webkit-input-placeholder {
+        color: color($h5,c4);
+        }
+    }
+    }
+
+}

@@ -1,0 +1,8 @@
+<nav>
+  <p>
+    <a *ngFor="let nav of navs" routerLink="{{nav.link}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <img src="../../assets/images/{{nav.icon}}" alt="">
+      <span>{{nav.text}}</span>
+    </a>
+  </p>
+</nav>

@@ -1,0 +1,26 @@
+<div class="seed-sliders-warp" *ngIf="gallery?.length > 0">
+  <ngx-siema
+    ngxClass="my-siema"
+    [options]="options"
+  >
+    <ngx-siema-slide *ngFor="let item of gallery">
+      <div
+        class="seed-slider"
+        [style.background]=" 'url('+ item.resUrl +') no-repeat center center/cover ' | safeStyle " >
+      </div>
+      <div class="seed-slides-title" >
+        <div >{{item.title }}</div>
+      </div>
+    </ngx-siema-slide>
+
+  </ngx-siema>
+
+  <div class="seed-sliders-pagination">
+    <button
+      *ngFor="let item of gallery;let i = index"
+      class="seed-sliders-pagination-bullet"
+      [ngClass]="{active:isSlidersActive == i}"
+    >
+    </button>
+  </div>
+</div>

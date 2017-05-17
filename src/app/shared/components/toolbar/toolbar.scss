@@ -1,0 +1,233 @@
+@import "../../styles/theming.scss";
+
+seed-toolbar-header{
+  top: 0px;
+  left: 0px;
+  z-index: 5;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  height: pxTorem(90px);
+  background: color($h5,c10);
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: pxTorem(4px) solid color($h5,c1);
+  padding:  0px pxTorem(40px) 0px pxTorem(20px);
+}
+seed-toolbar-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 pxTorem(80px) 1px;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0);
+  pointer-events: none;
+  justify-content: center;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  transform: translateZ(0);
+  .seed-toolbar-title {
+    color: color($h5,c1);
+    @include font-dpr(34px);
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
+  }
+}
+seed-content {
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  contain: layout size style;
+  .seed-scroll-content {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    margin-top: pxTorem(90px);
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+    contain: size style layout;
+    transition-property: all;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    &.unfold{
+      margin-top: pxTorem(180px);
+    }
+  }
+}
+seed-toolbar-roller {
+  &.scroll-x {
+    .seed-scroll {
+      overflow-x: auto;
+      white-space: nowrap;
+      &::-webkit-scrollbar {
+        display: none
+      }
+    }
+  }
+  .seed-scroll {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+  }
+}
+.no-scroll .seed-scroll-content {
+  overflow: hidden;
+}
+
+seed-toolbar-title {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+  @include set-color(c10);
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  padding: 0 7rem 0;
+  transform: translateZ(0);
+  pointer-events: none;
+  box-sizing: border-box;
+  .seed-toolbar-title {
+    @include font-dpr(28px);
+    @include set-color(c2);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+}
+seed-toolbar-menu {
+  order: 8;
+  width: 6rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.seed-toolbar-menu {
+  width: pxTorem(46px);
+  height: pxTorem(35px);
+  transition-property: all;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  background:url(#{$icons-path}/menu_fold.png) no-repeat center center/contain;
+  &.unfold {
+    background:url(#{$icons-path}/menu_unfold.png) no-repeat center center/contain;
+  }
+}
+seed-toolbar-backbutton {
+  overflow: visible;
+  order: 0;
+  margin: 0;
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  line-height: 1;
+  transform: translateZ(0);
+  transition: opacity 1s ease-out 0s;
+}
+.seed-toolbar-backbtn-warp {
+  width: pxTorem(30px);
+  height: 100%;
+}
+.seed-toolbar-backbtn {
+  width: pxTorem(21px);
+  display: inline-block;
+  height: pxTorem(40px);
+  background:url(#{$icons-path}/back_btn.png) no-repeat center center/contain;
+}
+seed-toolbar-nav {
+  .seed-toolbar-nav {
+    width: 100%;
+    display: flex;
+    background: #e5f6f2;
+    @include font-dpr(34px);
+    @include set-color(c2);
+    height: pxTorem(90px);
+    max-height:pxTorem(0px);
+    box-sizing: border-box;
+    position: absolute;
+    left: 0px;
+    top:4.5rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition-property: all;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    &.fold {
+      max-height:pxTorem(90px);
+    }
+    a {
+      &.current {
+        @include set-color(c1);
+      }
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+}
+seed-toolbar-home {
+  height: 100%;
+}
+.seed-toolbar-home {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .homepage {
+    width: pxTorem(120px);
+    height: pxTorem(39px);
+    display: inline-block;
+    background:url(#{$icons-path}/icon.png) no-repeat center center/contain;
+  }
+  .index {
+    padding-left: pxTorem(5px);
+    @include font-dpr(38px);
+    @include set-color(c12);
+    .iso {
+      padding-right: pxTorem(8px);
+    }
+  }
+}
+
+//回到顶部按钮
+#seed-scroll-top {
+  opacity: 0;
+  z-index: 9;
+  position: fixed;
+  width: pxTorem(90px);
+  height:pxTorem(90px);
+  right: pxTorem(20px);
+  bottom: pxTorem(50px);
+  transition: opacity  1S ease-out 1s;
+  background: url(#{$icons-path}/scroll_top.png) no-repeat center center/contain;
+  &.show {
+    opacity: 1;
+  }
+}
+
+
+
+
+

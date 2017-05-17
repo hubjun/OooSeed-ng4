@@ -1,0 +1,65 @@
+
+<seed-content class="seed-person-page">
+  <div class="seed-person-homepage"  *ngIf="personHeaderInfo">
+    <div class="person-header">
+      <img src="{{
+      localUserId
+      ?(personHeaderInfo.isFollowed==0
+      ?(uncare):(personHeaderInfo.isFollowedMe==0
+      ?cared:eachcare)):' '}}"
+           class="person-icon"
+           *ngIf="localUserId"
+      >
+      <div class="person-Info">
+        <!--<div class="person-flex">-->
+          <div class="person-image">
+            <img src="{{personHeaderInfo.iconUrl||'../../../assets/images/placeholder_head_pic.png'}}" class="person-img">
+            <img src="../../assets/images/{{personHeaderInfo.sex==1?'boy':(personHeaderInfo.sex==2?'girl':' ')}}.png" class="little-icon" *ngIf="personHeaderInfo.sex==1||personHeaderInfo.sex==2">
+          </div>
+          <div class="person-name">{{personHeaderInfo.nickName }}</div>
+          <div class="person-check">{{personHeaderInfo.authStatus==0?'未认证':'已认证'}}</div>
+          <div class="person-edit nosign" *ngIf="!personHeaderInfo.sign">
+            <span>编辑签名</span>
+            <img src="../../assets/images/default_pen.png" class="edit-tools">
+          </div>
+          <div class="person-edit" *ngIf="personHeaderInfo.sign">{{personHeaderInfo.sign||''}}</div>
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="person-clum">
+      <div
+        class="person-clum-current person-share"
+        [class.person-clum-current]="classTag=='share'"
+        routerLink="/homepage/{{userId}}/person-share/{{userId}}"
+        (click)="share()"
+      >
+        <span>分享</span>
+      </div>
+      <div
+        class="person-circle"
+        [class.person-clum-current]="classTag=='circle'"
+        routerLink="/homepage/{{userId}}/person-circle/{{userId}}"
+        (click)="circle()"
+      >
+        <span>圈子</span>
+      </div>
+      <div
+        class="person-fans"
+        [class.person-clum-current]="classTag=='fans'"
+        routerLink="/homepage/{{userId}}/person-fans/{{userId}}"
+        (click)="fans()"
+      >
+        <span>粉丝</span>
+      </div>
+      <div
+        class="person-service"
+        [class.person-clum-current]="classTag=='service'"
+        routerLink="/homepage/{{userId}}/person-service/{{userId}}"
+        (click)="service()"
+      >
+        <span>服务</span>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</seed-content>

@@ -1,0 +1,26 @@
+<div class="teamslist" id="channel">
+
+  <div class="item"*ngFor="let personip of personIpList;let i=index;">
+    <div class="imgavatar"(click)="goPersonalPage(personip.userId)">
+      <img [src]="personip.iconUrl||defaulticon">
+    </div>
+    <div class="rightcontent">
+      <div class="left">
+        <div class="teamname" >
+          <span>{{personip.nickName}}</span>
+          <img [src]="personip.appImgtxtUrl"*ngIf="personip.appImgtxtUrl">
+        </div>
+        <!--<div class="imglogo" ></div>-->
+      </div>
+      <div class="right">
+        <div class="long">{{personip.distance<=0? '未定位' : personip.distance > 1000000?'未定位':personip.distance > 1000 ? (personip.distance / 1000).toFixed(1)+'km' :personip.distance.toFixed(0)+'m'}}</div>
+        <div class="follow"(click)="ToFollow(personip.isFollowed,personip.userId)">
+          <img [src]="personip.isFollowed==0?nofollow:personip.isFollowed==1&&personip.isFollowedMe==1?bothfollow:isfollow">
+        </div>
+      </div>
+    </div>
+  </div>
+  <missing-default-content [text]="'暂时没有该类用户推荐信息，去看看其他吧~'"[srcurl]="'../../../../assets/icon/image_ddress.png'"*ngIf="missCanSee"></missing-default-content>
+  <go-down-app *ngIf="personIpList.length>=10"></go-down-app>
+</div>
+

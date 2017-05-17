@@ -1,0 +1,18 @@
+@import "../mine.component.scss";
+.mycontent{
+  background: #f0f0f0;
+  width: 100%;
+  height: 100%;
+  padding-top: 0.75rem;
+  .mine-new-team{
+    margin-top: 0;
+  }
+  .mymassage ul li .mine-team-news{
+    width: 2.9rem;
+    height: 2.9rem;
+  }
+  .mymassage li{
+    border-bottom: 0px solid transparent;
+  }
+
+}

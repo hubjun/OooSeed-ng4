@@ -1,0 +1,299 @@
+@import "../../shared/styles/theming";
+.video-detail {
+  //background: color($h5,c9);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  contain: size style layout;
+  .page-list{
+    background: color($h5,c10);
+  }
+  .video-player{
+    //width: pxTorem(750);
+    width: 100%;
+    height: pxTorem(422);
+    position: relative;
+    overflow: hidden;
+    background-color: #CCCCCC;
+    video{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: fill;
+    }
+    .video{
+      //width: 100%;
+      //height: 100%;
+      background:transparent 50% 50% no-repeat;
+      -webkit-background-size:cover;
+      -moz-background-size:cover;
+      -o-background-size:cover;
+      background-size:cover;
+    }
+    .vplay{
+      position: absolute;
+      //width: 15%;
+      width: 84px;
+      height: 84px;
+      display: none;
+      //color: color($h5,c10);
+      color: rgba(0, 0, 0, .55);
+      @include font-dpr(75px);
+      z-index: 99;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    .videoRefresh{
+      display: block;
+    }
+    .back-pop{
+      top: pxTorem(38);
+      left: pxTorem(29);
+      position: absolute;
+      font-size: 0.8rem;
+      color: #fff;
+      z-index: 99;
+      width: pxTorem(21);
+      height: pxTorem(40);
+      background: url("../../../assets/icon/back_btn.png") no-repeat;
+      background-size: pxTorem(21) pxTorem(40);
+    }
+    .controls{
+      width: 100%;
+      //height: 2rem;
+      height: pxTorem(88);
+      line-height: pxTorem(88px);
+      @include font-dpr(22px);
+      color: color($h5,c10);
+      display: block;
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, .55);
+      display: -webkit-flex;
+      display: flex;
+      /*进度条*/
+      .switch {
+        //font-size: 46px;
+        color: #FFF;
+        position: absolute;
+      }
+      .isplay{
+        display: block;
+        top: pxTorem(23);
+        //left: pxTorem(36);
+        left: 6%;
+        width: pxTorem(25);
+        height: pxTorem(40);
+        background: url("../../../assets/icon/icon_suspended_01.png") no-repeat;
+        background-size: pxTorem(25) pxTorem(40);
+      }
+      .ispause{
+        //display: none;
+        top: pxTorem(23);
+        //left: pxTorem(31);
+        //left: pxTorem(36);
+        left: 6%;
+        width: pxTorem(32);
+        height: pxTorem(40);
+        background: url("../../../assets/icon/iconfont-bofang.png") no-repeat;
+        background-size: pxTorem(32) pxTorem(40);
+      }
+      .progress {
+        //width: 50%;
+        //width: pxTorem(369);
+        width: 58%;
+        height: pxTorem(3);
+        border-radius: 3px;
+        overflow: hidden;
+        background-color: #fff;
+        cursor: pointer;
+        position: absolute;
+        top: pxTorem(40px);
+        //left: pxTorem(89);
+        left: 14.5%;
+        /*下载进度*/
+        .loaded {
+          width: 0;
+          height: 100%;
+          background-color: #21CBBF;
+        }
+        /*播放进度*/
+        .line {
+          width: 0;
+          height: 100%;
+          color: color($h5,c10);
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .bar {
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 1;
+        }
+      }
+      .timer {
+        color: color($h5,c10);
+        height: pxTorem(88);
+        line-height: pxTorem(88);
+        position: absolute;
+        //left: pxTorem(533);
+        left: 76%;
+        color: #FFF;
+        @include font-dpr(1.1px);
+      }
+      .expand {
+        display: block;
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        color: #FFF;
+        position: absolute;
+        right: 11px;
+        top: 34px;
+      }
+    }
+  }
+  .video-content{
+    padding: pxTorem(15px) pxTorem(15) pxTorem(22) pxTorem(15);
+    .video-name{
+      @include font-dpr(32px);
+      padding: pxTorem(11px)  pxTorem(5px)  pxTorem(30px)  pxTorem(5px);
+      span{
+        color: color($h5,c2);
+      }
+    }
+    .play-info{
+      padding: pxTorem(0)  pxTorem(5px)  pxTorem(0)  pxTorem(5px);
+      .parameter{
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        @include font-dpr(24px);
+        span{
+          color: color($h5,c4);
+        }
+        .item-left{
+          i.play-count{
+            //@include remCalc(width, pxTorem(20px));
+            //@include remCalc(height, pxTorem(20px));
+            //display: inline-block;
+            //background: url("../../assets/icon/icon_play_02.png") center center/contain;
+            @include icon(20,20,"../../../assets/icon/icon_play_02.png");
+          }
+        }
+        .item-right{
+          /*i{
+            @include remCalc(width, pxTorem(80px));
+            @include remCalc(height, pxTorem(80px));
+            display: inline-block;
+            //background: url("../../assets/icon/icon_play_02.png") left center no-repeat;
+          }*/
+          .arrow-up{
+            //color: #999;
+            display: inline-block;
+            //font-size: 0.8rem;
+            color: #fff;
+            z-index: 99;
+            width: pxTorem(21);
+            height: pxTorem(14);
+            background: url("../../../assets/icon/arrow.png") no-repeat;
+            background-size: pxTorem(21) pxTorem(14);
+          }
+          .arrow-down{
+            display: inline-block;
+            @include icon(21,14,'../../../assets/icon/arrow.png');
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+          }
+        }
+      }
+      .content-text{
+        padding: pxTorem(22px) pxTorem(0px) pxTorem(5px) pxTorem(0px);
+        p{
+          color: color($h5,c2);
+          line-height: 46px;
+          @include font-dpr(24px);
+        }
+      }
+    }
+  }
+  .button-box{
+    .uploader-info{
+      margin-bottom: 0;
+      position: relative;
+      border-top: 1px solid color($h5,c9);
+      padding: pxTorem(10) pxTorem(15px) pxTorem(10) pxTorem(15px);
+      &::before{
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: pxTorem(30);
+        bottom: 0;
+        margin: auto;
+        @include icon(17,28,'../../../assets/icon/icon_more.png');
+      }
+      img{
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        width: pxTorem(80px);
+        height: pxTorem(80px);
+        display: inline-block;
+      }
+      span{
+        color: color($h5,c2);
+        @include font-dpr(30px);
+      }
+    }
+  }
+  .recommand-list{
+    @include font-dpr(28px);
+    background: color($h5,c10);
+    .header {
+      @include font-dpr(28px);
+      padding: pxTorem(18) pxTorem(5)  pxTorem(18)  pxTorem(20);
+      .title {
+        color: color($h5, c2);
+      }
+    }
+    .content{
+      display: inline-block;
+      padding: pxTorem(0) pxTorem(15) 0 pxTorem(15);
+      padding: pxTorem(0) pxTorem(15) 0 pxTorem(15);
+      img{
+        width: pxTorem(347);
+        height: pxTorem(196);
+      }
+      .title{
+        //display: flex;
+        //flex-direction: row;
+        padding: pxTorem(18) 0 0 0;
+        padding: pxTorem(18) 0 0 0;
+        @include font-dpr(28px);
+        span.name{
+          color: color($h5, c2);
+        }
+      }
+      //}
+    }
+  }
+}

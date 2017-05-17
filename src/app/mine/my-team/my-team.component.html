@@ -1,0 +1,32 @@
+<seed-content class="spell-detail-inner">
+  <div class="teams-list" *ngIf="myTeamsObj.length>0">
+    <ul>
+      <li *ngFor="let myteam of myTeamsObj" (click)="goTeamDetail(myteam.id)">
+          <p class="icon">
+            <img [src]="myteam.iconFileUrl">
+          </p>
+        <div class="right">
+          <div class="text">
+            <p class="team-name">
+              <span>{{myteam.name}}</span>
+              <img src="">
+            </p>
+            <p class="addr">
+              <span class="name-left">{{myteam.areaProvName||''}} {{myteam.areaCityName||''}} {{myteam.areaDistName||''}} </span>
+              <span>粉丝{{(myteam.countFans == null || '' ? ' 0 ' : myteam.countFans)}}人</span>
+            </p>
+            <p class="addr">
+              队长：{{!myteam.captainNickName ? '暂无队长' : myteam.captainNickName}}
+            </p>
+          </div>
+          <p class="arrow">
+            <img class="person-arrow" src="../../../assets/icon/arrow.png">
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="team-miss" *ngIf="myTeamsObj.length==0">
+      <img src="../../../assets/images/default_groups_createteam.png">
+  </div>
+</seed-content>

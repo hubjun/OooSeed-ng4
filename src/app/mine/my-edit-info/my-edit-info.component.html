@@ -1,0 +1,67 @@
+<seed-content class="local-seed">
+<div class="normal-list gray-background">
+  <div class="list  top-gap">
+    <div class="item avatar">
+      <input  type="file" (change)="selectFileOnchanged($event)" />
+      <p class="icon">
+        <em class="name">头像</em>
+           <img class="avatarImg" [src]="userObj.iconUrl||defaulticon" alt="">
+      </p>
+    </div>
+    <div class="item" (click)="setNickName()">
+      <em>昵称</em>
+      <span class="info">{{userObj.nickName}}</span>
+    </div>
+    <div class="item" (click)="setGender()">
+      <em>性别</em>
+      <span class="info">{{userObj.sex==''?'':userObj.sex==1?'男':'女'}}</span>
+    </div>
+    <div class="item" (click)="setSignature()">
+      <em>签名</em>
+      <span class="info">{{userObj.sign}}</span>
+    </div>
+    <div class="item">
+      <em>所在地</em>
+      <span class="info">{{userObj.areaProvName}}{{userObj.areaCityName}}</span>
+    </div>
+
+  </div>
+  <div class="gap"></div>
+
+  <div class="list ionicDateItem ageSelectWarp">
+    <div class="item">
+      <em>年龄</em>
+      <span class="info">{{userObj.sign}}</span>
+
+    </div>
+    <div class="item">
+      <em>身高</em>
+      <span class="info">{{userObj.sign}}</span>
+
+    </div>
+    <div class="item">
+      <em>体重</em>
+      <span class="info">{{userObj.sign}}</span>
+
+    </div>
+
+  </div>
+  <div class="gap"></div>
+  <div class="list">
+    <div class="item" (click)="setBallInfo()">
+      <em>足球个人信息</em>
+      <span class="info"></span>
+    </div>
+  </div>
+</div>
+
+<!--选择男女-->
+<div class="changesex"*ngIf="sexseed">
+   <div class="sexbox">
+     <p class="title">选择性别</p>
+     <p class="sex" id="1"(click)="changsexnum($event)">男</p>
+     <p class="sex"id="2"(click)="changsexnum($event)">女</p>
+     <p class="cancel"id="0"(click)="changsexnum($event)">取消</p>
+   </div>
+</div>
+</seed-content>

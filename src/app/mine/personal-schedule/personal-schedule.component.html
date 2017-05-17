@@ -1,0 +1,23 @@
+<seed-content class="spell-detail-inner">
+  <div class="mycontent">
+    <div class="personal-schedule">
+      <div class="channel newest">
+        <div class="channel-title">当天日程</div>
+         <schedule-list [schedules]="TodySchedules" *ngIf="TodySchedules.length>0"></schedule-list>
+        <div class="no-record-wrap" *ngIf="TodySchedules.length==0" class="center">
+          <div class="no-record-icon"></div>
+          <div class="no-record-text">暂无日程安排哦，快去发起拼球吧！</div>
+        </div>
+      </div>
+      <div class="channel history">
+        <div class="channel-title">最近日程</div>
+        <schedule-list [schedules]="LatelySchedules" *ngIf="LatelySchedules.length>0"></schedule-list>
+        <div class="no-record-wrap" *ngIf="LatelySchedules.length==0" class="center">
+          <div class="no-record-icon"></div>
+          <div class="no-record-text">暂无日程安排哦，快去发起拼球吧！</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</seed-content>

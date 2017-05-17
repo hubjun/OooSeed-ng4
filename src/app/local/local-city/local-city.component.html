@@ -1,0 +1,60 @@
+<seed-content class="gray-background">
+  <div class="current-city" id="current-city">
+    <p class="title">
+      <span class="city-name">当前：{{currentAreaText}}</span>
+      <i (click)="toggleCityArea()">选择区县</i>
+    </p>
+    <div class="city-area">
+      <ul class="city-list">
+        <li *ngFor="let area of currertCity?.areaList||currertCity?.dictTreeNodeList;let i=index">
+          <!--热门城市||所有城市-->
+          <span [class.active]="area.areaId===currentAreaId" (click)="sortByCity(area,i)">{{area.title}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="hot-city" id="location-city">
+    <h3 class="title">定位城市</h3>
+    <ul class="city-list">
+      <li>
+        <span (click)="sortByLocationCity()">{{locationCity?.title}}</span>
+      </li>
+    </ul>
+  </div>
+  <!--<div class="hot-city" id="location-city">
+    <h3 class="title" id="recent-visit-city">最近访问城市</h3>
+    <ul class="city-list">
+      <li *ngFor="let city of recentVisitCity">
+        <span>{{city.title}}</span>
+      </li>
+    </ul>
+  </div>-->
+  <div class="hot-city">
+    <h3 class="title" id="hot-city">热门城市</h3>
+    <ul class="city-list">
+      <li *ngFor="let city of hotCity">
+        <span (click)="sortByCity(city)">{{city.title}}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="letter-city" *ngFor="let cityObj of allCity">
+    <h3 id="{{cityObj.letter}}" class="title">{{cityObj.letter}}</h3>
+    <p *ngFor="let city of cityObj.citys" (click)="sortByCity(city)">
+      {{city.title}}
+    </p>
+  </div>
+  <ul class="letter-nav">
+    <li><a href="#current-city" (click)="letterAnchorLocation(current-city)">*</a></li>
+    <!--当前城市-->
+    <li><a href="#location-city" (click)="letterAnchorLocation(location-city)">!</a></li>
+    <!--定位城市-->
+    <!--<li><a href="#recent-visit-city" (click)="letterAnchorLocation(recent-visit-city)">#</a></li>-->
+    <!--最近访问城市-->
+    <li><a href="#hot-city" (click)="letterAnchorLocation(hot-city)">$</a></li>
+    <!--热门城市-->
+    <li *ngFor="let letter of letters">
+      <a (click)="letterAnchorLocation(letter)">{{letter}}</a>
+    </li>
+  </ul>
+</seed-content>

@@ -1,0 +1,50 @@
+<div class="person-fans-page">
+  <div class="my-care">
+    <div class="launch-team">
+      <div class="launch-team-name">
+        我的关注
+        <span>({{myFansNumber||0}})</span>
+      </div>
+      <div class="launch-team-more">
+        <span>更多</span>
+        <i></i>
+      </div>
+    </div>
+    <div class="my-care-fans" *ngIf="myCareFans?.length>0">
+      <ul >
+        <li *ngFor="let item of myCareFans" (click)="goPersonalPage(item.userId)">
+          <img src="{{item.iconUrl?item.iconUrl:defaultImg}}">
+          <p>{{item.nickName||'无'}}</p>
+        </li>
+      </ul>
+    </div>
+    <missing-default-content
+      *ngIf="myCareFans[0]=='无'"
+      [srcurl]="'../../../assets/images/default_fans_unfans.png'"
+    ></missing-default-content>
+  </div>
+  <div class="my-care my-fans">
+    <div class="launch-team">
+      <div class="launch-team-name">
+        我的粉丝
+        <span>({{myCareFansNumber||0}})</span>
+      </div>
+      <div class="launch-team-more">
+        <span>更多</span>
+        <i></i>
+      </div>
+    </div>
+    <div class="my-care-fans" *ngIf="myFans?.length>0">
+      <ul>
+        <li *ngFor="let item of myFans" (click)="goPersonalPage(item.userId)">
+          <img src="{{item.iconUrl?item.iconUrl:defaultImg}}">
+          <p>{{item.nickName||'无'}}</p>
+        </li>
+      </ul>
+    </div>
+    <missing-default-content
+      *ngIf="myFans[0]=='无'"
+      [srcurl]="'../../../assets/images/default_fans_unfans.png'"
+    ></missing-default-content>
+  </div>
+</div>

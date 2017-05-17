@@ -1,0 +1,70 @@
+@import "../../styles/theming";
+.seed-sliders-warp{
+  position: relative;
+}
+.seed-slider {
+  width: 100%;
+  height: 100%;
+}
+ngx-siema-slide {
+  position: relative;
+  &>div {
+    width: 100%;
+    position: relative;
+  }
+  div.seed-slider{
+    overflow: hidden;
+    height: pxTorem(420px);
+  }
+  .seed-slides-title{
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    z-index: 999;
+    position: absolute;
+    font-size: pxTorem(28px);
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0px pxTorem(20px);
+    height: pxTorem(70px);
+    line-height: pxTorem(70px);
+  }
+  .seed-slides-title div {
+    /* display: none;*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 80%;
+  }
+}
+.seed-sliders-pagination {
+  right: pxTorem(20px);
+  bottom: 0px;
+  position: absolute;
+  text-align: center;
+  transition: .3s;
+  transform: translate3d(0,0,0);
+  z-index: 10;
+  pointer-events: none;
+  height: pxTorem(70px);
+  line-height: pxTorem(70px);
+  .seed-sliders-pagination-bullet {
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    appearance: none;
+    margin: 0 pxTorem(5px);
+    display: inline-block;
+    border-radius: 100%;
+    opacity: .4;
+    pointer-events: auto;
+    background: #f0f0f0;
+    width: pxTorem(13px);
+    height: pxTorem(13px);
+    &.active {
+      opacity: 1;
+    }
+  }
+}

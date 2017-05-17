@@ -1,0 +1,15 @@
+@import "../../styles/theming.scss";
+view-more{
+  .view-more{
+    padding: pxTorem(40) pxTorem(30);
+  }
+  .text {
+    display: block;
+    line-height: pxTorem(86);
+    border: 1px solid color($h5, c1)!important;
+    border-radius: pxTorem(5);
+    text-align: center;
+    @include font-dpr(30px);
+    color: color($h5, c1);
+  }
+}

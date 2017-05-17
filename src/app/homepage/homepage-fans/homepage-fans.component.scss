@@ -1,0 +1,80 @@
+@import '../../../app/shared/styles/theming.scss';
+.person-fans-page{
+  .my-care{
+    width:100%;
+    .launch-team{
+      width:100%;
+      padding:pxTorem(30) 0 pxTorem(40);
+      overflow: hidden;
+      padding-right:pxTorem(20);
+      box-sizing: border-box;
+      .launch-team-name{
+        float:left;
+        border-left:6px solid #01A87C;
+        padding-left:pxTorem(20);
+        @include font-dpr(28px);
+        color:color($h5,c2);
+
+      }
+      .launch-team-more{
+        float:right;
+        span{
+
+        }
+        i{
+          display: inline-block;
+          width:pxTorem(20);
+          height:pxTorem(11);
+          vertical-align: middle;
+          margin:pxTorem(-4) 0 0 pxTorem(10);
+          background:url('../../../assets/icon/arrow.png') no-repeat;
+          background-size: pxTorem(20) pxTorem(11);
+          transform: rotate(-90deg);
+        }
+      }
+    }
+    .my-care-fans{
+      width:100%;
+      ul{
+        overflow: hidden;
+        width:100%;
+        padding:0 pxTorem(60);
+        padding-bottom:pxTorem(10);
+        li{
+          float:left;
+          padding-right:pxTorem(76);
+          margin-bottom:pxTorem(30);
+          img{
+            width:pxTorem(100);
+            height:pxTorem(100);
+            border-radius: 50%;
+            margin-bottom: pxTorem(20);
+          }
+          p{
+            text-align: center;
+            max-width: pxTorem(100);
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  .my-fans:before{
+    content: ' ';
+    display: block;
+    width:100%;
+    height:pxTorem(15);
+    background:color($h5,c9);
+  }
+  missing-default-content .spellMissingPage1{
+    padding-top:0;
+  }
+}
+
+
+
+
+
+

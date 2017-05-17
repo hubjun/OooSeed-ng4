@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <div *ngFor="let obj of listObj" (click)="gotoDetail($event,obj.videoId)" class="col-50 col-list">
+    <!--<img src="../../../../assets/images/yaoming.png" alt="">-->
+    <img [src]="obj.videoCover" alt="">
+    <div class="info">
+      <div class="title">
+        <span>{{obj.videoName | slice: 0:23}}</span>
+      </div>
+      <!--<div class="detail">-->
+        <!--<div class="person">-->
+          <!--<i class="icon1"></i>-->
+          <!--<span>盘巴斯雄鹰</span>-->
+        <!--</div>-->
+        <!--<div class="cout">-->
+          <!--<i class="icon2"></i>-->
+          <!--<span>32</span>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<ng-content></ng-content>-->
+    </div>
+  </div>
+
+</div>
