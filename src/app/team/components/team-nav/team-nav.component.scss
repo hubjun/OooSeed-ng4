@@ -1,13 +1,16 @@
 @import '../../../shared/styles/theming.scss';
 team-nav {
   nav {
-    margin-top: - pxTorem(30);
     position: relative;
+    display: flex;
+    margin-top: -20px;
+    border-top-left-radius: pxTorem(30);
+    border-top-right-radius: pxTorem(30);
+    background-color: #fff;
     a {
-      border-top-left-radius: pxTorem(30);
-      border-top-right-radius: pxTorem(30);
-      background-color: #fff;
-      ion-segment-button {
+      flex: 1;
+      text-align: center;
+      span {
         height: pxTorem(100);
         line-height: pxTorem(100);
         border: none;

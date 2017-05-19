@@ -1,0 +1,36 @@
+<seed-content class="gray-background">
+  <div class="player-card">
+    <img [src]="player.userIconUrl||defaultUserIcon" alt="" class="avatar">
+    <strong>{{player.userName}}</strong>
+    <span *ngIf="player.leftOrRightName">惯用{{player.leftOrRightName}}</span>
+    <!--<i *ngIf="user.authStatus===1">已实名认证</i>-->
+    <i *ngIf="user.authStatus===0">未实名认证</i>
+  </div>
+  <ul class="team-grid-list list">
+    <li>
+      <span *ngIf="user.weight">{{user.weight}}</span>
+      <span *ngIf="!user.weight">0</span>
+      <em>体重(kg)</em>
+    </li>
+    <li>
+      <span *ngIf="user.height">{{user.height}}</span>
+      <span *ngIf="!user.height">0</span>
+      <em>身高(cm)</em>
+    </li>
+    <li>
+      <span *ngIf="user.userAge">{{user.userAge}}</span>
+      <span *ngIf="!user.userAge">0</span>
+      <em>年龄</em>
+    </li>
+    <li>
+      <span *ngIf="player.firstPositionName" class="chinese-text">{{player.firstPositionName}}</span>
+      <span *ngIf="!player.firstPositionName">无</span>
+      <em>位置</em>
+    </li>
+    <li>
+      <span *ngIf="player.playerNumberName" class="number-text">{{player.playerNumberName}}</span>
+      <span *ngIf="!player.playerNumberName">无</span>
+      <em>号码</em>
+    </li>
+  </ul>
+</seed-content>

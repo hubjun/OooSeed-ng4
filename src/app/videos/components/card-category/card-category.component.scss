@@ -73,7 +73,8 @@
         }
       }
       .item-info{
-        padding: pxTorem(18) 0 pxTorem(20) 0;
+        height: pxTorem(79.8);
+        padding: pxTorem(18) 0 pxTorem(17) 0;
         .title{
           display: flex;
           flex-direction: row;
@@ -90,7 +91,7 @@
           justify-content: space-between;
           @include font-dpr(22px);
           color: color($h5, c5);
-          padding: pxTorem(20) pxTorem(15) 0 0;
+          padding: pxTorem(10) pxTorem(15) 0 0;
           i{
             display: inline-block;
           }

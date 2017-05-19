@@ -12,35 +12,47 @@ import {MyMassageComponent} from "./my-massage/my-massage.component";
 import {MyTeamComponent} from "./my-team/my-team.component";
 import {MyEditInfoComponent} from "./my-edit-info/my-edit-info.component";
 import {PersonalScheduleComponent} from "./personal-schedule/personal-schedule.component";
+import {AuthGuardService} from "../shared/service/auth-guard.service";
+import {EditDetailComponent} from "./my-edit-info/edit-detail/edit-detail";
+import {EditBallComponent} from "./my-edit-info/edit-ball-info/edit-ball-info";
+
 
 const routes:Routes = [
   {
     path:'',
-    component:MineComponent
+    component:MineComponent,
+    canActivate:[AuthGuardService],
   },
   {
     path:'personal-schedule',
     component:PersonalScheduleComponent,
+    canActivate:[AuthGuardService],
   },
   {
     path:'my-content',
     component:MyContentComponent,
+    canActivate:[AuthGuardService],
   },
   {
     path:'my-massage',
     component:MyMassageComponent,
+    canActivate:[AuthGuardService],
   },
   {
     path:'my-team',
     component:MyTeamComponent,
+    canActivate:[AuthGuardService],
   },
   {
     path:'my-edit-info',
     component:MyEditInfoComponent,
+    canActivate:[AuthGuardService],
   },
   {
     path:'my-spell',
     component:MySpellComponent,
+    canActivate:[AuthGuardService],
+    canActivateChild:[AuthGuardService],
     children:[
       {
         path:'',
@@ -67,13 +79,14 @@ const routes:Routes = [
   {
     path:'my-launch-detail/:fightId',
     component:MyLaunchDetailComponent
-  },
+  }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forChild(routes)
   ],
-  exports:[RouterModule]
+  exports:[RouterModule],
+
 })
 export class MineRoutingModule { }

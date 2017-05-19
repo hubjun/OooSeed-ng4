@@ -14,8 +14,10 @@ export class HomepageShareComponent implements OnInit {
   public pictureVideo=[];
   public pictureSingle=[];
   public videoSingle=[];
+  public userId:string;
   subscription: Subscription = new Subscription();
 
+  scrollContainer;
   constructor(
     public homepageService:HomepageService,
     private _activatedRoute:ActivatedRoute,
@@ -24,7 +26,6 @@ export class HomepageShareComponent implements OnInit {
 
   //获取分享图片视频
   share_Picture_Video(obj){
-    this.ToolServices.showLoading();
     this.subscription.add(
       this.homepageService.getPeronPicture(obj).subscribe(res => {
         let object=res;
@@ -32,31 +33,26 @@ export class HomepageShareComponent implements OnInit {
           this.pictureVideo = object.data.list;
           for (let i = 0; i < this.pictureVideo.length; i++) {
             if (this.pictureVideo[i].type == '2') {
-              while (this.pictureSingle.length<9){
                 this.pictureSingle.push(this.pictureVideo[i]);
-              }
             } else{
-              while(this.videoSingle.length<9){
                 this.videoSingle.push(this.pictureVideo[i]);
-              }
             }
           }
         }
-        this.ToolServices.hideLoading();
       })
     )
   }
   ngOnInit() {
-    this.ToolServices.showLoading();
     this._activatedRoute.params
       .subscribe((params:Params) => {
         this.share_Picture_Video(params['userId']);
+        this.userId=params['userId'];
       })
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();
-    this.ToolServices.hideLoading();
   }
 
 }

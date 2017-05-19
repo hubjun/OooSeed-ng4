@@ -6,8 +6,30 @@
   width: 100%;
   height: 100%;
 }
-ngx-siema-slide {
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.swiper-wrapper{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+
+ks-swiper-slide {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
   &>div {
     width: 100%;
     position: relative;
@@ -48,7 +70,7 @@ ngx-siema-slide {
   pointer-events: none;
   height: pxTorem(70px);
   line-height: pxTorem(70px);
-  .seed-sliders-pagination-bullet {
+  .swiper-pagination-bullet {
     border: none;
     cursor: pointer;
     margin: 0;
@@ -63,8 +85,7 @@ ngx-siema-slide {
     background: #f0f0f0;
     width: pxTorem(13px);
     height: pxTorem(13px);
-    &.active {
+    &.swiper-pagination-bullet-active {
       opacity: 1;
-    }
-  }
+    }  }
 }

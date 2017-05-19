@@ -73,3 +73,7 @@ $icons-path: "/assets/icon"; // icon path
   @return map_get($target,$key)
 }
 
+@mixin mix-dpr($type,$value) {
+  #{$type}: $value / 2 + px;
+}
+

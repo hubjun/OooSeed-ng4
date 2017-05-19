@@ -1,4 +1,4 @@
-<div class="team-component">
+<div class="team-component" *ngIf="basicInfo">
   <div class="module">
     <h3 class="module-title reset-margin">基本信息</h3>
     <ul class="team-grid-list" *ngIf="basicInfo">
@@ -32,13 +32,13 @@
   </div>
   <div class="module">
     <h3 class="module-title reset-margin">近10场战绩</h3>
-    <match-result></match-result>
+    <season-results></season-results>
   </div>
   <div class="module players-module bottom-gap">
-    <h3 class="module-title right-arrow-icon" (click)="goTeamPlayer(player)"><em>阵容</em><span>更多</span></h3>
+    <h3 class="module-title right-arrow-icon" routerLink="/team/players"><em>阵容</em><span>更多</span></h3>
     <ul class="list team-grid-list" *ngIf="players">
-      <li *ngFor="let player of players" (click)="goTeamPlayerDetail(player)">
-        <div class="avatar" [class.avatar-default]="!player.userIconUrl" [style.background]=" 'url('+ player.userIconUrl+') no-repeat center center/cover ' | safeStyle "></div>
+      <li *ngFor="let player of players" routerLink="/team/{{player.teamId}}/player/{{player.userId}}">
+        <img [src]="player.userIconUrl||defaultUserIcon" alt="" class="avatar">
         <span>{{player.userName}}</span>
       </li>
     </ul>

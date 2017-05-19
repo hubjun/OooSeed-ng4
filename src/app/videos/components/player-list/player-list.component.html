@@ -1,10 +1,12 @@
 <div class="wrapper">
-  <div *ngFor="let obj of listObj" (click)="gotoDetail($event,obj.videoId)" class="col-50 col-list">
-    <!--<img src="../../../../assets/images/yaoming.png" alt="">-->
-    <img [src]="obj.videoCover" alt="">
+  <div *ngFor="let obj of listObj" (click)="gotoDetail($event,obj.videoId,obj.videoCover)" class="col-50 col-list">
+    <div class="imgBox">
+      <img [src]="obj.videoCover" alt="">
+      <span class="videoTime">{{obj.videoTime}}</span>
+    </div>
     <div class="info">
       <div class="title">
-        <span>{{obj.videoName | slice: 0:23}}</span>
+        <span class="name">{{obj.videoName | slice: 0:23}}</span>
       </div>
       <!--<div class="detail">-->
         <!--<div class="person">-->
@@ -17,6 +19,7 @@
         <!--</div>-->
       <!--</div>-->
       <!--<ng-content></ng-content>-->
+
     </div>
   </div>
 

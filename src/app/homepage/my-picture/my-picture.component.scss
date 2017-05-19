@@ -1,0 +1,25 @@
+@import "../../shared/styles/theming.scss";
+.seed-person-picture{
+  .picture-body{
+    width:100%;
+    overflow: hidden;
+    img{
+      float: left;
+      width:pxTorem(240);
+      height:pxTorem(240);
+      margin-right: pxTorem(15);
+      margin-bottom:pxTorem(15);
+      //}
+      img:nth-child(3n){
+        margin-right:0;
+      }
+    }
+  }
+  .picture-body:before{
+    content: ' ';
+    display: block;
+    width:100%;
+    height:pxTorem(15);
+    background: color($h5,c9);
+  }
+}

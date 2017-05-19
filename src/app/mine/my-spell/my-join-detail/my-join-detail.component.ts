@@ -8,10 +8,8 @@ import {Subscription} from "rxjs/Subscription";
   selector: 'seed-my-join-detail',
   templateUrl: './my-join-detail.component.html',
   styleUrls: ['./my-join-detail.component.scss'],
-  // changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class MyJoinDetailComponent implements OnInit {
-  public defaulticon = 'assets/icon/concern_default_head.png';
   public spellDetail:string[]=[];
   public haveJoin:string;
   public joinListCheck:string[]=[];
@@ -21,7 +19,7 @@ export class MyJoinDetailComponent implements OnInit {
   private spellToggle=false;
   public fightId:string;
   public applyCheck:any;
-  // @Input fightId:item;
+  scrollContainer;
   subscription: Subscription = new Subscription();
 
   constructor(
@@ -32,7 +30,6 @@ export class MyJoinDetailComponent implements OnInit {
   ) { }
 
   getSpellDetailData(obj){
-    this.ToolServices.showLoading();
     this.subscription.add(
       this.LocalService.getSpellDetail(obj).subscribe((res)=>{
         let object=res;
@@ -62,7 +59,6 @@ export class MyJoinDetailComponent implements OnInit {
             let timeNow=new Date().getTime();
             this.signEndTime=(parseFloat(object.data.startTime)-parseFloat(object.data.signEnd)*3600*1000-timeNow)/1000;
           }
-          this.ToolServices.hideLoading();
         }
       })
     )
@@ -84,16 +80,15 @@ export class MyJoinDetailComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.ToolServices.showLoading();
     this._activatedRoute.params
       .subscribe((params:Params) => {
         this.getSpellDetailData(params['fightId']);
-      })
+      });
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();
-    this.ToolServices.hideLoading();
   }
 
 }

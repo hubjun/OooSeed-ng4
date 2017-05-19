@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 
+
 const routes: Routes = [
   {
     path: '',
@@ -21,10 +22,10 @@ const routes: Routes = [
   },
   {
     path:'mine',
-    loadChildren:'app/mine/mine.module#MineModule'
+    loadChildren:'app/mine/mine.module#MineModule',
   },
   {
-    path:'team',
+    path:'team/:teamId',
     loadChildren:'app/team/team.module#TeamModule'
   },
   {
@@ -39,17 +40,14 @@ const routes: Routes = [
     path:'login-out',
     loadChildren:'app/home/home.module#HomeModule',
   },
-  // {
-  //   path:'go-person-page',
-  //   loadChildren:'app/home/homepage.module#HomepageModule',
-  // }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {useHash: true})
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+
 })
 export class AppRoutingModule {
 }

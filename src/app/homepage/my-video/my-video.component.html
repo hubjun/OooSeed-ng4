@@ -1,0 +1,18 @@
+<seed-content class="seed-person-video">
+
+  <div class="picture-body">
+    <div class="video-out"
+         *ngFor="let item of getPicture"
+    >
+      <img
+        src="{{item.fileName}}&width=100&second=1"
+      >
+    </div>
+  </div>
+  <go-down-app *ngIf="getPicture.length==20"></go-down-app>
+</seed-content>
+
+
+
+
+

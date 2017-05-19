@@ -45,6 +45,7 @@
     padding:0 pxTorem(45px) 0;
     /* background: transparent;*/
     .login-box {
+    position: relative;
     width: 100%;
     display: flex;
     padding: 0 0 pxTorem(35px) 0;
@@ -81,6 +82,36 @@
         &::-webkit-input-placeholder {
           color: color($h5,c10) !important;
         }
+      }
+      .delet-account{
+        position: absolute;
+        right: pxTorem(25px);
+        top: pxTorem(10px);
+        width: pxTorem(28px);
+        height: pxTorem(28px);
+        background-image: url('../../assets/icon/delete-.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      .close-psw{
+        position: absolute;
+        right: pxTorem(20px);
+        top: pxTorem(20px);
+        width: pxTorem(40px);
+        height: pxTorem(14px);
+        background-image: url('../../assets/icon/according_close.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      .open-psw{
+        position: absolute;
+        right: pxTorem(20px);
+        top: pxTorem(10px);
+        width: pxTorem(40px);
+        height: pxTorem(26px);
+        background-image: url('../../assets/icon/according_open.png');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
     }
     .phone-msg{

@@ -1,0 +1,10 @@
+<div class="module" [style.background-color]="follow.length===0?'#f0f0f0':'#fff'" *ngIf="follow">
+  <h3 class="module-title" *ngIf="follow.total<=8">球队关注<em>({{follow.total}})</em></h3>
+  <h3 class="module-title right-arrow-icon" *ngIf="follow.total>8" routerLink="/homepage/{{params.userId}}/my-care-fans/{{params.userId}}">球队关注<em>({{follow.total}})</em><span>更多</span></h3>
+  <member-module [members]="follow"></member-module>
+</div>
+<div class="module bottom-gap" [style.background-color]="fans.length===0?'#f0f0f0':'#fff'" *ngIf="fans">
+  <h3 class="module-title" *ngIf="fans.total<=8">球队粉丝<em>({{fans.total}})</em></h3>
+  <h3 class="module-title right-arrow-icon" *ngIf="fans.total>8" routerLink="/homepage/{{params.userId}}/my-fans/{{params.userId}}">球队粉丝<em>({{fans?.total}})</em><span>更多</span></h3>
+  <member-module [members]="fans"></member-module>
+</div>

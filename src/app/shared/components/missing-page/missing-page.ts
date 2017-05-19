@@ -1,7 +1,7 @@
 /**
  * Created by dell on 2017/5/9.
  */
-import { Component, Output, EventEmitter, ElementRef, Input } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'missing-default-content',
@@ -9,10 +9,10 @@ import { Component, Output, EventEmitter, ElementRef, Input } from '@angular/cor
     <div class="spellMissingPage1">
       <div class="missingBg">
         <p>
-          <img src="{{srcurl}}">
+          <img src="../../../../assets/images/missing-picture.png">
         </p>
       </div>
-      <p>{{text}}</p>
+      <!--<p>{{text}}</p>-->
     </div>
   `,
   styleUrls: ['./missing-page.scss'],
@@ -25,3 +25,7 @@ export class MissingDefaultContentComponent {
   ) { }
 }
 // 暂时没有该类拼球信息，去看看其他吧~
+
+
+
+

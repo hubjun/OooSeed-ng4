@@ -3,6 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+import {AuthService} from "./app/shared/service/auth.service";
 
 if (environment.production) {
   enableProdMode();
@@ -11,5 +12,6 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule, [
   {
     defaultEncapsulation: ViewEncapsulation.None
-  }
+  },
+  AuthService
 ]);

@@ -29,6 +29,7 @@ export class SetNicknameComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tools.setTitle('设置昵称');
     this.subscription.add(
       this.nickNameForm.valueChanges
         .debounceTime(300)
@@ -59,7 +60,9 @@ export class SetNicknameComponent implements OnInit {
           setTimeout(() => {
             // this.navCtrl.push(LoginPage)
             this.router.navigate(['/home'])
-          }, 1500)
+          }, 1000)
+        }else{
+          this.tools.showStatusCodeMsg(res.result);
         }
       })
     );

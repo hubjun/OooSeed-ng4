@@ -10,16 +10,31 @@ import { DictCityVO } from '../domain/interface.model';
   styleUrls: ['./local.component.scss']
 })
 export class LocalComponent implements OnInit {
+  public target = document.querySelector('seed-toolbar-header');
   constructor(
     private localService: LocalService,
     private toolsService: ToolsService,
     private router: Router
-  ) { }
+  ) {
 
+  }
+
+  redirectToFilterr () {
+  console.log('=======')
+
+    document.querySelector('seed-toolbar-header')
+      .removeEventListener('click',this.redirectToFilterr,false)
+    this.router.navigate(['/local/citys']);
+}
   ngOnInit() {
     this.toolsService.setTitle('定位中...');
-    document.querySelector('seed-toolbar-header').addEventListener('click', (e) => {
-      this.router.navigate(['/local/citys'])
-    })
+    let that = this;
+
+    document.querySelector('seed-toolbar-header').addEventListener('click',this.redirectToFilterr.bind(this),true);
+
+  }
+  ngOnDestroy(){
+    console.log('----------------------')
+
   }
 }

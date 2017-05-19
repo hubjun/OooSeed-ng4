@@ -1,0 +1,111 @@
+@import '../shared/styles/theming.scss';
+team {
+  nav {
+    position: relative;
+    display: flex;
+    margin-top: -20px;
+    border-top-left-radius: pxTorem(30);
+    border-top-right-radius: pxTorem(30);
+    background-color: #fff;
+    a {
+      flex: 1;
+      text-align: center;
+      span {
+        height: pxTorem(100);
+        line-height: pxTorem(100);
+        border: none;
+        @include font-dpr(28px);
+        color: color($h5, c3);
+        background-color: #fff;
+        &:first-of-type {
+          border-radius: 0;
+          border-top-left-radius: pxTorem(30);
+        }
+        &:last-of-type {
+          border-radius: 0;
+          border-top-right-radius: pxTorem(30);
+        }
+        span {
+          display: inline-block;
+          height: 100%;
+        }
+      }
+    }
+    .active {
+      border-bottom: 2px solid color($h5, c1);
+      span {}
+      color: color($h5, c1);
+    }
+  }
+}
+
+//模块标题
+.module {
+  margin-top: pxTorem(15);
+  padding-top: pxTorem(30);
+  background-color: #fff;
+  .module-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; // padding-top: pxTorem(30);
+    margin-top: 0;
+    margin-bottom: pxTorem(50);
+    padding-left: pxTorem(20);
+    padding-right: pxTorem(50);
+    @include font-dpr(30px);
+    color: color($h5, c2);
+    border-left: 3px solid color($h5, c1);
+    &::after {
+      right: pxTorem(30);
+    }
+    span {
+      margin-top: 0;
+      @include font-dpr(24px);
+      color: color($h5, c4);
+      text-align: right; // margin-right: pxTorem(18);
+    }
+  }
+  .reset-margin {
+    margin-bottom: pxTorem(40);
+  }
+}
+
+//球队主页公用样式
+.team-grid-list {
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    width: 33.33%;
+    margin-bottom: pxTorem(40);
+    align-items: center;
+    text-align: center;
+    @include font-dpr(24px);
+    color: color($h5, c4);
+    background-color: #fff;
+  }
+  canvas {
+    display: block;
+    margin: 0 auto pxTorem(10) auto;
+  }
+  span {
+    display: block;
+    margin-bottom: pxTorem(5);
+    @include font-dpr(38px);
+    color: color($h5, c2);
+  }
+  .chinese-text {
+    @include font-dpr(32px);
+  }
+} //无数据缺省
+.no-record-wrap {
+  padding-bottom: pxTorem(64);
+  text-align: center;
+  background-color: #fff;
+  .no-record-icon {
+    margin: pxTorem(70) auto 0 auto;
+  }
+  .no-record-text {
+    @include font-dpr(28px);
+    color: color($h5, c4);
+  }
+}

@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SetNicknameComponent } from './set-nickname/set-nickname.component';
 import { BlankHeaderComponent } from './component/blank-header/blank-header.component';
 import { LoginLogoComponent } from './component/logo/logo.component';
+import { RegistrationProtocolComponent } from '../protocol/registration-protocol/registration-protocol.component';
+
 
 @NgModule({
   imports: [
@@ -21,7 +23,8 @@ import { LoginLogoComponent } from './component/logo/logo.component';
     RegisterComponent,
     SetNicknameComponent,
     BlankHeaderComponent,
-    LoginLogoComponent
+    LoginLogoComponent,
+    RegistrationProtocolComponent
   ]
 })
 export class LoginModule { }

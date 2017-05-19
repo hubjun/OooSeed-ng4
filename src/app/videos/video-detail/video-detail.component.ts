@@ -1,21 +1,23 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import {ToolsService} from '../../shared/tools/tools.service';
+import { ToolsService } from '../../shared/tools/tools.service';
 import {VideosService} from '../videos.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-video-detail',
   templateUrl: './video-detail.component.html',
-  styleUrls: ['./video-detail.component.scss']
+  styleUrls: ['./video-detail.component.scss'],
+  providers: [VideosService,ToolsService]
 })
 export class VideoDetailComponent implements OnInit {
   videoId: number;
   cateId: number;
 
   isPause: boolean = false;
-  videoRefresh: boolean = false;
+  // videoRefresh: boolean = false;
   // isRcommend: boolean = false;
+  videoCover: string = "";
   isTextHidden: boolean = false;
   isHasUserIcon: boolean = false;
   deVideoInfo: any[] = [];
@@ -31,6 +33,8 @@ export class VideoDetailComponent implements OnInit {
   ) {
     // this.videoId = this.activeRoute.snapshot.params['videoID'];
     // this.cateId = this.activeRouter.snapshot.queryParams['cateId'];
+    this.tools.setTitle('视频详情');
+
   }
 
   goBack(){
@@ -78,10 +82,14 @@ export class VideoDetailComponent implements OnInit {
     this.videoService
       .getDeVideoDetail(this.videoId)
       .subscribe(rs => {
-        // console.log(rs);
-        this.deVideoInfo = rs.data;
-        if(rs.data.userIcon == '' || 'undefinded'){
-          this.isHasUserIcon = true;
+        if(rs.result === '0'){
+          // console.log(rs);
+          this.deVideoInfo = rs.data;
+          if(rs.data.userIcon == '' || 'undefinded'){
+            this.isHasUserIcon = true;
+          }
+        }else {
+          return;
         }
       })
   };
@@ -109,13 +117,29 @@ export class VideoDetailComponent implements OnInit {
   };
 
   ngOnInit(){
+    var video = this.el.nativeElement.querySelector('video');
+    // console.log(videos.innerHTML);
+    var totalTime = this.el.nativeElement.querySelector('.total');
+    var pause = this.el.nativeElement.querySelector('.ispause');
+    // var videoRefresh = this.el.nativeElement.querySelector('.vplay');
+    var loaded = this.el.nativeElement.querySelector('.loaded');
+    var currPlayTime = this.el.nativeElement.querySelector('.current');
+    var expand = this.el.nativeElement.querySelector('.expand');
+
     this.activeRoute.queryParams.subscribe(param => {
       this.videoId = param['videoID'];
       this.cateId = param['cateID'];
+      this.videoCover = param['videoCover'];
+      // let video = document.getElementById('video');
+      let video = this.el.nativeElement.querySelector('video');
+      video.poster = this.videoCover;
       this.getDemandInfo();
       this.getRecommendList();
+      // console.log(this.videoCover);
+
     });
 
+    this.getRecommendList();
     // this.activeRoute.params.forEach((params: Params) => {
     //   // 使用+将字符串类型的参数转换成数字
     //   this.videoId = +params['videoID'];
@@ -124,19 +148,6 @@ export class VideoDetailComponent implements OnInit {
     //   this.getDemandInfo();
     //   this.getRecommendList();
     // });
-
-    console.log('videoID:'+this.videoId+'，cateID:'+this.cateId);
-
-    this.getDemandInfo();
-    // debugger
-    var video = this.el.nativeElement.querySelector('video');
-    // console.log(videos.innerHTML);
-    var totalTime = this.el.nativeElement.querySelector('.total');
-    var pause = this.el.nativeElement.querySelector('.ispause');
-    var videoRefresh = this.el.nativeElement.querySelector('.vplay');
-    var loaded = this.el.nativeElement.querySelector('.loaded');
-    var currPlayTime = this.el.nativeElement.querySelector('.current');
-    var expand = this.el.nativeElement.querySelector('.expand');
 
     //当视频可播放的时候
     video.oncanplay = function(){
@@ -152,6 +163,11 @@ export class VideoDetailComponent implements OnInit {
       // }
     };
 
+    // video.onerror = function (err) {
+    //   console.log(err);
+    //   // this.tools.showToast('视频不存在',1500);
+    // };
+
     //播放完毕还原设置
     video.onended = function(){
       var that = this;
@@ -161,9 +177,9 @@ export class VideoDetailComponent implements OnInit {
       currPlayTime.innerHTML = getFormatTime('');
       //视频恢复到播放开始状态
       that.currentTime = 0;
-      videoRefresh.classList.add('videoRefresh');
+      // videoRefresh.classList.add('videoRefresh');
       //this.isPause = false;
-      console.log(videoRefresh.attributes);
+      // console.log(videoRefresh.attributes);
     };
 
     //播放时间

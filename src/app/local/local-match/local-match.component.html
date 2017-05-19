@@ -1,7 +1,7 @@
-<div class="booking-list changePdding" *ngIf="matchs.length>0" id="channel">
+<div class="booking-list changePdding" *ngIf="matchs.length>0">
   <div class="local-team-detail-clum" id="local-team-detail-clum-id" *ngFor="let item of matchs">
     <div class="team-detail-header">
-      <img src="{{item.iconUrl||defaultTeamIcon}}" alt="" class="team-detail-img">
+      <img [src]="item.iconUrl||defaultTeamIcon" alt="" class="team-detail-img">
       <div class="team-detail-font">
         <div class="team-detail-font-text">{{item.nickName}}</div>
       </div>
@@ -11,7 +11,7 @@
       <p class="team-spell">约战：{{item.sportType}}<span *ngIf="item.sportForm">，{{item.sportForm}}</span><span *ngIf="item.fightArea">，{{item.fightArea}}</span></p>
       <div class="team-time">
         <i></i>
-        <span>{{item.startTime |date:'yyyy-MM-dd'}}</span> <span>周{{item.startTime|ChineseWeek}}{{item.startTime|date:'HH:mm'}}-{{item.endTime | date:'HH:mm'}}</span>
+        <span>{{item.startTime |amDateFormat:'YYYY-MM-DD'}}</span> <span>周{{item.startTime|ChineseWeek}}{{item.startTime|amDateFormat:'HH:mm'}}-{{item.endTime | amDateFormat:'HH:mm'}}</span>
       </div>
       <div class="team-location">
         <i></i>

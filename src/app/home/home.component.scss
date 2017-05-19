@@ -3,3 +3,26 @@
 #home {
   color: color($h5,c3);
 }
+.home-tabs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: pxTorem(20px) 0;
+  justify-content: center;
+  background: color($h5,c10);
+  div.router-box {
+    flex-grow: 1;
+    text-align: center;
+    a {
+      @include font-dpr(30px);
+      @include set-color(c2);
+      &.active {
+        @include set-color(c10);
+        background: color($h5,c1);
+        border-radius: pxTorem(5px);
+        padding: pxTorem(10px) pxTorem(20px);
+      }
+    }
+  }
+
+}

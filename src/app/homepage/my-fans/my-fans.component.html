@@ -1,0 +1,49 @@
+<seed-content class="my-fans-fans">
+  <ul *ngIf="myFans?.length>0&&myFans[0]!='无'">
+    <li *ngFor="let item of myFans">
+      <img
+        [lazyLoad]="item.iconUrl"
+        [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+        [errorImage]="'/assets/images/placeholder_head_pic.png'"
+        [scrollTarget]="scrollContainer"
+        (click)="goPersonalPage(item.userId)"
+      >
+      <div class="fans-info">
+        <div class="fans-name">
+          <p>{{item.nickName}}</p>
+          <p>
+            <span>粉丝: </span>
+            <span>{{item.followNum}}</span>
+          </p>
+        </div>
+        <!--
+            判断用户是否登录===》显示关注状态，未登录，则都是未关注
+            已登录用户查看自己个人中心则有互相关注状态
+            看其他人个人中心则只有未关注与已关注状态
+         -->
+        <img
+          src="{{isLoging?(item.isFollowed==0?unCare:
+          item.isFollowedMe==0?havsCare:(mineLoging=='yes'?careEach:havsCare)):unCare}}"
+          class="care-icon"
+          (click)="careCheck(item.userId,$event)"
+        >
+      </div>
+    </li>
+    <go-down-app *ngIf="myFans?.length==20"></go-down-app>
+  </ul>
+  <missing-default-content
+    *ngIf="myFans?.length==1&&myFans[0]=='无'"
+  ></missing-default-content>
+</seed-content>
+
+
+
+
+
+
+
+
+
+
+
+

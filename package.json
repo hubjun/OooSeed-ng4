@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "mobile": "ng serve --host 127.0.0.1 --port 80 liveReload true live-reload-port 49153"
+    "mobile": "ng serve --host 192.168.31.169 --port 80 liveReload true live-reload-port 49153"
   },
   "private": true,
   "dependencies": {
@@ -21,10 +21,15 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "angular2-moment": "^1.3.3",
     "core-js": "^2.4.1",
+    "delayed-scroll-restoration-polyfill": "^0.1.0",
     "js-sha1": "^0.4.1",
     "lodash": "^4.17.4",
+    "ng-lazyload-image": "^3.1.0",
+    "ngx-infinite-scroll": "^0.5.1",
     "ngx-siema": "^1.1.0",
+    "ngx-swiper-wrapper": "^4.0.0",
     "rxjs": "^5.1.0",
     "ts-md5": "^1.2.0",
     "zone.js": "^0.8.4"

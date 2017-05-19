@@ -17,6 +17,9 @@ import {UserDataService} from '../../shared/tools/user-data.service'
 export class MyEditInfoComponent implements OnInit {
   public defaulticon='../../assets/icon/concern_default_head.png';// 默认头像
   public sexseed:boolean=false;//性别框
+  public agearr:Array<any>;
+  public heightarr:Array<any>;
+  public weightarr:Array<any>;
   public userObj: any = {
     concernNum: 0,
     followNum: 0,
@@ -36,7 +39,8 @@ export class MyEditInfoComponent implements OnInit {
   };
   constructor(
     public userdataservice:UserDataService,
-    public mineService: MineService
+    public mineService: MineService,
+    public router:Router
   ){
 
   }
@@ -51,8 +55,8 @@ export class MyEditInfoComponent implements OnInit {
      })
   }
   // 签名
-  setSignature(){
-console.log('1')
+  editinfo(id){
+    this.router.navigate(['./mine/edit-detail',id]);
   }
   // 性别
   setGender(){
@@ -93,7 +97,55 @@ console.log('1')
 
     })
   }
+  age(event){
+   console.log(typeof event)
+    if(typeof event=='string')
+    {
+      this.mineService.UserInfoUpdate({age:event}).subscribe(res=>{
+        console.log(res)
+        if(res.result==0){
+          this.userObj.userAge=event;
+        }
+      })
+    }
+  }
+  height(event){
+    if(typeof event=='string')
+    {
+      this.mineService.UserInfoUpdate({height:event}).subscribe(res=>{
+        console.log(res)
+        if(res.result==0){
+          this.userObj.height=event;
+        }
+      })
+    }
+  }
+  weight(event){
+    if(typeof event=='string')
+    {
+      this.mineService.UserInfoUpdate({weight:event}).subscribe(res=>{
+        console.log(res)
+        if(res.result==0){
+          this.userObj.weight=event;
+        }
+      })
+    }
+  }
+  addnum(start,end){
+    let arr=[];
+    for(var i=start;i<end;i++)
+    {
+      arr.push(i);
+    }
+    return arr;
+  }
+  setBallInfo(){
+    this.router.navigate(['./mine/edit-ball-info']);
+  }
   ngOnInit() {
-    this.getuserinfo()
+    this.agearr=this.addnum(10,60);
+    this.heightarr=this.addnum(40,200);
+    this.weightarr=this.addnum(30,200);
+    this.getuserinfo();
   }
 }

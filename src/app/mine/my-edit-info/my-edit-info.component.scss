@@ -132,7 +132,7 @@
   left:0;
   height: 100%;
   width: 100%;
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.3);
   .sexbox{
     position: absolute;
     bottom:0;
@@ -155,5 +155,14 @@
       font-size: pxTorem(28);
       color: color($h5,c4);
     }
+  }
+}
+
+
+select{
+  height:pxTorem(90);
+  text-align: center;
+  option{
+    text-align: center
   }
 }

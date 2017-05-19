@@ -1,0 +1,45 @@
+@import '../../../../app/shared/styles/theming.scss';
+.editbox{
+  height: 100%;
+  width: 100%;
+  margin-top: pxTorem(90);
+  background: color($h5,c9);
+  &>div{
+    height: pxTorem(90);
+    background: #fff;
+    width: 100%;
+  }
+  .title{
+  margin-bottom:pxTorem(10);
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    .icon{width: pxTorem(50)}
+    .save{
+      width: pxTorem(80);
+        font-size: pxTorem(30);
+        color: color($h5,c4);
+    }
+    .active{
+      color: color($h5,c2);
+    }
+    .text{
+      flex:1;
+      text-align: center;
+      font-size: pxTorem(35);
+      color: color($h5,c2);
+      font-weight: bold;
+    }
+  }
+  .edit{
+    input{
+      margin:pxTorem(35) 0;
+      width: 80%;
+      margin-left: 6%;
+      font-size: pxTorem(30);
+    }
+    .active{
+      color: color($h5,c2);
+    }
+  }
+}

@@ -9,32 +9,32 @@
       [hidden]="item.infoType == 2"
   >
     <dt class="picture " *ngIf="item.coverUrl?.length == 1">
-      <img  [src]="item.coverUrl" >
-<!--      <img
+<!--      <img  [src]="item.coverUrl" >-->
+      <img
         [lazyLoad]="item.coverUrl"
         [defaultImage]="'/assets/images/placeholder_card_pic.png'"
         [errorImage]="'/assets/images/placeholder_card_pic.png'"
-        [scrollObservable]="content.ionScroll"
-      >-->
+        [scrollTarget]="scrollContainer"
+      >
     </dt>
     <dd class="content ">
       <div class="title">
         {{item.title}}
       </div>
       <div class="gallery" *ngIf="item.coverUrl?.length == 3">
-        <img *ngFor="let cover of item.coverUrl" src="{{cover}}" >
-       <!-- <img
+        <!--<img *ngFor="let cover of item.coverUrl" src="{{cover}}" >-->
+        <img
           *ngFor="let cover of item.coverUrl"
           [lazyLoad]="cover"
           [defaultImage]="'/assets/images/placeholder_card_pic.png'"
           [errorImage]="'/assets/images/placeholder_card_pic.png'"
-          [scrollObservable]="content.ionScroll"
-        >-->
+          [scrollTarget]="scrollContainer"
+        >
       </div>
       <div class="source">
         <span class="poster">{{item.authorName | truncate:2}}</span>
-        <span class="verify-icon"></span>
-        <span class="create-time">{{item.createTime | date: 'YY-MM-DD' }}</span>
+        <!--<span class="verify-icon"></span>-->
+        <span class="create-time">{{item.createTime | amDateFormat: 'YY-MM-DD' }}</span>
         <span class="interface">
                <span class="comment"><label class="icon_new_message"></label>{{item.commentCount}}</span>
              </span>

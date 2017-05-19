@@ -1,0 +1,42 @@
+@import '../../../app/shared/styles/theming.scss';
+.my-fans-fans{
+  ul{
+    padding:0 pxTorem(20) 0 pxTorem(30);
+    li{
+      display: flex;
+      padding-top:pxTorem(30);
+      >img{
+        border-radius: 50%;
+        width: pxTorem(100);
+        height: pxTorem(100);
+        margin-right:pxTorem(20);
+      }
+      .fans-info{
+        width:100%;
+        height:pxTorem(100);
+        line-height: pxTorem(100);
+        padding-bottom:pxTorem(30);
+        border-bottom:1px solid color($h5,c9);
+        overflow: hidden;
+        .fans-name{
+          float:left;
+          p{
+            height:pxTorem(50);
+            line-height: pxTorem(50);
+            color:color($h5,c2);
+            @include font-dpr(30px);
+            span{
+              color:color($h5,#999);
+              @include font-dpr(24px);
+            }
+          }
+        }
+        img{
+          float:right;
+          max-height: pxTorem(50);
+          margin-top:pxTorem(25);
+        }
+      }
+    }
+  }
+}

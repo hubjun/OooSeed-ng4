@@ -1,0 +1,26 @@
+<ul class="team-grid-list" *ngIf="result">
+  <li>
+    <span>{{result.goalNum}}</span>
+    <em>进球</em>
+  </li>
+  <li>
+    <span>{{result.goalNum-result.goalDifferenceNum}}</span>
+    <em>失球</em>
+  </li>
+  <li>
+    <span>{{result.goalDifferenceNum}}</span>
+    <em>净胜球</em>
+  </li>
+  <li>
+    <!--<circular-progress-bar [opts]="progressBarOpts"></circular-progress-bar>-->
+    <em>胜({{result.winsNum}})</em>
+  </li>
+  <li>
+    <!--<circular-progress-bar [opts]="progressBarOpts"></circular-progress-bar>-->
+    <em>平({{result.flatFieldNum}})</em>
+  </li>
+  <li>
+    <!--<circular-progress-bar [opts]="progressBarOpts"></circular-progress-bar>-->
+    <em>负({{result.negativeFieldNum}})</em>
+  </li>
+</ul>

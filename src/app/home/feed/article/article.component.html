@@ -1,0 +1,71 @@
+<seed-content >
+  <div class=" article-template article-template-summary padding-left-right-30" >
+    <header class="header">
+      <div
+        class="subscriptions-posters-icon article-template-icon"
+      >
+        <img
+          [lazyLoad]="(feedsArticle | async)?.userIcon"
+          [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+          [errorImage]="'/assets/images/placeholder_head_pic.png'"
+          [scrollTarget]="scrollContainer"
+        >
+      </div>
+      <div class=" article-template-content">
+        <div class="poster-name">
+          <span>{{(feedsArticle | async)?.nickName}}</span>
+          <span
+            class="icon-type"
+            *ngIf="(feedsArticle | async)?.appImgtxtUrl"
+            [style.background-image]="'url('+ (feedsArticle | async)?.appImgtxtUrl +' )' | safeStyle"
+          ></span>
+        </div>
+        <div class="source" >
+          <time class="date">{{(feedsArticle | async)?.createTm | date:'MM-dd HH:mm':'MM-dd HH:mm'}}</time>
+          <span class="separator" *ngIf="(feedsArticle | async)?.length > 0 "></span>
+          <span  *ngFor="let item of (feedsArticle | async)?.labels" class="tags">{{item.labelName}}</span>
+        </div>
+      </div>
+      <div
+        *ngIf="(feedsArticle | async)?.userId"
+        (click)="follow(feedsArticle?.source?.value?.userId,$event)"
+        [ngClass]="{isFollow: feedsArticle.isFollow == 1}"
+        class="button-subscription "
+      >
+      </div>
+    </header>
+    <article class="article">
+      <h3>{{(feedsArticle | async)?.title}}</h3>
+      <div class="section" *ngFor="let item of (feedsArticle | async)?.feedContents">
+        <p *ngIf="item.contentType == 1">{{item.content}}</p>
+        <img
+          class=""
+          *ngIf="item.contentType == 2"
+          [lazyLoad]="item.content"
+          [defaultImage]="'/assets/images/placeholder_article_pic.png'"
+          [errorImage]="'/assets/images/placeholder_article_pic.png'"
+          [scrollTarget]="scrollContainer"
+        >
+        <video *ngIf="item.contentType == 3" src="{{item.content}}" poster="{{item.thumbnail}}" controls="controls"></video>
+      </div>
+    </article>
+    <div class="article-support " text-center>
+      <div  class="cont" text-center>
+        <div
+          (click)=" digg(feedsArticle?.source?.value?.feedId,$event)"
+          [class.isDigg]="(feedsArticle | async)?.isDigg == true"
+          class="icon-box"
+        ></div>
+      </div>
+      <div #diggNumber class="quantity-number">{{(feedsArticle | async)?.diggCount}}</div>
+    </div>
+  </div>
+
+  <div class="background-gray" *ngIf="(comments | async).length > 0"></div>
+  <div class="article-comments " *ngIf="(comments | async).length > 0">
+    <div class="article-template-title border-bottom">评论 </div>
+    <seed-comments  [comments]="(comments | async)"></seed-comments>
+  </div>
+
+</seed-content>
+

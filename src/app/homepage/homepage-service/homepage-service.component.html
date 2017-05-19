@@ -10,7 +10,9 @@
     </li>
     <li>
       <div class="service-name">IP标签</div>
-      <div class="service-info">{{dealService.authStatus==1?'认证中':(dealService.authStatus==2?'未通过':'已通过')}}</div>
+      <div class="service-info">
+        {{dealService.authStatus==1?'认证中':(dealService.authStatus==2?'未通过':'已通过')}}
+      </div>
     </li>
     <li>
       <div class="service-name">简介</div>
@@ -18,7 +20,12 @@
     </li>
     <li>
       <div class="service-name">宣传图</div>
-      <img src="{{dealService.showImage||'../../../assets/images/user_default.png'}}">
+      <img
+        [lazyLoad]="dealService.showImage"
+        [defaultImage]="'/assets/images/user_default.png'"
+        [errorImage]="'/assets/images/user_default.png'"
+        [scrollTarget]="scrollContainer"
+      >
     </li>
   </ul>
   <missing-default-content

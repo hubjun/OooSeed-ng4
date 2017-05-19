@@ -15,7 +15,8 @@ import {MyTeamComponent} from "./my-team/my-team.component";
 import {PersonalScheduleComponent} from "./personal-schedule/personal-schedule.component";
 import {MyComponent} from "./personal-schedule/my-component/my-component";
 import {MyEditInfoComponent} from "./my-edit-info/my-edit-info.component";
-
+import {EditDetailComponent} from "./my-edit-info/edit-detail/edit-detail";
+import {EditBallComponent} from "./my-edit-info/edit-ball-info/edit-ball-info";
 @NgModule({
   imports: [
     SharedModule,
@@ -33,8 +34,13 @@ import {MyEditInfoComponent} from "./my-edit-info/my-edit-info.component";
     MyTeamComponent,
     PersonalScheduleComponent,
     MyComponent,
-    MyEditInfoComponent
+    MyEditInfoComponent,
+    EditDetailComponent, 
+    EditBallComponent,
   ],
-  providers:[MineModule,LocalService,MineService]
+  providers:[
+    LocalService,
+    MineService,
+  ]
 })
 export class MineModule { }

@@ -36,6 +36,7 @@ export class SetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tools.setTitle('设置密码');
     this.subscription.add(
       this.route.queryParams.subscribe(param => {
         this.register = {

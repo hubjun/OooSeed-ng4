@@ -4,8 +4,8 @@ import {ToolsService} from '../../shared/tools/tools.service';
 import {Observable, Subject} from "rxjs";
 import {Router, ActivatedRoute} from '@angular/router'
 import {AppPlayTurn,catePart} from "../../domain/interface.model";
-import {childOfKind} from "tslint";
-import {count} from "rxjs/operator/count";
+// import {childOfKind} from "tslint";
+// import {count} from "rxjs/operator/count";
 
 @Component({
   selector: 'app-video-home',
@@ -35,6 +35,7 @@ export class VideoHomeComponent implements OnInit {
   };
 
   getCateListInfo(){
+    this.tools.showLoading();
     this.videoService.getCateList()
       .subscribe(rs => {
         if(rs.result === '0'){
@@ -44,6 +45,7 @@ export class VideoHomeComponent implements OnInit {
           })
         }
       })
+    this.tools.hideLoading();
   };
 
   cateIdChange(e){

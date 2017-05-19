@@ -15,22 +15,24 @@ export class HomepageFansComponent implements OnInit {
   public myCareFans=[];
   public myFansNumber:string;
   public myCareFansNumber:string;
-  public defaultImg='../../../assets/images/placeholder_head_pic.png';
+  public userId:string;
+  public localUserid:string;
   subscription: Subscription = new Subscription();
   constructor(
     private router: Router,
     public homepageService:HomepageService,
     private _activatedRoute:ActivatedRoute,
     public ToolServices:ToolsService
-  ) { }
+  ) {
+
+  }
 
   myFans_Careme(obj){
-    this.ToolServices.showLoading();
     //查询我关注的人
     this.subscription.add(
       this.homepageService.getMycare(obj).subscribe(res=>{
         let object=res;
-        if(object.result==0&&object.data.list){
+        if(object.result==0&&object.data.list.length>0){
           this.myFansNumber=object.data.total;
           if(object.data.list.length>8){
             for(let i=0;i<8;i++){
@@ -40,16 +42,15 @@ export class HomepageFansComponent implements OnInit {
             this.myCareFans=object.data.list;
           }
         }else{
-          this.myCareFans=['无'];
+          this.myCareFans[0]='无';
         }
-        this.ToolServices.hideLoading();
       })
     );
     //查询我的粉丝
     this.subscription.add(
       this.homepageService.getMyfans(obj).subscribe(res=>{
         let object=res;
-        if(object.result==0&&object.data.list){
+        if(object.result==0&&object.data.list.length>0){
           this.myCareFansNumber=object.data.total;
           if(object.data.list.length>8){
             for(let i=0;i<8;i++){
@@ -60,7 +61,7 @@ export class HomepageFansComponent implements OnInit {
           }
 
         }else{
-          this.myFans=['无'];
+          this.myFans[0]='无';
         }
       })
     )
@@ -69,17 +70,17 @@ export class HomepageFansComponent implements OnInit {
     this.router.navigate(['/homepage', obj]);
   }
   ngOnInit() {
-    this.ToolServices.showLoading();
+    this.localUserid=localStorage.getItem('userid');
     this._activatedRoute.params
       .subscribe((params:Params) => {
         this.myFans_Careme(params['userId']);
+        this.userId=params['userId'];
       })
   }
 
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();
-    this.ToolServices.hideLoading();
   }
 
 }

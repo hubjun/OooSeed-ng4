@@ -1,4 +1,4 @@
-<div class="teamslist" id="channel">
+<div class="teamslist">
   <div class="item"*ngFor="let teamip of teamIpList;let i=index;">
     <div class="imgavatar"(click)="goteamdetail(teamip.id)">
       <img [src]="teamip.iconFileUrl||defaulticon">

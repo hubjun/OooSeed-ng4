@@ -8,10 +8,8 @@ import {Subscription} from "rxjs/Subscription";
   selector: 'seed-my-launch-detail',
   templateUrl: './my-launch-detail.component.html',
   styleUrls: ['./my-launch-detail.component.scss'],
-  // changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class MyLaunchDetailComponent implements OnInit {
-  public defaulticon = 'assets/icon/concern_default_head.png';
   public spellDetail:string[]=[];
   public haveJoin:string;
   public joinListCheck:string[]=[];
@@ -21,8 +19,8 @@ export class MyLaunchDetailComponent implements OnInit {
   private spellToggle=false;
   public fightId:string;
   public applyCheck:any;
+  scrollContainer;
   subscription: Subscription = new Subscription();
-  // @Input fightId:item;
 
   constructor(
     private router: Router,
@@ -32,14 +30,12 @@ export class MyLaunchDetailComponent implements OnInit {
   ) { }
 
   getSpellDetailData(obj){
-    this.ToolServices.showLoading();
     this.subscription.add(
       this.LocalService.getSpellDetail(obj).subscribe((res)=>{
         let object=res;
         if(object.result==0){
           this.spellDetail=object.data;
           this.applyCheck=object.data.status;
-          this.ToolServices.hideLoading();
 
           if(object.data.joinList){
             for(let j=0;j<object.data.joinList.length;j++){
@@ -53,7 +49,8 @@ export class MyLaunchDetailComponent implements OnInit {
             this.joinListCheck=object.data.joinList;
           }
           if(object.data.phone){
-            this.phoneCheck=object.data.phone.slice(0,3)+'***'+object.data.phone.slice(-3,object.data.phone.length);
+            this.phoneCheck=object.data.phone.slice(0,3)+'***'+
+              object.data.phone.slice(-3,object.data.phone.length);
             if(localStorage.getItem('userid')){
               this.phoneCheck=object.data.phone;
             }
@@ -61,7 +58,8 @@ export class MyLaunchDetailComponent implements OnInit {
           if(object.data.days==0||!object.data.days){
             this.timeDate='yes';
             let timeNow=new Date().getTime();
-            this.signEndTime=(parseFloat(object.data.startTime)-parseFloat(object.data.signEnd)*3600*1000-timeNow)/1000;
+            this.signEndTime=(parseFloat(object.data.startTime)-
+              parseFloat(object.data.signEnd)*3600*1000-timeNow)/1000;
           }
         }
       })
@@ -87,12 +85,12 @@ export class MyLaunchDetailComponent implements OnInit {
     this._activatedRoute.params
       .subscribe((params:Params) => {
         this.getSpellDetailData(params['fightId']);
-      })
+      });
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();
-    this.ToolServices.hideLoading();
   }
 
 }

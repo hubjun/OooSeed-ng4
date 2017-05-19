@@ -16,6 +16,7 @@
         <!--<div class="login-box-icon login-box-icon-account"></div>-->
         <div class="login-box-input">
           <input type="text" formControlName="account" name="login-account" id="login-account" placeholder="请输入手机号">
+          <span class="delet-account" *ngIf="loginForm.controls['account'].value != ''"  (click)="deleteAccount()"></span>
         </div>
       </div>
       <div class="psw-msg">
@@ -26,7 +27,9 @@
       <div class="login-box login-box-password">
         <!--<div class="login-box-icon login-box-icon-password"></div>-->
         <div class="login-box-input">
-          <input type="password" formControlName="loginPwd" name="login-password" id="login-password" placeholder="请输入密码">
+          <input type="password" #psw formControlName="loginPwd" name="login-password" id="login-password" placeholder="请输入密码">
+          <span class="open-psw" *ngIf="psw.type == 'text'" (click)="psw.type = 'password'"></span>
+          <span class="close-psw" *ngIf="psw.type == 'password'" (click)="psw.type = 'text'"></span>
         </div>
       </div>
       <div class="login-button">
@@ -42,7 +45,7 @@
   <!--<div class="logo" *ngIf="!entrying">
     <img src="../../assets/images/LOGO_dl.png" alt="">
   </div>-->
-  <login-logo></login-logo>
+  <!--<login-logo></login-logo>-->
   <router-outlet></router-outlet>
 </div>
 </seed-content>

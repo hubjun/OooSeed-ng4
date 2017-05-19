@@ -14,10 +14,10 @@ export class PlayerListComponent implements OnInit {
     private router:Router
   ) { }
 
-  gotoDetail(e,id){
+  gotoDetail(e,id,videoCover){
     // debugger
-    console.log(id);
-    this.router.navigate(['/videos/detail'], {queryParams: {videoID: id, cateID: ''}});
+    // console.log(id);
+    this.router.navigate(['/videos/detail'], {queryParams: {videoID: id, cateID: '', videoCover: videoCover}});
   };
 
   ngOnInit() {

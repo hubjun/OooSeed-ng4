@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HomepageService} from "./homepage.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ToolsService} from "../shared/tools/tools.service";
 
 @Component({
   selector: 'app-homepage',
@@ -21,6 +22,7 @@ export class HomepageComponent implements OnInit {
     private router: Router,
     public homepageService:HomepageService,
     private _activatedRoute:ActivatedRoute,
+    public toolsService:ToolsService,
   ) {
 
   }
@@ -54,6 +56,7 @@ export class HomepageComponent implements OnInit {
           }
         });
       })
+    this.toolsService.setTitle('个人主页');
   }
 
 }

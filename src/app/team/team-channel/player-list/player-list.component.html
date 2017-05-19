@@ -1,0 +1,12 @@
+<seed-content class="gray-background">
+  <ul class="top-gap">
+    <li [class.bottom-gap]="player.roleTag=='CREATOR'" *ngFor="let player of players" routerLink="/team/{{player.teamId}}/player/{{player.userId}}">
+      <img [src]="player.userIconUrl||defaultUserIcon" alt="" class="avatar">
+      <div class="basic-info border-bottom">
+        <p class="name"><em>{{player.userName}}</em> <i class="captain" *ngIf="player.roleTag=='CREATOR'">球队创始人</i><i class="member" *ngIf="player.roleTag=='TEAM_MEMBER'">普通球员</i></p>
+        <p>惯用{{player.leftOrRightName}}<span *ngIf="player.firstPositionName">/{{player.firstPositionName}}</span> <span *ngIf="player.secondPositionName"> /{{player.secondPositionName}}</span></p>
+        <i class="number" *ngIf="player.playerNumberName">{{player.playerNumberName}}</i>
+      </div>
+    </li>
+  </ul>
+</seed-content>

@@ -35,28 +35,48 @@
     }
     .my-care-fans{
       width:100%;
-      ul{
-        overflow: hidden;
-        width:100%;
-        padding:0 pxTorem(60);
-        padding-bottom:pxTorem(10);
-        li{
-          float:left;
-          padding-right:pxTorem(76);
-          margin-bottom:pxTorem(30);
-          img{
-            width:pxTorem(100);
-            height:pxTorem(100);
-            border-radius: 50%;
-            margin-bottom: pxTorem(20);
-          }
-          p{
-            text-align: center;
-            max-width: pxTorem(100);
-            overflow: hidden;
-            text-overflow:ellipsis;
-            white-space: nowrap;
-          }
+      overflow: hidden;
+      ul {
+        padding: 0 pxTorem(22) pxTorem(10) pxTorem(22)!important;
+      }
+      li {
+
+        float:left;
+        width: 25%!important;
+        text-align: initial!important;
+        // padding: 0 pxTorem(38) pxTorem(25) pxTorem(38)!important;
+        margin-bottom: pxTorem(25);
+        .content {
+          position: relative;
+          text-align: center;
+        }
+        .avatar {
+          width: pxTorem(100);
+          height: pxTorem(100);
+          margin: auto;
+          border-radius: 50%;
+        }
+        .nickname {
+          margin-top: pxTorem(15);
+          margin-bottom: 0!important;
+          @include font-dpr(24px);
+          @include text-overflow-ellipsis(100);
+        }
+        .identity {
+          position: absolute;
+          right: pxTorem(-10);
+          top: pxTorem(10);
+          padding: 0 pxTorem(8);
+          @include font-dpr(16px);
+          border-radius: pxTorem(26);
+          font-style: normal;
+          color: #fff;
+        }
+        .team {
+          background-color: #23b891;
+        }
+        .user {
+          background-color: #fea961;
         }
       }
     }
@@ -67,6 +87,12 @@
     width:100%;
     height:pxTorem(15);
     background:color($h5,c9);
+  }
+  .my-fans:after{
+    content: ' ';
+    display: block;
+    width:100%;
+    height:pxTorem(25);
   }
   missing-default-content .spellMissingPage1{
     padding-top:0;

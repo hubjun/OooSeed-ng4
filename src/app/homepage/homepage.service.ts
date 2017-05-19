@@ -14,6 +14,13 @@ export class HomepageService {
   public PERSON_MY_FANS='/user/_guest/findFans';//我的粉丝
   public PERSON_MY_CARE='/user/_guest/findFollow';//我关注的人
   public PERSON_SERVICE='/user/_guest/auth';//服务
+  public PERSON_ADD_CARE_FANS='/user/friend';//新增关注
+  public PERSON_DELETE_CARE_FANS='/user/friend';//取消关注
+
+  private GET_USER_FEED_URL = '/feed/feed';
+  private GET_USER_ARTICLE_LIST_URL = '/article/_guest/articleList';
+  private GET_USER_FEED_DIGG_URL = '/user/feedDigg';
+  private FRIEND_URL = '/user/friend';
 
   constructor(
     public httpService: HttpService,
@@ -45,12 +52,12 @@ export class HomepageService {
   }
   //我的粉丝
   getMyfans(obj){
-    let url=this.PERSON_MY_FANS+'?userId='+obj;
+    let url=this.PERSON_MY_FANS+'?userId='+obj+'&rows='+20;
     return this.httpService.get(url).map((res)=>res.json());
   }
   //我关注的人
   getMycare(obj){
-    let url=this.PERSON_MY_CARE+'?userId='+obj;
+    let url=this.PERSON_MY_CARE+'?userId='+obj+'&rows='+20;
     return this.httpService.get(url).map((res)=>res.json());
   }
   //服务
@@ -59,6 +66,61 @@ export class HomepageService {
     return this.httpService.get(url).map((res)=>res.json());
   }
 
+  //
+  getUserFeed(userId: string, page: number = 1, rows: number = 2) {
+    let url = this.GET_USER_FEED_URL + `?userId=${userId}&page=${page}&rows=${rows}`;
+    return this.httpService.get(url).map(res => res.json());
+  }
+  //
+  getUserArticleList(userId: string, page: number = 1, rows: number = 10,publishStatus:number = 1,){
+    let url = this.GET_USER_ARTICLE_LIST_URL + `?userId=${userId}&publishStatus=${publishStatus}&page=${page}&rows=${rows}`;
+    return this.httpService.get(url).map(res => res.json());
+  }
+  //
+  getUserFeedDigg(userId: string, page: number = 1, rows: number = 10){
+    let url = this.GET_USER_FEED_DIGG_URL + `?userId=${userId}&page=${page}&rows=${rows}`;
+    return this.httpService.get(url).map(res => res.json());
+  }
+  //获取帖子关注fried
+  GetFeedFierd(followUserId:string,operation:boolean = true){
+    let data = {
+      followUserId:followUserId
+    };
+
+    if (operation){
+      let url = this.FRIEND_URL;
+      return this.httpService.post(url,data).map((res) => res.json());
+    }else {
+      let url = this.FRIEND_URL + `?followUserId=${followUserId}`;
+      return this.httpService.delete(url).map((res) => res.json());
+    }
+  }
+  //查询我的粉丝
+  getUserFindFans(userId: string, page: number = 1, rows: number = 8) {
+    let url = this.PERSON_MY_FANS + `?userId=${userId}&page=${page}&rows=${rows}`;
+    return this.httpService.get(url).map(res => res.json());
+  }
+  //查询我的关注
+  getUserFidFollow(userId: string, page: number = 1, rows: number = 8) {
+    let url = this.PERSON_MY_CARE + `?userId=${userId}&page=${page}&rows=${rows}`;
+    return this.httpService.get(url).map(res => res.json());
+  }
+
+  //新增关注
+  addCareFans(obj){
+    let obx={followUserId:obj};
+    let url=this.PERSON_ADD_CARE_FANS;
+    return this.httpService.postUrlencode(url,obx).map((res)=>res.json());
+  }
+  //取消关注
+  deleteCareFans(obj){
+    let obx={followUserId:obj};
+    let url=this.PERSON_DELETE_CARE_FANS+`?followUserId=${obj}`;
+    return this.httpService.delete(url).map((res)=>res.json());
+  }
+
+
+  }
 
 
 
@@ -68,4 +130,4 @@ export class HomepageService {
 
 
 
-}
+

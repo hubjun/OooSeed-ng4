@@ -1,4 +1,6 @@
+
 <seed-slider [gallery]="gallery | async"></seed-slider>
+
 <div class="seed-info-cate">
   <seed-toolbar-roller class="scroll-x">
     <div class="seed-cate-box" #cateEve>
@@ -6,14 +8,22 @@
         class="cate-btn"
         href="javascript:;"
         *ngFor="let item of tools.setArray(cates | async) ;let i = index;let last = last"
-        (click)="cateType$.next(item.cateId);isActive = i"
+        (click)="chooseCate(item.cateId,i,$event)"
         [class.active]="isActive == i"
       >
         <span >{{item.cateName}}{{last ? onFirstClick() : '' }}</span>
       </a>
     </div>
   </seed-toolbar-roller>
-  <seed-badges [articles]="tools.setArray(articles | async)"></seed-badges>
+  <div class="search-results"
+       infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="300"
+       [infiniteScrollContainer]="ele"
+       (scrolled)="onScroll()">
+    <seed-badges  [articles]="tools.setArray(articles | async)"></seed-badges>
+  </div>
+
 </div>
 
 

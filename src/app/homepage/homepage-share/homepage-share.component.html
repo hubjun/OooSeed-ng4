@@ -71,18 +71,25 @@
     <div class="share-invitation-name">
       相册
     </div>
-    <div class="share-invitation-more">
+    <div
+      class="share-invitation-more"
+      routerLink="/homepage/{{userId}}/my-picture/{{userId}}"
+    >
       <span>更多</span>
       <i></i>
     </div>
   </div>
   <div class="share-picture" *ngIf="pictureSingle">
     <div class="share-picture-out" *ngFor="let item of pictureSingle">
-      <img src="{{item.fileName||'../../../assets/images/placeholder_head_pic.png'}}">
+      <img
+        [lazyLoad]="item.fileName"
+        [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+        [errorImage]="'/assets/images/placeholder_head_pic.png'"
+        [scrollTarget]="scrollContainer"
+      >
     </div>
   </div>
   <missing-default-content
-    [srcurl]="'../../../assets/images/personal_notalbum.png'"
     *ngIf="pictureSingle?.length==0"
   ></missing-default-content>
 </div>
@@ -91,7 +98,10 @@
     <div class="share-invitation-name">
       视频
     </div>
-    <div class="share-invitation-more">
+    <div
+      class="share-invitation-more"
+      routerLink="/homepage/{{userId}}/my-video/{{userId}}"
+    >
       <span>更多</span>
       <i></i>
     </div>
@@ -102,7 +112,6 @@
     </div>
   </div>
   <missing-default-content
-    [srcurl]="'../../../assets/images/personal_notvideo.png'"
     *ngIf="videoSingle?.length==0"
   ></missing-default-content>
 </div>

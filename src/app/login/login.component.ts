@@ -7,6 +7,7 @@ import { ToolsService } from '../shared/tools/tools.service';
 import { UserDataService } from "../shared/tools/user-data.service";
 import { UserActivityService } from "../shared/tools/user-activity.service";
 import { Subscription } from "rxjs";
+import {AuthService} from "../shared/service/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private tools: ToolsService,
-    private userData: UserDataService,
+    private userData: AuthService,
     private user: UserActivityService,
   ) {
     this.loginForm = this.formBuilder.group({
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
   subscription: Subscription = new Subscription();
 
   ngOnInit() {
+    this.tools.setTitle('登录');
     this.subscription.add(
       this.router.events.subscribe((res) => {
         window.scrollTo(0, 0);
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
             if (!this.loginForm.controls['account'].hasError('required')) {  //如果输入框非空
               this.invalidPhoneNumber = this.loginForm.controls['account'].errors['invalidPhoneNumber'];  //取验证结果
               this.phoneError = ValidationService.getValidatorErrorMessage('invalidPhoneNumber')
-            } else { //用户名是空 
+            } else { //用户名是空
               this.phoneError = ValidationService.getValidatorErrorMessage('phoneNumberNull')
             }
           } else {
@@ -77,15 +79,14 @@ export class LoginComponent implements OnInit {
     data.loginPwd = this.tools.encryption(data.loginPwd);
     this.subscription.add(
       this.user.login(data).subscribe((res) => {
-        if (!res || !res.result)
-          return;
+        this.tools.hideLoading();
         if (res.result == 13 || res.result == 11) {
-          this.tools.hideLoading();
           this.tools.showToast('登录名或者密码错误', 800);
         } else if (res.result == 0 && res.data) {
           this.userData.login(res.data.userId, res.data.token, res.data.refreshToken);
           this.tools.hideLoading();
-          this.router.navigate(['/home'])
+          let retirect = this.userData.redirectUrl ? this.userData.redirectUrl : 'home';
+          this.router.navigate([retirect])
         } else {
           this.tools.showToast('登录出错请刷新后重试', 800);
         }
@@ -99,5 +100,13 @@ export class LoginComponent implements OnInit {
   close() {
     this.router.navigate(['/home'])
     // window.history.back();
+  }
+  deleteAccount(){
+    this.loginForm.controls['account'].setValue('');
+  }
+  ngOnDestroy() {
+    //取消订阅
+    this.subscription.unsubscribe();
+    this.tools.hideLoading();
   }
 }

@@ -353,6 +353,9 @@
     width: 100%;
     overflow: hidden;
     padding: pxTorem(30) 0 0;
+    .spellMissingPage1{
+      padding-top:0;
+    }
     > p {
       margin-left: pxTorem(30);
       @include font-dpr(24px);

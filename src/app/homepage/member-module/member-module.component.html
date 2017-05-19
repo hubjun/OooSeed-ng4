@@ -1,0 +1,13 @@
+<ul>
+  <li  *ngFor="let item of members" (click)="goPersonalPage(item.userId)">
+    <div class="content">
+      <img
+        [lazyLoad]="item.iconUrl"
+        [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+        [errorImage]="'/assets/images/placeholder_head_pic.png'"
+        [scrollTarget]="scrollContainer"
+        class="avatar">
+      <span class="nickname">{{item.nickName||'无'}}</span>
+    </div>
+  </li>
+</ul>

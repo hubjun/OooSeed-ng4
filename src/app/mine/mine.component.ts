@@ -4,6 +4,7 @@ import {MineService} from "./mine.service";
 import {ToolsService} from "../shared/tools/tools.service";
 import {UserDataService} from '../shared/tools/user-data.service';
 import {Subscription} from "rxjs/Subscription";
+import {AuthService} from "../shared/service/auth.service";
 
 @Component({
   selector: 'app-mine',
@@ -21,7 +22,8 @@ export class MineComponent implements OnInit {
     public mineService: MineService,
     public toolsService: ToolsService,
     public ToolServices:ToolsService,
-    private user: UserDataService
+    private user: UserDataService,
+    private auth : AuthService
   ) {
     this.getUserInfomation();
   }
@@ -37,7 +39,7 @@ export class MineComponent implements OnInit {
     this.mineService.goLoginOut().subscribe(res => {
       if (res.result == 0) {
         this.toolsService.showToast('退出成功！');
-        this.user.logout();
+        this.auth.logout();
         this.router.navigate(['login-out']);
         this.ToolServices.hideLoading();
       }
@@ -46,19 +48,22 @@ export class MineComponent implements OnInit {
 
   //查询用户信息
   getUserInfomation() {
-    let hasLoggedIn = this.user.hasLoggedIn();
+/*    let hasLoggedIn = this.user.hasLoggedIn();
     if (hasLoggedIn != 'true'){
       this.user.showLoginPage();
-    }else{
+    }else{*/
       let userid = localStorage.getItem('userid');
       this.ToolServices.showLoading();
       this.mineService.getUserInfo(userid).subscribe(res => {
         if (res.result == 0) {
           this.userInfo = res.data;
           this.ToolServices.hideLoading();
+        }else{
+          this.toolsService.hideLoading();
+          this.router.navigate(['/mime/login']);
         }
       })
-    }
+   /* }*/
   }
 
   // 跳转详情

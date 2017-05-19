@@ -2,7 +2,7 @@
 <div class="video-detail">
   <div class="video-player page-list">
     <!--<img class="vplay" src="../../assets/icon/play.png"/>-->
-    <video [src]="deVideoInfo.videoUrl" webkit-playsinline="true" class="video" poster="{{deVideoInfo.videoCover}}" #player>
+    <video [src]="deVideoInfo.videoUrl" webkit-playsinline="true" id="video" poster="{{deVideoInfo.videoCover}}" preload="none">
       <p>设备暂不支持</p>
     </video>
 

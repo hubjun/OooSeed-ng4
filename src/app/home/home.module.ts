@@ -6,6 +6,9 @@ import {HomeService} from "./home.service";
 import { InfoComponent } from './info/info.component';
 import { NewsComponent } from './info/news/news.component';
 import {RouterModule} from "@angular/router";
+import { FeedComponent } from './feed/feed.component';
+import { ArticleComponent } from './feed/article/article.component';
+import {FeedbackSevice} from "../shared/service/FeedbackSevice";
 
 
 @NgModule({
@@ -18,7 +21,9 @@ import {RouterModule} from "@angular/router";
     HomeComponent,
     InfoComponent,
     NewsComponent,
+    FeedComponent,
+    ArticleComponent,
   ],
-  providers:[HomeService]
+  providers:[HomeService,FeedbackSevice]
 })
 export class HomeModule { }

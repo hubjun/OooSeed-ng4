@@ -10,14 +10,14 @@
     </div>
     <div class="register-box register-box-account">
       <div class="register-box-input">
-        <input type="text" formControlName="account" name="register-account" id="register-account" placeholder="请输入手机号">
+        <input type="tel" formControlName="account" name="register-account" id="register-account" placeholder="请输入手机号">
       </div>
     </div>
     <!--输出手机号验证信息-->
 
     <div class="register-box register-box-verify-code">
       <div class="register-box-input">
-        <input type="text" formControlName="verifyCode" name="register-verify-code" id="register-verify-code" placeholder="短信验证码">
+        <input type="tel" formControlName="verifyCode" name="register-verify-code" id="register-verify-code" placeholder="短信验证码">
       </div>
       <div class="register-timer" (click)="getSMSCode($event)">
         <span>{{timer}}</span>
@@ -26,10 +26,10 @@
     <button type="submit" [disabled]="!registerForm.valid" class="register-button-next">下一步</button>
     <!-- <button type="submit" ion-button block *ngIf="isRegister" class="register-button-next is-register">用户已注册</button>-->
     <div class="user-agreement" text-center>
-      注册即表示同意<a>注册协议</a>
+      注册即表示同意<a (click)="goProtocal()">注册协议</a>
     </div>
   </form>
 </div>
-<login-logo></login-logo>
+<!--<login-logo></login-logo>-->
 </seed-content>
 <!--<router-outlet></router-outlet>-->

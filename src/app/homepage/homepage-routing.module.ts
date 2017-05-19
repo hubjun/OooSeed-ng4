@@ -5,8 +5,12 @@ import {HomepageShareComponent} from "./homepage-share/homepage-share.component"
 import {HomepageServiceComponent} from "./homepage-service/homepage-service.component";
 import {HomepageFansComponent} from "./homepage-fans/homepage-fans.component";
 import {HomepageCircleComponent} from "./homepage-circle/homepage-circle.component";
+import {MyVideoComponent} from "./my-video/my-video.component";
+import {MyPictureComponent} from "./my-picture/my-picture.component";
+import {MyCareFansComponent} from "./my-care-fans/my-care-fans.component";
+import {MyFansComponent} from "./my-fans/my-fans.component";
 
-const routes: Routes = [
+const routes: Routes = [ 
   {
     path:'',
     component:HomepageComponent,
@@ -30,9 +34,25 @@ const routes: Routes = [
       {
         path:'person-service/:userId',
         component:HomepageServiceComponent,
-      }
+      },
     ]
-  }
+  },
+  {
+    path:'my-video/:userId',
+    component:MyVideoComponent,
+  },
+  {
+    path:'my-picture/:userId',
+    component:MyPictureComponent,
+  },
+  {
+    path:'my-care-fans/:userId',
+    component:MyCareFansComponent,
+  },
+  {
+    path:'my-fans/:userId',
+    component:MyFansComponent,
+  },
 ];
 @NgModule({
   imports: [

@@ -6,8 +6,6 @@
 
 import {Injectable} from "@angular/core";
 import * as sha1 from 'js-sha1';
-// import {ModalController, Events} from "ionic-angular";
-// import {LoginPage} from "../pages/login/login";
 import {ToolsService} from "./tools.service";
 import {Router} from '@angular/router';
 
@@ -16,13 +14,9 @@ import {Router} from '@angular/router';
 export class UserDataService {
   private HAS_LOGGED_IN = 'hasLoggedIn';
   private timestamp:any = '';
-  public loginStatus:boolean = true;
-  public modal;
   constructor(
-    // public modalCtrl:ModalController,
     public tools:ToolsService,
     private router: Router
-    // public events:Events,
   ){
   }
 
@@ -64,7 +58,6 @@ export class UserDataService {
     this.setToken(token);
     this.setRefreshToken(refreshToken);
     this.setLogin('true');
-    // this.events.publish('login:success',Date.now())
   }
 
   logout() {
@@ -75,7 +68,8 @@ export class UserDataService {
   }
 
   showLoginPage(){
-    this.router.navigate(['/login'])
+    
+    this.router.navigate(['/mine/login'])
     // let modal = this.modalCtrl.create(LoginPage);
     // modal.onDidDismiss(data =>{
     //   this.loginStatus = true;
@@ -84,6 +78,7 @@ export class UserDataService {
     //   modal.present();
     //   this.loginStatus = false;
     // }
+
   }
 
   signup(userid:string){

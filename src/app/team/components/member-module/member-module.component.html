@@ -1,0 +1,19 @@
+<ul class="team-grid-list" *ngIf="members.total>0">
+  <li *ngFor="let member of members.list">
+    <div class="content" *ngIf="member.orgInfoVO" routerLink="/team/{{member.orgInfoVO.orgId}}">
+      <img [src]="member.iconUrl||defaultTeamIcon" alt="" class="avatar">
+      <i class="identity team">球队</i>
+      <span class="nickname">{{member.orgInfoVO.orgName}}</span>
+    </div>
+    <div class="content" *ngIf="!member.orgInfoVO" routerLink="/homepage/{{member.userId}}">
+      <img [src]="member.iconUrl||defaultUserIcon" alt="" class="avatar">
+      <i class="identity user">个人</i>
+      <span class="nickname">{{member.nickName}}</span>
+    </div>
+  </li>
+</ul>
+<div class="no-record-wrap" *ngIf="members.total===0">
+  <div class="no-record-icon"></div>
+  <div class="no-record-text" *ngIf="members.type=='follow'">你还没有关注任何人哦~</div>
+  <div class="no-record-text" *ngIf="members.type=='fans'">还没有人关注你哦~</div>
+</div>

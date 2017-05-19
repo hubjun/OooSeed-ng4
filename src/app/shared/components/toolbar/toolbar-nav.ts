@@ -11,11 +11,11 @@ import {ChangeDetectionStrategy, ViewEncapsulation,Component} from "@angular/cor
       routerLink="/home"
       routerLinkActive="current"
     >
-    首页
+    资讯
     </a>
     <a
       routerLink="/videos"
-      routerLinkActive="isCurrent"
+      routerLinkActive="current"
     >
      视频
      </a>

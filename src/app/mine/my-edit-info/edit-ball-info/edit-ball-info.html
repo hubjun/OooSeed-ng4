@@ -1,0 +1,50 @@
+<seed-content class="local-seed">
+<div class="editbox">
+   <div class="title">
+     <p class="icon"></p>
+     <p class="text">足球个人信息</p>
+     <p class="save"[ngClass]="{'active':cansave}"(click)="saveinfo()">
+       保存
+     </p>
+   </div>
+  <div class="gap"></div>
+</div>
+
+<div class="normal-list gray-background">
+  <div class="list  top-gap">
+    <div class="item" (click)="editinfo('nickName')">
+      <em>球龄</em>
+      <span class="info">0</span>
+      <!--<select-list [options]="agearr"(change)="ballage($event)"[selected]="userObj.userAge"></select-list>-->
+    </div>
+    <div class="item" (click)="setGender()">
+      <em>认证身份</em>
+      <span class="info">未认证</span>
+    </div>
+  </div>
+  <div class="gap"></div>
+
+  <div class="list ionicDateItem ageSelectWarp">
+    <div class="item">
+      <em>惯用脚</em>
+      <span class="info">userObj.userAge}}</span>
+    </div>
+    <div class="item">
+      <em>场上位置</em>
+      <span class="info">userObj.height}}</span>
+    </div>
+    <div class="item">
+      <em>能力特点</em>
+      <span class="info">userObj.weight}}</span>
+    </div>
+
+  </div>
+  <div class="gap"></div>
+  <div class="list">
+    <div class="item" (click)="setBallInfo()">
+      <em>曾效力球队</em>
+      <span class="info"></span>
+    </div>
+  </div>
+</div>
+</seed-content>

@@ -8,7 +8,7 @@
            <img class="avatarImg" [src]="userObj.iconUrl||defaulticon" alt="">
       </p>
     </div>
-    <div class="item" (click)="setNickName()">
+    <div class="item" (click)="editinfo('nickName')">
       <em>昵称</em>
       <span class="info">{{userObj.nickName}}</span>
     </div>
@@ -16,7 +16,7 @@
       <em>性别</em>
       <span class="info">{{userObj.sex==''?'':userObj.sex==1?'男':'女'}}</span>
     </div>
-    <div class="item" (click)="setSignature()">
+    <div class="item" (click)="editinfo('sign')">
       <em>签名</em>
       <span class="info">{{userObj.sign}}</span>
     </div>
@@ -31,18 +31,18 @@
   <div class="list ionicDateItem ageSelectWarp">
     <div class="item">
       <em>年龄</em>
-      <span class="info">{{userObj.sign}}</span>
-
+      <span class="info">{{userObj.userAge}}</span>
+      <select-list [options]="agearr"(change)="age($event)"[selected]="userObj.userAge"></select-list>
     </div>
     <div class="item">
       <em>身高</em>
-      <span class="info">{{userObj.sign}}</span>
-
+      <span class="info">{{userObj.height}}</span>
+      <select-list [options]="heightarr"(change)="height($event)"[selected]="userObj.height"></select-list>
     </div>
     <div class="item">
       <em>体重</em>
-      <span class="info">{{userObj.sign}}</span>
-
+      <span class="info">{{userObj.weight}}</span>
+      <select-list [options]="weightarr"(change)="weight($event)"[selected]="userObj.weight"></select-list>
     </div>
 
   </div>
@@ -64,4 +64,10 @@
      <p class="cancel"id="0"(click)="changsexnum($event)">取消</p>
    </div>
 </div>
+  <!--select选择-->
+  <!--<div class="changesex">-->
+    <!--<select name="" id=""class="sexbox"style="text-align: center">-->
+        <!--<option *ngFor=" let option of options">{{option}}</option>-->
+    <!--</select>-->
+  <!--</div>-->
 </seed-content>

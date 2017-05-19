@@ -1,9 +1,8 @@
 <div class="seed-sliders-warp" *ngIf="gallery?.length > 0">
-  <ngx-siema
-    ngxClass="my-siema"
-    [options]="options"
+  <ks-swiper-container
+    [options]="example1SwipeOptions"
   >
-    <ngx-siema-slide *ngFor="let item of gallery">
+    <ks-swiper-slide *ngFor="let item of gallery">
       <div
         class="seed-slider"
         [style.background]=" 'url('+ item.resUrl +') no-repeat center center/cover ' | safeStyle " >
@@ -11,9 +10,9 @@
       <div class="seed-slides-title" >
         <div >{{item.title }}</div>
       </div>
-    </ngx-siema-slide>
+    </ks-swiper-slide>
 
-  </ngx-siema>
+  </ks-swiper-container>
 
   <div class="seed-sliders-pagination">
     <button

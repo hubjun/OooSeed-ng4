@@ -23,7 +23,6 @@ export class HomepageCircleComponent implements OnInit {
   ) { }
 
   Launch_Join(obj){
-    this.ToolServices.showLoading();
     //查询用户加入的球队
     this.subscription.add(
       this.homepageService.getPersonJoin(obj).subscribe(res=>{
@@ -40,7 +39,6 @@ export class HomepageCircleComponent implements OnInit {
         }else{
           this.joinCheck='no';
         }
-        this.ToolServices.hideLoading();
       })
     );
     //查询用户创建的球队
@@ -60,7 +58,6 @@ export class HomepageCircleComponent implements OnInit {
     this.ToolServices.presentConfirm('下载球苗APP，看更多精彩内容!');
   }
   ngOnInit() {
-    this.ToolServices.showLoading();
     this._activatedRoute.params
       .subscribe((params:Params) => {
         this.Launch_Join(params['userId']);
@@ -70,6 +67,5 @@ export class HomepageCircleComponent implements OnInit {
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();
-    this.ToolServices.hideLoading();
   }
 }

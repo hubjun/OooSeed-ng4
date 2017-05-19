@@ -1,12 +1,13 @@
 <div class="avatar-wrap">
-  <!--<div class="avatar-background" [class.team-logo-default]="!basicInfo.iconFileUrl" [style.background]=" 'url('+ basicInfo.iconFileUrl+') no-repeat center center/cover ' | safeStyle "></div>-->
+  <div class="avatar-background" [style.background]=" 'url('+ basicInfo?.iconFileUrl+') no-repeat center center/cover ' | safeStyle " *ngIf="basicInfo?.iconFileUrl"></div>
+  <div class="avatar-background" [style.background]=" 'url('+ defaultTeamIcon+') no-repeat center center/cover ' | safeStyle " *ngIf="!basicInfo?.iconFileUrl"></div>
   <div class="filter"></div>
   <div class="avatar-content">
-    <!--<div class="avatar" [class.team-logo-default]="!basicInfo.iconFileUrl" [style.background]="'url('+ basicInfo.iconFileUrl+') no-repeat center center/cover'| safeStyle "></div>-->
-    <!--<h1>{{basicInfo.name}}</h1>-->
+    <img [src]="basicInfo?.iconFileUrl||defaultTeamIcon" alt="" class="avatar">
+    <h1>{{basicInfo?.name}}</h1>
     <p>
-      <!--<span>{{basicInfo.areaCityName}}</span>-->
-      <!--<span>{{basicInfo.areaDistName}}</span>-->
+      <span>{{basicInfo?.areaCityName}}</span>
+      <span>{{basicInfo?.areaDistName}}</span>
     </p>
   </div>
 </div>

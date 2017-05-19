@@ -1,10 +1,7 @@
 /**
  * Created by 陈文豪 on 2017/5/4.
  */
-import {
-  ChangeDetectionStrategy, Component, ViewEncapsulation, ViewChild, ElementRef, OnInit,
-  HostListener
-} from '@angular/core';
+import {Component, ViewChild, ElementRef,} from '@angular/core';
 import {ToolsService} from "../../tools/tools.service";
 import {Subject} from "rxjs";
 
@@ -12,22 +9,27 @@ import {Subject} from "rxjs";
   selector: 'seed-content',
   template: `
     <seed-toolbar-nav></seed-toolbar-nav>  
-    <div class="seed-scroll-content" #content (scroll)="onScroll()">
-     <ng-content></ng-content>
+    <div
+     #content
+     id="seed-scroll-content"
+     class="seed-scroll-content"  
+
+      (scroll)="onScroll()"    
+
+     >
+      <ng-content></ng-content>
     </div>
     <div
-      *ngIf="isVisible"
       [class.show]="isVisible"
-      id="seed-scroll-top"
+      id="seed-scroll-top" 
       (click)="scrollTop()"
     >
-    </div>
+    </div>  
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
 })
-export class ToolbarContentComponent{
+export class Content{
   private isVisible:boolean = false;
+  public isScrolling:boolean;
   private unsbscribe:Subject<void> = new Subject<void>();
   @ViewChild('content') private content:ElementRef;
 
@@ -41,14 +43,17 @@ export class ToolbarContentComponent{
     })
   }
 
+  infiniteScroll(callback = null){
+    if (callback == null)
+      return;
+    callback();
+  }
   get getScrollElement() {
     return this.content.nativeElement;
   }
   get contentHeight(): number {
     return this.content.nativeElement.contentHeight;
   }
-
-
 
   get scrollHeight(): number {
     return this.content.nativeElement.scrollHeight;
@@ -66,12 +71,23 @@ export class ToolbarContentComponent{
     return this.content.nativeElement.scrollTo(x, y, duration, done);
   }
 
+   _onInfinityScroll(){
+     this.infiniteScroll()
+   }
 
-  onScroll() {
+   _onScroll(states:boolean){
+     this.isScrolling = states
+     console.log(this.isScrolling)
+     this.isScrolling = false;
+     console.log(this.isScrolling)
+   }
+  onScroll(event) {
+    let windowHeight = this.content.nativeElement.offsetHeight;
     let distance = this.content.nativeElement.scrollTop;
-    if(distance > 100) {
+    let scrollHeight = this.content.nativeElement.scrollHeight;
+    if(distance > 200) {
       this.isVisible = true;
-    }else if(this.isVisible && distance < 100) {
+    }else if(this.isVisible && distance < 200) {
       this.isVisible = false;
     }
   }

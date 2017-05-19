@@ -11,10 +11,12 @@ missing-default-content {
       text-align: center;
       p {
         display: inline-block;
-        width: pxTorem(200);
-        height: pxTorem(200);
-        //background: url('../../../../assets/icon/image_ddress.png') center center no-repeat;
-        //background-size: pxTorem(160) pxTorem(160);
+        width: pxTorem(134);
+        height: pxTorem(176);
+        img{
+          width: pxTorem(134);
+          height: pxTorem(176);
+        }
       }
 
     }

@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tools.setTitle('注册');
     this.subscription.add(
       this.registerForm.valueChanges
         .debounceTime(300)  //开始输入之后500毫秒内只取最新的结果
@@ -69,7 +70,10 @@ export class RegisterComponent implements OnInit {
       if (res.result === '0') {
         this.SMSCodeCountDown(60)
         return false;
-      } else {
+      }else if(res.result =='4002'){  //后台返回4002去取的话是缺少参数的提示，所以这个接口单独写
+          this.tools.showToast('手机号码不正确');
+          return false;
+        } else {
         this.tools.showStatusCodeMsg(res.result)
       }
     })
@@ -114,6 +118,9 @@ export class RegisterComponent implements OnInit {
     else {
       this.timer = '发送验证码'
     }
+  }
+  goProtocal(){
+    this.router.navigate(['/login/registration-protocol']);
   }
   // goBack() {
   //   window.history.back();

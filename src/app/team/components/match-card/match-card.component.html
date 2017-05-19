@@ -1,0 +1,34 @@
+<div class="content" *ngIf="matchs.length>0">
+  <div class="item" *ngFor="let match of matchs" routerLink="/team/{{match.homeTeamId}}/match/{{match.id}}">
+    <div class="basic-info">
+      <time>{{match.date}} 周{{match.day|chineseDay}}</time><span *ngIf="match.formatName">/{{match.formatName}}</span></div>
+    <div class="team-logo">
+      <div class="logo-box">
+        <img [src]="match.homeTeamIconUrl||defaultTeamIcon" alt="" class="logo">
+      </div>
+      <p class="center" *ngIf="match.matchState!==-1">
+        VS
+      </p>
+      <p class="score" *ngIf="match.matchState===-1">
+        <span *ngIf="match.homeScore">{{match.homeScore}}</span><span *ngIf="!match.homeScore">-</span><i>:</i><span *ngIf="match.guestScore">{{match.guestScore}}</span>
+        <span *ngIf="!match.guestScore">-</span>
+      </p>
+      <div class="logo-box">
+        <img [src]="match.guestTeamIconUrl||defaultTeamIcon" alt="" class="logo">
+      </div>
+    </div>
+    <div class="team-name">
+      <p class="name"><span>{{match.homeTeamName}}</span></p>
+      <p>
+        <b *ngIf="match.matchState===-1" class="match-state end">比赛结束</b>
+        <b *ngIf="match.matchState===0" class="match-state success">约战成功</b>
+        <b *ngIf="match.matchState===1||match.matchState===2||match.matchState===3||match.matchState===4" class="match-state ing">比赛中</b>
+      </p>
+      <p class="name"> <span>{{match.guestTeamName}}</span> </p>
+    </div>
+  </div>
+</div>
+<div class="no-record-wrap" *ngIf="matchs.length===0">
+  <div class="no-record-icon"></div>
+  <div class="no-record-text">暂无赛程记录哦~</div>
+</div>

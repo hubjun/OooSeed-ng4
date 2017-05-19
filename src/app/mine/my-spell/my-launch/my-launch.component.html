@@ -2,7 +2,13 @@
 <div class="changePdding" *ngIf="spellData?.length>0">
   <div class="local-team-detail-clum"  id="local-team-detail-clum-id" (click)="goToJoinDetail(item.fightId)" *ngFor="let item of spellData">
     <div class="team-detail-header">
-      <img class="team-detail-img" src="{{item.iconUrl||defaulticon}}" (click)="goPersonalPage(item.userId);$event.stopPropagation();"/>
+      <img class="team-detail-img"
+           [lazyLoad]="item.iconUrl"
+           [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+           [errorImage]="'/assets/images/placeholder_head_pic.png'"
+           [scrollTarget]="scrollContainer"
+           (click)="goPersonalPage(item.userId);$event.stopPropagation();"
+      />
       <div class="team-detail-font">
         <div class="team-detail-font-text">{{item.leaderUserName}}</div>
         <img src="{{item.appImgtxtUrl||' '}}" alt="">
@@ -14,13 +20,12 @@
       <p class="team-spell">拼球：{{item.title}}</p>
       <div class="team-time">
         <i></i>
-        <span>{{item.startTime|date:'dd-MM-yy '}}  周{{item.startTime|ChineseWeek }} {{item.startTime|date:'HH:mm'}}-{{item.endTime|date:'HH:mm'}}</span>
+        <span>{{item.startTime|amDateFormat:'DD-MM-YY '}}  周{{item.startTime|ChineseWeek }} {{item.startTime|amDateFormat:'HH:mm'}}-{{item.endTime|amDateFormat:'HH:mm'}}</span>
       </div>
 
       <div class="team-location">
         <i></i>
         <span>{{item.place||'暂无'}}</span>
-        <!--<span class="team-distance" >{{locationError=='error'?'未知':(item.distance>1000?(item.distance/1000)+'km':item.distance+'m')}}</span>-->
       </div>
 
       <p class="team-expense">
@@ -41,10 +46,6 @@
     <div class="lookMore">下载球苗App，看更多精彩内容</div>
   </div>
 </div>
-<div class="spellMissingPage" *ngIf="spellData?.length==0">
-  <div class="missingBg">
-    <p></p>
-  </div>
-  <p *ngIf="lessLength==0">暂未发起过拼球哦~</p>
-  <div class="clickLaunch" (click)="TipCommon()">点击发起拼球</div>
-</div>
+<missing-default-content
+  *ngIf="spellData?.length==0"
+></missing-default-content>

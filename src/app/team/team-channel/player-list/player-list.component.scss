@@ -1,0 +1,76 @@
+@import "../../../shared/styles/theming.scss";
+ player-list {
+   ul {
+     @include font-dpr(24px);
+     color: color($h5, c4);
+   }
+   li {
+     display: flex;
+     position: relative;
+     background-color: #fff;
+     &:last-of-type {
+       .basic-info {
+         border-bottom: none;
+       }
+     }
+   }
+   .bottom-gap {
+     .basic-info {
+       border-bottom: none;
+     }
+   }
+   p {
+     margin-right: pxTorem(20);
+   }
+   .avatar {
+     width: pxTorem(80);
+     height: pxTorem(80);
+     border-radius: 50%;
+     margin: pxTorem(30) pxTorem(30) pxTorem(35) pxTorem(20);
+   }
+   .basic-info {
+     flex: 1;
+     padding: pxTorem(35) pxTorem(40) pxTorem(30) 0;
+     .name {
+       display: flex;
+       align-items: center;
+       margin-bottom: pxTorem(10);
+     }
+     .number {
+       position: absolute;
+       top: 0;
+       bottom: 0;
+       right: pxTorem(40);
+       margin: auto;
+       padding-top: pxTorem(5);
+       text-align: center;
+       font-style: normal;
+       @include icon(56, 47, '#{$icons-path}/player_shirt.png');
+       color: #fff;
+     }
+     em {
+       display: inline-block;
+       overflow: hidden;
+       max-width: 40%;
+       white-space: nowrap;
+       text-overflow: ellipsis;
+       @include font-dpr(30px);
+       color: color($h5, c2);
+     }
+     i {
+       margin-left: pxTorem(14);
+       padding: pxTorem(2) pxTorem(10);
+       border-radius: pxTorem(4);
+       font-style: normal;
+       @include font-dpr(24px);
+     }
+     .captain {
+       color: #fff;
+       background-color: #fb7373;
+     }
+     .member {
+       color: #ffba2c;
+       border: 1px solid #ffba2c;
+     }
+   }
+ }

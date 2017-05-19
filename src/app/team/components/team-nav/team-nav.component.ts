@@ -10,17 +10,17 @@ export class TeamNavComponent implements OnInit {
     {
       "id": 1,
       "text": "球队",
-      "link": ""
+      "link": "info"
     },
     {
       "id": 2,
       "text": "赛程",
-      "link": "booking-match"
+      "link": "schedule"
     },
     {
       "id": 3,
       "text": "粉丝",
-      "link": "team-ip"
+      "link": "fans"
     }
   ];
   constructor() { }

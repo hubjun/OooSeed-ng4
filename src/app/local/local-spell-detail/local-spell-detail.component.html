@@ -18,7 +18,7 @@
         </div>
         <div class="spellTime">
           <p>时间：</p>
-          <span>{{spellDetail.startTime|date:'yy-MM-dd'}} 周{{spellDetail.startTime|ChineseWeek }} {{spellDetail.startTime|date:'HH:mm'}}-{{spellDetail.endTime|date:'HH:mm'}}</span>
+          <span>{{spellDetail.startTime|amDateFormat:'YY-MM-DD'}} 周{{spellDetail.startTime|ChineseWeek }} {{spellDetail.startTime|amDateFormat:'HH:mm'}}-{{spellDetail.endTime|amDateFormat:'HH:mm'}}</span>
         </div>
         <div class="spellNumber">
           <p>人数：</p>
@@ -91,12 +91,10 @@
             </p>
           </li>
         </ul>
-        <div class="hadJoinMissing" *ngIf="joinListCheck.length==0">
-          <div class="missingBg">
-            <p></p>
-          </div>
-          <p>暂无人加入，分享给好友，一起运动吧~</p>
-        </div>
+        <missing-default-content
+          *ngIf="joinListCheck.length==0"
+          [srcurl]="'../../../assets/images/default_fans_unfans.png'"
+        ></missing-default-content>
       </div>
     </div>
     <div class="joinFixed">

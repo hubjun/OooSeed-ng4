@@ -1,0 +1,15 @@
+
+@import "../../styles/theming.scss";
+.selects{
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+select-list{
+  position: absolute;
+  top:0;
+  right: 0;
+  height: 100%;
+  width: 30%;
+}

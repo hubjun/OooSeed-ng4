@@ -1,0 +1,8 @@
+@import "../../shared/styles/theming";
+.home-subscriptions {
+  .subscriptions-item {
+    display: -webkit-box;
+    -webkit-box-flex: 1;
+    padding: pxTorem(20px);
+  }
+}

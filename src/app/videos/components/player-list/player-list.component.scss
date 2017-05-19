@@ -1,4 +1,5 @@
 @import "../../../shared/styles/theming";
+video-player-list{
 .wrapper{
   width: 100%;
   display: inline-block;
@@ -23,10 +24,20 @@
     &:nth-child(even){
       border-left: 5px solid #fff;
     }
-    img {
-      //width: pxTorem(347px);
-      width: 100%;
-      height: pxTorem(196px);
+    .imgBox{
+      position: relative;
+      img {
+        //width: pxTorem(347);
+        width: 100%;
+        height: pxTorem(196);
+      }
+      span.videoTime{
+        position: absolute;
+        bottom: pxTorem(3);
+        right: pxTorem(11);
+        color: color($h5,c10);
+        @include font-dpr(20px);
+      }
     }
     .info{
       //text-align: left;
@@ -45,40 +56,41 @@
           text-overflow: ellipsis;
         }
       }
-      .detail{
-        display: flex;
-        justify-content: space-between;
-        @include font-dpr(22px);
-        color: color($h5, c5);
-        //@include remCalc(padding-top,pxTorem(20px));
-        padding-top: pxTorem(20px);
-        i{
-          display: inline-block;
-        }
-        .person{
-          //float: left;
-          i.icon1{
-            //@include remCalc(width, pxTorem(18px));
-            //@include remCalc(height, pxTorem(20px));
-            @include icon(18,20,'../../../../assets/icon/icon_personal_02.png');
-          }
-          span{
-            //@include remCalc(padding-left,pxTorem(7px));
-            padding-left: pxTorem(7px);
-          }
-        }
-        .cout{
-          display: flex;
-          align-items:center;
-          i.icon2{
-            //@include remCalc(margin-right,pxTorem(7));
-            margin-right: pxTorem(7);
-            //@include remCalc(width, pxTorem(20px));
-            //@include remCalc(height, pxTorem(20px));
-            @include icon(20,20,'../../../../assets/icon/icon_play_02.png');
-          }
-        }
-      }
+      //.detail{
+      //  display: flex;
+      //  justify-content: space-between;
+      //  @include font-dpr(22px);
+      //  color: color($h5, c5);
+      //  //@include remCalc(padding-top,pxTorem(20px));
+      //  padding-top: pxTorem(20px);
+      //  i{
+      //    display: inline-block;
+      //  }
+      //  .person{
+      //    //float: left;
+      //    i.icon1{
+      //      //@include remCalc(width, pxTorem(18px));
+      //      //@include remCalc(height, pxTorem(20px));
+      //      @include icon(18,20,'../../../../assets/icon/icon_personal_02.png');
+      //    }
+      //    span{
+      //      //@include remCalc(padding-left,pxTorem(7px));
+      //      padding-left: pxTorem(7px);
+      //    }
+      //  }
+      //  .cout{
+      //    display: flex;
+      //    align-items:center;
+      //    i.icon2{
+      //      //@include remCalc(margin-right,pxTorem(7));
+      //      margin-right: pxTorem(7);
+      //      //@include remCalc(width, pxTorem(20px));
+      //      //@include remCalc(height, pxTorem(20px));
+      //      @include icon(20,20,'../../../../assets/icon/icon_play_02.png');
+      //    }
+      //  }
+      //}
     }
   }
+}
 }

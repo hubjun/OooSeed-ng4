@@ -17,6 +17,7 @@
       }
       .service-info{
         float:left;
+        max-width: pxTorem(520);
         @include font-dpr(28px);
         color:color($h5,c2);
       }

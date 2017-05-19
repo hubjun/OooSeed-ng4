@@ -1,0 +1,29 @@
+<div class="teamslist" id="channel">
+  <div class="item"*ngFor="let teamip of teamIpList;let i=index;">
+    <div class="imgavatar"(click)="goteamdetail(teamip.id)">
+      <img [src]="teamip.iconFileUrl||defaulticon">
+    </div>
+    <div class="rightcontent">
+      <div class="left">
+        <div class="teamname">
+          <span>{{teamip.name}}</span>
+          <img [src]="teamip.gradeIconUrl"*ngIf="teamip.gradeIconUrl">
+        </div>
+        <div class="addr">
+          <span class="cityname"*ngIf="teamip.areaCityName!=''||teamip.areaCityName!=undefined">{{teamip.areaCityName}}&nbsp;</span><span *ngIf="teamip.areaDistName!=''||teamip.areaDistName!=undefined">{{teamip.areaDistName}}&nbsp;</span><span>{{teamip.formatName}}</span>
+        </div>
+        <!--<div class="imglogo" ></div>-->
+      </div>
+      <div class="right">
+        <div class="long">{{teamip.distance<=0||teamip.distance>1000000? '未定位' : (teamip.distance > 1000 ? (teamip.distance / 1000).toFixed(1)+'km' : teamip.distance.toFixed(0)+'m')}}</div>
+        <div class="follow"(click)="ToFollow(teamip.gradeFollow,teamip.orgUser)">
+          <img [src]="teamip.gradeFollow==1||teamip.gradeFollow==3?nofollow:teamip.gradeFollow==0?bothfollow:isfollow">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <missing-default-content [text]="'暂时没有该类球队推荐信息，去看看其他吧~'"[srcurl]="'../../../../assets/icon/image_ddress.png'"*ngIf="missCanSee"></missing-default-content>
+
+    <go-down-app *ngIf="teamIpList.length>=10"></go-down-app>
+</div>

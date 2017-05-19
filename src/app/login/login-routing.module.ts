@@ -4,6 +4,9 @@ import { LoginComponent } from "./login.component";
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { RegisterComponent } from './register/register.component';
 import { SetNicknameComponent } from './set-nickname/set-nickname.component';
+import {AuthService} from "../shared/service/auth.service";
+import {AuthGuardService} from "../shared/service/auth-guard.service";
+import { RegistrationProtocolComponent } from '../protocol/registration-protocol/registration-protocol.component';
 
 const routes: Routes = [
   {
@@ -27,6 +30,10 @@ const routes: Routes = [
   {
     path: 'set-nickname',
     component: SetNicknameComponent
+  },
+  {
+    path: 'registration-protocol', 
+    component: RegistrationProtocolComponent
   },
 ];
 

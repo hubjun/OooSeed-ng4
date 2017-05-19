@@ -7,22 +7,24 @@
       <div class="article-title">{{article.title}}</div>
       <div class="article-publish-info">
         <span class="author">{{article.authorName}}</span>
-             <span>{{article.publishTime | date:'MM-dd HH:mm'}}</span>
+             <span>{{article.publishTime | amDateFormat:'MM-DD HH:mm'}}</span>
       </div>
     </header>
     <article class="article">
       <div *ngFor="let item of article.articleContentList" [innerHtml]="item.content"></div>
     </article>
   </div>
-
   <div class="article-info-comments-warp padding-left-right-30" *ngIf="comments.length > 0 ">
+    <div class="title">推荐评论</div>
+    <seed-comments [comments]="comments"></seed-comments>
+  </div>
+  <div class="article-info-comments-warp padding-left-right-30" *ngIf="recommend.length > 0 ">
     <div class="title">推荐文章</div>
     <a
       class="article-info-comment-profile border-bottom"
-      *ngFor="let item of comments" tappable
+      *ngFor="let item of recommend"
       routerLink="/home/news/{{item.articleId}}">
       {{item.title}}
     </a>
   </div>
-
 </seed-content>

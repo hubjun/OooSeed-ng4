@@ -1,7 +1,7 @@
 <seed-content class="spell-detail-inner">
   <div class="teams-list" *ngIf="myTeamsObj.length>0">
     <ul>
-      <li *ngFor="let myteam of myTeamsObj" (click)="goTeamDetail(myteam.id)">
+      <li *ngFor="let myteam of myTeamsObj"  routerLink="/team/{{myteam.id}}">
           <p class="icon">
             <img [src]="myteam.iconFileUrl">
           </p>

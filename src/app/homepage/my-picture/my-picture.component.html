@@ -1,0 +1,17 @@
+<seed-content class="seed-person-picture">
+  <div class="picture-body">
+      <img
+        [lazyLoad]="item.fileName"
+        [defaultImage]="'/assets/images/new_default_pic,png'"
+        [errorImage]="'/assets/images/new_default_pic,png'"
+        [scrollTarget]="scrollContainer"
+        *ngFor="let item of getPicture"
+      >
+  </div>
+  <go-down-app *ngIf="getPicture.length==30"></go-down-app>
+</seed-content>
+
+
+
+
+

@@ -25,13 +25,24 @@ video-player-list-detail-info {
       &:nth-child(even) {
         border-left: 5px solid #fff;
       }
-      img {
-        //width: pxTorem(347px);
-        width: 100%;
-        height: pxTorem(196px);
+      .imgBox{
+        position: relative;
+        img {
+          //width: pxTorem(347);
+          width: 100%;
+          height: pxTorem(196);
+        }
+        span.videoTime{
+          position: absolute;
+          bottom: pxTorem(3);
+          right: pxTorem(11);
+          color: color($h5,c10);
+          @include font-dpr(20px);
+        }
       }
       .info {
-        padding: pxTorem(18px) 0 pxTorem(20px) 0px;
+        height: pxTorem(79.8);
+        padding: pxTorem(18px) 0 pxTorem(20px) 0;
         .title {
           display: flex;
           flex-direction: row;

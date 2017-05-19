@@ -1,11 +1,24 @@
 
 <div class="changePdding" *ngIf="spellData?.length>0">
-  <div class="local-team-detail-clum"  id="local-team-detail-clum-id" (click)="goToJoinDetail(item.fightId)"  *ngFor="let item of spellData">
+  <div
+    class="local-team-detail-clum"
+    id="local-team-detail-clum-id"
+    (click)="goToJoinDetail(item.fightId)"
+    *ngFor="let item of spellData"
+  >
     <div class="team-detail-header">
-      <img class="team-detail-img" src="{{item.iconUrl||defaulticon}}" (click)="goPersonalPage(item.userId);$event.stopPropagation();"/>
+      <img class="team-detail-img"
+           [lazyLoad]="item.iconUrl"
+           [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+           [errorImage]="'/assets/images/placeholder_head_pic.png'"
+           [scrollTarget]="scrollContainer"
+           (click)="goPersonalPage(item.userId);$event.stopPropagation();"
+      />
       <div class="team-detail-font">
         <div class="team-detail-font-text">{{item.leaderUserName}}</div>
-        <img src="{{item.appImgtxtUrl||' '}}" alt="">
+        <img
+          src="{{item.appImgtxtUrl||' '}}"
+        >
       </div>
       <span></span>
     </div>
@@ -14,13 +27,15 @@
       <p class="team-spell">拼球：{{item.title}}</p>
       <div class="team-time">
         <i></i>
-        <span>{{item.startTime|date:'dd-MM-yy'}}  周{{item.startTime|ChineseWeek }} {{item.startTime|date:'HH:mm'}}-{{item.endTime|date:'HH:mm'}}</span>
+        <span>{{item.startTime|amDateFormat:'DD-MM-YY'}}
+          周{{item.startTime|ChineseWeek }} {{item.startTime|amDateFormat:'HH:mm'}}
+          -{{item.endTime|amDateFormat:'HH:mm'}}
+        </span>
       </div>
 
       <div class="team-location">
         <i></i>
         <span>{{item.place||'暂无'}}</span>
-        <!--<span class="team-distance" >{{locationError=='error'?'未知':(item.distance>1000?(item.distance/1000).toFixed(0)+'km':item.distance.toFixed(1)+'m')}}</span>-->
       </div>
 
       <p class="team-expense">
@@ -34,17 +49,15 @@
            [class.teamSpell3]="item.status==3"
            [class.teamSpell4]="item.status==4"
            [class.teamSpell5]="item.status==5"
-      >{{item.status==1?'报名中':(item.status==2?'拼球成功':(item.status==3?'拼球失败':(item.status==4?'已关闭':'已结束'))) }}</div>
+      >{{item.status==1?'报名中':(item.status==2?'拼球成功':
+        (item.status==3?'拼球失败':(item.status==4?'已关闭':'已结束'))) }}
+      </div>
     </div>
   </div>
   <div class="contentLook" (click)="TipCommon()" *ngIf="spellData?.length==10">
     <div class="lookMore">下载球苗App，看更多精彩内容</div>
   </div>
 </div>
-<div class="spellMissingPage" *ngIf="spellData?.length==0">
-  <div class="missingBg">
-    <p></p>
-  </div>
-  <p *ngIf="lessLength==0">尚未参加过拼球活动，快去参加拼球吧~</p>
-  <div class="clickLaunch" (click)="TipCommon()">点击前往~</div>
-</div>
+<missing-default-content
+  *ngIf="spellData?.length==0"
+></missing-default-content>

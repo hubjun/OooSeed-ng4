@@ -4,8 +4,7 @@
   .person-header{
     width:100%;
     height:pxTorem(424);
-    background:url('../../assets/images/personal_bannerbg.png') no-repeat;
-    background-size:pxTorem(750) pxTorem(424);
+    background:url('../../assets/images/personal_bannerbg.png') no-repeat center center/cover;
     .person-icon{
       position: absolute;
       top:pxTorem(28);
@@ -47,6 +46,7 @@
         @include font-dpr(34px);
       }
       .person-check{
+        height:pxTorem(30);
         color:color($h5,c10);
         @include font-dpr(24px);
         margin-bottom: pxTorem(18);
@@ -67,7 +67,7 @@
     width:100%;
     overflow: hidden;
     height:pxTorem(70);
-    div{
+    a{
       float:left;
       width:25%;
       text-align: center;

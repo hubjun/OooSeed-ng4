@@ -4,18 +4,19 @@
 import { Injectable } from '@angular/core';
 import { Md5 } from "ts-md5/dist/md5";
 import {StatusCodeService} from "../status-code/status-code.service";
-import {Subject} from "rxjs";
+import {Subject, BehaviorSubject, Observable} from "rxjs";
+import {isBoolean} from "util";
 
 @Injectable()
 export class ToolsService {
   private loadingRunning: boolean = false;
   private toastRunning: boolean = false;
-  scrollTopSource = new Subject<any>();
+  scrollTopSource:Subject<any> = new Subject<any>();
   scrollTop$ = this.scrollTopSource.asObservable();
-
   constructor(
     public code: StatusCodeService,
-  ) { }
+  ) {
+  }
 
   setTitle(title:string){
     document.getElementsByClassName('seed-toolbar-title')[0]
@@ -24,7 +25,6 @@ export class ToolsService {
   scrollTop() {
     this.scrollTopSource.next();
   }
-
 
   set(target, states) {
     target = states;
@@ -194,6 +194,7 @@ export class ToolsService {
     `;
     document.getElementsByClassName('confirm-title')[0].innerHTML=message;
     let removeChild=function(event){
+
       bodyTogether.removeChild(confirmBg);
       bodyTogether.removeChild(bodyFather);
       if(style){

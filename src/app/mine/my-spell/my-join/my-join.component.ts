@@ -8,17 +8,14 @@ import {Router} from "@angular/router";
   selector: 'seed-my-join',
   templateUrl: './my-join.component.html',
   styleUrls: ['./my-join.component.scss'],
-  // changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class MyJoinComponent implements OnInit {
-  public defaulticon = 'assets/icon/concern_default_head.png';
   public spellData:any;
-  public locationError:string;
+  scrollContainer;
   subscription: Subscription = new Subscription();
   public param:any={
     longitude: 0,
     latitude: 0,
-    // userId:'hhly91181',
     userId: localStorage.getItem('userid'),
     page:1,
     rows: 10
@@ -31,16 +28,13 @@ export class MyJoinComponent implements OnInit {
 
   }
   doDataSpellInfo(obj){
-    this.ToolServices.showLoading();
     this.subscription.add(
       this.localService.getMyJoin(obj).subscribe((res)=>{
         if(res.result==0 && res.data.list){
           this.spellData=res.data.list;
-          this.ToolServices.hideLoading();
         }else{
           this.spellData=[];
         }
-        this.ToolServices.hideLoading();
       })
     )
   }
@@ -55,15 +49,14 @@ export class MyJoinComponent implements OnInit {
     this.router.navigate(['/homepage', obj]);
   }
   ngOnInit() {
-    this.ToolServices.showLoading();
       this.param.latitude=this.localService.coor.lat;
       this.param.longitude=this.localService.coor.long;
       this.doDataSpellInfo(this.param);
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();
-    this.ToolServices.hideLoading();
   }
 }

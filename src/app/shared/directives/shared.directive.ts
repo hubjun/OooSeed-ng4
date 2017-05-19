@@ -1,4 +1,7 @@
 import {Directive, ElementRef,Input} from '@angular/core';
+import {Output} from "@angular/core/src/metadata/directives";
+import {EventEmitter} from "selenium-webdriver";
+import {Content} from "../components/toolbar/toolbar-content";
 
 @Directive({
   selector: '[seed-roller]'
@@ -30,3 +33,5 @@ export class RollerDirective {
     parent.style.width = widths+'px';
   }
 }
+
+

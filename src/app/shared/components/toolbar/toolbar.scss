@@ -42,6 +42,9 @@ seed-toolbar-title {
     font-weight: 400;
   }
 }
+body.unfold seed-content .seed-scroll-content {
+  margin-top: pxTorem(180px);
+}
 seed-content {
   left: 0;
   width: 100%;
@@ -156,6 +159,9 @@ seed-toolbar-backbutton {
   height: pxTorem(40px);
   background:url(#{$icons-path}/back_btn.png) no-repeat center center/contain;
 }
+body.unfold .seed-toolbar-nav{
+  max-height:pxTorem(90px);
+}
 seed-toolbar-nav {
   .seed-toolbar-nav {
     width: 100%;
@@ -220,7 +226,7 @@ seed-toolbar-home {
   height:pxTorem(90px);
   right: pxTorem(20px);
   bottom: pxTorem(50px);
-  transition: opacity  1S ease-out 1s;
+  transition: opacity  1S ease-out 0s;
   background: url(#{$icons-path}/scroll_top.png) no-repeat center center/contain;
   &.show {
     opacity: 1;

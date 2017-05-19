@@ -3,8 +3,7 @@
     <div class="match-card">
       <div class="team-logo">
         <div class="logo-box">
-          <!--<div class="logo"  [style.background]="'url('+ match.homeTeamIconUrl||defaultTeamIcon+')  no-repeat center center/cover '| safeStyle "></div>-->
-          <img src="{{match.homeTeamIconUrl||defaultTeamIcon}}" alt="" class="logo">
+          <img [src]="match.homeTeamIconUrl||defaultTeamIcon" alt="" class="logo">
         </div>
         <p class="center" *ngIf="match.status===0||match.status===3">
           VS
@@ -12,7 +11,7 @@
         <div class="center" *ngIf="match.status===1||match.status===2">
           <div class="end-time">
             <p>截止时间</p>
-            <p><span>{{match.endDate|date:'MM/dd'}}</span>{{match.endTime}}</p>
+            <p><span>{{match.endDate|amDateFormat:'MM/DD'}}</span>{{match.endTime}}</p>
           </div>
         </div>
         <p class="score" *ngIf="match.matchState===-1">
@@ -20,8 +19,7 @@
           <span *ngIf="match.guestScore">{{match.guestScore}}</span><span *ngIf="!match.guestScore">0</span>
         </p>
         <div class="logo-box">
-          <!--<div class="logo" [style.background]="'url('+ match.guestTeamIconUrl||defaultTeamIcon +')  no-repeat center center/cover '| safeStyle "></div>-->
-          <img src="{{match.guestTeamIconUrl||defaultTeamIcon}}" alt="" class="logo">
+          <img [src]="match.guestTeamIconUrl||defaultTeamIcon" alt="" class="logo">
         </div>
       </div>
       <div class="team-name">
@@ -39,7 +37,7 @@
     </div>
     <ul class="match-info top-gap">
       <li><em>时间</em>
-        <p><span>{{match.matchDate|date:'yyyy-MM-dd'}}</span><span>周{{match.matchDate|ChineseWeek}}{{match.beginTime}}-{{match.endTime}}</span></p>
+        <p><span>{{match.matchDate|amDateFormat:'YYYY-MM-DD'}}</span><span>周{{match.matchDate|ChineseWeek}}{{match.beginTime}}-{{match.endTime}}</span></p>
       </li>
       <!--<li><em>场地</em><span><a href="http://uri.amap.com/search?keyword={{match.fieldName}}&view=map">{{match.fieldName?match.fieldName:'待定'}}</a></span></li>-->
       <li><em>场地</em><span>{{match.fieldName?match.fieldName:'待定'}}</span></li>

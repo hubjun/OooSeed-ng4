@@ -1,5 +1,5 @@
 
-<div class="changePdding" *ngIf="spellData?.length>0" id="channel">
+<div class="changePdding" *ngIf="spellData?.length>0">
   <div class="local-team-detail-clum"  id="local-team-detail-clum-id" (click)="goToSpellDetail(item.fightId)" *ngFor="let item of spellData">
     <div class="team-detail-header">
       <img class="team-detail-img" src="{{item.iconUrl||defaulticon}}" (click)="goPersonalPage(item.userId);$event.stopPropagation();"/>
@@ -14,7 +14,7 @@
       <p class="team-spell">拼球：{{item.title}}</p>
       <div class="team-time">
         <i></i>
-        <span>{{item.startTime|date:'yy-MM-dd'}}  周{{item.startTime|ChineseWeek}} {{item.startTime|date:'HH:mm'}}-{{item.endTime|date:'HH:mm'}}</span>
+        <span>{{item.startTime|amDateFormat:'YY-MM-DD'}}  周{{item.startTime|ChineseWeek}} {{item.startTime|amDateFormat:'HH:mm'}}-{{item.endTime|amDateFormat:'HH:mm'}}</span>
       </div>
 
       <div class="team-location">
@@ -41,9 +41,7 @@
     <div class="lookMore">下载球苗App，看更多精彩内容</div>
   </div>
 </div>
-<div class="spellMissingPage" *ngIf="spellData?.length==0">
-  <div class="missingBg">
-    <p></p>
-  </div>
-  <p *ngIf="spellData?.length==0">暂时没有该类拼球信息，去看看其他吧~</p>
-</div>
+<missing-default-content
+  *ngIf="spellData?.length==0"
+  [srcurl]="'../../../assets/images/default_fans_unfans.png'"
+></missing-default-content>

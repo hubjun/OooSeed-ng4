@@ -1,0 +1,14 @@
+
+<div class="editbox">
+   <div class="title">
+     <p class="icon"></p>
+     <p class="text">{{title}}</p>
+     <p class="save"[ngClass]="{'active':cansave}"(click)="saveinfo()">
+       保存
+     </p>
+   </div>
+   <div class="edit">
+     <input type="text" placeholder="请输入内容"[ngModel]="newinfo" (ngModelChange)="editinfo($event)"[ngClass]="{'active':cansave}">
+   </div>
+
+</div>

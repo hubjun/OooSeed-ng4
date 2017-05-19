@@ -1,0 +1,40 @@
+<div class="article-template article-template-comments " *ngFor="let item of tools.setArray(comments);let i =index">
+  <div class=" article-template-icon">
+    <img
+      [lazyLoad]="item.userInfoBasicRespVO?.iconUrl ? item.userInfoBasicRespVO.iconUrl : item.iconUrl"
+      [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+      [errorImage]="'/assets/images/placeholder_head_pic.png'"
+      [scrollTarget]="scrollContainer"
+    >
+  </div>
+  <div class="article-template-content border-bottom">
+    <header class="header">
+      <div class="left-box ">
+        <div class="poster-name">
+          <div>{{item.userInfoBasicRespVO?.nickName ? item.userInfoBasicRespVO.nickName : item.nickName }}</div>
+          <div class="interface-item" >
+            <span class="interface" >
+
+               <span class="support" *ngIf="item.isDigg == false || item.isDigg == true ">
+                    <label class="icon_new_Likes"
+                           (click)="loadComments(item.commentId,$event)"
+                           [class.isDigg]="item.isDigg == true"
+                    ></label>
+                    <span class="quantity" #commentDigg >
+                        {{item.diggCount}}
+                     </span>
+               </span>
+            </span>
+          </div>
+        </div>
+        <div class="source">
+          <time class="date">{{item.createTime | amDateFormat:'MM-DD HH:mm'}}</time>
+        </div>
+      </div>
+
+    </header>
+    <article class="article summary">
+      <p>{{item.content}}</p>
+    </article>
+  </div>
+</div>
