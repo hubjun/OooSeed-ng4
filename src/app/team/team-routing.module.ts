@@ -42,7 +42,7 @@ const routes: Routes = [
     component: PlayerDetailComponent
   },
   {
-    path: 'match-record/:type',
+    path: 'match-record',
     component: MatchRecordComponent
   },
   {

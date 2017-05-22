@@ -19,8 +19,8 @@ export class ToolsService {
   }
 
   setTitle(title:string){
-    document.getElementsByClassName('seed-toolbar-title')[0]
-      .innerHTML = title;
+  /*  document.getElementsByClassName('seed-toolbar-title')[0]
+     .innerHTML = title;*/
   }
   scrollTop() {
     this.scrollTopSource.next();

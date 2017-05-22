@@ -6,7 +6,9 @@ import {Component,OnInit}from'@angular/core';
 import {Router,ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 import {MineService} from '../mine.service'
-import {UserDataService} from '../../shared/tools/user-data.service'
+import {UserDataService} from '../../shared/tools/user-data.service';
+import {ToolsService} from '../../shared/tools/tools.service';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'my-content',
@@ -17,9 +19,10 @@ import {UserDataService} from '../../shared/tools/user-data.service'
 export class MyEditInfoComponent implements OnInit {
   public defaulticon='../../assets/icon/concern_default_head.png';// 默认头像
   public sexseed:boolean=false;//性别框
-  public agearr:Array<any>;
-  public heightarr:Array<any>;
-  public weightarr:Array<any>;
+  public agearr:Array<any>=[];
+  public heightarr:Array<any>=[];
+  public weightarr:Array<any>=[];
+  public subscription: Subscription = new Subscription();
   public userObj: any = {
     concernNum: 0,
     followNum: 0,
@@ -40,19 +43,23 @@ export class MyEditInfoComponent implements OnInit {
   constructor(
     public userdataservice:UserDataService,
     public mineService: MineService,
-    public router:Router
+    public router:Router,
+    public toolservice:ToolsService
   ){
 
   }
   getuserinfo(){
+    this.toolservice.showLoading();
      let userid= this.userdataservice.getUserid();
+    this.subscription.add(
      this.mineService.getUserInfo(userid).subscribe(res=>{
-       console.log(res)
        if(res.result==0)
        {
          this.userObj=res.data;
        }
+       this.toolservice.hideLoading();
      })
+    )
   }
   // 签名
   editinfo(id){
@@ -60,7 +67,6 @@ export class MyEditInfoComponent implements OnInit {
   }
   // 性别
   setGender(){
-    console.log('0')
     this.sexseed=true;
   }
   // 修改性别
@@ -69,68 +75,104 @@ export class MyEditInfoComponent implements OnInit {
     if(i==0){
       this.sexseed=false;
     }else {
-        console.log(typeof i)
+      this.toolservice.showLoading();
+      this.subscription.add(
       this.mineService.UserInfoUpdate({sex:i}).subscribe(res=>{
         if(res.result==0)
         {
           this.sexseed=false;
           this.getuserinfo();
+          this.toolservice.presentConfirm('更新性别成功',1);
+        }else{
+          this.toolservice.presentConfirm('更新性别失败：'+res.msg,1);
+          this.router.navigate(['./login']);
         }
-      });
+        this.toolservice.hideLoading();
+      })
+    )
     }
   }
-  // 昵称
-  setNickName(){
-    console.log('4')
-  }
+
   // 头像
   selectFileOnchanged(even){
     let file = even.target.files[0];
-    console.log(file);
+    this.toolservice.showLoading();
+    this.subscription.add(
     this.mineService.updateAvatar(file).subscribe((res) => {
-      console.log(res);
-      let reader = new FileReader();
-      reader.onload = (r: any) => {
-        this.userObj.iconUrl = r.target.result;
-      };
-      reader.readAsDataURL(file);
+      if(res.result==0){
+        let reader = new FileReader();
+        reader.onload = (r: any) => {
+          this.userObj.iconUrl = r.target.result;
+        };
+        reader.readAsDataURL(file);
+        this.toolservice.presentConfirm('更新头像成功',1);
+      }else {
+        this.toolservice.presentConfirm('更新头像失败：'+res.msg,1);
+      }
+      this.toolservice.hideLoading();
 
     })
+    )
   }
   age(event){
-   console.log(typeof event)
+
     if(typeof event=='string')
     {
+      this.toolservice.showLoading();
+      this.subscription.add(
       this.mineService.UserInfoUpdate({age:event}).subscribe(res=>{
-        console.log(res)
         if(res.result==0){
           this.userObj.userAge=event;
+          this.toolservice.presentConfirm('更新年龄成功',1);
+        }else{
+          this.toolservice.presentConfirm('更新年龄失败：'+res.msg,1);
+          this.router.navigate(['./login']);
         }
+        this.toolservice.hideLoading();
       })
+      )
     }
   }
   height(event){
+
     if(typeof event=='string')
     {
+      this.toolservice.showLoading();
+      this.subscription.add(
       this.mineService.UserInfoUpdate({height:event}).subscribe(res=>{
-        console.log(res)
         if(res.result==0){
           this.userObj.height=event;
+          this.toolservice.presentConfirm('更新身高成功',1);
+        }else{
+          this.toolservice.presentConfirm('更新身高失败：'+res.msg,1);
+          this.router.navigate(['./login']);
         }
+        this.toolservice.hideLoading();
       })
+      )
     }
   }
   weight(event){
+
     if(typeof event=='string')
     {
+      this.toolservice.showLoading();
+      this.subscription.add(
       this.mineService.UserInfoUpdate({weight:event}).subscribe(res=>{
-        console.log(res)
         if(res.result==0){
           this.userObj.weight=event;
+          this.toolservice.presentConfirm('更新体重成功',1);
+        }else{
+          this.toolservice.presentConfirm('更新体重失败：'+res.msg,1);
+          this.router.navigate(['./login']);
         }
+        this.toolservice.hideLoading();
       })
+      )
     }
   }
+
+
   addnum(start,end){
     let arr=[];
     for(var i=start;i<end;i++)
@@ -147,5 +189,10 @@ export class MyEditInfoComponent implements OnInit {
     this.heightarr=this.addnum(40,200);
     this.weightarr=this.addnum(30,200);
     this.getuserinfo();
+  }
+  ngOnDestroy() {
+    //取消订阅
+    this.subscription.unsubscribe();
+    this.toolservice.hideLoading();
   }
 }

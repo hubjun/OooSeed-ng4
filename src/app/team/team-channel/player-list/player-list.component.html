@@ -1,7 +1,16 @@
-<seed-content class="gray-background">
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title>球队阵容</seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content [class.gray-background]="players.length>0">
   <ul class="top-gap">
     <li [class.bottom-gap]="player.roleTag=='CREATOR'" *ngFor="let player of players" routerLink="/team/{{player.teamId}}/player/{{player.userId}}">
-      <img [src]="player.userIconUrl||defaultUserIcon" alt="" class="avatar">
+       <img class="avatar" 
+              [lazyLoad]="player.userIconUrl" 
+              [defaultImage]="'/assets/icon/concern_default_head.png'"
+              [errorImage]="'/assets/icon/concern_default_head.png'" 
+              [scrollTarget]="scrollContainer"/>
       <div class="basic-info border-bottom">
         <p class="name"><em>{{player.userName}}</em> <i class="captain" *ngIf="player.roleTag=='CREATOR'">球队创始人</i><i class="member" *ngIf="player.roleTag=='TEAM_MEMBER'">普通球员</i></p>
         <p>惯用{{player.leftOrRightName}}<span *ngIf="player.firstPositionName">/{{player.firstPositionName}}</span> <span *ngIf="player.secondPositionName"> /{{player.secondPositionName}}</span></p>
@@ -9,4 +18,5 @@
       </div>
     </li>
   </ul>
+  <missing-default-content *ngIf="players.length===0"></missing-default-content>
 </seed-content>

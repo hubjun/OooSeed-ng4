@@ -1,5 +1,5 @@
 <nav>
-  <a *ngFor="let nav of navs" routerLink="{{nav.link}}" routerLinkActive="active">
-    <span>{{nav.text}}</span>
+  <a *ngFor="let nav of navs">
+    <span routerLink="{{nav.link}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{nav.text}}</span>
   </a>
 </nav>

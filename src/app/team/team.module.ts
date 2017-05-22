@@ -15,6 +15,7 @@ import { PlayerListComponent } from './team-channel/player-list/player-list.comp
 import { PlayerDetailComponent } from './team-channel/player-detail/player-detail.component';
 import { MatchRecordComponent } from './schedule-channel/match-record/match-record.component';
 import { MatchDetailComponent } from './schedule-channel/match-detail/match-detail.component';
+import { CircularProgressComponent } from './components/circular-progress/circular-progress.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MatchDetailComponent } from './schedule-channel/match-detail/match-deta
     PlayerDetailComponent,
     MatchRecordComponent,
     MatchDetailComponent,
+    CircularProgressComponent,
   ],
   providers:[TeamService]
 })

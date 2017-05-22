@@ -15,7 +15,7 @@ match-detail {
     color: color($h5, c3);
   }
   em {
-    padding-left: pxTorem(30);
+    // padding-left: pxTorem(30);
     @include font-dpr(24px);
     color: color($h5, c3);
   }
@@ -151,7 +151,8 @@ match-detail {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: pxTorem(88); // padding-right: pxTorem(20);
+      height: pxTorem(88); 
+      padding-right: pxTorem(20);
       border-bottom: 1px solid #e5e5e5;
       &:last-of-type {
         border-bottom: none;

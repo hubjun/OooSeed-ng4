@@ -11,7 +11,7 @@ const routes:Routes = [
     children:[
       // {
       //   path: 'more/:cateId',
-      //   component: VideoMoreComponent
+      //   edit-info-components: VideoMoreComponent
       // },
     ]
   },

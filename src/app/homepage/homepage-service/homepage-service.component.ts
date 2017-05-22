@@ -21,7 +21,7 @@ export class HomepageServiceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._activatedRoute.params
+    this._activatedRoute.parent.params
       .subscribe((params:Params) => {
         this.subscription.add(
           this.homepageService.getService(params['userId']).subscribe(res => {

@@ -5,6 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {LocalService} from '../local.service';
 import {Subscription} from "rxjs";
 import {ToolsService} from "../../shared/tools/tools.service";
+import {Router, ActivatedRoute}from '@angular/router';
 
 @Component({
   selector: 'local-teamip',
@@ -56,7 +57,9 @@ export class LocalTeamComponent implements OnInit {
   public teamIpList: any[] = [];
 
   constructor(public localService: LocalService,
-              public ToolServices: ToolsService)
+              public ToolServices: ToolsService,
+              public router:Router
+  )
   {
     this.subscription.add(
       this.localService.filterResult.subscribe((filterReuslt: any) => {
@@ -103,7 +106,9 @@ export class LocalTeamComponent implements OnInit {
     }
 
   }
-
+  goteamdetail(id){
+    this.router.navigate(['./team',id]);
+  }
   ngOnInit() {
     this.localService.filter.filterType.emit(this.filterTypes);//向排序组件传送相应栏目对应的排序规则
 

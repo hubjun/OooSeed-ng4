@@ -1,10 +1,15 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title>城市列表</seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content class="gray-background">
   <div class="current-city" id="current-city">
     <p class="title">
       <span class="city-name">当前：{{currentAreaText}}</span>
-      <i (click)="toggleCityArea()">选择区县</i>
+      <i (click)="toggleCityArea()" [class.select]="showArea">选择区县</i>
     </p>
-    <div class="city-area">
+    <div class="city-area" *ngIf="showArea">
       <ul class="city-list">
         <li *ngFor="let area of currertCity?.areaList||currertCity?.dictTreeNodeList;let i=index">
           <!--热门城市||所有城市-->
@@ -45,13 +50,13 @@
     </p>
   </div>
   <ul class="letter-nav">
-    <li><a href="#current-city" (click)="letterAnchorLocation(current-city)">*</a></li>
+    <li><a (click)="letterAnchorLocation('current-city')">*</a></li>
     <!--当前城市-->
-    <li><a href="#location-city" (click)="letterAnchorLocation(location-city)">!</a></li>
+    <li><a (click)="letterAnchorLocation('location-city')">!</a></li>
     <!--定位城市-->
     <!--<li><a href="#recent-visit-city" (click)="letterAnchorLocation(recent-visit-city)">#</a></li>-->
     <!--最近访问城市-->
-    <li><a href="#hot-city" (click)="letterAnchorLocation(hot-city)">$</a></li>
+    <li><a (click)="letterAnchorLocation('hot-city')">$</a></li>
     <!--热门城市-->
     <li *ngFor="let letter of letters">
       <a (click)="letterAnchorLocation(letter)">{{letter}}</a>

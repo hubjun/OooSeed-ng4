@@ -1,13 +1,17 @@
 <div class="booking-list changePdding" *ngIf="matchs.length>0">
   <div class="local-team-detail-clum" id="local-team-detail-clum-id" *ngFor="let item of matchs">
-    <div class="team-detail-header">
-      <img [src]="item.iconUrl||defaultTeamIcon" alt="" class="team-detail-img">
+    <div class="team-detail-header" routerLink="/team/{{item.orgId}}">
+       <img class="team-detail-img"
+              [lazyLoad]="item.iconUrl" 
+              [defaultImage]="'/assets/icon/team_default_badgebig.png'"
+              [errorImage]="'/assets/icon/team_default_badgebig.png'" 
+              [scrollTarget]="scrollContainer"/>
       <div class="team-detail-font">
         <div class="team-detail-font-text">{{item.nickName}}</div>
       </div>
       <span></span>
     </div>
-    <div class="team-detail-spell" (click)="goToMatchDetailPage(item.id)">
+    <div class="team-detail-spell"  routerLink="{{item.id}}">
       <p class="team-spell">约战：{{item.sportType}}<span *ngIf="item.sportForm">，{{item.sportForm}}</span><span *ngIf="item.fightArea">，{{item.fightArea}}</span></p>
       <div class="team-time">
         <i></i>
@@ -33,4 +37,4 @@
   </div>
   <go-down-app *ngIf="haveMore"></go-down-app>
 </div>
-<missing-default-content [text]="'暂时没有该类约战信息，去看看其他吧~'" [srcurl]="'../../../../assets/icon/image_ddress.png'" *ngIf="!haveData"></missing-default-content>
+<missing-default-content *ngIf="!haveData"></missing-default-content>

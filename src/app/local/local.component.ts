@@ -3,38 +3,23 @@ import { LocalService } from './local.service';
 import { ToolsService } from '../shared/tools/tools.service';
 import { Router } from '@angular/Router';
 import { DictCityVO } from '../domain/interface.model';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-local',
+  selector: 'local',
   templateUrl: './local.component.html',
   styleUrls: ['./local.component.scss']
 })
-export class LocalComponent implements OnInit {
-  public target = document.querySelector('seed-toolbar-header');
+export class LocalComponent {
+  public subscription: Subscription = new Subscription();
+  private currtetCityName: string = '定位中...';
   constructor(
-    private localService: LocalService,
-    private toolsService: ToolsService,
-    private router: Router
+    private localService: LocalService
   ) {
-
-  }
-
-  redirectToFilterr () {
-  console.log('=======')
-
-    document.querySelector('seed-toolbar-header')
-      .removeEventListener('click',this.redirectToFilterr,false)
-    this.router.navigate(['/local/citys']);
-}
-  ngOnInit() {
-    this.toolsService.setTitle('定位中...');
-    let that = this;
-
-    document.querySelector('seed-toolbar-header').addEventListener('click',this.redirectToFilterr.bind(this),true);
-
-  }
-  ngOnDestroy(){
-    console.log('----------------------')
-
+    this.subscription.add(
+      this.localService.currentCityName.subscribe((cityName: string) => {
+        this.currtetCityName = cityName;
+      })
+    )
   }
 }

@@ -70,13 +70,14 @@ export class ChannelFilterComponent implements OnInit {
   ) {
     this.subscription.add(
       this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: any) => {
-        this.toolsService.showLoading();
         this.currentChannel = event.urlAfterRedirects;
         localStorage.setItem('LOCAL_CHANNEL', JSON.stringify(event.urlAfterRedirects));
 
         let autoCity = this.localService.location.autoCity;
+        let currentCity = this.localService.location.currentCity
         if (autoCity != null) {
-          this.setLocationCity(this.localService.location.currentCity);
+          this.setLocationCity(currentCity);
+          this.localService.currentCityName.next(currentCity.title);
         }
         else {
           this.localService.getLocationCity().then((autoCity: any) => {
@@ -176,11 +177,14 @@ export class ChannelFilterComponent implements OnInit {
    */
   changeCityConfirm(city) {
     let autoCity = this.localService.location.autoCity;
+    let currentCity = this.localService.location.currentCity;
+
     if (this.localService.changeCity && autoCity != null && autoCity.areaId != city.areaId) {//当前城市非定位城市
       let that = this;
       this.toolsService.presentConfirm(`定位到您在${autoCity.title},要切换至${autoCity.title}吗？`, 1, function () {
         that.handlerSortByCity(autoCity);
-        that.toolsService.setTitle(that.localService.location.currentCity.title);//更改同城标题
+        currentCity = autoCity;
+        that.localService.currentCityName.next(currentCity.title);//更改同城标题
       }, function () {
         that.localService.changeCity = false;
       });
@@ -252,17 +256,20 @@ export class ChannelFilterComponent implements OnInit {
    */
   openFilter(e: any): void {
     this.isOpen = true;
-    let currentCity = this.localService.location.currentCity;
-    let areaList = currentCity.areaList || currentCity.dictTreeNodeList;
-    this.filterType.rangType = areaList;
     this.currentFilter = e.target.getAttribute('data-type');
 
-    //解决栏目落差
-    let filterEle = document.getElementById('local-filter');
-    let filterOffsetHeight: number = filterEle.offsetHeight;
-    let gapHeightStr: string = window.getComputedStyle(filterEle).marginTop.split('px')[0];
-    let gapHeightNum: number = Number(gapHeightStr);
-    document.getElementById('channel').style.marginTop = filterOffsetHeight + gapHeightNum + 'px';
+    if (!this.isOpen) {
+      let currentCity = this.localService.location.currentCity;
+      let areaList = currentCity.areaList || currentCity.dictTreeNodeList;
+      this.filterType.rangType = areaList;
+
+      //解决栏目落差
+      let filterEle = document.getElementById('local-filter');
+      let filterOffsetHeight: number = filterEle.offsetHeight;
+      let gapHeightStr: string = window.getComputedStyle(filterEle).marginTop.split('px')[0];
+      let gapHeightNum: number = Number(gapHeightStr);
+      document.getElementById('channel').style.marginTop = filterOffsetHeight + gapHeightNum + 'px';
+    }
   }
   /**
    * 隐藏排序器
@@ -279,18 +286,20 @@ export class ChannelFilterComponent implements OnInit {
     let params = {
       lang: 'zh_CN'
     }
-    this.localService.getSportType(params).subscribe((res) => {
-      if (res.result === '0') {
-        let sportType = res.data.dicts;
-        let whole = {
-          "id": null,
-          "title": "全部"
+    this.subscription.add(
+      this.localService.getSportType(params).subscribe((res) => {
+        if (res.result === '0') {
+          let sportType = res.data.dicts;
+          let whole = {
+            "id": null,
+            "title": "全部"
+          }
+          sportType.unshift(whole);
+          this.filterType.sportType = sportType;
+          this.filterTypeCache.sportType = sportType;//缓存运动类型
         }
-        sportType.unshift(whole);
-        this.filterType.sportType = sportType;
-        this.filterTypeCache.sportType = sportType;//缓存运动类型
-      }
-    })
+      })
+    )
   }
   /**
    * 获取个人IP类别

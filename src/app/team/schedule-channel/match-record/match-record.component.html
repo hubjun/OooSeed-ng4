@@ -1,5 +1,11 @@
-<seed-content class="gray-background">
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title>{{title}}</seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content [class.gray-background]="matchs.length>0">
   <div class="match-list top-gap bottom-gap">
     <match-card [matchs]="matchs"></match-card>
+    <missing-default-content *ngIf="matchs.length===0"></missing-default-content>
   </div>
 </seed-content>

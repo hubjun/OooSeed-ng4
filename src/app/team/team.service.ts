@@ -23,25 +23,20 @@ export class TeamService {
   // 默认头像
   public defaultUserIcon = '../../../assets/icon/concern_default_head.png';// 默认头像
   public defaultTeamIcon = '../../../assets/icon/team_default_badgebig.png'// 默认球队头像
-  public team = {
-    id: null,
-    orgUser: null
+  public dataBus = {
+    teamId: null,
+    orgUser: null,
+    basicInfo: null
   }
-  public basicInfo: Subject<FootballTeam> = new Subject<FootballTeam>()
   constructor(
     private httpService: HttpService,
     private toolsService: ToolsService
   ) {
-
   }
   //获取球队基本信息
-  getTeamBasicInfo(teamId: number) {
+  getTeamBasicInfo(teamId: string) {
     let url = this.TEAM_BASIC_INFO_URL + '?id=' + teamId;
-    this.httpService.get(url).map(res => res.json()).subscribe((res: FootballTeam) => {
-      if (res.result === '0' && res.data) {
-        this.basicInfo.next(res.data);
-      }
-    });
+    return this.httpService.get(url).map(res => res.json());
   }
   //获取球队球员列表
   getTeamPlayer(obj: object) {

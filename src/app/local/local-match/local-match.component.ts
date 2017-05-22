@@ -15,8 +15,8 @@ export class LocalMatchComponent {
   private sportTypeId: number;
   private haveMore: boolean = false;
   private haveData: boolean = true;
-
-  private defaultTeamIcon = this.localService.defaultTeamIcon;
+  private scrollContainer: Element;
+  
   public filterTypes: object = {
     sortType: [{
       id: 1,
@@ -40,8 +40,27 @@ export class LocalMatchComponent {
   ) {
     //发送自有排序规则
     this.localService.filter.filterType.emit(this.filterTypes);
-
-    //根据排序规则处理请求
+  }
+  /**
+   * 获取同城约战列表信息
+   * @param filterResult ：排序参数
+   */
+  getBookingMatch(filterResult: any) {
+    this.toolsService.showLoading();
+    this.localService.getBookingMatch(filterResult).subscribe((res) => {
+      this.toolsService.hideLoading();
+      if (res.result === '0') {
+        let matchs: any = res.data.list;
+        this.matchs = matchs;
+        this.haveMore = res.data.hasNextPage;
+        matchs.length > 0 ? this.haveData = true : this.haveData = false;
+      }
+    })
+  }
+  /**
+   * 根据排序规则处理请求
+   */
+  sortByFilter() {
     this.subscription.add(
       this.localService.filterResult.subscribe((filterReuslt: any) => {
         let position = filterReuslt.rangType.position;
@@ -66,23 +85,9 @@ export class LocalMatchComponent {
       })
     )
   }
-  //获取同城约战列表
-  getBookingMatch(filterResult: any) {
-    this.localService.getBookingMatch(filterResult).subscribe((res) => {
-      this.toolsService.hideLoading();
-      if (res.result === '0') {
-        let matchs: any = res.data.list;
-        this.matchs = matchs;
-        this.haveMore = res.data.hasNextPage;
-        matchs.length > 0 ? this.haveData = true : this.haveData = false;
-      }
-    })
-  }
-  goToTeamHomePage() {
-
-  }
-  goToMatchDetailPage(id: number) {
-    this.router.navigate(['/local/booking-match', id]);
+  ngOnInit() {
+    this.sortByFilter();
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

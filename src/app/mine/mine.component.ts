@@ -16,7 +16,7 @@ export class MineComponent implements OnInit {
   public defaulticon = 'assets/icon/concern_default_head.png';
   public urllist: any[] = ['./mine/my-massage', './mine/my-team', './mine/my-content', '', '', './mine/personal-schedule'];
   subscription: Subscription = new Subscription();
-
+  private userId:string = '';
   constructor(
     private router: Router,
     public mineService: MineService,
@@ -40,40 +40,51 @@ export class MineComponent implements OnInit {
       if (res.result == 0) {
         this.toolsService.showToast('退出成功！');
         this.auth.logout();
-        this.router.navigate(['login-out']);
+        this.router.navigate(['home']);
+
+      } else {
         this.ToolServices.hideLoading();
+        this.toolsService.showToast('退出登录出错请刷新后重试', 1000);
       }
     });
   }
 
   //查询用户信息
   getUserInfomation() {
-/*    let hasLoggedIn = this.user.hasLoggedIn();
-    if (hasLoggedIn != 'true'){
-      this.user.showLoginPage();
-    }else{*/
       let userid = localStorage.getItem('userid');
       this.ToolServices.showLoading();
       this.mineService.getUserInfo(userid).subscribe(res => {
+        console.log(res)
         if (res.result == 0) {
           this.userInfo = res.data;
           this.ToolServices.hideLoading();
         }else{
           this.toolsService.hideLoading();
-          this.router.navigate(['/mime/login']);
+          this.router.navigate(['/login']);
         }
       })
-   /* }*/
   }
 
   // 跳转详情
   jumpdetail(i) {
     this.router.navigate([this.urllist[i]]);
   }
+
+  //转跳关注/粉丝页面
+  goToFanslist(userid){
+    this.router.navigate([`/homepage/${userid}/my-fans`, userid]);
+  }
+  goToFollowlist(userid){
+    this.router.navigate([`/homepage/${userid}/my-care-fans`, userid]);
+  }
 // 跳转编辑个人资料
   goedit(){
     this.router.navigate(['./mine/my-edit-info']);
   }
+  goPersonalPage(obj){
+    this.router.navigate(['/homepage', obj]);
+  }
+
   ngOnInit() {
     this.ToolServices.showLoading();
     this.toolsService.setTitle('我的')

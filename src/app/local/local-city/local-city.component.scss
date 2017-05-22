@@ -1,7 +1,8 @@
 @import "../../shared/styles/theming.scss";
 local-city {
   .title {
-    padding: 0 pxTorem(20);
+    padding-left: pxTorem(20);
+    padding-right: pxTorem(50);
   } //当前城市
   .current-city {
     overflow-y: scroll;
@@ -24,8 +25,22 @@ local-city {
       height: pxTorem(386);
       color: color($h5, c4);
     }
-    .active{
+    .active {
       color: color($h5, c1);
+    }
+    i {
+      position: relative;
+      &::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        bottom: 0;
+        margin: auto 0 auto pxTorem(5);
+        @include icon(15, 15, '#{$icons-path}/arrow.png');
+      }
+      &.select::after {
+        transform: rotate(180deg);
+      }
     }
   } //热门城市
   .hot-city {

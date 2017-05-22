@@ -1,3 +1,8 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title>更多视频</seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content>
   <video-player-list-detail-info [moreObj]="listObj" (cate)="cateIdChange($event)"></video-player-list-detail-info>
   <missing-default-content [text]="'还没有视频哦，去看看其他吧~'" [srcurl]="'../../../../assets/images/image_04_video.png'"*ngIf="!listObj || listObj.length == 0"></missing-default-content>

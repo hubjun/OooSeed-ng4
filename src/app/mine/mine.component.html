@@ -1,10 +1,19 @@
+<script src="../../../../../test/nodetest/test.js"></script>
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content>
   <div class="mine-page" *ngIf="userInfo">
     <div class="mine-page">
       <div class="mine-person">
         <div class="person-info">
           <div class="person-info-img">
-            <img class="person-header-img" src="{{userInfo.iconUrl||defaulticon}}" >
+            <img [src]="userInfo.iconUrl||'/assets/images/placeholder_head_pic.png'"
+              class="person-header-img"
+              (click)="goPersonalPage(userInfo.userId)"
+            >
           </div>
             <div class="person-info-detail"(click)="goedit()">
               <div class="info-detail-name">
@@ -18,11 +27,11 @@
             <img class="person-arrow" src="../../assets/icon/arrow.png"(click)="goedit()">
         </div>
         <div class="mine-care-love">
-          <div class="mine-care" >
-            <span class="mine-care-font">关注</span>
+          <div class="mine-care" (click)="goToFollowlist(userInfo.userId)">
+            <span class="mine-care-font" >关注</span>
             <span class="mine-care-nomber">{{userInfo.concernNum?(userInfo.concernNum>999?'999+':userInfo.concernNum):0}}</span>
           </div>
-          <div class="mine-love" >
+          <div class="mine-love" (click)="goToFanslist(userInfo.userId)">
             <span class="mine-love-line"></span>
             <span class="mine-care-font">粉丝</span>
             <span class="mine-care-nomber">{{userInfo.followNum?(userInfo.followNum>999?'999+':userInfo.followNum):0}}</span>

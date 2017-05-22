@@ -6,6 +6,8 @@ import {Router,ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 import {MineService} from '../mine.service'
 import {UserDataService} from '../../shared/tools/user-data.service'
+import {Subscription} from "rxjs";
+import {ToolsService} from '../../shared/tools/tools.service';
 
 @Component({
   selector: 'my-content',
@@ -14,6 +16,7 @@ import {UserDataService} from '../../shared/tools/user-data.service'
 })
 
 export class MyTeamComponent implements OnInit {
+  public subscription: Subscription = new Subscription();
   // public myTeamsObj: any= [
   //   {
   //     iconFileUrl: "http://file.oooseed.com/f/20170410/sport/api/i/0b92dd1210514ddca343dd223441b441.jpg",
@@ -79,14 +82,16 @@ export class MyTeamComponent implements OnInit {
   constructor(
     public router:Router,
     public mineservice:MineService,
-    private userservice:UserDataService
+    private userservice:UserDataService,
+    public toolservice: ToolsService
   ){
 
   }
   getMyTeamsInfo(type?){
+      this.toolservice.showLoading();
+    this.subscription.add(
     this.mineservice.getMyTeams(this.page,this.rows,this.userId)
       .subscribe(rs => {
-        console.log(rs);
         if(rs.result === '0'){
           if(type){
             this.myTeamsObj.concat(rs.data.list);
@@ -97,15 +102,20 @@ export class MyTeamComponent implements OnInit {
         }else {
           return;
         }
+        this.toolservice.hideLoading();
       })
+    )
   };
   goTeamDetail(id){
 
   }
   ngOnInit(){
    this.userId=this.userservice.getUserid();
-
-   console.log(this.myTeamsObj)
     this.getMyTeamsInfo();
+  }
+  ngOnDestroy() {
+    //取消订阅
+    this.subscription.unsubscribe();
+    this.toolservice.hideLoading();
   }
 }

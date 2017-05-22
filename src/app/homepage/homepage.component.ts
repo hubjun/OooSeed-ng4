@@ -13,9 +13,10 @@ export class HomepageComponent implements OnInit {
   public personHeaderInfo:any;
   public uncare='../../assets/images/user_states_1.png';
   public cared='../../assets/images/user_states_2.png';
-  public eachcare='../../assets/user_states_3.png';
+  public eachcare='../../assets/images/user_states_3.png';
   public userId:string='';
   public localUserId:string;
+  scrollContainer;
 
 
   constructor(
@@ -30,8 +31,8 @@ export class HomepageComponent implements OnInit {
   share(){
     this.classTag='share';
   }
-  circle(){
-    this.classTag='circle';
+  events(){
+    this.classTag='events';
   }
   fans(){
     this.classTag='fans';
@@ -39,6 +40,8 @@ export class HomepageComponent implements OnInit {
   service(){
     this.classTag='service';
   }
+
+
   ngOnInit() {
     if(localStorage.getItem('userid')){
       this.localUserId='yes';
@@ -55,8 +58,8 @@ export class HomepageComponent implements OnInit {
             this.personHeaderInfo=res.data;
           }
         });
-      })
-    this.toolsService.setTitle('个人主页');
+      });
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 
 }

@@ -15,11 +15,11 @@ export class MatchDetailComponent {
     private router: ActivatedRoute
   ) {
     this.router.params.subscribe(param => {
-      this.getMatchDetail(param.matchId);
+      this.getMatchDetail(param['matchId']);
     })
   }
   //获取比赛详情
-  getMatchDetail(matchId: number) {
+  getMatchDetail(matchId: number): void {
     let params: object = {
       matchId: matchId
     }

@@ -11,7 +11,7 @@
       />
       <div class="team-detail-font">
         <div class="team-detail-font-text">{{item.leaderUserName}}</div>
-        <img src="{{item.appImgtxtUrl||' '}}" alt="">
+        <img src="{{item.appImgtxtUrl||' '}}">
       </div>
       <span></span>
     </div>
@@ -39,7 +39,8 @@
            [class.teamSpell3]="item.status==3"
            [class.teamSpell4]="item.status==4"
            [class.teamSpell5]="item.status==5"
-      >{{item.status==1?'报名中':(item.status==2?'拼球成功':(item.status==3?'拼球失败':(item.status==4?'已关闭':'已结束'))) }}</div>
+      >{{item.status==1?'报名中':(item.status==2?'拼球成功':(item.status==3?'拼球失败':
+        (item.status==4?'已关闭':'已结束'))) }}</div>
     </div>
   </div>
   <div class="contentLook" (click)="TipCommon()" *ngIf="spellData?.length==10">

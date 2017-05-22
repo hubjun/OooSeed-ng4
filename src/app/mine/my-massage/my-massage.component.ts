@@ -13,8 +13,19 @@ import {componentFactoryName} from "@angular/compiler";
 
 export class MyMassageComponent implements OnInit {
 
-  constructor(){
+  constructor(
+    private router: Router
+  ){
 
+  }
+  goNotice(){
+    this.router.navigate(['/mine/my-notice']);
+  }
+  goAtMe(){
+    this.router.navigate(['/mine/atme']);
+  }
+  goDiggMe(){
+    this.router.navigate(['/mine/diggme']);
   }
   ngOnInit(){
 

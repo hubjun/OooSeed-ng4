@@ -5,16 +5,18 @@
   </div>
   <div class="module match-result">
     <h3 class="module-title reset-margin" *ngIf="newMatchTotal<=2">下一场比赛</h3>
-    <h3 class="module-title reset-margin right-arrow-icon" *ngIf="newMatchTotal>2" [routerLink]="['match-record', 'ing']">下一场比赛<span>更多</span></h3>
+    <h3 class="module-title reset-margin right-arrow-icon" *ngIf="newMatchTotal>2" (click)="goToMatchRecordPage('ing')">下一场比赛<span>更多</span></h3>
     <div class="match-list">
       <match-card [matchs]="newMatchs"></match-card>
+      <missing-default-content *ngIf="newMatchs.length===0"></missing-default-content>
     </div>
   </div>
   <div class="module match-result bottom-gap">
     <h3 class="module-title reset-margin" *ngIf="oldMatchTotal<=2">历史赛程</h3>
-    <h3 class="module-title reset-margin right-arrow-icon" *ngIf="oldMatchTotal>2" [routerLink]="['match-record', 'over']">历史赛程<span>更多</span></h3>
+    <h3 class="module-title reset-margin right-arrow-icon" *ngIf="oldMatchTotal>2" (click)="goToMatchRecordPage('over')">历史赛程<span>更多</span></h3>
     <div class="match-list">
       <match-card [matchs]="oldMatchs"></match-card>
+      <missing-default-content *ngIf="oldMatchs.length===0"></missing-default-content>
     </div>
   </div>
 </div>

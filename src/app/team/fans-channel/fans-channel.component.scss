@@ -16,8 +16,8 @@ fans-channel {
   }
   li {
     width: 25%!important;
-    text-align: initial!important;
-    // padding: 0 pxTorem(38) pxTorem(25) pxTorem(38)!important;
+    text-align: initial!important; // padding: 0 pxTorem(38) pxTorem(25) pxTorem(38)!important;
+    padding-bottom: pxTorem(25)!important;
     margin-bottom: 0!important;
     .content {
       position: relative;

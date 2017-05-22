@@ -9,17 +9,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PlayerListComponent {
   private players: Array<string> = [];
-  private defaultUserIcon: string = this.teamService.defaultUserIcon;
+  private scrollContainer:Element;
   constructor(
     private teamService: TeamService,
-    private router: ActivatedRoute
+    private route: ActivatedRoute
   ) {
-    this.router.params.subscribe(param => {
-      this.getTeamPlayer(param.teamId);
+
+    this.route.params.subscribe(params => {
+      this.getTeamPlayer(params['teamId']);
     })
   }
   //获取球队球员
-  getTeamPlayer(teamId: number) {
+  getTeamPlayer(teamId: number): void {
     let params: object = {
       id: teamId
     }
@@ -28,5 +29,8 @@ export class PlayerListComponent {
         this.players = res.data.list;
       }
     })
+  }
+  ngOnInit() {
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 }

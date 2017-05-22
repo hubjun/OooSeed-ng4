@@ -1,0 +1,22 @@
+<div class="seed-detail-detail detail-announces">
+  <div *ngIf="object.length>0&&object[0]!='无'" class="detail-announce-detail">
+    <div *ngFor="let item of object">
+      <div class="detail-info-h3">
+        <p>{{item.title}}</p>
+        <span>{{item.createTime|amDateFormat:'YYYY-MM-DD'}}</span>
+      </div>
+      <div class="evnet-detail-info" [innerHtml]="item.content">
+
+       </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+

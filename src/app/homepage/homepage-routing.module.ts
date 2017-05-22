@@ -4,13 +4,17 @@ import {HomepageComponent} from "./homepage.component";
 import {HomepageShareComponent} from "./homepage-share/homepage-share.component";
 import {HomepageServiceComponent} from "./homepage-service/homepage-service.component";
 import {HomepageFansComponent} from "./homepage-fans/homepage-fans.component";
-import {HomepageCircleComponent} from "./homepage-circle/homepage-circle.component";
+import {HomepageEventsComponent} from "./homepage-events/homepage-events.component";
 import {MyVideoComponent} from "./my-video/my-video.component";
 import {MyPictureComponent} from "./my-picture/my-picture.component";
 import {MyCareFansComponent} from "./my-care-fans/my-care-fans.component";
 import {MyFansComponent} from "./my-fans/my-fans.component";
+import {EventsDetailComponent} from "./homepage-events/events-detail/events-detail.component";
+import {EventsDetailAnnounceComponent} from "./homepage-events/events-detail-announce/events-detail-announce.component";
+import {EventsDetailDetailComponent} from "app/homepage/homepage-events/events-detail-detail/events-detail-detail.component";
+import {EventsDetailRuleComponent} from "./homepage-events/events-detail-rule/events-detail-rule.component";
 
-const routes: Routes = [ 
+const routes: Routes = [
   {
     path:'',
     component:HomepageComponent,
@@ -20,39 +24,43 @@ const routes: Routes = [
         component:HomepageShareComponent,
       },
       {
-        path:'person-share/:userId',
+        path:'person-share',
         component:HomepageShareComponent,
       },
       {
-        path:'person-circle/:userId',
-        component:HomepageCircleComponent,
+        path:'person-events',
+        component:HomepageEventsComponent,
       },
       {
-        path:'person-fans/:userId',
+        path:'person-fans',
         component:HomepageFansComponent,
       },
       {
-        path:'person-service/:userId',
+        path:'person-service',
         component:HomepageServiceComponent,
       },
     ]
   },
   {
-    path:'my-video/:userId',
+    path:'my-video',
     component:MyVideoComponent,
   },
   {
-    path:'my-picture/:userId',
+    path:'my-picture',
     component:MyPictureComponent,
   },
   {
-    path:'my-care-fans/:userId',
+    path:'my-care-fans',
     component:MyCareFansComponent,
   },
   {
-    path:'my-fans/:userId',
+    path:'my-fans',
     component:MyFansComponent,
   },
+  {
+    path:'events-detail',
+    component:EventsDetailComponent,
+  }
 ];
 @NgModule({
   imports: [

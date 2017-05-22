@@ -109,3 +109,12 @@ team {
     color: color($h5, c4);
   }
 }
+
+team-channel,
+schedule-channel,
+fans-channel {
+  .spellMissingPage1 {
+    margin-top: pxTorem(70);
+    padding-top: 0!important;
+  }
+}

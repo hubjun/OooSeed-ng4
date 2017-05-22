@@ -43,13 +43,14 @@ export class HomepageShareComponent implements OnInit {
     )
   }
   ngOnInit() {
-    this._activatedRoute.params
+    this._activatedRoute.parent.params
       .subscribe((params:Params) => {
         this.share_Picture_Video(params['userId']);
         this.userId=params['userId'];
-      })
+      });
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
+
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();

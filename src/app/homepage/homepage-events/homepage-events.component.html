@@ -1,0 +1,32 @@
+<div class="person-events">
+  <ul class="seed-events" *ngIf="eventList.length>0&&eventList[1]!='无'">
+    <li
+      *ngFor="let item of eventList"
+      (click)="routerDetail(item.id,item.status)"
+    >
+      <img src="../../../assets/images/subscript_gallery.png">
+      <div class="events-list-clum">
+        <div class="events-clum-top">
+          <span class="events-type">羽毛球</span>
+          <span class="events-resume">{{item.matchName}}</span>
+        </div>
+        <div class="events-clum-bottom">
+          <span class="events-out-time">{{item.startTime|amDateFormat:'DD-MM-YYYY'}}</span>
+          <span class="events-clock">{{item.startTime|amDateFormat:'HH:mm'}}</span>
+          <img src="{{item.status==4?applying:(item.status==5?applyend:
+          (item.status==6?applyplay:(item.status==7?applyfinshed:' ')))}}">
+        </div>
+      </div>
+    </li>
+    <div class="contentLook" (click)="TipCommon()" *ngIf="eventList?.length==6">
+      <div class="lookMore">下载球苗App，看更多精彩内容</div>
+    </div>
+  </ul>
+  <missing-default-content
+    *ngIf="eventList.length==1&&eventList[0]=='无'"
+  ></missing-default-content>
+
+</div>
+
+
+

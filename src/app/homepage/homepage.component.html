@@ -1,4 +1,8 @@
-
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content class="seed-person-page">
   <div class="seed-person-homepage"  *ngIf="personHeaderInfo">
     <div class="person-header">
@@ -13,8 +17,15 @@
       <div class="person-Info">
         <!--<div class="person-flex">-->
           <div class="person-image">
-            <img src="{{personHeaderInfo.iconUrl||'../../../assets/images/placeholder_head_pic.png'}}" class="person-img">
-            <img src="../../assets/images/{{personHeaderInfo.sex==1?'boy':(personHeaderInfo.sex==2?'girl':' ')}}.png" class="little-icon" *ngIf="personHeaderInfo.sex==1||personHeaderInfo.sex==2">
+            <img
+              src="{{personHeaderInfo.iconUrl||'../../../assets/images/placeholder_head_pic.png'}}"
+              class="person-img"
+            >
+            <img
+              src="../../assets/images/{{personHeaderInfo.sex==1?'boy':
+              (personHeaderInfo.sex==2?'girl':' ')}}.png" class="little-icon"
+              *ngIf="personHeaderInfo.sex==1||personHeaderInfo.sex==2"
+            >
           </div>
           <div class="person-name">{{personHeaderInfo.nickName }}</div>
           <img
@@ -22,41 +33,49 @@
             :personHeaderInfo.appImgUrl||'../../../assets/icon/yirenzheng.png'}}"
             class="person-check"
           >
-          <div class="person-edit" *ngIf="personHeaderInfo.areaCityName&&personHeaderInfo.areaDistName">{{personHeaderInfo.areaCityName+'-'+personHeaderInfo.areaDistName}}</div>
-        <div class="person-edit" *ngIf="!personHeaderInfo.areaCityName||!personHeaderInfo.areaDistName">{{'暂无地址'}}</div>
+          <div class="person-edit"
+               *ngIf="personHeaderInfo.areaCityName&&personHeaderInfo.areaDistName"
+          >
+            {{personHeaderInfo.areaCityName+'-'+personHeaderInfo.areaDistName}}
+          </div>
+        <div class="person-edit"
+             *ngIf="!personHeaderInfo.areaCityName||!personHeaderInfo.areaDistName"
+        >
+          {{'暂无地址'}}
+        </div>
         <!--</div>-->
       </div>
     </div>
     <div class="person-clum">
       <a
-        class="person-clum-current person-share"
-        [class.person-clum-current]="classTag=='share'"
-        routerLink="/homepage/{{userId}}/person-share/{{userId}}"
+        class="person-share"
+        routerLink="/homepage/{{userId}}/person-share"
+        routerLinkActive="person-clum-current"
         (click)="share()"
       >
         <span>分享</span>
       </a>
       <a
         class="person-fans"
-        [class.person-clum-current]="classTag=='fans'"
-        routerLink="/homepage/{{userId}}/person-fans/{{userId}}"
+        routerLink="/homepage/{{userId}}/person-fans"
+        routerLinkActive="person-clum-current"
         (click)="fans()"
       >
         <span>粉丝</span>
       </a>
       <a
         class="person-service"
-        [class.person-clum-current]="classTag=='service'"
-        routerLink="/homepage/{{userId}}/person-service/{{userId}}"
+        routerLink="/homepage/{{userId}}/person-service"
+        routerLinkActive="person-clum-current"
         (click)="service()"
       >
         <span>服务</span>
       </a>
       <a
         class="person-circle"
-        [class.person-clum-current]="classTag=='circle'"
-        routerLink="/homepage/{{userId}}/person-circle/{{userId}}"
-        (click)="circle()"
+        routerLink="/homepage/{{userId}}/person-events"
+        routerLinkActive="person-clum-current"
+        (click)="events()"
       >
         <span>赛事</span>
       </a>

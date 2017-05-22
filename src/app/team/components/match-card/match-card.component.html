@@ -4,7 +4,11 @@
       <time>{{match.date}} 周{{match.day|chineseDay}}</time><span *ngIf="match.formatName">/{{match.formatName}}</span></div>
     <div class="team-logo">
       <div class="logo-box">
-        <img [src]="match.homeTeamIconUrl||defaultTeamIcon" alt="" class="logo">
+         <img class="logo" 
+              [lazyLoad]="match.homeTeamIconUrl" 
+              [defaultImage]="'/assets/icon/team_default_badgebig.png'"
+              [errorImage]="'/assets/icon/team_default_badgebig.png'" 
+              [scrollTarget]="scrollContainer"/>
       </div>
       <p class="center" *ngIf="match.matchState!==-1">
         VS
@@ -14,7 +18,11 @@
         <span *ngIf="!match.guestScore">-</span>
       </p>
       <div class="logo-box">
-        <img [src]="match.guestTeamIconUrl||defaultTeamIcon" alt="" class="logo">
+         <img class="logo" 
+              [lazyLoad]="match.guestTeamIconUrl" 
+              [defaultImage]="'/assets/icon/team_default_badgebig.png'"
+              [errorImage]="'/assets/icon/team_default_badgebig.png'" 
+              [scrollTarget]="scrollContainer"/>
       </div>
     </div>
     <div class="team-name">
@@ -28,7 +36,7 @@
     </div>
   </div>
 </div>
-<div class="no-record-wrap" *ngIf="matchs.length===0">
+<!--<div class="no-record-wrap" *ngIf="matchs.length===0">
   <div class="no-record-icon"></div>
   <div class="no-record-text">暂无赛程记录哦~</div>
-</div>
+</div>-->

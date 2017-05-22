@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   selector: 'seed-toolbar-home',
   template:
   `<a 
-    routerLink="home"
+    routerLink="/home"
     class="seed-toolbar-home"  
     >
     <span class="homepage"></span>

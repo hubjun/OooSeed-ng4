@@ -6,6 +6,8 @@ import {Router,ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 import {MineService} from '../mine.service'
 import {UserDataService} from '../../shared/tools/user-data.service'
+import {Subscription} from "rxjs";
+import {ToolsService} from '../../shared/tools/tools.service';
 
 @Component({
   selector: 'my-content',
@@ -14,67 +16,13 @@ import {UserDataService} from '../../shared/tools/user-data.service'
 })
 
 export class PersonalScheduleComponent implements OnInit {
-  TodySchedules:Array<any>=[
-    {
-      "endTime": "17:00",
-      "remark": "拼球",
-      "scheduleDate": "2017.07.01 周六",
-      "scheduleId": 558,
-      "startTime": "16:00",
-      "tableId": 114,
-      "title": "拼球：足球，六人制"
-    },
-    {
-      "endTime": "17:00",
-      "remark": "拼球",
-      "scheduleDate": "2017.07.01 周六",
-      "scheduleId": 558,
-      "startTime": "16:00",
-      "tableId": 114,
-      "title": "拼球：足球，六人制"
-    }
-  ]
-  LatelySchedules:Array<any>=[
-    {
-      "endTime": "17:00",
-      "remark": "拼球",
-      "scheduleDate": "2017.07.01 周六",
-      "scheduleId": 558,
-      "startTime": "16:00",
-      "tableId": 114,
-      "title": "拼球：足球，六人制 科兴长脚足球场"
-    },
-    {
-      "endTime": "17:00",
-      "remark": "拼球",
-      "scheduleDate": "2017.07.01 周六",
-      "scheduleId": 558,
-      "startTime": "16:00",
-      "tableId": 114,
-      "title": "拼球：足球，六人制"
-    },
-    {
-      "endTime": "17:00",
-      "remark": "拼球",
-      "scheduleDate": "2017.07.01 周六",
-      "scheduleId": 558,
-      "startTime": "16:00",
-      "tableId": 114,
-      "title": "拼球：足球，六人制"
-    },
-    {
-      "endTime": "17:00",
-      "remark": "拼球",
-      "scheduleDate": "2017.07.01 周六",
-      "scheduleId": 558,
-      "startTime": "16:00",
-      "tableId": 114,
-      "title": "拼球：足球，六人制"
-    }
-  ]
+  public TodySchedules:Array<any>=[];
+  public LatelySchedules:Array<any>=[];
+  public subscription: Subscription = new Subscription();
   constructor(
     public mineservice:MineService,
-    private userservice:UserDataService
+    private userservice:UserDataService,
+    public toolservice: ToolsService
   ){
 
   }
@@ -89,24 +37,35 @@ export class PersonalScheduleComponent implements OnInit {
     let params: any = {
       eventDate: param
     }
+    this.subscription.add(
     this.mineservice.getUserNewestSchedule(params).subscribe((res) => {
       if (res.result === '0') {
         this.TodySchedules = res.data;
         console.log(res);
       }
     })
+    )
   }
   //获取用户最近日程
   getUserLatestSchedule() {
+      this.toolservice.showLoading();
+    this.subscription.add(
     this.mineservice.getUserLatestSchedule().subscribe((res) => {
       if (res.result === '0') {
         this.LatelySchedules = res.data;
+        this.toolservice.hideLoading();
         console.log(res);
       }
     })
+    )
   }
   ngOnInit(){
     this.getUserLatestSchedule();
     this.getUserNewestSchedule();
+  }
+  ngOnDestroy() {
+    //取消订阅
+    this.subscription.unsubscribe();
+    this.toolservice.hideLoading();
   }
 }

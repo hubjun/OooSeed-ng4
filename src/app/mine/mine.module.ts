@@ -17,6 +17,13 @@ import {MyComponent} from "./personal-schedule/my-component/my-component";
 import {MyEditInfoComponent} from "./my-edit-info/my-edit-info.component";
 import {EditDetailComponent} from "./my-edit-info/edit-detail/edit-detail";
 import {EditBallComponent} from "./my-edit-info/edit-ball-info/edit-ball-info";
+import {ChooseItemsComponent} from "./edit-components/choose-two-items/choose-two-items";
+import {PotencyTeamComponent} from "./my-edit-info/potency-team-list/potency-team-list";
+import {HomepageService} from '../homepage/homepage.service';
+import { MyNoticeComponent } from './my-massage/my-notice/my-notice.component';
+import { AtmeComponent } from './my-massage/atme/atme.component';
+import { DiggmeComponent } from './my-massage/diggme/diggme.component';
+
 @NgModule({
   imports: [
     SharedModule,
@@ -35,12 +42,20 @@ import {EditBallComponent} from "./my-edit-info/edit-ball-info/edit-ball-info";
     PersonalScheduleComponent,
     MyComponent,
     MyEditInfoComponent,
-    EditDetailComponent, 
+    EditDetailComponent,
     EditBallComponent,
+    ChooseItemsComponent,
+    EditDetailComponent,
+    EditBallComponent,
+    PotencyTeamComponent,
+    MyNoticeComponent,
+    AtmeComponent,
+    DiggmeComponent,
   ],
   providers:[
     LocalService,
     MineService,
+    HomepageService,
   ]
 })
 export class MineModule { }

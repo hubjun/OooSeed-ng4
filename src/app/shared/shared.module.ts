@@ -16,7 +16,8 @@ import {
   ChineseDay,
   recruitWeek,
   Distance,
-  ChineseWeek
+  ChineseWeek,
+  changetime
 } from './pipes/shared.pipe'
 import {ToolbarRollerComponent} from "./components/toolbar/toolbar-roller";
 import {RollerDirective} from "./directives/shared.directive";
@@ -36,6 +37,7 @@ import {Content} from "./components/toolbar/toolbar-content";
 import {GapBgComponent} from "./components/gap-bg/gap-bg.component";
 import { MomentModule } from "angular2-moment";
 import {SwiperConfigInterface} from "ngx-swiper-wrapper";
+import { SubHeaderComponent } from './components/sub-header/sub-header.component';
 
 @NgModule({
   imports: [
@@ -54,6 +56,7 @@ import {SwiperConfigInterface} from "ngx-swiper-wrapper";
     ChineseDay,
     ChineseWeek,
     recruitWeek,
+    changetime,
     Distance,
     ToolbarNavComponent,
     ToolbarHeaderComponent,
@@ -72,7 +75,8 @@ import {SwiperConfigInterface} from "ngx-swiper-wrapper";
     CommentsComponent,
     ViewMoreComponent,
     GapBgComponent,
-    SelectComponent
+    SelectComponent,
+    SubHeaderComponent
    ],
   exports: [
     CommonModule,
@@ -86,6 +90,7 @@ import {SwiperConfigInterface} from "ngx-swiper-wrapper";
     TruncatePipe,
     ChineseDay,
     recruitWeek,
+    changetime,
     Distance,
     ChineseWeek,
     ToolbarNavComponent,

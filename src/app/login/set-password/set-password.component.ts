@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ValidationService } from "../../shared/tools/validator.service";
 import { UserActivityService } from '../../shared/tools/user-activity.service';
-import { UserDataService } from '../../shared/tools/user-data.service';
+// import { UserDataService } from '../../shared/tools/user-data.service';
+import {AuthService} from '../../shared/service/auth.service';
 import { ToolsService } from '../../shared/tools/tools.service';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -27,7 +28,7 @@ export class SetPasswordComponent implements OnInit {
     public tools: ToolsService,
     private router: Router,
     private route: ActivatedRoute,
-    private userData: UserDataService,
+    private userData: AuthService,
   ) {
     this.passwordForm = this.formBuilder.group({
       'password': ['', [Validators.required, ValidationService.passwordValidator]],

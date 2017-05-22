@@ -6,13 +6,13 @@ import {Router} from "@angular/router";
 export class AuthService {
   private timestamp:any = '';
   redirectUrl:string;
-  isLoggedIn:string = 'false';
+  isLoggedIn:string  = this.getLogin();
   private HAS_LOGGED_IN = 'hasLoggedIn';
   constructor(
     public tools:ToolsService,
     private router: Router
   ){
-    console.log(this.getUserid())
+    console.log( this.getLogin())
   }
 
 
@@ -56,7 +56,6 @@ export class AuthService {
   }
 
   logout() {
-    this.isLoggedIn = 'false';
     localStorage.clear();
     // this.tools.showToast('退出成功,正在跳转页面',1000,function () {
     //   window.location.reload();
@@ -74,10 +73,20 @@ export class AuthService {
   setLogin(key:string){
     // this.isLoggedIn = true;
 
-    localStorage.setItem(this.HAS_LOGGED_IN,key)
-    this.isLoggedIn = localStorage.getItem(this.HAS_LOGGED_IN);
+    localStorage.setItem(this.HAS_LOGGED_IN,key);
+    localStorage.setItem(this.isLoggedIn,key);
+    this.isLoggedIn = localStorage.getItem(this.isLoggedIn);
+    setTimeout(() => {
+      console.log(this.getLogin())
+    },2000)
+
   }
 
+
+
+  getLogin(){
+    return localStorage.getItem(this.isLoggedIn)
+  }
   hasLoggedIn(){
     return localStorage.getItem(this.HAS_LOGGED_IN)
   }

@@ -1,0 +1,59 @@
+@import '../../../../app/shared/styles/theming.scss';
+
+.chooseitemsbox{
+  position: fixed;
+  left: 0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.3);
+  .bottombox{
+    position: absolute;
+    left: 0;
+    bottom:0;
+    background: #fff;
+    width: 100%;
+    .change-up{
+      border-bottom: 1px solid color($h5,c9);
+      padding: pxTorem(30);
+      overflow: hidden;
+      p{
+        color: #1d81e3;
+        font-weight: bold;
+      }
+      .cansel{
+        float: left;
+      }
+      .success{
+        float: right;
+      }
+    }
+    .change-down{
+      padding: 0 pxTorem(35) 0 pxTorem(15);
+      p{
+        padding: pxTorem(20);
+        font-size: pxTorem(24);
+        color: color($h5,c4);
+      }
+      ul{
+        //display: flex;
+        li{
+          margin-left: 3%;
+          margin-bottom: pxTorem(30);
+          padding: pxTorem(30) 0;
+          border-radius: pxTorem(5);
+          float: left;
+          width: 30%;
+          background: color($h5,c9);
+          color: color($h5,c2);
+          text-align: center;
+          &.active{
+            background: color($h5,c1);
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+}

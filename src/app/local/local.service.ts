@@ -68,10 +68,12 @@ export class LocalService {
     currentCity:null,//object
     autoSuccess:null//event
   }
-  public handCity:Subject<DictCityVO|any> = new BehaviorSubject<DictCityVO|any>(null);
+  public handCity=new Subject();
+
   public autoCity:Subject<DictCityVO|any> = new BehaviorSubject<DictCityVO|any>(null);
   public handAreaResult:Subject<DictArea>=new BehaviorSubject<DictArea>(null);
   public filterResult:Subject<any> = new Subject();
+  public currentCityName=new Subject();
   constructor(
     public httpService: HttpService,
     public toolsService: ToolsService
@@ -149,7 +151,7 @@ export class LocalService {
   //获取城市信息
   getLocationCity() {
      return new Promise(resolve=>{
-       this.toolsService.showLoading();
+     this.toolsService.showLoading();
       let map, geolocation;
       //加载地图，调用浏览器定位服务
       map = new AMap.Map('container', {
@@ -164,21 +166,22 @@ export class LocalService {
           timeout: 10000          //超过10秒后停止定位，默认：无穷大
         });
         map.addControl(geolocation);
-        geolocation.getCurrentPosition((status,result)=>{
-            console.log(result);
-        });
+        geolocation.getCurrentPosition();
         geolocation.getCityInfo(onCompleteOfCity);//返回城市信息
         AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
         AMap.event.addListener(geolocation, 'error', onError);//定位出错
      
         function onComplete(result){
-         that.location.position=result.position;
+          that.toolsService.hideLoading();
+          that.location.position=result.position;
          Object.assign(that.location.autoCity,{
            "position":result.position
          })
-             resolve(that.location.autoCity);
+          that.currentCityName.next(that.location.autoCity.title);
+          resolve(that.location.autoCity);
         }
         function onError(error){
+           that.toolsService.hideLoading();
           //  console.log(error)
            that.autoCity.subscribe((result)=>{
               // console.log(result);
@@ -189,16 +192,18 @@ export class LocalService {
         }
         function onCompleteOfCity(status?, result?){
             if (status == 'complete') {
-              that.getAreaByParentPostCode(result.adcode).then((autoCity)=>{
+              that.getAreaByParentPostCode(result.adcode).then((autoCity:any)=>{
                that.location.autoCity=autoCity;
                that.location.currentCity=autoCity;
                Object.assign(that.location.autoCity,{
                  "position":result.position
                })
               that.autoCity.next(that.location.autoCity);
+              that.currentCityName.next(autoCity.title);
               });
             }
             else {
+              that.currentCityName.next('定位失败');
               that.toolsService.showToast('定位失败，请尝试手动定位')
             }
         }

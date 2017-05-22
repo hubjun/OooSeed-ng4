@@ -8,13 +8,11 @@ import { TeamService } from '../../team.service';
 })
 export class MemberModuleComponent implements OnInit {
   @Input() members;
-  private defaultUserIcon: string = this.teamService.defaultUserIcon;
-  private defaultTeamIcon: string = this.teamService.defaultTeamIcon;
+  private scrollContainer: Element;
   constructor(
-    private teamService:TeamService
+    private teamService: TeamService
   ) { }
-
   ngOnInit() {
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
-
 }

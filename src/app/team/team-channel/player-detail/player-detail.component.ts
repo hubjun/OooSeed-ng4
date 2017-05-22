@@ -13,18 +13,18 @@ export class PlayerDetailComponent {
   private defaultUserIcon: string = this.teamService.defaultUserIcon;
   constructor(
     private teamService: TeamService,
-    private router: ActivatedRoute
+    private route: ActivatedRoute
   ) {
-    this.router.params.subscribe(param => {
-      this.getTeamPlayerDetail(param.playerId);
-      this.getUserInfo(param.playerId)
+    this.route.params.subscribe(params => {
+      this.getTeamPlayerDetail(params['teamId'], params['playerId']);
+      this.getUserInfo(params['playerId'])
     })
   }
 
   //获取球队球员在球队信息
-  getTeamPlayerDetail(playerId: string) {
+  getTeamPlayerDetail(teamId: string, playerId: string): void {
     let params: object = {
-      teamId: this.teamService.team.id,
+      teamId: teamId,
       playerId: playerId
     }
     this.teamService.getTeamPlayerDetail(params).subscribe((res) => {
@@ -34,7 +34,7 @@ export class PlayerDetailComponent {
     })
   }
   //获取球队球员个人信息
-  getUserInfo(userId: string) {
+  getUserInfo(userId: string): void {
     let param: object = {
       userId: userId
     }

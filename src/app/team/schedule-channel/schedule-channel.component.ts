@@ -3,6 +3,9 @@ import { TeamService } from '../team.service';
 import { ToolsService } from '../../shared/tools/tools.service';
 import { TeamMatchVO } from '../../domain/interface.model';
 import { MatchCardComponent } from '../components/match-card/match-card.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SeasonResultsComponent } from '../components/season-results/season-results.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'schedule-channel',
@@ -10,63 +13,75 @@ import { MatchCardComponent } from '../components/match-card/match-card.componen
   styleUrls: ['./schedule-channel.component.scss']
 })
 export class ScheduleChannelComponent implements OnInit {
-  private currentYear: number;
+  private subscription: Subscription = new Subscription();
+  private currentYear: number = new Date().getFullYear();
+  private result;
   private newMatchs: Array<TeamMatchVO> = [];
   private oldMatchs: Array<TeamMatchVO> = [];
   private newMatchTotal: number;
   private oldMatchTotal: number;
   private params: any = {
-    teamId: this.teamService.team.id,
+    teamId: null,
     status: null,
     rows: 2
   }
+  @ViewChild(SeasonResultsComponent) seasonResults: SeasonResultsComponent;
+
   constructor(
     private teamService: TeamService,
-    private toolsService: ToolsService
-  ) { }
-
-  ngOnInit() {
-    this.currentYear = new Date().getFullYear();
-    this.getNewMatchRecord();
-    this.getOldMatchRecord();
+    private toolsService: ToolsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.route.parent.params.subscribe(params => {
+      this.params.teamId = params['teamId']
+    })
   }
+
+
   //获取球队战绩
-  getTeamMatchResult() {
+  getTeamMatchResult(): void {
     let params = {
-      teamId: this.teamService.team.id,
+      teamId: this.params.teamId,
       mode: 1
     }
-    this.teamService.getTeamMatchResult(params).subscribe((res) => {
-      if (res.result === '0') {
-
-      }
-    })
+    this.subscription.add(
+      this.teamService.getTeamMatchResult(params).subscribe((res) => {
+        if (res.result === '0' && res.data) {
+          this.seasonResults.setPercent(res.data);
+        }
+      })
+    )
   }
   //获取球队新赛程
-  getNewMatchRecord() {
+  getNewMatchRecord(): void {
     this.params.status = '0, 1, 2, 3, 4';
-    this.teamService.getTeamMatch(this.params).subscribe((res) => {
-      if (res.result === '0') {
-        let matchs = res.data.list;
-        this.newMatchTotal = res.data.total;
-        this.assignDay(matchs).then((result: any) => {
-          this.newMatchs = result;
-        })
-      }
-    })
+    this.subscription.add(
+      this.teamService.getTeamMatch(this.params).subscribe((res) => {
+        if (res.result === '0' && res.data) {
+          let matchs = res.data.list;
+          this.newMatchTotal = res.data.total;
+          this.assignDay(matchs).then((result: any) => {
+            this.newMatchs = result;
+          })
+        }
+      })
+    )
   }
   //获取球队历史赛程
-  getOldMatchRecord() {
+  getOldMatchRecord(): void {
     this.params.status = -1;
-    this.teamService.getTeamMatch(this.params).subscribe((res) => {
-      if (res.result === '0') {
-        let matchs = res.data.list;
-        this.oldMatchTotal = res.data.total;
-        this.assignDay(matchs).then((result: any) => {
-          this.oldMatchs = result;
-        })
-      }
-    })
+    this.subscription.add(
+      this.teamService.getTeamMatch(this.params).subscribe((res) => {
+        if (res.result === '0' && res.data) {
+          let matchs = res.data.list;
+          this.oldMatchTotal = res.data.total;
+          this.assignDay(matchs).then((result: any) => {
+            this.oldMatchs = result;
+          })
+        }
+      })
+    )
   }
   assignDay(matchs) {
     return new Promise((resolve) => {
@@ -80,5 +95,16 @@ export class ScheduleChannelComponent implements OnInit {
       }
       resolve(matchs);
     })
+  }
+  goToMatchRecordPage(type: string) {
+    this.router.navigate([`/team/${this.params.teamId}/match-record`], { queryParams: { type: type } });
+  }
+  ngOnInit() {
+    this.getTeamMatchResult();
+    this.getNewMatchRecord();
+    this.getOldMatchRecord();
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

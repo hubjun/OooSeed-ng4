@@ -15,6 +15,14 @@ export class MineService {
   private USER_NEWEST_SCHEDULI_URL = '/user/scheduleInfo' //获取用户今日日程
   private USER_INFO_UPDATE_URL='/user/_userInfo';//编辑个人信息
   private AVATAR_URL = '/user/uploadIconFile';//上传头像
+  private USER_FOOTBALL_INGO_URL='/user/football/info';//个人足球信息
+  private USER_GET_TEDIAN='/dict/characteristics/football';//个人足球场上特点
+  private USER_GET_POSITION='/dict/position/football';//个人足球场上位置
+  private editUserFootballInfoUrl = '/user/football/info';//个人足球位置与特点修改
+  private jobHistoryUrl = '/_guest/ballResume/selectByUserId';  // 效力过球队
+  private commentMeUrl = '/user/commentMe';//我的评论
+  private atMeUrl = '/user/atMe';//@Me
+  private diggMeUrl = '/user/diggMe';//赞我
 
   constructor(
     public httpService: HttpService,
@@ -49,6 +57,27 @@ export class MineService {
     let url = this.USER_LATEST_SCHEDULT_URL;
     return this.httpService.get(url).map(res => res.json());
   }
+  //获取个人足球信息
+  getfootballinfo() {
+    let url = this.USER_FOOTBALL_INGO_URL+'?footballId=0';
+    return this.httpService.get(url).map(res => res.json());
+  }
+  //获取个人足球场上位置
+  getfootballpostion() {
+    let url = this.USER_GET_POSITION;
+    return this.httpService.get(url).map(res => res.json());
+  }
+  //获取个人足球场上特点
+  getfootballtedian() {
+    let url = this.USER_GET_TEDIAN;
+    return this.httpService.get(url).map(res => res.json());
+  }
+  putBallLocation(params){
+    // let opt = JSON.stringify(params);
+    // return this.httpService.putJsonObj(this.editUserFootballInfoUrl ,params)
+    return this.httpService.putJsonObj(this.editUserFootballInfoUrl,params)
+      .map(rs => rs.json());
+  };
  // 编辑个人信息
   UserInfoUpdate(data){
     // let cwh = $.param(opt);
@@ -60,5 +89,25 @@ export class MineService {
     let url = this.AVATAR_URL
     return this.httpService.upload(url, file).map(res => res.json());
   }
+  // 效力过球队
+  getHistory(userId: string){
+    return this.httpService.get(this.jobHistoryUrl + `?userId=${userId}`)
+      .map(rs => rs.json());
+  };
+  //我的评论
+  getMyCommentMe(page: number, rows: number){
+    let url = this.commentMeUrl + `?page=${page}` + `&rows=${rows}`;
+    return this.httpService.get(url).map(rs => rs.json());
+  };
+  //@Me
+  getAtMe(page: number, rows: number){
+    let url= this.atMeUrl + `?page=${page}` + `&rows=${rows}`;
+    return this.httpService.get(url).map((rs) => rs.json());
+  };
+  //@Me
+  getDiggMe(page: number, rows: number){
+    let url= this.diggMeUrl + `?page=${page}` + `&rows=${rows}`;
+    return this.httpService.get(url).map((rs) => rs.json());
+  };
 }
 

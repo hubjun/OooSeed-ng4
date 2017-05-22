@@ -56,7 +56,7 @@ export class SetNicknameComponent implements OnInit {
     this.subscription.add(
       this.userActivityService.setNickname(data).subscribe((res) => {
         if (res.result === '0') {
-          this.tools.showToast('注册成功正在跳转至登录页面...', 1000);
+          this.tools.showToast('注册成功正在跳转至首页...', 1000);
           setTimeout(() => {
             // this.navCtrl.push(LoginPage)
             this.router.navigate(['/home'])

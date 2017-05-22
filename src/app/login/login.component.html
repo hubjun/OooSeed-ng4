@@ -1,7 +1,8 @@
-<!--<div class="login-header">
-  <span class="login-cloesd" (click)="close()"></span>
-   登录
-</div>-->
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content>
 <div class="page-login " >
   <div class="login-content">
@@ -15,7 +16,7 @@
       <div class="login-box login-box-account">
         <!--<div class="login-box-icon login-box-icon-account"></div>-->
         <div class="login-box-input">
-          <input type="text" formControlName="account" name="login-account" id="login-account" placeholder="请输入手机号">
+          <input type="tel" formControlName="account" name="login-account" id="login-account" placeholder="请输入手机号">
           <span class="delet-account" *ngIf="loginForm.controls['account'].value != ''"  (click)="deleteAccount()"></span>
         </div>
       </div>

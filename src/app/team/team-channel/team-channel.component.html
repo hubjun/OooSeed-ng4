@@ -1,4 +1,4 @@
-<div class="team-component" *ngIf="basicInfo">
+<div class="team-component">
   <div class="module">
     <h3 class="module-title reset-margin">基本信息</h3>
     <ul class="team-grid-list" *ngIf="basicInfo">
@@ -15,17 +15,15 @@
         <em>平均体重(kg)</em>
       </li>
       <li>
-        <span class="chinese-text">{{basicInfo.formatName}}</span>
+        <span class="chinese-text">{{basicInfo.formatName?basicInfo.formatName:'无'}}</span>
         <em>人制(人数)</em>
       </li>
       <li>
-        <span *ngIf="basicInfo.gradeName" class="chinese-text">{{basicInfo.gradeName}}</span>
-        <span *ngIf="!basicInfo.gradeName" class="chinese-text">无</span>
+        <span class="chinese-text">{{basicInfo.gradeName?basicInfo.gradeName:'无'}}</span>
         <em>水平</em>
       </li>
       <li>
-        <span *ngIf="basicInfo.sportAttrName" class="chinese-text">{{basicInfo.sportAttrName}}</span>
-        <span *ngIf="!basicInfo.sportAttrName" class="chinese-text">无</span>
+        <span class="chinese-text">{{basicInfo.sportAttrName?basicInfo.sportAttrName:'无'}}</span>
         <em>单位</em>
       </li>
     </ul>
@@ -35,12 +33,18 @@
     <season-results></season-results>
   </div>
   <div class="module players-module bottom-gap">
-    <h3 class="module-title right-arrow-icon" routerLink="/team/players"><em>阵容</em><span>更多</span></h3>
-    <ul class="list team-grid-list" *ngIf="players">
+    <h3 class="module-title" routerLink="/team/{{teamId}}/players" *ngIf="players.length===0"><em>阵容</em></h3>
+    <h3 class="module-title right-arrow-icon" routerLink="/team/{{teamId}}/players" *ngIf="players.length>0"><em>阵容</em><span>更多</span></h3>
+    <ul class="list team-grid-list" *ngIf="players.length>0">
       <li *ngFor="let player of players" routerLink="/team/{{player.teamId}}/player/{{player.userId}}">
-        <img [src]="player.userIconUrl||defaultUserIcon" alt="" class="avatar">
+        <img class="avatar" 
+              [lazyLoad]="player.userIconUrl" 
+              [defaultImage]="'/assets/icon/concern_default_head.png'"
+              [errorImage]="'/assets/icon/concern_default_head.png'" 
+              [scrollTarget]="scrollContainer"/>
         <span>{{player.userName}}</span>
       </li>
     </ul>
+    <missing-default-content *ngIf="players.length===0"></missing-default-content>
   </div>
 </div>

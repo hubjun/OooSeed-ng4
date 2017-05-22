@@ -1,3 +1,21 @@
+<!--<header>
+  <div class="content">
+    <i class="logo"></i>
+    <h1><a routerLink="citys">{{currtetCityName}}</a></h1>
+    <i class="menu" (click)="navToogle()"></i>
+  </div>
+  <nav class="show">
+    <a routerLink="/home" routerLinkActive="current">资讯</a>
+    <a routerLink="/videos" routerLinkActive="current">视频</a>
+    <a routerLink="/local" routerLinkActive="current" [routerLinkActiveOptions]="{exact: true}">同城</a>
+    <a routerLink="/mine" routerLinkActive="current">我的</a>
+  </nav>
+</header>-->
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title ><a routerLink="/local/citys" class="city-entry">{{currtetCityName}}</a></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content class="local-seed">
   <div id="local" class="gray-background">
     <channel-nav></channel-nav>

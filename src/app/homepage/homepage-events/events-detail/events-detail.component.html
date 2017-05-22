@@ -1,0 +1,97 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content class="seed-events-detail">
+  <div class="events-detail">
+    <div class="events-resume" *ngIf="detailHeader">
+      <h3>{{detailHeader.matchName}}</h3>
+      <div class="news-title">
+        <img
+          [lazyLoad]="detailHeader.iconUrl"
+          [defaultImage]="'/assets/images/placeholder_head_pic,png'"
+          [errorImage]="'/assets/images/placeholder_head_pic,png'"
+          [scrollTarget]="scrollContainer"
+        >
+        <div class="news-title-data">
+          <p>{{detailHeader.nickName}}</p>
+          <span>{{detailHeader.createTime|amDateFormat:'YYYY-MM-DD'}}</span><span>发布</span>
+        </div>
+      </div>
+      <div class="events-main-info">
+        <p>
+          <span>赛事时间：</span>
+          <span>{{detailHeader.startTime|amDateFormat:'YYYY-MM-DD'}}-</span>
+          <span>{{detailHeader.endTime|amDateFormat:'YYYY-MM-DD'}}</span>
+        </p>
+        <p>
+          <span>报名时间：</span>
+          <span>{{detailHeader.signStartTime|amDateFormat:'YYYY-MM-DD'}}-</span>
+          <span>{{detailHeader.signEndTime|amDateFormat:'YYYY-MM-DD'}}</span>
+        </p>
+        <p>
+          <span>主办方：</span>
+          <span>{{detailHeader.sponsorsList }}</span>
+        </p>
+        <p>
+          <span>协办方：</span>
+          <span>{{detailHeader.corganizersList}}</span>
+        </p>
+        <p>
+          <span>承办方：</span>
+          <span>{{detailHeader.organizersList}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="events-clume">
+      <a
+        class="events-clume-current"
+        [class.events-clume-current]="eventClass=='detail'"
+        (click)="evntsDetail()"
+      >
+        <span>赛事详情</span>
+      </a>
+      <a
+        [class.events-clume-current]="eventClass=='rule'"
+        (click)="evntsRule()"
+      >
+        <span>赛事章程</span>
+      </a>
+      <a
+        [class.events-clume-current]="eventClass=='announce'"
+        (click)="evntsAnnounce()"
+      >
+        <span>赛事公告</span>
+      </a>
+    </div>
+  </div>
+  <div class="event-detail-position">
+    <div
+      class="event-apply"
+      [class.event-ing]="status==4"
+      [class.event-end]="status==5||status==6||status==7"
+      (click)="TipCommon()"
+    >
+      {{status==4?'我要报名':status==5?'报名截止':status==6?'进行中':'已结束'}}
+    </div>
+  </div>
+  <div [ngSwitch]="eventClass" class="ngSwitch-channel">
+    <div *ngSwitchCase="'detail'">
+      <events-detail-detail [objectParam]="matchId"></events-detail-detail>
+    </div>
+    <div *ngSwitchCase="'rule'">
+      <events-detail-rule [objectParam]="matchId"></events-detail-rule>
+    </div>
+    <div *ngSwitchCase="'announce'">
+      <events-detail-announce [objectParam]="matchId"></events-detail-announce>
+    </div>
+  </div>
+</seed-content>
+
+
+
+
+
+
+

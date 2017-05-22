@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   selector: 'seed-toolbar-title',
   template:
   `<div class="seed-toolbar-title">  
-    
+     <ng-content></ng-content>
   </div>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

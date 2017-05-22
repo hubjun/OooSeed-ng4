@@ -57,7 +57,7 @@ export class UserDataService {
     this.setUserid(userid);
     this.setToken(token);
     this.setRefreshToken(refreshToken);
-    this.setLogin('true');
+    this.setLogin('true'); 
   }
 
   logout() {
@@ -69,7 +69,7 @@ export class UserDataService {
 
   showLoginPage(){
     
-    this.router.navigate(['/mine/login'])
+    this.router.navigate(['/login'])
     // let modal = this.modalCtrl.create(LoginPage);
     // modal.onDidDismiss(data =>{
     //   this.loginStatus = true;

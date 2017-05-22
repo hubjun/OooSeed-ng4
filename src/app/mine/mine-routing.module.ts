@@ -14,7 +14,11 @@ import {MyEditInfoComponent} from "./my-edit-info/my-edit-info.component";
 import {PersonalScheduleComponent} from "./personal-schedule/personal-schedule.component";
 import {AuthGuardService} from "../shared/service/auth-guard.service";
 import {EditDetailComponent} from "./my-edit-info/edit-detail/edit-detail";
+import {PotencyTeamComponent} from "./my-edit-info/potency-team-list/potency-team-list";
 import {EditBallComponent} from "./my-edit-info/edit-ball-info/edit-ball-info";
+import {MyNoticeComponent} from './my-massage/my-notice/my-notice.component';
+import {AtmeComponent} from './my-massage/atme/atme.component';
+import {DiggmeComponent} from './my-massage/diggme/diggme.component';
 
 
 const routes:Routes = [
@@ -49,6 +53,21 @@ const routes:Routes = [
     canActivate:[AuthGuardService],
   },
   {
+    path:'edit-ball-info',
+    component:EditBallComponent,
+    canActivate:[AuthGuardService],
+  },
+  {
+    path:'potency-team-list',
+    component:PotencyTeamComponent,
+    canActivate:[AuthGuardService],
+  },
+  {
+    path:'edit-detail/:id',
+    component:EditDetailComponent,
+    canActivate:[AuthGuardService],
+  },
+  {
     path:'my-spell',
     component:MySpellComponent,
     canActivate:[AuthGuardService],
@@ -79,7 +98,22 @@ const routes:Routes = [
   {
     path:'my-launch-detail/:fightId',
     component:MyLaunchDetailComponent
-  }
+  },
+  {
+    path:'my-notice',
+    component:MyNoticeComponent,
+    canActivate:[AuthGuardService],
+  },
+  {
+    path:'atme',
+    component:AtmeComponent,
+    canActivate:[AuthGuardService],
+  },
+  {
+    path:'diggme',
+    component:DiggmeComponent,
+    canActivate:[AuthGuardService],
+  },
 ];
 
 @NgModule({

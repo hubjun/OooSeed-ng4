@@ -1,0 +1,32 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content>
+
+  <div class="jobHistory">
+    <div class="title">
+      <p class="icon"></p>
+      <p class="text">曾效力球队</p>
+    </div>
+    <!--<div class="list">-->
+      <!--<div class="listItem first-list hightLight last-list">-->
+        <!--<div class="itemContent">-->
+          <!--<div class="dateItem">2017-05-15 &nbsp;&nbsp;——&nbsp;&nbsp;至今</div>-->
+          <!--<div class="nameItem">大保健球队</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="list">
+      <div class="listItem" *ngFor="let v of historylist">
+        <div class="itemContent">
+          <div class="dateItem">{{v.inTeamTime|changetime}}&nbsp;&nbsp;——&nbsp;&nbsp;{{(v.outTeamTime == null || '' || 'undefined') ? '至今' :v.outTeamTime|changetime}}</div>
+          <div class="nameItem">{{v.orgName}}</div>
+        </div>
+      </div>
+    </div>
+
+    <missing-default-content *ngIf="historycansee"></missing-default-content>
+  </div>
+</seed-content>

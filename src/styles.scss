@@ -693,3 +693,8 @@ img.ng-lazyloaded {
     @include icon(17, 28, '(../../../assets/icon/icon_more.png');
   }
 }
+.no-header{
+  .seed-scroll-content{
+    margin-top: 0!important;
+  }
+}

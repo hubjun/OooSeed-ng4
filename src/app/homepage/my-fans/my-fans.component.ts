@@ -62,8 +62,8 @@ export class MyFansComponent implements OnInit {
     }else{//未登录用户点击关注则路由到登录页面
       this.router.navigate(['/login']);
     }
-
   }
+
   //新增关注
   getAddCareFans(obj,event){
     this.homepageService.addCareFans(obj).subscribe(res=>{

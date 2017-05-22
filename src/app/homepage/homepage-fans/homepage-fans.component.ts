@@ -69,9 +69,10 @@ export class HomepageFansComponent implements OnInit {
   goPersonalPage(obj){
     this.router.navigate(['/homepage', obj]);
   }
+
   ngOnInit() {
     this.localUserid=localStorage.getItem('userid');
-    this._activatedRoute.params
+    this._activatedRoute.parent.params
       .subscribe((params:Params) => {
         this.myFans_Careme(params['userId']);
         this.userId=params['userId'];

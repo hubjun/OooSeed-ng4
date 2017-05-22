@@ -17,6 +17,10 @@ export class MatchDetailComponent implements OnInit {
     private toolsService: ToolsService,
     private router: ActivatedRoute
   ) { }
+  /**
+   * 获取约战信息
+   * @param matchId ： 约战ID 
+   */
   getMatchDetail(matchId: number) {
     let params = {
       engageId: matchId,
@@ -35,7 +39,6 @@ export class MatchDetailComponent implements OnInit {
         }
         //有主队球服
         let moreCloter = moreClotherParam.indexOf(',');
-
         if (moreCloter !== -1) {  //有多件主队球服
           let clotherIcons = match.homeTeamColorUrl.split(',');
           let clotherTexts = match.homeTeamColorName.split(',');
@@ -56,8 +59,8 @@ export class MatchDetailComponent implements OnInit {
     })
   }
   ngOnInit() {
-    this.router.params.subscribe(param => {
-      this.getMatchDetail(param.matchId);
+    this.router.params.subscribe(params => {
+      this.getMatchDetail(params.matchId);
     })
   }
 }

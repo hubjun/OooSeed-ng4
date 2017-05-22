@@ -45,6 +45,7 @@ export class VideoHomeComponent implements OnInit {
           })
         }
       })
+
     this.tools.hideLoading();
   };
 

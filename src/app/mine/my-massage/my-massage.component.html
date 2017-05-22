@@ -1,8 +1,13 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content class="spell-detail-inner">
   <div class="mycontent">
     <div class="mine-new-team mymassage">
       <ul>
-        <li>
+        <li (click)="goNotice()">
           <img src="../../../assets/icon/icon_message_comments.png" class="mine-team-news">
           <div class="mine-team-clum">
             <span>评论</span>
@@ -10,14 +15,14 @@
             <!--<div class="mine-news-number">99</div>-->
           </div>
         </li>
-        <li>
+        <li (click)="goAtMe()">
           <img src="../../../assets/icon/icon_message_@.png" class="mine-team-news">
           <div class="mine-team-clum">
             <span>@我</span>
             <img class="person-arrow" src="../../../assets/icon/arrow.png">
           </div>
         </li>
-        <li>
+        <li (click)="goDiggMe()">
           <img src="../../../assets/icon/icon_message_praise.png" class="mine-team-news">
           <div class="mine-team-clum">
             <span>赞</span>

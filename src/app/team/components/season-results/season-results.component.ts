@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TeamService } from '../../team.service';
 
 @Component({
@@ -6,25 +6,32 @@ import { TeamService } from '../../team.service';
   templateUrl: './season-results.component.html',
   styleUrls: ['./season-results.component.scss']
 })
-export class SeasonResultsComponent implements OnInit {
+export class SeasonResultsComponent {
   private result
-  constructor(
-    private teamService: TeamService
-  ) { }
-  //获取球队战绩
-  getTeamMatchResult(): void {
-    let params = {
-      teamId: this.teamService.team.id,
-      mode: 2,
-      dataSize: 10
-    }
-    this.teamService.getTeamMatchResult(params).subscribe((res) => {
-      if (res.result === '0' && res.data) {
-        this.result = res.data
-      }
-    })
-  }
-  ngOnInit() {
-    this.getTeamMatchResult()
+  private progressBarOpts: Array<any> = [{
+    color: '#e94141',
+    percent: 0,
+    size: 90,
+    border: 3
+  }, {
+    color: '#89d035',
+    percent: 0,
+    size: 90,
+    border: 3
+  }, {
+    color: '#23a3ec',
+    percent: 0,
+    size: 90,
+    border: 3
+  }]
+
+  constructor() {}
+
+  setPercent(result): void {
+    this.result = result;
+    let progressBarOpts = this.progressBarOpts;
+    progressBarOpts[0].percent = result.winsPercentum;
+    progressBarOpts[1].percent = result.flatPercentum;
+    progressBarOpts[2].percent = result.negativePercentum;
   }
 }

@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       // {
       //   path: 'account',
-      //   component: AccountComponent
+      //   edit-info-components: AccountComponent
       // },
     ]
   },
@@ -32,7 +32,7 @@ const routes: Routes = [
     component: SetNicknameComponent
   },
   {
-    path: 'registration-protocol', 
+    path: 'registration-protocol',
     component: RegistrationProtocolComponent
   },
 ];

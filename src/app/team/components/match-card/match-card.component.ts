@@ -9,11 +9,12 @@ import { TeamService } from '../../team.service';
 })
 export class MatchCardComponent implements OnInit {
   @Input() matchs;//球队历史赛程
-  private defaultTeamIcon: string = this.teamService.defaultTeamIcon;
+  private scrollContainer: Element;
+
   constructor(
     private teamService: TeamService
   ) { }
   ngOnInit() {
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
-
 }

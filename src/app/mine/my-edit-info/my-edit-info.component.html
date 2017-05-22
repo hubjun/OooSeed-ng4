@@ -1,3 +1,8 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content class="local-seed">
 <div class="normal-list gray-background">
   <div class="list  top-gap">
@@ -30,17 +35,17 @@
 
   <div class="list ionicDateItem ageSelectWarp">
     <div class="item">
-      <em>年龄</em>
+      <em>年龄(岁)</em>
       <span class="info">{{userObj.userAge}}</span>
       <select-list [options]="agearr"(change)="age($event)"[selected]="userObj.userAge"></select-list>
     </div>
-    <div class="item">
-      <em>身高</em>
+    <div class="item" >
+      <em>身高(cm)</em>
       <span class="info">{{userObj.height}}</span>
       <select-list [options]="heightarr"(change)="height($event)"[selected]="userObj.height"></select-list>
     </div>
     <div class="item">
-      <em>体重</em>
+      <em>体重(kg)</em>
       <span class="info">{{userObj.weight}}</span>
       <select-list [options]="weightarr"(change)="weight($event)"[selected]="userObj.weight"></select-list>
     </div>

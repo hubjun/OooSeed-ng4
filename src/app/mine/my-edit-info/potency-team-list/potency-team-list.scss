@@ -1,0 +1,107 @@
+@import '../../../../app/shared/styles/theming.scss';
+
+.jobHistory {
+  height: 100%;
+  width: 100%;
+  background: color($h5, c9);
+
+  .title {
+    height: pxTorem(90);
+    background: #fff;
+    width: 100%;
+    margin-bottom: pxTorem(10);
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    .text {
+      flex: 1;
+      text-align: center;
+      font-size: pxTorem(35);
+      color: color($h5, c2);
+      font-weight: bold;
+    }
+  }
+}
+  //球队历史信息
+  .jobHistory{
+    background: color($h5,c9);
+    .list{
+      overflow-x: hidden;
+      overflow-y: auto;
+      font-size: pxTorem(26);
+      padding:pxTorem(30) pxTorem(20) pxTorem(20) pxTorem(50);
+      background: color($h5,c10);
+      .listItem{
+        position: relative;
+        padding:0 0 0 pxTorem(60);
+        .itemContent{
+          padding-bottom:pxTorem(50);
+          .dateItem{
+            font-size: pxTorem(24);
+            color: color($h5,c3);
+          }
+          .nameItem{
+            font-size: pxTorem(28);
+            padding:pxTorem(19) 0 0 pxTorem(39);
+            color: color($h5,c2);
+          }
+        }
+        &:before{
+          content: '';
+          display: inline-block;
+          position: absolute;
+          height: 100%;
+          top: 20%;
+          left: pxTorem(12);
+          width: pxTorem(1);
+          border-right: 1px solid color($h5,c6);
+          z-index: 99;
+        }
+        &:after{
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top: 5%;
+          left: pxTorem(3);
+          box-sizing: border-box;
+          width: pxTorem(20);
+          height: pxTorem(20);
+          background: color($h5,c6);
+          border: pxTorem(4) solid color($h5,c10);
+          box-shadow: 0 0 0 pxTorem(3) color($h5,c6);
+          border-radius: 50%;
+          z-index: 100;
+        }
+      }
+
+    }
+    .listItem:first-child{
+      .dateItem{
+        font-size: pxTorem(24);
+        color: color($h5,c1)!important;
+      }
+      &:before{
+        height: 100%;
+        top: 20%;
+      }
+      &:after{
+        content: '';
+        display: inline-block;
+        top: 2%;
+        left: pxTorem(-2);
+        width: pxTorem(30);
+        height: pxTorem(30);
+        background-color: color($h5,c1);
+        border: pxTorem(4) solid color($h5,c10);
+        border-radius: 50%;
+        box-shadow: 0 0 0 pxTorem(3) color($h5,c1);
+        z-index: 100;
+      }
+    }
+    .listItem:last-child{
+      &:before{
+        height: 50%;
+      }
+    }
+  }
+

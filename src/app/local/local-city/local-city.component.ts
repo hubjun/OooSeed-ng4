@@ -1,16 +1,17 @@
 import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/Router';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { LocalService } from '../local.service';
 import { ToolsService } from '../../shared/tools/tools.service';
 import { DictArea, DictCityVO } from '../../domain/interface.model';
 import * as _ from 'lodash';
+import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 @Component({
   selector: 'local-city',
   templateUrl: './local-city.component.html',
   styleUrls: ['./local-city.component.scss']
 })
-export class LocalCityComponent implements OnInit {
+export class LocalCityComponent {
   private currertCity: DictCityVO;//当前城市
   private currentAreaText: string;//当前区域名称
   private currentAreaId: number;
@@ -18,7 +19,7 @@ export class LocalCityComponent implements OnInit {
   private allCity: DictCityVO[];//全部城市
   private locationCity: DictCityVO | any;//定位城市
   private locationAreaText: string;//定位城市
-  private showArea: boolean = true;
+  private showArea: boolean = false;
   private currentLocalChannel: string = '/local';
   private letters = 'ABCDEFGHJKLMNPQRSTWXYZ'.split('');
 
@@ -30,13 +31,7 @@ export class LocalCityComponent implements OnInit {
     private router: Router
   ) {
     this.toolsService.setTitle('城市定位');
-    // this.subscription.add(
-    //   this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
-    //     console.log(event)
-    //   })
-    // )
-    this.currentLocalChannel = JSON.parse(localStorage.getItem('LOCAL_CHANNEL'));
-
+    let currentLocalChannel = JSON.parse(localStorage.getItem('LOCAL_CHANNEL'));
   }
   /**
    * 定位
@@ -48,9 +43,7 @@ export class LocalCityComponent implements OnInit {
       this.setLocationCity(this.localService.location.currentCity);
     }
     else {
-      this.toolsService.showLoading();
       this.localService.getLocationCity().then((city: any) => {
-        this.toolsService.hideLoading();
         this.currertCity = city;
         this.locationCity = city;
         this.setLocationCity(city);
@@ -206,11 +199,14 @@ export class LocalCityComponent implements OnInit {
       this.showArea = false;
     }
   }
+  /**
+   * 模拟锚点定位
+   * @param letter :模块 id
+   */
   letterAnchorLocation(letter: string) {
     let offsetTop = document.getElementById(letter).offsetTop;
-    document.querySelector('.seed-scroll-content').scrollTop=offsetTop;
+    document.querySelector('.seed-scroll-content').scrollTop = offsetTop;
   }
-
 
   ngOnInit() {
     this.location();
