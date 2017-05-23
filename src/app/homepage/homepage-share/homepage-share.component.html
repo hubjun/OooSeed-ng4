@@ -8,62 +8,7 @@
       <i></i>
     </div>
   </div>
-  <ul>
-    <li>
-      <img src="../../../assets/images/subscript_gallery.png">
-      <div class="invitation-clum-info">
-        <div class="invitation-message">
-          赛事前瞻：詹姆斯找姚明踢足球，姚明说我喜欢打羽毛球，詹姆斯说我喜欢跳水
-        </div>
-        <div class="invitation-icon">
-          <div class="message-autho">张三丰</div>
-          <div class="message-date">今天 10：30</div>
-          <div class="message-icon">
-            <img src="../../../assets/icon/new_message.png">
-            <span class="message-icon-font">99</span>
-            <img src="../../../assets/icon/new_Likes.png">
-            <span>108</span>
-          </div>
-        </div>
-      </div>
-    </li>
-    <li>
-      <img src="../../../assets/images/subscript_gallery.png">
-      <div class="invitation-clum-info">
-        <div class="invitation-message">
-          赛事前瞻：詹姆斯找姚明踢足球，姚明说我喜欢打羽毛球，詹姆斯说我喜欢跳水
-        </div>
-        <div class="invitation-icon">
-          <div class="message-autho">张三丰</div>
-          <div class="message-date">今天 10：30</div>
-          <div class="message-icon">
-            <img src="../../../assets/icon/new_message.png">
-            <span class="message-icon-font">99</span>
-            <img src="../../../assets/icon/new_Likes.png">
-            <span>108</span>
-          </div>
-        </div>
-      </div>
-    </li>
-    <li>
-      <img src="../../../assets/images/subscript_gallery.png">
-      <div class="invitation-clum-info">
-        <div class="invitation-message">
-          赛事前瞻：詹姆斯找姚明踢足球，姚明说我喜欢打羽毛球，詹姆斯说我喜欢跳水
-        </div>
-        <div class="invitation-icon">
-          <div class="message-autho">张三丰</div>
-          <div class="message-date">今天 10：30</div>
-          <div class="message-icon">
-            <img src="../../../assets/icon/new_message.png">
-            <span class="message-icon-font">99</span>
-            <img src="../../../assets/icon/new_Likes.png">
-            <span>108</span>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
+  <seed-feed-profile [feeds]="feeds"></seed-feed-profile>
 </div>
 
 <div class="share-invitation">
@@ -72,6 +17,7 @@
       相册
     </div>
     <div
+      *ngIf="pictureSingle?.length > 9"
       class="share-invitation-more"
       routerLink="/homepage/{{userId}}/my-picture"
     >
@@ -80,13 +26,18 @@
     </div>
   </div>
   <div class="share-picture" *ngIf="pictureSingle">
-    <div class="share-picture-out" *ngFor="let item of pictureSingle">
-      <img
-        [lazyLoad]="item.fileName"
-        [defaultImage]="'/assets/images/placeholder_head_pic.png'"
-        [errorImage]="'/assets/images/placeholder_head_pic.png'"
-        [scrollTarget]="scrollContainer"
-      >
+    <div class="seed-grid">
+      <div class="seed-grid-row">
+        <div class="seed-grid-col" col-4 *ngFor="let item of (pictureSingle | slice:0:9)">
+          <div
+            [lazyLoad]="item.fileName"
+            [defaultImage]="'/assets/images/user_default.png'"
+            [errorImage]="'/assets/images/user_default.png'"
+            [scrollTarget]="scrollContainer"
+          >
+           </div>
+        </div>
+      </div>
     </div>
   </div>
   <missing-default-content
@@ -99,6 +50,7 @@
       视频
     </div>
     <div
+      *ngIf="videoSingle?.length > 9"
       class="share-invitation-more"
       routerLink="/homepage/{{userId}}/my-video"
     >
@@ -106,10 +58,20 @@
       <i></i>
     </div>
   </div>
-  <div class="share-video" *ngIf="videoSingle">
-    <div class="share-video-inner" *ngFor="let item of videoSingle">
-      <img src="{{item.fileName}}&width=100&second=1" >
-    </div>
+  <div class="share-video share-picture" *ngIf="videoSingle?.length > 0">
+    <div class="seed-grid">
+      <div class="seed-grid-row">
+        <div class="seed-grid-col icon-live" col-4 *ngFor="let item of videoSingle">
+          <div
+            [lazyLoad]="item.fileName +'&width=100&second=1' "
+            [defaultImage]="'/assets/images/user_default.png'"
+            [errorImage]="'/assets/images/user_default.png'"
+            [scrollTarget]="scrollContainer"
+          >
+          </div>
+          </div>
+        </div>
+      </div>
   </div>
   <missing-default-content
     *ngIf="videoSingle?.length==0"

@@ -1,14 +1,23 @@
-<seed-content class="seed-person-picture">
-  <div class="picture-body">
-      <img
-        [lazyLoad]="item.fileName"
-        [defaultImage]="'/assets/images/new_default_pic,png'"
-        [errorImage]="'/assets/images/new_default_pic,png'"
-        [scrollTarget]="scrollContainer"
-        *ngFor="let item of getPicture"
-      >
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content class="seed-person-picture share-picture">
+  <div class="seed-grid">
+    <div class="seed-grid-row">
+      <div class="seed-grid-col" col-4 *ngFor="let item of (gallery | async)">
+        <div
+          [lazyLoad]="item.fileName"
+          [defaultImage]="'/assets/images/user_default.png'"
+          [errorImage]="'/assets/images/user_default.png'"
+          [scrollTarget]="scrollContainer"
+        >
+        </div>
+      </div>
+    </div>
   </div>
-  <go-down-app *ngIf="getPicture.length==30"></go-down-app>
+  <go-down-app *ngIf="(gallery | async)?.length==30"></go-down-app>
 </seed-content>
 
 

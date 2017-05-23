@@ -4,8 +4,33 @@
   <seed-toolbar-menu></seed-toolbar-menu>
 </seed-toolbar-header>
 <seed-content>
-  <seed-slider [gallery]="bannerObj | async"></seed-slider>
-  <!--<div class="bg-content">-->
+  <!--<seed-slider [gallery]="bannerObj | async"></seed-slider>-->
+  <div class="seed-sliders-warp">
+    <ks-swiper-container
+      [options]="example1SwipeOptions"
+    >
+      <ks-swiper-slide *ngFor="let item of bannerObj">
+        <div (click)="goVdetail(item.resId)"
+          class="seed-slider"
+          [style.background]=" 'url('+ item.resUrl +') no-repeat center center/cover ' | safeStyle " >
+        </div>
+        <div class="seed-slides-title" >
+          <div >{{item.title }}</div>
+        </div>
+      </ks-swiper-slide>
+
+    </ks-swiper-container>
+
+    <div class="seed-sliders-pagination">
+      <button
+        *ngFor="let item of bannerObj;let i = index"
+        class="seed-sliders-pagination-bullet"
+        [ngClass]="{active:isSlidersActive == i}"
+      >
+      </button>
+    </div>
+  </div>
+
   <gap-bg></gap-bg>
   <seed-toolbar-roller class="scroll-x video-category">
     <ul class="category-ul" id="category-ul">
@@ -27,5 +52,4 @@
   <gap-bg></gap-bg>
 
   <video-card-category [tvCateObj]="cateObj" (cate)="cateIdChange($event)"></video-card-category>
-  <!--</div>-->
 </seed-content>

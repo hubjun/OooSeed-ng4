@@ -150,6 +150,26 @@ export class OrgInfoVO {
   userId : string; // 用户Id
 }
 
+export class UserAlbumFileVO {
+  contentId?:number;// 内容id ,
+  createTime?:string;//: 创建时间 ,
+  feedId?:number;// 动态id ,
+  fileId?:number;// 资源文件id ,
+  fileName?:string;//: 资源文件名 ,
+  fileNameHD?:string;//: 高清,不需要上报 ,
+  fileNameSD?:string;//: 标清,不需要上报 ,
+  fileSize?:number;// 视频文件大小 必填(单位字节) ,
+  isDel?:number;// 帖子删除删除标记：1是 ,
+  liveId?:number;// 直播ID,不需要上报 ,
+  order?:string;//,
+  playTime?:number;// 视频时长 必填(格式 hh:mm:ss或mm:ss字符串),2017-05-10类型改为int ,
+  size?:number;//,
+  sort?:string;//,
+  start?:number;//,
+  textContent?:string;//: 文本内容 ,
+  type?:number;// 文件类型：2,图片;3,视频 ,
+  userId?:string;//: 用户id
+}
 /**
  *帖子内容相关 ;//Feed Controller
  **/

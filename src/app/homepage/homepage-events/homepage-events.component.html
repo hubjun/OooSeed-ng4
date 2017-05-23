@@ -1,19 +1,23 @@
 <div class="person-events">
-  <ul class="seed-events" *ngIf="eventList.length>0&&eventList[1]!='无'">
+  <ul class="seed-events" *ngIf="eventList.length>0&&eventList[0]!='无'">
     <li
       *ngFor="let item of eventList"
       (click)="routerDetail(item.id,item.status)"
     >
-      <img src="../../../assets/images/subscript_gallery.png">
+      <img
+        [lazyLoad]="item.iconUrl"
+        [defaultImage]="'/assets/images/new_default_pic.png'"
+        [errorImage]="'/assets/images/new_default_pic.png'"
+      >
       <div class="events-list-clum">
         <div class="events-clum-top">
-          <span class="events-type">羽毛球</span>
+          <span class="events-type">{{item.matchType }}</span>
           <span class="events-resume">{{item.matchName}}</span>
         </div>
         <div class="events-clum-bottom">
           <span class="events-out-time">{{item.startTime|amDateFormat:'DD-MM-YYYY'}}</span>
           <span class="events-clock">{{item.startTime|amDateFormat:'HH:mm'}}</span>
-          <img src="{{item.status==4?applying:(item.status==5?applyend:
+          <img src="{{nowdate<item.signStartTime?beforeapply:item.status==4?applying:(item.status==5?applyend:
           (item.status==6?applyplay:(item.status==7?applyfinshed:' ')))}}">
         </div>
       </div>

@@ -3,6 +3,7 @@ import { TeamService } from '../team.service';
 import { UserInfoVO, FootballTeam } from '../../domain/interface.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ToolsService } from '../../shared/tools/tools.service';
 
 @Component({
   selector: 'fans-channel',
@@ -19,6 +20,7 @@ export class FansChannelComponent {
   }
   constructor(
     private teamService: TeamService,
+    private toolsService: ToolsService,
     private route: ActivatedRoute
   ) {
     this.route.parent.params.subscribe(params => {
@@ -27,8 +29,10 @@ export class FansChannelComponent {
   }
   //获取球队基本信息
   getTeamBasicInfo(teamId: string): void {
+    this.toolsService.showLoading();
     this.subscription.add(
       this.teamService.getTeamBasicInfo(teamId).subscribe(res => {
+        this.toolsService.hideLoading();
         if (res.result === '0' && res.data) {
           this.params.userId = res.data.orgUser;
           this.getTeamFollow(this.params);

@@ -13,7 +13,7 @@
       <p class="center" *ngIf="match.matchState!==-1">
         VS
       </p>
-      <p class="score" *ngIf="match.matchState===-1">
+      <p class="score center" *ngIf="match.matchState===-1">
         <span *ngIf="match.homeScore">{{match.homeScore}}</span><span *ngIf="!match.homeScore">-</span><i>:</i><span *ngIf="match.guestScore">{{match.guestScore}}</span>
         <span *ngIf="!match.guestScore">-</span>
       </p>

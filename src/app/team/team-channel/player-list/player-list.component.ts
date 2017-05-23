@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToolsService } from '../../../shared/tools/tools.service';
 
 @Component({
   selector: 'player-list',
@@ -9,9 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PlayerListComponent {
   private players: Array<string> = [];
-  private scrollContainer:Element;
+  private scrollContainer: Element;
   constructor(
     private teamService: TeamService,
+    private toolsService: ToolsService,
     private route: ActivatedRoute
   ) {
 
@@ -21,10 +23,12 @@ export class PlayerListComponent {
   }
   //获取球队球员
   getTeamPlayer(teamId: number): void {
+    this.toolsService.showLoading();
     let params: object = {
       id: teamId
     }
     this.teamService.getTeamPlayer(params).subscribe((res) => {
+      this.toolsService.hideLoading();
       if (res.result === '0') {
         this.players = res.data.list;
       }

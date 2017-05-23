@@ -1,15 +1,24 @@
-<seed-content class="seed-person-video">
-
-  <div class="picture-body">
-    <div class="video-out"
-         *ngFor="let item of getPicture"
-    >
-      <img
-        src="{{item.fileName}}&width=100&second=1"
-      >
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content class="seed-person-video share-picture">
+  <div class="seed-grid">
+    <div class="seed-grid-row">
+      <div class="seed-grid-col icon-live" col-4 *ngFor="let item of (videoThumbnail | async)">
+        <div
+          [lazyLoad]="item.fileName +'&width=100&second=1'"
+          [defaultImage]="'/assets/images/user_default.png'"
+          [errorImage]="'/assets/images/user_default.png'"
+          [scrollTarget]="scrollContainer"
+        >
+        </div>
+      </div>
     </div>
   </div>
-  <go-down-app *ngIf="getPicture.length==20"></go-down-app>
+
+  <go-down-app *ngIf="(videoThumbnail | async)?.length==20"></go-down-app>
 </seed-content>
 
 

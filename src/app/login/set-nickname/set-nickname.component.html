@@ -3,6 +3,11 @@
   <span class="jump" (click)="jump()">跳过</span>
 </div>
 <div class="divider"></div>-->
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content>
 <form [formGroup]="nickNameForm">
   <div class="set-password-content">
@@ -11,7 +16,7 @@
     </div>-->
     <div class="register-box register-box-account">
       <div class="register-box-input">
-        <input formControlName="nickName" type="text" name="set-password" id="set-password" placeholder="请输入4-20个字符的昵称">
+        <input formControlName="nickName" type="text" name="set-password" id="set-password" placeholder="请输入3-20个字符的昵称">
       </div>
     </div>
     <div *ngIf="checkValid">

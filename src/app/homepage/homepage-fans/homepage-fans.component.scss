@@ -1,5 +1,6 @@
 @import '../../../app/shared/styles/theming.scss';
 .person-fans-page{
+  background:color($h5,c9);
   .my-care{
     width:100%;
     .launch-team{
@@ -8,6 +9,7 @@
       overflow: hidden;
       padding-right:pxTorem(20);
       box-sizing: border-box;
+      background:color($h5,c10);
       .launch-team-name{
         float:left;
         border-left:6px solid #01A87C;
@@ -37,17 +39,20 @@
       width:100%;
       overflow: hidden;
       ul {
-        padding: 0 pxTorem(22) pxTorem(10) pxTorem(22)!important;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        background: color($h5,c10);
+        padding: 0 pxTorem(20) pxTorem(10);
+        box-sizing: border-box;
       }
       li {
-
+        width: 25%;
         float:left;
-        width: 25%!important;
-        text-align: initial!important;
-        // padding: 0 pxTorem(38) pxTorem(25) pxTorem(38)!important;
-        margin-bottom: pxTorem(25);
+        padding-top:pxTorem(10);
+        padding-bottom: pxTorem(20);
         .content {
-          position: relative;
           text-align: center;
         }
         .avatar {
@@ -58,7 +63,7 @@
         }
         .nickname {
           margin-top: pxTorem(15);
-          margin-bottom: 0!important;
+          margin-bottom: 0;
           @include font-dpr(24px);
           @include text-overflow-ellipsis(100);
         }

@@ -7,8 +7,8 @@ import {HomepageFansComponent} from "./homepage-fans/homepage-fans.component";
 import {HomepageEventsComponent} from "./homepage-events/homepage-events.component";
 import {MyVideoComponent} from "./my-video/my-video.component";
 import {MyPictureComponent} from "./my-picture/my-picture.component";
-import {MyCareFansComponent} from "./my-care-fans/my-care-fans.component";
-import {MyFansComponent} from "./my-fans/my-fans.component";
+import {MyCareFansComponent} from "./homepage-fans/my-care-fans/my-care-fans.component";
+import {MyFansComponent} from "./homepage-fans/my-fans/my-fans.component";
 import {EventsDetailComponent} from "./homepage-events/events-detail/events-detail.component";
 import {EventsDetailAnnounceComponent} from "./homepage-events/events-detail-announce/events-detail-announce.component";
 import {EventsDetailDetailComponent} from "app/homepage/homepage-events/events-detail-detail/events-detail-detail.component";
@@ -18,28 +18,6 @@ const routes: Routes = [
   {
     path:'',
     component:HomepageComponent,
-    children: [
-      {
-        path:'',
-        component:HomepageShareComponent,
-      },
-      {
-        path:'person-share',
-        component:HomepageShareComponent,
-      },
-      {
-        path:'person-events',
-        component:HomepageEventsComponent,
-      },
-      {
-        path:'person-fans',
-        component:HomepageFansComponent,
-      },
-      {
-        path:'person-service',
-        component:HomepageServiceComponent,
-      },
-    ]
   },
   {
     path:'my-video',

@@ -161,7 +161,7 @@ export class HomeService {
         }
         return this.GetFeedArticleComment(feedId,1)
     }).subscribe(res => {
-      console.log(res.data)
+
       if (res && res.result == 0) {
         this.dataStore.feedComment = [...res.data.list];
         this._feedComment.next(this.dataStore.feedComment)

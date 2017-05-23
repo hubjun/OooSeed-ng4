@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToolsService } from '../../../shared/tools/tools.service';
 
 @Component({
   selector: 'match-record',
@@ -12,6 +13,7 @@ export class MatchRecordComponent {
   private title: string;
   constructor(
     private teamService: TeamService,
+    private toolsService: ToolsService,
     private route: ActivatedRoute
   ) {
 
@@ -27,6 +29,7 @@ export class MatchRecordComponent {
   }
   //获取所有球队赛程
   getTeamMatch(type: string): void {
+    this.toolsService.showLoading();
     let teamId: string;
     this.route.parent.params.subscribe(params => {
       teamId = params['teamId']
@@ -37,6 +40,7 @@ export class MatchRecordComponent {
     }
     type == 'over' ? params.status = -1 : params.status = '0, 1, 2, 3, 4';
     this.teamService.getTeamMatch(params).subscribe((res) => {
+      this.toolsService.hideLoading();
       if (res.result === '0') {
         let matchs: Array<any> = res.data.list;
         let date: Date;

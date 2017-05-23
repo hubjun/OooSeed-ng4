@@ -1,0 +1,54 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content class="my-care-fans-fans">
+  <ul *ngIf="myCareFans?.length>0&&myCareFans[0]!='无'">
+    <li *ngFor="let item of myCareFans">
+      <img
+        [lazyLoad]="item.iconUrl"
+        [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+        [errorImage]="'/assets/images/placeholder_head_pic.png'"
+        [scrollTarget]="scrollContainer"
+        (click)="goPersonalPage(item.userId)"
+      >
+      <div class="fans-info">
+        <div class="fans-name">
+          <p class="limit-fans-name">{{item.nickName}}</p>
+          <p>
+            <span>粉丝: </span>
+            <span>{{item.followNum}}</span>
+          </p>
+        </div>
+        <!--
+            判断用户是否登录===》显示关注状态，未登录，则都是未关注
+            已登录用户查看自己个人中心则有互相关注状态
+            看其他人个人中心则只有未关注与已关注状态
+         -->
+        <img
+          src="{{isLoging?(item.isFollowed==0?unCare:
+          item.isFollowedMe==0?havsCare:(mineLoging=='yes'?careEach:havsCare)):unCare}}"
+          class="care-icon"
+          (click)="careCheck(item.userId,$event)"
+        >
+      </div>
+    </li>
+    <go-down-app *ngIf="myCareFans.length==20"></go-down-app>
+  </ul>
+  <missing-default-content
+    *ngIf="myCareFans?.length==1&&myCareFans[0]=='无'"
+  ></missing-default-content>
+</seed-content>
+
+
+
+
+
+
+
+
+
+
+
+

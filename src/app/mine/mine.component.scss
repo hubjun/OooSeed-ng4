@@ -160,7 +160,8 @@
           width:pxTorem(30);
           height:pxTorem(30);
           @include font-dpr(18px);
-
+          line-height: pxTorem(30);
+          text-align: center;
           color:color($h5,c10);
           background:#EC4140;
           -webkit-border-radius:50%;

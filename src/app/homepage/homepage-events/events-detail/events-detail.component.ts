@@ -55,15 +55,19 @@ export class EventsDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(param=>{
-      this.matchId=param.matchId;
-      this.status=param.status;
-      this.getEventDetail(param.matchId);
-    });
-    this._activatedRoute.parent.params
-      .subscribe((params:Params) => {
-        this.userId=params['userId'];
-      });
+    this.subscription.add(
+      this.route.queryParams.subscribe(param=>{
+        this.matchId=param.matchId;
+        this.status=param.status;
+        this.getEventDetail(param.matchId);
+      })
+     );
+    this.subscription.add(
+      this._activatedRoute.parent.params
+        .subscribe((params:Params) => {
+          this.userId=params['userId'];
+        })
+    );
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 

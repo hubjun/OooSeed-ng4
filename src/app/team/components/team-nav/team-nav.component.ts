@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'team-nav',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./team-nav.component.scss']
 })
 export class TeamNavComponent implements OnInit {
+  private teamId: string;
   public navs: Array<object> = [
     {
       "id": 1,
@@ -23,9 +25,17 @@ export class TeamNavComponent implements OnInit {
       "link": "fans"
     }
   ];
-  constructor() { }
-
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
+    this.route.parent.params.subscribe(params => {
+      this.teamId = params['teamId']
+    })
+  }
+  switchChannel(channelName: string) {
+    this.router.navigate([`/team/${this.teamId}`], { queryParams: { tab: channelName } });
+  }
   ngOnInit() {
   }
-
 }

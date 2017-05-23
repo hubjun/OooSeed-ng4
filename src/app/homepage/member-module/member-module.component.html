@@ -1,5 +1,8 @@
 <ul>
-  <li  *ngFor="let item of members" (click)="goPersonalPage(item.userId)">
+  <li
+    *ngFor="let item of members"
+    (click)="goPersonalPage(item.userId)"
+  >
     <div class="content">
       <img
         [lazyLoad]="item.iconUrl"

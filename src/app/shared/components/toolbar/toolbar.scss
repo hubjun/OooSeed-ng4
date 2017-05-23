@@ -63,7 +63,7 @@ seed-content {
     overflow-y: scroll;
     position: absolute;
     margin-top: pxTorem(90px);
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
     will-change: scroll-position;
     contain: size style layout;
     transition-property: all;

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ElementRef} from '@angular/core';
 import {ToolsService} from "../../shared/tools/tools.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {HomepageService} from "../homepage.service";
+import {Observable} from "rxjs";
+import {UserAlbumFileVO} from "../../domain/interface.model";
 
 @Component({
   selector: 'seed-my-video',
@@ -9,40 +11,27 @@ import {HomepageService} from "../homepage.service";
   styleUrls: ['./my-video.component.scss']
 })
 export class MyVideoComponent implements OnInit {
-  public getPicture=[];
-
+  public videoThumbnail:Observable<UserAlbumFileVO[]>;
+  public scrollContainer:any;
   constructor(
     public homepageService:HomepageService,
     public toolsService:ToolsService,
     private _activatedRoute:ActivatedRoute,
-  ) { }
-
-  getmyPicture(obj:any){
-    this.toolsService.showLoading();
-    this.homepageService.getPeronPicture(obj).subscribe(res=> {
-      let object=res;
-      let list=object.data.list;
-      if(object.result==0&&list){
-        for(let i=0;i<list.length;i++){
-          if(list[i].type==3){
-            this.getPicture.push(list[i]);
-          }
-        }
-      }
-      this.toolsService.hideLoading();
-    })
+  ) {
+    this.videoThumbnail = this.homepageService.videoThumbnail;
+    console.log(this.videoThumbnail)
   }
+
+
   ngOnInit() {
-    this.toolsService.setTitle('我的视频');
-    this.toolsService.setTitle('我的图片');
     this._activatedRoute.params
       .subscribe((params:Params) => {
-        this.getmyPicture(params['userId']);
+        if (params['userId'])
+          this.homepageService.getUserAlbum(params['userId'],3,1,1,20)
       });
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
   ngOnDestroy() {
-    //取消订阅
-    // this.subscription.unsubscribe();
     this.toolsService.hideLoading();
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToolsService } from '../../../shared/tools/tools.service';
 
 @Component({
   selector: 'player-detail',
@@ -13,6 +14,7 @@ export class PlayerDetailComponent {
   private defaultUserIcon: string = this.teamService.defaultUserIcon;
   constructor(
     private teamService: TeamService,
+    private toolsService: ToolsService,
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe(params => {
@@ -23,11 +25,13 @@ export class PlayerDetailComponent {
 
   //获取球队球员在球队信息
   getTeamPlayerDetail(teamId: string, playerId: string): void {
+    this.toolsService.showLoading();
     let params: object = {
       teamId: teamId,
       playerId: playerId
     }
     this.teamService.getTeamPlayerDetail(params).subscribe((res) => {
+      this.toolsService.hideLoading();
       if (res.result === '0') {
         this.player = res.data;
       }

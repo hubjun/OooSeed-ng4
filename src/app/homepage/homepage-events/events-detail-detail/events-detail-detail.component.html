@@ -1,6 +1,6 @@
-<div class="seed-detail-detail">
+<div class="seed-detail-detail" *ngIf="eventsDetail&&eventsDetail!='无'">
   <div class="event-contact">
-    <img src="../../../../assets/images/subscript_pic.png">
+    <img src="../../../../assets/images/placeholder_head_pic.png">
     <div class="event-contact-phone">
       <p class="event-phone-p">
         <span>联系人：</span>
@@ -8,14 +8,17 @@
       </p>
       <p>
         <span>联系电话：</span>
-        <span class="phone-spe">{{eventsDetail?.contactWay }}</span>
+        <a href="tel:{{eventsDetail?.contactWay }}" class="phone-spe">{{eventsDetail?.contactWay}}</a>
       </p>
     </div>
   </div>
-  <div class="evnet-detail-info" [innerHtml]="detail">
+  <div class="evnet-detail-info" [innerHtml]="eventsDetail.details">
 
   </div>
 </div>
+<missing-default-content
+  *ngIf="eventsDetail=='无'"
+></missing-default-content>
 
 
 

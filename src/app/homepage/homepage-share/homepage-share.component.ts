@@ -1,12 +1,14 @@
-///<reference path="../../../../node_modules/@angular/cli/node_modules/rxjs/Observable.d.ts"/>
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {HomepageService} from "../homepage.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {ToolsService} from "../../shared/tools/tools.service";
+import {Observable} from "rxjs";
+import {FeedRespVO} from "../../domain/interface.model";
 
 @Component({
-  selector: 'seed-homepage-share',
+  selector: 'person-share',
   templateUrl: './homepage-share.component.html',
   styleUrls: ['./homepage-share.component.scss'],
 })
@@ -14,15 +16,17 @@ export class HomepageShareComponent implements OnInit {
   public pictureVideo=[];
   public pictureSingle=[];
   public videoSingle=[];
-  public userId:string;
+  public feeds:Observable<FeedRespVO[]>;
   subscription: Subscription = new Subscription();
 
   scrollContainer;
+  @Input() userid:string;
   constructor(
     public homepageService:HomepageService,
-    private _activatedRoute:ActivatedRoute,
-    public ToolServices:ToolsService
-  ) { }
+    public ToolServices:ToolsService,
+  ) {
+    this.feeds = this.homepageService.feeds;
+  }
 
   //获取分享图片视频
   share_Picture_Video(obj){
@@ -43,14 +47,11 @@ export class HomepageShareComponent implements OnInit {
     )
   }
   ngOnInit() {
-    this._activatedRoute.parent.params
-      .subscribe((params:Params) => {
-        this.share_Picture_Video(params['userId']);
-        this.userId=params['userId'];
-      });
+    this.share_Picture_Video(this.userid);
+    this.homepageService.getUserFeed(this.userid);
+
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
-
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();

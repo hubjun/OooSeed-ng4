@@ -3,27 +3,27 @@
   <seed-toolbar-title></seed-toolbar-title>
   <seed-toolbar-menu></seed-toolbar-menu>
 </seed-toolbar-header>
-<seed-content class="seed-person-page">
+<seed-content class="s eed-person-page">
   <div class="seed-person-homepage"  *ngIf="personHeaderInfo">
     <div class="person-header">
-      <img src="{{
-      localUserId
-      ?(personHeaderInfo.isFollowed==0
-      ?(uncare):(personHeaderInfo.isFollowedMe==0
-      ?cared:eachcare)):' '}}"
+      <img src="{{isFollowed==0?uncare:isFollowedMe==0?cared:eachcare}}"
            class="person-icon"
-           *ngIf="localUserId"
+           *ngIf="auth.getUserid() != userId"
+           (click)="addDelete(personHeaderInfo.userId)"
       >
       <div class="person-Info">
         <!--<div class="person-flex">-->
           <div class="person-image">
             <img
-              src="{{personHeaderInfo.iconUrl||'../../../assets/images/placeholder_head_pic.png'}}"
+              [lazyLoad]="personHeaderInfo.iconUrl"
+              [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+              [errorImage]="'/assets/images/placeholder_head_pic.png'"
               class="person-img"
             >
             <img
               src="../../assets/images/{{personHeaderInfo.sex==1?'boy':
-              (personHeaderInfo.sex==2?'girl':' ')}}.png" class="little-icon"
+              (personHeaderInfo.sex==2?'girl':' ')}}.png"
+              class="little-icon"
               *ngIf="personHeaderInfo.sex==1||personHeaderInfo.sex==2"
             >
           </div>
@@ -33,53 +33,62 @@
             :personHeaderInfo.appImgUrl||'../../../assets/icon/yirenzheng.png'}}"
             class="person-check"
           >
-          <div class="person-edit"
-               *ngIf="personHeaderInfo.areaCityName&&personHeaderInfo.areaDistName"
-          >
-            {{personHeaderInfo.areaCityName+'-'+personHeaderInfo.areaDistName}}
+          <div class="person-edit">
+            <img src="../../assets/icon/address_white_xq.png">
+            <span *ngIf="personHeaderInfo.areaCityName&&personHeaderInfo.areaDistName">{{personHeaderInfo.areaCityName+'-'+personHeaderInfo.areaDistName}}</span>
+            <span *ngIf="!personHeaderInfo.areaCityName||!personHeaderInfo.areaDistName">{{'暂无地址'}}</span>
           </div>
-        <div class="person-edit"
-             *ngIf="!personHeaderInfo.areaCityName||!personHeaderInfo.areaDistName"
-        >
-          {{'暂无地址'}}
-        </div>
         <!--</div>-->
       </div>
     </div>
     <div class="person-clum">
       <a
-        class="person-share"
-        routerLink="/homepage/{{userId}}/person-share"
-        routerLinkActive="person-clum-current"
+        class="person-share person-clum-current"
+        [class.person-clum-current]="classTag=='share'"
         (click)="share()"
       >
         <span>分享</span>
       </a>
       <a
         class="person-fans"
-        routerLink="/homepage/{{userId}}/person-fans"
-        routerLinkActive="person-clum-current"
+        [class.person-clum-current]="classTag=='fans'"
         (click)="fans()"
       >
         <span>粉丝</span>
       </a>
       <a
         class="person-service"
-        routerLink="/homepage/{{userId}}/person-service"
-        routerLinkActive="person-clum-current"
+        [class.person-clum-current]="classTag=='service'"
         (click)="service()"
       >
         <span>服务</span>
       </a>
       <a
         class="person-circle"
-        routerLink="/homepage/{{userId}}/person-events"
-        routerLinkActive="person-clum-current"
+        [class.person-clum-current]="classTag=='events'"
         (click)="events()"
       >
         <span>赛事</span>
       </a>
     </div>
   </div>
-  <router-outlet></router-outlet>
+  <div class="events-switch">
+    <div [ngSwitch]="classTag">
+      <div *ngSwitchCase="'share'">
+        <person-share [userid]="userId"></person-share>
+      </div>
+      <div *ngSwitchCase="'fans'">
+        <person-fans [userid]="userId"></person-fans>
+      </div>
+      <div *ngSwitchCase="'service'">
+        <person-service [userid]="userId"></person-service>
+      </div>
+      <div *ngSwitchCase="'events'">
+        <person-events [userid]="userId"></person-events>
+      </div>
+    </div>
+  </div>
 </seed-content>
+
+
+

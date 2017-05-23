@@ -7,7 +7,7 @@ import { TeamEngageVO } from '../../../domain/interface.model';
 @Component({
   selector: 'match-detail',
   templateUrl: './match-detail.component.html',
-  styleUrls: ['./match-detail.component.scss']
+  styleUrls: ['../../../team/components/match-card/match-card.component.scss','./match-detail.component.scss']
 })
 export class MatchDetailComponent implements OnInit {
   private match: TeamEngageVO;

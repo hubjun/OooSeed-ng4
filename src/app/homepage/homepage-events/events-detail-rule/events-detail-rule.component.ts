@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HomepageService} from "../../homepage.service";
 import {ToolsService} from "../../../shared/tools/tools.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'events-detail-rule',
@@ -9,6 +10,7 @@ import {ToolsService} from "../../../shared/tools/tools.service";
 })
 export class EventsDetailRuleComponent implements OnInit {
   public object;
+  subscription: Subscription = new Subscription();
   @Input() objectParam:string;
   constructor(
     public homepageService:HomepageService,
@@ -16,15 +18,22 @@ export class EventsDetailRuleComponent implements OnInit {
   ) { }
 
   getRule(obj){
-    this.homepageService.getRule(obj).subscribe(res=>{
-      if(res.result==0){
-        this.object=res.msg;
-
-      }
-    })
+    this.subscription.add(
+      this.homepageService.getRule(obj).subscribe(res=>{
+        if(res.result==0){
+          this.object=res.msg;
+        }else{
+          this.object={mark:'无'};
+        }
+      })
+    )
   }
   ngOnInit() {
     this.getRule(this.objectParam);
+  }
+  ngOnDestroy() {
+    //取消订阅
+    this.subscription.unsubscribe();
   }
 
 }

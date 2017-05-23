@@ -1,11 +1,11 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {HomepageService} from "../homepage.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {ToolsService} from "../../shared/tools/tools.service";
 
 @Component({
-  selector: 'seed-homepage-fans',
+  selector: 'person-fans',
   templateUrl: './homepage-fans.component.html',
   styleUrls: ['./homepage-fans.component.scss'],
   // changeDetection:ChangeDetectionStrategy.OnPush
@@ -15,13 +15,12 @@ export class HomepageFansComponent implements OnInit {
   public myCareFans=[];
   public myFansNumber:string;
   public myCareFansNumber:string;
-  public userId:string;
   public localUserid:string;
   subscription: Subscription = new Subscription();
+  @Input() userid:string;
   constructor(
     private router: Router,
     public homepageService:HomepageService,
-    private _activatedRoute:ActivatedRoute,
     public ToolServices:ToolsService
   ) {
 
@@ -72,11 +71,7 @@ export class HomepageFansComponent implements OnInit {
 
   ngOnInit() {
     this.localUserid=localStorage.getItem('userid');
-    this._activatedRoute.parent.params
-      .subscribe((params:Params) => {
-        this.myFans_Careme(params['userId']);
-        this.userId=params['userId'];
-      })
+    this.myFans_Careme(this.userid);
   }
 
   ngOnDestroy() {

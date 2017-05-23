@@ -76,7 +76,11 @@ export class LocalPersonComponent implements OnInit {
   }
 
   ToFollow(isfollow, userid) {
-    this.ToolServices.presentConfirm('是否确认要关注？', 1,gofollow);
+    if (isfollow == 0) {
+      this.ToolServices.presentConfirm('是否确认要关注？', 1, gofollow);
+    }else {
+      this.ToolServices.presentConfirm('你已关注了！', 1);
+    }
     let mythis=this;
     function gofollow(){
       if (isfollow == 0) {

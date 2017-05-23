@@ -1,7 +1,10 @@
 <div class="seed-detail-detail">
-  <div [innerHtml]="object" class="inner-detail">
+  <div [innerHtml]="object" class="inner-detail" *ngIf="object&&object?.mark!='无'">
 
   </div>
+  <missing-default-content
+    *ngIf="object?.mark=='无'"
+  ></missing-default-content>
 </div>
 
 

@@ -50,9 +50,6 @@ export class LocalSpellDetailComponent implements OnInit {
         }
         if(res.data.phone){
           this.phoneCheck=res.data.phone.slice(0,3)+'***'+res.data.phone.slice(-3,res.data.phone.length);
-          if(localStorage.getItem('userid')){
-            this.phoneCheck=res.data.phone;
-          }
         }
         if(res.data.days==0||!res.data.days){
           this.timeDate='yes';

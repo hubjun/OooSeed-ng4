@@ -1,11 +1,10 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {Component, Input, OnInit} from '@angular/core';
 import {HomepageService} from "../homepage.service";
 import {Subscription} from "rxjs/Subscription";
 import {ToolsService} from "../../shared/tools/tools.service";
 
 @Component({
-  selector: 'seed-homepage-service',
+  selector: 'person-service',
   templateUrl: './homepage-service.component.html',
   styleUrls: ['./homepage-service.component.scss'],
 })
@@ -14,23 +13,21 @@ export class HomepageServiceComponent implements OnInit {
   subscription: Subscription = new Subscription();
   scrollContainer;
 
+  @Input() userid:string;
+
   constructor(
     public homepageService:HomepageService,
-    private _activatedRoute:ActivatedRoute,
     public ToolServices:ToolsService
   ) { }
 
   ngOnInit() {
-    this._activatedRoute.parent.params
-      .subscribe((params:Params) => {
-        this.subscription.add(
-          this.homepageService.getService(params['userId']).subscribe(res => {
-            if (res.result == 0) {
-              this.dealService = res.data;
-            }
-          })
-        )
+    this.subscription.add(
+      this.homepageService.getService(this.userid).subscribe(res => {
+        if (res.result == 0) {
+          this.dealService = res.data;
+        }
       })
+    );
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 

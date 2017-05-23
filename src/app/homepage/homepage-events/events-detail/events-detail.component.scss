@@ -1,4 +1,9 @@
 @import '../../../../app/shared/styles/theming.scss';
+.seed-events-detail-fixed{
+  position: relative;
+  width:100%;
+  height:100%;
+}
 .seed-events-detail{
   .events-detail:before{
     display: block;
@@ -88,32 +93,6 @@
       }
     }
   }
-  .event-detail-position{
-    width:100%;
-    box-sizing: border-box;
-    position: fixed;
-    bottom:0;
-    left:0;
-    padding:pxTorem(20) pxTorem(30);
-    border-top:1px solid color($h5,c9);
-    background:color($h5,c10);
-    .event-apply{
-      width:100%;
-      box-sizing: border-box;
-      height:pxTorem(90);
-      line-height: pxTorem(90);
-      @include font-dpr(30px);
-      text-align: center;
-    }
-    .event-ing{
-      background: color($h5,c1);
-      color:color($h5,c10);
-    }
-    .event-end{
-      color:color($h5,c10);
-      background:color($h5,#E5E5E5);
-    }
-  }
   .ngSwitch-channel{
     width:100%;
     box-sizing: border-box;
@@ -201,5 +180,32 @@
   }
   .detail-announces:only-child:after{
     display: none;
+  }
+}
+.event-detail-position{
+  z-index: 8;
+  width:100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom:0;
+  left:0;
+  padding:pxTorem(20) pxTorem(30);
+  border-top:1px solid color($h5,c9);
+  background:color($h5,c10);
+  .event-apply{
+    width:100%;
+    box-sizing: border-box;
+    height:pxTorem(90);
+    line-height: pxTorem(90);
+    @include font-dpr(30px);
+    text-align: center;
+  }
+  .event-ing{
+    background: color($h5,c1);
+    color:color($h5,c10);
+  }
+  .event-end{
+    color:color($h5,c10);
+    background:color($h5,#E5E5E5);
   }
 }

@@ -1,5 +1,119 @@
 @import '../../../shared/styles/theming.scss';
 //赛程组件
+match-card,
+match-detail {
+  .team-logo,
+  .team-name {
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo-box {
+    flex: 1;
+    text-align: center;
+    .logo {
+      width: pxTorem(85);
+      height: pxTorem(85);
+      border-radius: 50%; // margin: 0 pxTorem(85);
+    }
+  }
+  .center {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    @include font-dpr(26px);
+    .end-time {
+      color: #fff;
+      p {
+        &:last-of-type {
+          margin-top: pxTorem(5);
+        }
+        span {
+          margin-right: pxTorem(17);
+          margin-right: pxTorem(17);
+        }
+      }
+    }
+  }
+  .score {
+    @include font-dpr(60px);
+    i {
+      padding: 0 pxTorem(20);
+      font-style: normal;
+    }
+  }
+  .team-name {
+    align-items: center;
+    margin-top: pxTorem(20); //  padding-bottom: pxTorem(102);
+    padding-bottom: pxTorem(30);
+    @include font-dpr(28px);
+    p {
+      flex: 1;
+      text-align: center;
+    }
+    span {
+      @include text-overflow-ellipsis(150);
+    }
+    .match-state {
+      display: inline-block;
+      width: pxTorem(180);
+      height: pxTorem(54);
+      line-height: pxTorem(54);
+      text-align: center;
+      border-radius: pxTorem(54);
+      font-weight: normal;
+      @include font-dpr(26px);
+      &.end {
+        color: color($h5, c6);
+        background-color: color($h5, c8);
+      }
+      &.ing,
+      &.success {
+        color: #fff;
+      }
+      &.ing {
+        background: rgba(1, 168, 124, .7);
+      }
+      &.success {
+        background: rgba(137, 208, 53, .7);
+      }
+      &.fail {
+        background: rgba(255, 16, 82, .7);
+      }
+      &.end {
+        background: rgba(193, 193, 193, .7);
+      }
+    }
+  } 
+  .match-state {
+    display: inline-block;
+    width: pxTorem(180);
+    height: pxTorem(54);
+    line-height: pxTorem(54);
+    text-align: center;
+    border-radius: pxTorem(54);
+    font-weight: normal;
+    @include font-dpr(26px);
+    &.end {
+      color: color($h5, c6);
+      background-color: color($h5, c8);
+    }
+    &.ing,
+    &.success {
+      color: #fff;
+    }
+    &.ing {
+      // background-color: #01a87c;
+      background-color: color($h5, c1);
+    }
+    &.success {
+      background-color: color($h5, c16);
+    }
+  }
+}
+
+//赛程列表
 match-card {
   .item {
     padding-top: pxTorem(20);
@@ -19,92 +133,5 @@ match-card {
     padding-left: pxTorem(30);
     @include font-dpr(24px);
     color: color($h5, c3);
-  }
-  .logo {
-    flex: initial!important;
-    width: pxTorem(85);
-    height: pxTorem(85);
-    border-radius: 50%;
-    margin: 0 pxTorem(85);
-  }
-  .team-logo,
-  .team-name {
-    .logo,
-    .center,
-    .score,
-    p {
-      flex: 1;
-      text-align: center;
-    }
-  }
-  .team-logo,
-  .team-name {
-    display: flex; // align-content: center;
-    justify-content: space-between; // padding: 0 pxTorem(85);
-    .name {
-      span {
-        overflow: hidden;
-        display: inline-block;
-        max-width: pxTorem(150);
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        text-align: center;
-      }
-    }
-  }
-  .center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-style: normal;
-    text-align: center;
-    @include font-dpr(26px);
-    color: color($h5, c6);
-  }
-  .score {
-    text-align: center;
-    @include font-dpr(60px);
-    i {
-      padding: 0 pxTorem(20);
-      font-style: normal;
-    }
-  }
-  .team-name {
-    align-items: center;
-    margin-top: pxTorem(20);
-    padding-bottom: pxTorem(30);
-    @include font-dpr(28px);
-    color: color($h5, c2);
-  }
-  .match-state {
-    display: inline-block;
-    width: pxTorem(180);
-    height: pxTorem(54);
-    line-height: pxTorem(54);
-    text-align: center;
-    border-radius: pxTorem(54);
-    font-weight: normal;
-    @include font-dpr(26px);
-  }
-  .end {
-    // border: 1px solid color($h5, c8);
-    color: color($h5, c6);
-    background-color: color($h5, c8);
-  }
-  .ing,
-  .success {
-    color: #fff;
-  }
-  .ing {
-    // background-color: #01a87c;
-    background-color: color($h5, c1);
-  }
-  .success {
-    background-color: color($h5, c16);
-  } //没有赛程记录
-  .no-record-wrap {
-    .no-record-icon {
-      margin: pxTorem(70) auto 0 auto; //   @include icon(150, 150, '../../../assets/icon/image_event.png');
-    }
   }
 }

@@ -88,8 +88,8 @@
   }
 
   .share-picture{
-    margin-left:pxTorem(20);
-    margin-top:pxTorem(30);
+    //margin-top:pxTorem(30);
+    padding: pxTorem(20px) pxTorem(20px);
     .share-picture-out{
       display: inline-block;
       img{
@@ -107,8 +107,6 @@
     }
   }
   .share-video{
-    margin-left:pxTorem(20);
-    margin-top:pxTorem(30);
     overflow: hidden;
     .share-video-inner{
       position: relative;

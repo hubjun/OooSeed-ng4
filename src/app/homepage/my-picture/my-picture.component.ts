@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ToolsService} from "../../shared/tools/tools.service";
 import {HomepageService} from "../homepage.service";
 import {ActivatedRoute, Params} from "@angular/router";
+import {Observable} from "rxjs";
+import {UserAlbumFileVO} from "../../domain/interface.model";
 
 @Component({
   selector: 'seed-my-picture',
@@ -9,42 +11,26 @@ import {ActivatedRoute, Params} from "@angular/router";
   styleUrls: ['./my-picture.component.scss']
 })
 export class MyPictureComponent implements OnInit {
-  public getPicture=[];
-  scrollContainer;
+  public gallery:Observable<UserAlbumFileVO[]>;
+  public scrollContainer:any;
 
   constructor(
     public homepageService:HomepageService,
     public toolsService:ToolsService,
     private _activatedRoute:ActivatedRoute,
-  ) { }
-
-  getmyPicture(obj:any){
-    this.toolsService.showLoading();
-      this.homepageService.getPeronPicture(obj).subscribe(res=> {
-          let object=res;
-          let list=object.data.list;
-          if(object.result==0&&list){
-            for(let i=0;i<list.length;i++){
-              if(list[i].type==2){
-                this.getPicture.push(list[i]);
-              }
-            }
-          }
-        this.toolsService.hideLoading();
-      })
+  ) {
+    this.gallery = this.homepageService.gallery;
   }
 
   ngOnInit() {
-    this.toolsService.setTitle('我的图片');
     this._activatedRoute.params
       .subscribe((params:Params) => {
-          this.getmyPicture(params['userId']);
+        if(params['userId'])
+          this.homepageService.getUserAlbum(params['userId'],2,1,1,30)
       });
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
   ngOnDestroy() {
-    //取消订阅
-    // this.subscription.unsubscribe();
     this.toolsService.hideLoading();
   }
 

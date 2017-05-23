@@ -266,6 +266,7 @@
     }
   }
   .recommand-list{
+    //height: 100%;
     @include font-dpr(28px);
     background: color($h5,c10);
     .header {

@@ -16,7 +16,7 @@ export class VideoDetailComponent implements OnInit {
 
   isPause: boolean = false;
   // videoRefresh: boolean = false;
-  // isRcommend: boolean = false;
+  isRcommend: boolean = false;
   videoCover: string = "";
   isTextHidden: boolean = false;
   isHasUserIcon: boolean = false;
@@ -106,9 +106,9 @@ export class VideoDetailComponent implements OnInit {
           if(rs.data.list.length){
             this.videoCateList = rs.data.list;
             // console.log(this.videoCateList);
-            // this.isRcommend = false;
+            this.isRcommend = false;
           }else {
-            // this.isRcommend = true;
+            this.isRcommend = true;
           }
         }else {
           return;

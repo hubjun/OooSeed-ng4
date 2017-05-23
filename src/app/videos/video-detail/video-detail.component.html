@@ -51,10 +51,11 @@
         </div>
       </div>
       <div class="content-text" *ngIf="isTextHidden">
-        <p>&nbsp;&nbsp;{{deVideoInfo.intro}}</p>
+        <p>&nbsp;&nbsp;{{deVideoInfo.intro || '还没有视频简介哦'}}</p>
       </div>
     </div>
   </div>
+
   <div class="button-box" (click)="goPersonalPage(deVideoInfo.userId)">
     <div class="uploader-info">
       <img src="../../assets/icon/concern_default_head.png" alt="" *ngIf="isHasUserIcon">
@@ -65,11 +66,12 @@
   </div>
   <gap-bg></gap-bg>
   <!--DIV recommand-list *ngIf="!isRcommend"-->
-  <div class="recommand-list item-list">
+  <div class="recommand-list" *ngIf="!isRcommend">
     <div class="header">
       <span class="title">列表</span>
     </div>
+    <video-player-list [listObj]="videoCateList"></video-player-list>
   </div>
-  <video-player-list [listObj]="videoCateList"></video-player-list>
-</div>
+  <missing-default-content *ngIf="isRcommend"></missing-default-content>
+ </div>
 </seed-content>

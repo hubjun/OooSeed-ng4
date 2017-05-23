@@ -54,7 +54,7 @@ export class MineComponent implements OnInit {
       let userid = localStorage.getItem('userid');
       this.ToolServices.showLoading();
       this.mineService.getUserInfo(userid).subscribe(res => {
-        console.log(res)
+
         if (res.result == 0) {
           this.userInfo = res.data;
           this.ToolServices.hideLoading();
@@ -72,10 +72,10 @@ export class MineComponent implements OnInit {
 
   //转跳关注/粉丝页面
   goToFanslist(userid){
-    this.router.navigate([`/homepage/${userid}/my-fans`, userid]);
+    this.router.navigate([`/homepage/${userid}/my-fans`]);
   }
   goToFollowlist(userid){
-    this.router.navigate([`/homepage/${userid}/my-care-fans`, userid]);
+    this.router.navigate([`/homepage/${userid}/my-care-fans`]);
   }
 // 跳转编辑个人资料
   goedit(){

@@ -1,4 +1,4 @@
-<script src="../../../../../test/nodetest/test.js"></script>
+
 <seed-toolbar-header>
   <seed-toolbar-home></seed-toolbar-home>
   <seed-toolbar-title></seed-toolbar-title>
@@ -74,7 +74,7 @@
                 <img class="person-arrow" src="../../assets/icon/arrow.png">
               </div>
           </li>
-          <li (click)="jumpdetail(3)">
+          <li (click)="jumpdetail(3)"*ngIf="false">
             <img src="../../assets/icon/icon_myhome_more.png" class="mine-team-news">
             <div class="mine-team-clum">
               <span>更多</span>
@@ -83,7 +83,7 @@
               </div>
             </div>
           </li>
-          <li (click)="jumpdetail(4)">
+          <li (click)="jumpdetail(4)"*ngIf="false">
             <img src="../../assets/icon/icon_myhome_feedback.png" class="mine-team-news">
             <div class="mine-team-clum">
               <span>反馈</span>
@@ -99,5 +99,4 @@
     </div>
   </div>
 </seed-content>
-
 

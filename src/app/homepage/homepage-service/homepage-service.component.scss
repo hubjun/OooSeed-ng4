@@ -7,6 +7,7 @@
       width:100%;
       padding:pxTorem(30) 0;
       overflow: hidden;
+      display:flex;
       border-bottom: 1px solid color($h5,c9);
       .service-name{
         @include font-dpr(28px);
@@ -20,6 +21,10 @@
         max-width: pxTorem(520);
         @include font-dpr(28px);
         color:color($h5,c2);
+      }
+      img{
+        width:100%;
+        box-sizing: border-box;
       }
     }
   }

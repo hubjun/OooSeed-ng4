@@ -2,18 +2,22 @@
   <div class="my-care">
     <div class="launch-team">
       <div class="launch-team-name">
-        {{localUserid?(localUserid==userId?'我的':'他的'):'他的'}}关注
+        {{localUserid?(localUserid==userid?'我的':'他的'):'他的'}}关注
         <span>({{myFansNumber||0}})</span>
       </div>
       <div
+        *ngIf="myFansNumber>8"
         class="launch-team-more"
-        routerLink="/homepage/{{userId}}/my-care-fans"
+        routerLink="/homepage/{{userid}}/my-care-fans"
       >
         <span>更多</span>
         <i></i>
       </div>
     </div>
-    <div class="my-care-fans" *ngIf="myCareFans?.length>0&&myCareFans[0]!='无'">
+    <div
+      class="my-care-fans"
+      *ngIf="myCareFans?.length>0&&myCareFans[0]!='无'"
+    >
       <member-moduled [members]="myCareFans"></member-moduled>
     </div>
     <missing-default-content
@@ -23,18 +27,22 @@
   <div class="my-care my-fans">
     <div class="launch-team">
       <div class="launch-team-name">
-        {{localUserid?(localUserid==userId?'我的':'他的'):'他的'}}粉丝
+        {{localUserid?(localUserid==userid?'我的':'他的'):'他的'}}粉丝
         <span>({{myCareFansNumber||0}})</span>
       </div>
       <div
+        *ngIf="myCareFansNumber>8"
         class="launch-team-more"
-        routerLink="/homepage/{{userId}}/my-fans"
+        routerLink="/homepage/{{userid}}/my-fans"
       >
         <span>更多</span>
         <i></i>
       </div>
     </div>
-    <div class="my-care-fans" *ngIf="myFans?.length>0&&myFans[0]!='无'">
+    <div
+      class="my-care-fans"
+      *ngIf="myFans?.length>0&&myFans[0]!='无'"
+    >
       <member-moduled [members]="myFans"></member-moduled>
     </div>
     <missing-default-content
@@ -42,3 +50,11 @@
     ></missing-default-content>
   </div>
 </div>
+
+
+
+
+
+
+
+

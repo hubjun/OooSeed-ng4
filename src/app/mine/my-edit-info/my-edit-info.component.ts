@@ -185,9 +185,9 @@ export class MyEditInfoComponent implements OnInit {
     this.router.navigate(['./mine/edit-ball-info']);
   }
   ngOnInit() {
-    this.agearr=this.addnum(10,60);
-    this.heightarr=this.addnum(40,200);
-    this.weightarr=this.addnum(30,200);
+    this.agearr=this.addnum(1,99);
+    this.heightarr=this.addnum(50,220);
+    this.weightarr=this.addnum(20,200);
     this.getuserinfo();
   }
   ngOnDestroy() {

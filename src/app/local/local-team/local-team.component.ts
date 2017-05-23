@@ -89,7 +89,11 @@ export class LocalTeamComponent implements OnInit {
   }
 
   ToFollow(isfollow, userid) {
-    this.ToolServices.presentConfirm('是否确认要关注？', 1,gofollow);
+    if(isfollow == 1 || isfollow == 3){
+      this.ToolServices.presentConfirm('是否确认要关注？', 1,gofollow);
+    }else {
+      this.ToolServices.presentConfirm('你已关注了！', 1);
+    }
     let mythis=this;
     function gofollow(){
       if (isfollow == 1 || isfollow == 3) {

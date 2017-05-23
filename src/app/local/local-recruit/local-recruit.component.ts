@@ -46,7 +46,7 @@ export class LocalRecruitComponent implements OnInit {
   ) {
     this.subscription.add(
       this.localService.filterResult.subscribe((filterReuslt: any) => {
-        console.log(filterReuslt)
+
         this.params.sportType=filterReuslt.sportType.id;
         this.params.areaId=filterReuslt.rangType.areaId;
         this.params.rangType=filterReuslt.rangType.id;
@@ -67,7 +67,7 @@ export class LocalRecruitComponent implements OnInit {
       this.localService.getRecruitList(params)
         .subscribe(res => {
           if (res.result === '0') {
-            console.log(res);
+
             this.recruitObj = res.data.list;
             this.ToolServices.hideLoading();
             res.data.list.length==0?this.missCanSee=true:this.missCanSee=false;
@@ -78,7 +78,7 @@ export class LocalRecruitComponent implements OnInit {
 
   goRecruitDetail(id) {
     this.router.navigate(['/local/recruit-detail', id]);
-    console.log(id)
+
   }
   TipCommon(){
     this.ToolServices.presentConfirm('下载求苗APP，看更多精彩内容！');

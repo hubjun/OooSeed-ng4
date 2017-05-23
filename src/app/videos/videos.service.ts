@@ -43,6 +43,10 @@ export class VideosService {
         this._bannerSlider.next(this.data.bannerSlider);
       })
   };
+  getSlider(){
+    let url = this.INFO_BANNER_URL + '?resPosition=6002&rows=5';
+    return this.httpService.get(url).map((rs: Response) => rs.json());
+  };
 
   getCateList(){
     let url = this.VIDEO_CATE_URL;

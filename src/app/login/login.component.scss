@@ -49,7 +49,7 @@
     width: 100%;
     display: flex;
     padding: 0 0 pxTorem(35px) 0;
-    border-bottom: pxTorem(1) solid color($h5, c8);
+    border-bottom: 1px solid color($h5, c8);
       background: url("../../assets/images/login_hr.png") bottom center/contain repeat-x;
       &.login-box-password {
         // padding-top:pxTorem(60px);
@@ -71,7 +71,7 @@
         display: inline-flex;
             input{
                 font-size: pxTorem(30px);
-                width: 100%;
+                width: 80%;
                 background: transparent;
                 // text-indent: pxTorem(30px);
             }

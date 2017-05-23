@@ -1,4 +1,4 @@
-<seed-content class="gray-background no-header" *ngIf="match" >
+<seed-content class="gray-background no-header" *ngIf="match">
   <div class="detail-content bottom-gap">
     <div class="match-card">
       <div class="team-logo">
@@ -14,10 +14,6 @@
             <p><span>{{match.endDate|amDateFormat:'MM/DD'}}</span>{{match.endTime}}</p>
           </div>
         </div>
-        <p class="score" *ngIf="match.matchState===-1">
-          <span *ngIf="match.homeScore">{{match.homeScore}}</span><span *ngIf="!match.homeScore">0</span><i>:</i>
-          <span *ngIf="match.guestScore">{{match.guestScore}}</span><span *ngIf="!match.guestScore">0</span>
-        </p>
         <div class="logo-box">
           <img [src]="match.guestTeamIconUrl||defaultTeamIcon" alt="" class="logo">
         </div>
@@ -39,7 +35,6 @@
       <li><em>时间</em>
         <p><span>{{match.matchDate|amDateFormat:'YYYY-MM-DD'}}</span><span>周{{match.matchDate|ChineseWeek}}{{match.beginTime}}-{{match.endTime}}</span></p>
       </li>
-      <!--<li><em>场地</em><span><a href="http://uri.amap.com/search?keyword={{match.fieldName}}&view=map">{{match.fieldName?match.fieldName:'待定'}}</a></span></li>-->
       <li><em>场地</em><span>{{match.fieldName?match.fieldName:'待定'}}</span></li>
       <li><em>赛制</em><span>{{match.formatName}}</span></li>
       <li><em>费用</em><span>{{match.costTypeName}}</span></li>

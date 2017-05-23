@@ -15,7 +15,6 @@ import { Subscription } from 'rxjs';
 export class ScheduleChannelComponent implements OnInit {
   private subscription: Subscription = new Subscription();
   private currentYear: number = new Date().getFullYear();
-  private result;
   private newMatchs: Array<TeamMatchVO> = [];
   private oldMatchs: Array<TeamMatchVO> = [];
   private newMatchTotal: number;
@@ -41,12 +40,14 @@ export class ScheduleChannelComponent implements OnInit {
 
   //获取球队战绩
   getTeamMatchResult(): void {
+    this.toolsService.showLoading();
     let params = {
       teamId: this.params.teamId,
       mode: 1
     }
     this.subscription.add(
       this.teamService.getTeamMatchResult(params).subscribe((res) => {
+        this.toolsService.hideLoading();
         if (res.result === '0' && res.data) {
           this.seasonResults.setPercent(res.data);
         }

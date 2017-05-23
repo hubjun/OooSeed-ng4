@@ -5,7 +5,7 @@ import { TeamService } from '../../team.service';
 @Component({
   selector: 'match-card',
   templateUrl: './match-card.component.html',
-  styleUrls: ['./match-card.component.scss']
+  styleUrls: ['../../../local/local-match/match-detail/match-detail.component.scss','./match-card.component.scss']
 })
 export class MatchCardComponent implements OnInit {
   @Input() matchs;//球队历史赛程
