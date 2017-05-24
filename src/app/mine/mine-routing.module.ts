@@ -19,6 +19,7 @@ import {EditBallComponent} from "./my-edit-info/edit-ball-info/edit-ball-info";
 import {MyNoticeComponent} from './my-massage/my-notice/my-notice.component';
 import {AtmeComponent} from './my-massage/atme/atme.component';
 import {DiggmeComponent} from './my-massage/diggme/diggme.component';
+import {AreaPickerComponent} from './my-edit-info/area-picker/area-picker.component';
 
 
 const routes:Routes = [
@@ -112,6 +113,11 @@ const routes:Routes = [
   {
     path:'diggme',
     component:DiggmeComponent,
+    canActivate:[AuthGuardService],
+  },
+  {
+    path:'choose-city',
+    component:AreaPickerComponent,
     canActivate:[AuthGuardService],
   },
 ];

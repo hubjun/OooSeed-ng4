@@ -68,12 +68,12 @@ export class LocalService {
     currentCity:null,//object
     autoSuccess:null//event
   }
-  public handCity=new Subject();
-
+  public handCity:EventEmitter<any>=new EventEmitter();
   public autoCity:Subject<DictCityVO|any> = new BehaviorSubject<DictCityVO|any>(null);
   public handAreaResult:Subject<DictArea>=new BehaviorSubject<DictArea>(null);
   public filterResult:Subject<any> = new Subject();
   public currentCityName=new Subject();
+  public currentLocalChannel:string='';
   constructor(
     public httpService: HttpService,
     public toolsService: ToolsService

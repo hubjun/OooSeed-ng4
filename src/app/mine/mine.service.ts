@@ -23,6 +23,7 @@ export class MineService {
   private commentMeUrl = '/user/commentMe';//我的评论
   private atMeUrl = '/user/atMe';//@Me
   private diggMeUrl = '/user/diggMe';//赞我
+  private areaUrl = '/dict/dictArea';//所有地区
 
   constructor(
     public httpService: HttpService,
@@ -107,6 +108,11 @@ export class MineService {
   //@Me
   getDiggMe(page: number, rows: number){
     let url= this.diggMeUrl + `?page=${page}` + `&rows=${rows}`;
+    return this.httpService.get(url).map((rs) => rs.json());
+  };
+  //获取地区数据
+  getArea(){
+    let url= this.areaUrl +'?langType=zh_CN';
     return this.httpService.get(url).map((rs) => rs.json());
   };
 }

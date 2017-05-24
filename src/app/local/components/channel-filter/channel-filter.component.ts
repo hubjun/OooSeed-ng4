@@ -17,7 +17,7 @@ export class ChannelFilterComponent implements OnInit {
   private isOpen: boolean = false;
   private changeCity: boolean = true;
   private currentFilter: string;
-  private currentChannel: string;
+  // private currentChannel: string;
   //排序规则
 
   public filterType = {
@@ -70,9 +70,7 @@ export class ChannelFilterComponent implements OnInit {
   ) {
     this.subscription.add(
       this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: any) => {
-        this.currentChannel = event.urlAfterRedirects;
-        localStorage.setItem('LOCAL_CHANNEL', JSON.stringify(event.urlAfterRedirects));
-
+        this.localService.currentLocalChannel=event.urlAfterRedirects;
         let autoCity = this.localService.location.autoCity;
         let currentCity = this.localService.location.currentCity
         if (autoCity != null) {
@@ -100,21 +98,16 @@ export class ChannelFilterComponent implements OnInit {
     /**
        * 接收手选城市后传过来的城市对象
        */
-    this.subscription.add(
-      this.localService.handCity.subscribe((city: any) => {
-        console.log(city)
-        if (city === null) return;
-        this.toolsService.setTitle(this.localService.location.currentCity.title);//更改同城标题
-        if (city.parentId) {
-          this.handlerSortByCity(city);
-          this.changeCityConfirm(city);
-        }
-        else {
-          this.filterResult.rangType = city;
-          // this.localService.filterResult.next(this.filterResult.rangType);
-        }
-      })
-    )
+    this.localService.handCity.subscribe((city: any) => {
+      console.log(city)
+      if (city.parentId) {
+        this.changeCityConfirm(city);
+      }
+      else {
+        this.filterResult.rangType = city;
+        // this.localService.filterResult.next(this.filterResult.rangType);
+      }
+    })
   }
 
   /**
@@ -124,7 +117,6 @@ export class ChannelFilterComponent implements OnInit {
     if (city != null) {
       let areaList = city.areaList || city.dictTreeNodeList;
       let position = city.position;
-      this.toolsService.setTitle(city.title);//更改同城标题
       if (city.areaId === this.localService.location.autoCity.areaId && areaList[1].id !== 2) {
         let nearby = {
           "id": 2,
@@ -134,10 +126,14 @@ export class ChannelFilterComponent implements OnInit {
         areaList.splice(1, 0, nearby);
       }
       let areaResult = this.localService.filter.areaResult;
+
       if (areaResult == null) {
         let rangTypeResult = this.filterResult.rangType;
+        rangTypeResult.index = 0;
+        rangTypeResult.text = '全城';
         rangTypeResult.areaId = city.areaId;
-        rangTypeResult.position = position;//存储经纬度
+        rangTypeResult.position = this.localService.location.position;
+        console.log(rangTypeResult)
         areaResult = rangTypeResult;
       }
       else {
@@ -151,26 +147,28 @@ export class ChannelFilterComponent implements OnInit {
       * 处理按城市排序
       *@param(city):当前城市
       */
-  handlerSortByCity(city) {
-    let areaList = city.areaList || city.dictTreeNodeList;
-    //若所选城市为定位城市且没有添加附近
-    if (city.areaId === this.localService.location.autoCity.areaId && areaList[1].id !== 2) {
-      let nearby = {
-        "id": 2,
-        "title": "附近",
-        "areaId": null
-      }
-      areaList.splice(1, 0, nearby);
-    }
-    let rangTypeResult = this.filterResult.rangType;
-    rangTypeResult.index = 0;
-    rangTypeResult.text = '全城';
-    rangTypeResult.areaId = city.areaId;
-    rangTypeResult.position = this.localService.location.position;
-    this.localService.location.currentCity = city;
-    this.localService.filter.areaResult = rangTypeResult;
-    this.localService.filterResult.next(this.filterResult);
-  }
+  // handlerSortByCity(city) {
+  //   let areaList = city.areaList || city.dictTreeNodeList;
+  //   //若所选城市为定位城市且没有添加附近
+  //   if (city.areaId === this.localService.location.autoCity.areaId && areaList[1].id !== 2) {
+  //     let nearby = {
+  //       "id": 2,
+  //       "title": "附近",
+  //       "areaId": null
+  //     }
+  //     areaList.splice(1, 0, nearby);
+  //   }
+  //   let rangTypeResult = this.filterResult.rangType;
+  //   rangTypeResult.index = 0;
+  //   rangTypeResult.text = '全城';
+  //   rangTypeResult.areaId = city.areaId;
+  //   rangTypeResult.position = this.localService.location.position;
+
+  //   // this.filterType.rangType = areaList;
+  //   this.localService.location.currentCity = city;
+  //   this.localService.filter.areaResult = rangTypeResult;
+  //   this.localService.filterResult.next(this.filterResult);
+  // }
   /**
    * 切换到定位城市提示
    * @param(city):当前城市
@@ -182,11 +180,13 @@ export class ChannelFilterComponent implements OnInit {
     if (this.localService.changeCity && autoCity != null && autoCity.areaId != city.areaId) {//当前城市非定位城市
       let that = this;
       this.toolsService.presentConfirm(`定位到您在${autoCity.title},要切换至${autoCity.title}吗？`, 1, function () {
-        that.handlerSortByCity(autoCity);
         currentCity = autoCity;
+        that.localService.filter.areaResult=null;
+        that.setLocationCity(autoCity);
         that.localService.currentCityName.next(currentCity.title);//更改同城标题
       }, function () {
-        that.localService.changeCity = false;
+        that.localService.changeCity = false;//不再提示
+        // that.handlerSortByCity(city);
       });
     }
   }
@@ -255,21 +255,20 @@ export class ChannelFilterComponent implements OnInit {
    * 打开排序器
    */
   openFilter(e: any): void {
-    this.isOpen = true;
+    console.log(this.filterType.rangType)
     this.currentFilter = e.target.getAttribute('data-type');
+    if (this.isOpen) return
+    this.isOpen = true;
+    //解决栏目落差
+    let filterEle = document.getElementById('local-filter');
+    let filterOffsetHeight: number = filterEle.offsetHeight;
+    let gapHeightStr: string = window.getComputedStyle(filterEle).marginTop.split('px')[0];
+    let gapHeightNum: number = Number(gapHeightStr);
+    document.getElementById('channel').style.marginTop = filterOffsetHeight + gapHeightNum + 'px';
 
-    if (!this.isOpen) {
-      let currentCity = this.localService.location.currentCity;
-      let areaList = currentCity.areaList || currentCity.dictTreeNodeList;
-      this.filterType.rangType = areaList;
-
-      //解决栏目落差
-      let filterEle = document.getElementById('local-filter');
-      let filterOffsetHeight: number = filterEle.offsetHeight;
-      let gapHeightStr: string = window.getComputedStyle(filterEle).marginTop.split('px')[0];
-      let gapHeightNum: number = Number(gapHeightStr);
-      document.getElementById('channel').style.marginTop = filterOffsetHeight + gapHeightNum + 'px';
-    }
+    let currentCity = this.localService.location.currentCity;
+    let areaList = currentCity.areaList || currentCity.dictTreeNodeList;
+    this.filterType.rangType = areaList;
   }
   /**
    * 隐藏排序器

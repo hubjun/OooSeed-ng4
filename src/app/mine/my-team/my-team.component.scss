@@ -6,6 +6,10 @@
   width: 100%;
   display: flex;
   align-items: center;
+  padding: 20% 0;
+  img{
+    height: 100%;
+  }
 }
 .spell-detail-inner{
   background: color($h5,c9);

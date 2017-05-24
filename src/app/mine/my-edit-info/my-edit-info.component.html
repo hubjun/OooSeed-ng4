@@ -25,9 +25,9 @@
       <em>签名</em>
       <span class="info">{{userObj.sign}}</span>
     </div>
-    <div class="item">
+    <div class="item" (click)="chooseCity()">
       <em>所在地</em>
-      <span class="info">{{userObj.areaProvName}}{{userObj.areaCityName}}</span>
+      <span class="info">{{userObj.areaProvName}}{{userObj.areaCityName == userObj.areaProvName? '': userObj.areaCityName}}</span>
     </div>
 
   </div>

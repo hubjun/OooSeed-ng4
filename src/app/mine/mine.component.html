@@ -21,7 +21,7 @@
                 <img src="{{userInfo.appImgUrl||' '}}" >
               </div>
               <div class="info-detail-place">
-                深圳南山
+                {{userInfo.areaProvName}}{{userInfo.areaCityName==userInfo.areaProvName? '': userInfo.areaCityName}}
               </div>
             </div>
             <img class="person-arrow" src="../../assets/icon/arrow.png"(click)="goedit()">

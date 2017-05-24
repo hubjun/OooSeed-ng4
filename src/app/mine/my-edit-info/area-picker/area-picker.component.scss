@@ -1,0 +1,109 @@
+@import '../edit-detail/edit-detail.scss';
+
+.editbox {
+    & > div{
+        height: auto;
+    }
+    .title{
+       height: pxTorem(90);
+    }
+}
+  .areaPicker{
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #fff;
+    color: color($h5,c2);
+    .control{
+      display: flex;
+      justify-content: space-between;
+      .close{
+        padding-left: pxTorem(20px);
+      }
+      .sure{
+        padding-right: pxTorem(20px);
+      }
+    }
+    .nav{
+        @include font-dpr(28px);
+        border-bottom: 1px solid color($h5,c8);
+        padding: pxTorem(40px) 0 0 pxTorem(60px);
+        position: relative;
+        text-align: left;
+        span{
+            display: inline-block;
+            padding-bottom:  pxTorem(20px);
+            margin-right: pxTorem(130px);
+            position: relative;
+            &.active{
+                color: color($h5,c12);
+                &:after{
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    display: inline-block;
+                    width: pxTorem(45px);
+                    height: pxTorem(3px);
+                    background-color: color($h5,c12);
+                }
+            }
+        }
+        i{
+            background: url('../../../../assets/icon/Add.png') no-repeat center center;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            position: absolute;
+            top: pxTorem(42px);
+            right: pxTorem(50px);
+            width: pxTorem(42px);
+            height: pxTorem(42px);
+        }
+    }
+    .wrap{
+    //   -webkit-overflow-scrolling:touch;
+      background-color: #fff;
+      position: relative;
+      overflow-x: hidden;
+        .pick{
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: left .3s linear;
+            .page{
+                height: 100%;
+                float: left;
+                width: 50%;
+                overflow-y: scroll;
+                p{
+                    line-height: pxTorem(28px);
+                    text-align: left;
+                    @include font-dpr(28px);
+                    padding: pxTorem(30px) 0 pxTorem(30px) pxTorem(30px);
+                    border-bottom: pxTorem(1px) solid color($h5,c8);
+                    &.has-choose{
+                        position: relative;
+                        color: color($h5,c12);
+                        &:after {
+                            content: '\00a0';
+                            display: inline-block;
+                            border: 2px solid color($h5,c12);
+                            border-top-width: 0;
+                            border-right-width: 0; 
+                            width: 16px;
+                            height: 10px;
+                            -webkit-transform: rotate(-50deg);
+                            position: absolute;
+                            right: pxTorem(50px);
+                            top: pxTorem(20px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }

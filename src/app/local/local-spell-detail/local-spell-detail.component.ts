@@ -7,7 +7,6 @@ import {ToolsService} from "../../shared/tools/tools.service";
   selector: 'app-local-spell-detail',
   templateUrl: './local-spell-detail.component.html',
   styleUrls: ['./local-spell-detail.component.scss'],
-  // changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class LocalSpellDetailComponent implements OnInit {
   public defaulticon = 'assets/icon/concern_default_head.png';
@@ -68,7 +67,7 @@ export class LocalSpellDetailComponent implements OnInit {
     }
   }
   goPersonalPage(obj){
-    this.router.navigate(['/homepage', obj]);
+    this.router.navigate(['/homepageOther', obj]);
   }
   TipCommon(){
     if(this.applyCheck==1){

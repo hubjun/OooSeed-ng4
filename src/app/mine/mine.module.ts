@@ -23,6 +23,7 @@ import {HomepageService} from '../homepage/homepage.service';
 import { MyNoticeComponent } from './my-massage/my-notice/my-notice.component';
 import { AtmeComponent } from './my-massage/atme/atme.component';
 import { DiggmeComponent } from './my-massage/diggme/diggme.component';
+import { AreaPickerComponent } from './my-edit-info/area-picker/area-picker.component';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { DiggmeComponent } from './my-massage/diggme/diggme.component';
     MyNoticeComponent,
     AtmeComponent,
     DiggmeComponent,
+    AreaPickerComponent,
   ],
   providers:[
     LocalService,

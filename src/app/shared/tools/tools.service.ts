@@ -107,14 +107,22 @@ export class ToolsService {
    * @param duration 持续的时间,默认为5s
    */
   showLoading(content: string = '', duration: number = 6000) {
-    let loading=document.createElement('div');
-    loading.className='myLoaing';
-    loading.innerHTML='<img src="../../../../assets/icon/loading.svg"width="50">'
-    document.body.appendChild(loading);
-    // let timer=setTimeout(()=>{
-    //   this.hideLoading();
-    //   clearTimeout(timer);
-    // },duration)
+    let children=document.body.children;
+    let canadd = true;
+    for(let i=0;i<children.length;i++)
+    {
+      if(children[i].nodeName=="DIV"&&children[i].className=="myLoaing")
+      {
+        canadd=false;
+      }
+    }
+    if(canadd){
+      let loading=document.createElement('div');
+      loading.className='myLoaing';
+      loading.innerHTML='<img src="../../../../assets/icon/loading.svg"width="50">'
+      document.body.appendChild(loading);
+    }
+
   }
 
   /**

@@ -20,7 +20,7 @@ export class LocalCityComponent {
   private locationCity: DictCityVO | any;//定位城市
   private locationAreaText: string;//定位城市
   private showArea: boolean = false;
-  private currentLocalChannel: string = '/local';
+  private currentLocalChannel: string = this.localService.currentLocalChannel;
   private letters = 'ABCDEFGHJKLMNPQRSTWXYZ'.split('');
 
   subscription: Subscription = new Subscription();
@@ -30,8 +30,7 @@ export class LocalCityComponent {
     private toolsService: ToolsService,
     private router: Router
   ) {
-    this.toolsService.setTitle('城市定位');
-    let currentLocalChannel = JSON.parse(localStorage.getItem('LOCAL_CHANNEL'));
+
   }
   /**
    * 定位
@@ -63,7 +62,13 @@ export class LocalCityComponent {
   * 根据所选城市所有区县
   */
   sortByCity(city: DictCityVO | DictArea | any, index?: number): void {
-    console.log(index)
+    let areaResult = {
+      id: 1,
+      areaId: city.areaId,
+      index: index,
+      text: city.title,
+      position: this.locationCity.position
+    }
     if (index == undefined) {
       let cityArea = city.areaList || city.dictTreeNodeList; //热门城市|所有城市
       let whole = {
@@ -79,42 +84,36 @@ export class LocalCityComponent {
       else {
         cityArea.unshift(whole)
       }
-      this.currertCity = city;
-      console.log(city)
 
-      this.currentAreaText = city.title;
+      areaResult.text = '全城';
+      areaResult.index = 0;
+      this.currertCity = city;
+      this.localService.filter.areaResult = areaResult;
       this.localService.handCity.next(city);//触发排序
       this.localService.location.currentCity = city;//全局存储当前城市
       this.setCurrentArea();
     }
     else {
-      let area = city
-      let areaResult = {
-        id: 1,
-        areaId: area.areaId,
-        index: index,
-        text: area.title,
-        position: this.locationCity.position
-      }
-      if (area.id === 1) {
+      if (city.id === 1) {
         areaResult.id = 1;
       }
-      else if (area.id === 2) {
+      else if (city.id === 2) {
         areaResult.id = 2;
         areaResult.areaId = null;
       }
       else {
         areaResult.id = 3;
       }
-      console.log(area)
       this.localService.filter.areaResult = areaResult;
       this.localService.handCity.next(areaResult);//触发排序
     }
-    this.router.navigate([this.currentLocalChannel]);
+    let currentLocalChannel = this.currentLocalChannel;
+    currentLocalChannel != '' ? currentLocalChannel : '/local';
+    this.router.navigate([currentLocalChannel]);
   }
-  /**
-  * 展示定位城市所有区域
-  */
+  // /**
+  // * 展示定位城市所有区域
+  // */
   sortByLocationCity(): void {
     this.sortByCity(this.locationCity);
   }

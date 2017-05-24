@@ -33,7 +33,7 @@ export class MyEditInfoComponent implements OnInit {
     nickName: '',
     repostCount: 1,
     sex: '',
-    sign: '11',
+    sign: '',
     userAge: '',
     userId: '',
     weight: '',
@@ -183,6 +183,9 @@ export class MyEditInfoComponent implements OnInit {
   }
   setBallInfo(){
     this.router.navigate(['./mine/edit-ball-info']);
+  }
+  chooseCity(){
+    this.router.navigate(['/mine/choose-city']);
   }
   ngOnInit() {
     this.agearr=this.addnum(1,99);

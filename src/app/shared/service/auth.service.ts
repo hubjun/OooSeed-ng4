@@ -75,7 +75,7 @@ export class AuthService {
 
     localStorage.setItem(this.HAS_LOGGED_IN,key);
     localStorage.setItem(this.isLoggedIn,key);
-    this.isLoggedIn = localStorage.getItem(this.isLoggedIn);
+    this.isLoggedIn = localStorage.getItem(this.HAS_LOGGED_IN);
     setTimeout(() => {
       console.log(this.getLogin())
     },2000)
@@ -85,7 +85,7 @@ export class AuthService {
 
 
   getLogin(){
-    return localStorage.getItem(this.isLoggedIn)
+    return localStorage.getItem(this.HAS_LOGGED_IN)
   }
   hasLoggedIn(){
     return localStorage.getItem(this.HAS_LOGGED_IN)

@@ -78,7 +78,6 @@ export class HomepageComponent implements OnInit {
     });
   }
 
-
   ngOnInit() {
     if(localStorage.getItem('userid')){
       this.localUserId='yes';
