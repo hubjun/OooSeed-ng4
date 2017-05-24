@@ -44,7 +44,7 @@ export class MyLaunchComponent {
   }
 
   goToJoinDetail(obj){
-    this.router.navigate(['/mine/my-join-detail', obj]);
+    this.router.navigate(['/mine/my-launch-detail', obj]);
   }
   goPersonalPage(obj){
     this.router.navigate(['/homepage', obj]);

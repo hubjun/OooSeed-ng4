@@ -1,0 +1,28 @@
+seed-modal {
+  top: 0;
+  left: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  z-index: 10001;
+  height: 100%;
+  contain: strict;
+  z-index: 10003;
+  .seed-modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    background-color: #000;
+    opacity: .4;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: -1;
+    visibility: visible;
+    height: 100%;
+    touch-action: manipulation;
+    background: rgba(0,0,0,0.6);
+  }
+}

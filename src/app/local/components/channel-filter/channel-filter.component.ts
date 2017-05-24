@@ -180,7 +180,7 @@ export class ChannelFilterComponent implements OnInit {
     if (this.localService.changeCity && autoCity != null && autoCity.areaId != city.areaId) {//当前城市非定位城市
       let that = this;
       this.toolsService.presentConfirm(`定位到您在${autoCity.title},要切换至${autoCity.title}吗？`, 1, function () {
-        currentCity = autoCity;
+        that.localService.location.currentCity = autoCity;
         that.localService.filter.areaResult=null;
         that.setLocationCity(autoCity);
         that.localService.currentCityName.next(currentCity.title);//更改同城标题

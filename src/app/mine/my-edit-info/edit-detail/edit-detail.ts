@@ -12,6 +12,7 @@ import {MineService} from '../../mine.service';
 import {UserDataService} from '../../../shared/tools/user-data.service';
 import {ToolsService} from '../../../shared/tools/tools.service';
 import {Subscription} from "rxjs";
+import {AuthService} from '../../../shared/service/auth.service';
 
 @Component({
   selector: 'my-content',
@@ -31,7 +32,8 @@ export class EditDetailComponent implements OnInit {
               public mineService: MineService,
               public activatedroute: ActivatedRoute,
               public router: Router,
-              public toolservice:ToolsService
+              public toolservice:ToolsService,
+              public authservice:AuthService
   ) {
 
   }
@@ -58,6 +60,7 @@ export class EditDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    !this.authservice.getUserid?this.router.navigate(['./login']):'';
     this.activatedroute.params.subscribe(param => {
       let infolist = ['编辑昵称', '编辑签名'];
       param.id == 'sign' ? this.title = infolist[1] : this.title = infolist[0];

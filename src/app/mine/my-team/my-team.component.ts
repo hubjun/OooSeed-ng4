@@ -17,6 +17,7 @@ import {ToolsService} from '../../shared/tools/tools.service';
 
 export class MyTeamComponent implements OnInit {
   public subscription: Subscription = new Subscription();
+  public cansee:boolean=false;
   // public myTeamsObj: any= [
   //   {
   //     iconFileUrl: "http://file.oooseed.com/f/20170410/sport/api/i/0b92dd1210514ddca343dd223441b441.jpg",
@@ -92,6 +93,7 @@ export class MyTeamComponent implements OnInit {
     this.subscription.add(
     this.mineservice.getMyTeams(this.page,this.rows,this.userId)
       .subscribe(rs => {
+        rs.data.list.length==0?this.cansee=true:this.cansee=false;
         if(rs.result === '0'){
           if(type){
             this.myTeamsObj.concat(rs.data.list);

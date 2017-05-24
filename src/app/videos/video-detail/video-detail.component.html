@@ -7,7 +7,7 @@
   <div class="video-detail">
   <div class="video-player page-list">
     <!--<img class="vplay" src="../../assets/icon/play.png"/>-->
-    <video [src]="deVideoInfo.videoUrl" webkit-playsinline="true" id="video" poster="{{deVideoInfo.videoCover}}" preload="none">
+    <video src="{{videoSrc}}" id="video" poster="{{deVideoInfo.videoCover}}" preload="auto" x5-video-player-type="h5" x-webkit-airplay="true" x5-video-player-fullscreen="true">
       <p>设备暂不支持</p>
     </video>
 
@@ -55,7 +55,6 @@
       </div>
     </div>
   </div>
-
   <div class="button-box" (click)="goPersonalPage(deVideoInfo.userId)">
     <div class="uploader-info">
       <img src="../../assets/icon/concern_default_head.png" alt="" *ngIf="isHasUserIcon">
@@ -65,12 +64,11 @@
     </div>
   </div>
   <gap-bg></gap-bg>
-  <!--DIV recommand-list *ngIf="!isRcommend"-->
-  <div class="recommand-list" *ngIf="!isRcommend">
+  <div class="recommand-list">
     <div class="header">
       <span class="title">列表</span>
     </div>
-    <video-player-list [listObj]="videoCateList"></video-player-list>
+    <video-player-list [listObj]="videoCateList" *ngIf="!isRcommend"></video-player-list>
   </div>
   <missing-default-content *ngIf="isRcommend"></missing-default-content>
  </div>

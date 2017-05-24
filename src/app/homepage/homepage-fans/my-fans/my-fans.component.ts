@@ -6,8 +6,8 @@ import {HomepageService} from "../../homepage.service";
 
 @Component({
   selector: 'seed-my-fans',
-  templateUrl: './my-fans.component.html',
-  styleUrls: ['./my-fans.component.scss']
+  templateUrl: 'my-fans.component.html',
+  styleUrls: ['my-fans.component.scss']
 })
 export class MyFansComponent implements OnInit {
   subscription: Subscription = new Subscription();

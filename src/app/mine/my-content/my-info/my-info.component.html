@@ -1,0 +1,23 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content>
+<div class="seed-info-cate" *ngIf="article && article.length!=0" >
+  
+  <div class="search-results"
+       infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="300"
+       [infiniteScrollContainer]="ele"
+       (scrolled)="onScroll()">
+    <!--<seed-badges  [articles]="tools.setArray(articles | async)"></seed-badges>-->
+    <seed-badges  [articles]="articles"></seed-badges>
+  </div>
+
+</div>
+  <missing-default-content
+    *ngIf="articles?.length == 0"
+  ></missing-default-content>
+</seed-content>

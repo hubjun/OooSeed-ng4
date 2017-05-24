@@ -9,6 +9,7 @@ import {MineService} from '../mine.service'
 import {UserDataService} from '../../shared/tools/user-data.service';
 import {ToolsService} from '../../shared/tools/tools.service';
 import {Subscription} from "rxjs";
+import {AuthService} from '../../shared/service/auth.service';
 
 @Component({
   selector: 'my-content',
@@ -44,7 +45,8 @@ export class MyEditInfoComponent implements OnInit {
     public userdataservice:UserDataService,
     public mineService: MineService,
     public router:Router,
-    public toolservice:ToolsService
+    public toolservice:ToolsService,
+    public authservice:AuthService
   ){
 
   }
@@ -83,6 +85,7 @@ export class MyEditInfoComponent implements OnInit {
           this.sexseed=false;
           this.getuserinfo();
           this.toolservice.presentConfirm('更新性别成功',1);
+          this.toolservice.removeconfirm();
         }else{
           this.toolservice.presentConfirm('更新性别失败：'+res.msg,1);
           this.router.navigate(['./login']);
@@ -106,6 +109,7 @@ export class MyEditInfoComponent implements OnInit {
         };
         reader.readAsDataURL(file);
         this.toolservice.presentConfirm('更新头像成功',1);
+        this.toolservice.removeconfirm();
       }else {
         this.toolservice.presentConfirm('更新头像失败：'+res.msg,1);
       }
@@ -124,6 +128,7 @@ export class MyEditInfoComponent implements OnInit {
         if(res.result==0){
           this.userObj.userAge=event;
           this.toolservice.presentConfirm('更新年龄成功',1);
+          this.toolservice.removeconfirm();
         }else{
           this.toolservice.presentConfirm('更新年龄失败：'+res.msg,1);
           this.router.navigate(['./login']);
@@ -143,6 +148,7 @@ export class MyEditInfoComponent implements OnInit {
         if(res.result==0){
           this.userObj.height=event;
           this.toolservice.presentConfirm('更新身高成功',1);
+          this.toolservice.removeconfirm();
         }else{
           this.toolservice.presentConfirm('更新身高失败：'+res.msg,1);
           this.router.navigate(['./login']);
@@ -162,6 +168,7 @@ export class MyEditInfoComponent implements OnInit {
         if(res.result==0){
           this.userObj.weight=event;
           this.toolservice.presentConfirm('更新体重成功',1);
+          this.toolservice.removeconfirm();
         }else{
           this.toolservice.presentConfirm('更新体重失败：'+res.msg,1);
           this.router.navigate(['./login']);
@@ -188,6 +195,7 @@ export class MyEditInfoComponent implements OnInit {
     this.router.navigate(['/mine/choose-city']);
   }
   ngOnInit() {
+    !this.authservice.getUserid?this.router.navigate(['./login']):'';
     this.agearr=this.addnum(1,99);
     this.heightarr=this.addnum(50,220);
     this.weightarr=this.addnum(20,200);

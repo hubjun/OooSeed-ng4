@@ -18,6 +18,7 @@ export class VideoDetailComponent implements OnInit {
   // videoRefresh: boolean = false;
   isRcommend: boolean = false;
   videoCover: string = "";
+  videoSrc: string = "";
   isTextHidden: boolean = false;
   isHasUserIcon: boolean = false;
   deVideoInfo: any[] = [];
@@ -34,7 +35,6 @@ export class VideoDetailComponent implements OnInit {
     // this.videoId = this.activeRoute.snapshot.params['videoID'];
     // this.cateId = this.activeRouter.snapshot.queryParams['cateId'];
     this.tools.setTitle('视频详情');
-
   }
 
   goBack(){
@@ -85,6 +85,7 @@ export class VideoDetailComponent implements OnInit {
         if(rs.result === '0'){
           // console.log(rs);
           this.deVideoInfo = rs.data;
+          this.videoSrc = rs.data.videoUrl;
           if(rs.data.userIcon == '' || 'undefinded'){
             this.isHasUserIcon = true;
           }
@@ -117,6 +118,7 @@ export class VideoDetailComponent implements OnInit {
   };
 
   ngOnInit(){
+    this.tools.showLoading();
     var video = this.el.nativeElement.querySelector('video');
     // console.log(videos.innerHTML);
     var totalTime = this.el.nativeElement.querySelector('.total');
@@ -134,11 +136,14 @@ export class VideoDetailComponent implements OnInit {
       let video = this.el.nativeElement.querySelector('video');
       video.poster = this.videoCover;
       this.getDemandInfo();
+      setTimeout(() => {
+        video.src = this.videoSrc;
+      },300);
+
       this.getRecommendList();
       // console.log(this.videoCover);
-
     });
-
+    this.tools.hideLoading();
     this.getRecommendList();
     // this.activeRoute.params.forEach((params: Params) => {
     //   // 使用+将字符串类型的参数转换成数字

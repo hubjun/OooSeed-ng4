@@ -56,6 +56,7 @@ export class AuthService {
   }
 
   logout() {
+    this.isLoggedIn = null;
     localStorage.clear();
     // this.tools.showToast('退出成功,正在跳转页面',1000,function () {
     //   window.location.reload();
@@ -75,17 +76,13 @@ export class AuthService {
 
     localStorage.setItem(this.HAS_LOGGED_IN,key);
     localStorage.setItem(this.isLoggedIn,key);
-    this.isLoggedIn = localStorage.getItem(this.HAS_LOGGED_IN);
-    setTimeout(() => {
-      console.log(this.getLogin())
-    },2000)
-
+    this.isLoggedIn = key;
   }
 
 
 
   getLogin(){
-    return localStorage.getItem(this.HAS_LOGGED_IN)
+    return localStorage.getItem(this.isLoggedIn)
   }
   hasLoggedIn(){
     return localStorage.getItem(this.HAS_LOGGED_IN)

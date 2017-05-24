@@ -45,7 +45,9 @@ export class EditBallComponent implements OnInit {
               public mineService: MineService,
               public activatedroute: ActivatedRoute,
               public router: Router,
-              public toolservice: ToolsService) {
+              public toolservice: ToolsService,
+              public authservice:AuthService
+  ) {
 
   }
 
@@ -65,9 +67,11 @@ export class EditBallComponent implements OnInit {
         .subscribe(rs => {
           if (rs.result == 0) {
             this.toolservice.presentConfirm('更新成功', 1);
+            this.toolservice.removeconfirm();
             this.userObj.ballAge = event;
           } else {
             this.toolservice.presentConfirm('更新失败'+rs.msg, 1);
+            this.toolservice.removeconfirm();
           }
           this.toolservice.hideLoading();
         })
@@ -83,6 +87,7 @@ export class EditBallComponent implements OnInit {
         this.positionitems = res.data.dicts;
       } else {
         this.toolservice.presentConfirm('获取位置失败', 1);
+        this.toolservice.removeconfirm();
       }
       this.toolservice.hideLoading();
     })
@@ -111,9 +116,11 @@ export class EditBallComponent implements OnInit {
       this.mineService.putBallLocation(data).subscribe(res => {
         if (res.result == 0) {
           this.toolservice.presentConfirm('更新成功', 1);
+          this.toolservice.removeconfirm();
           this.userObj.foot = event;
         } else {
           this.toolservice.presentConfirm('更新失败'+res.msg, 1);
+          this.toolservice.removeconfirm();
         }
         this.toolservice.hideLoading();
       })
@@ -130,6 +137,7 @@ export class EditBallComponent implements OnInit {
         this.tetianitems = res.data.dicts;
       } else {
         this.toolservice.presentConfirm('获取特点失败', 1);
+        this.toolservice.removeconfirm();
       }
       this.toolservice.hideLoading();
     })
@@ -152,9 +160,11 @@ export class EditBallComponent implements OnInit {
         .subscribe(rs => {
           if (rs.result == 0) {
             this.toolservice.presentConfirm('更新成功', 1);
+            this.toolservice.removeconfirm();
             this.getfootballinfo();
           } else {
             this.toolservice.presentConfirm('更新失败'+rs.msg, 1);
+            this.toolservice.removeconfirm();
           }
           this.toolservice.hideLoading();
         })
@@ -168,7 +178,7 @@ export class EditBallComponent implements OnInit {
     this.toolservice.showLoading();
     this.subscription.add(
     this.mineService.getfootballinfo().subscribe(res => {
-
+      this.toolservice.hideLoading();
       if (res.result === '0') {
 
         this.userObj.ballAge = res.data.ballAge;
@@ -195,13 +205,11 @@ export class EditBallComponent implements OnInit {
         } else {
           return;
         }
-        this.toolservice.hideLoading();
       } else if (res.result === '2') {
         this.toolservice.presentConfirm('系统数据异常', 1);
       } else {
         return;
       }
-      this.toolservice.hideLoading();
     })
     )
 
@@ -212,6 +220,7 @@ export class EditBallComponent implements OnInit {
   }
 
   ngOnInit() {
+    !this.authservice.getUserid?this.router.navigate(['./login']):'';
     this.agearr = this.addnum(0, 50);
     this.getfootballinfo();
   }

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     });
   }
   subscription: Subscription = new Subscription();
- 
+
   ngOnInit() {
     this.tools.setTitle('登录');
     this.subscription.add(
@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit {
           this.tools.showToast('登录名或者密码错误', 800);
         } else if (res.result == 0 && res.data) {
           this.userData.login(res.data.userId, res.data.token, res.data.refreshToken);
+          this.userData.isLoggedIn = 'true';
           this.tools.hideLoading();
           let retirect = this.userData.redirectUrl ? this.userData.redirectUrl : 'home';
           this.router.navigate([retirect])

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ToolsService} from "../../../shared/tools/tools.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {LocalService} from "../../../local/local.service";
@@ -11,14 +11,13 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class MyLaunchDetailComponent implements OnInit {
   public spellDetail:string[]=[];
-  public haveJoin:string;
   public joinListCheck:string[]=[];
+  public peddingListCheck:string[]=[];
   public phoneCheck:string;
   public timeDate;any;
   public signEndTime:any;
   private spellToggle=false;
   public fightId:string;
-  public applyCheck:any;
   scrollContainer;
   subscription: Subscription = new Subscription();
 
@@ -35,19 +34,15 @@ export class MyLaunchDetailComponent implements OnInit {
         let object=res;
         if(object.result==0){
           this.spellDetail=object.data;
-          this.applyCheck=object.data.status;
+
+          if(object.data.pendList){
+            this.peddingListCheck=object.data.pendList;
+          }
 
           if(object.data.joinList){
-            for(let j=0;j<object.data.joinList.length;j++){
-              if(localStorage.getItem('userid')){
-                if(object.data.joinList[j].userId==localStorage.getItem('userid')){
-                  this.haveJoin='joined';
-                  this.applyCheck=0;
-                }
-              }
-            }
             this.joinListCheck=object.data.joinList;
           }
+
           if(object.data.phone){
             this.phoneCheck=object.data.phone.slice(0,3)+'***'+
               object.data.phone.slice(-3,object.data.phone.length);
@@ -74,12 +69,10 @@ export class MyLaunchDetailComponent implements OnInit {
     }
   }
   goPersonalPage(obj){
-    this.router.navigate(['/go-person-page', obj]);
+    this.router.navigate(['/homepage', obj]);
   }
   TipCommon(){
-    if(this.applyCheck==1){
-      this.ToolServices.presentConfirm('下载球苗APP，看更多精彩内容!');
-    }
+    this.ToolServices.presentConfirm('下载球苗APP，看更多精彩内容!');
   }
   ngOnInit() {
     this._activatedRoute.params

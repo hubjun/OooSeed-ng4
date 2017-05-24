@@ -1,6 +1,115 @@
+#h5oooseed书写规范
+###程序主要目录结构如下
+
+``` javascript
+  |-- src
+      |-- favicon.ico
+      |-- index.html
+      |-- main.ts
+      |-- polyfills.ts
+      |-- styles.css
+      |-- test.ts
+      |-- tsconfig.app.json
+      |-- tsconfig.spec.json
+      |-- typings.d.ts
+      |-- app
+      |   |-- app-routing.module.ts
+      |   |-- app.component.html
+      |   |-- app.component.scss
+      |   |-- app.component.spec.ts
+      |   |-- app.component.ts
+      |   |-- app.module.ts
+      |   |-- core
+      |   |   |-- core.module.ts
+      |   |   |-- http.service.spec.ts
+      |   |   |-- http.service.ts
+      |   |-- domain
+      |   |   |-- interface.model.ts
+      |   |-- home
+      |   |   |-- home-routing.module.ts
+      |   |   |-- home.component.html
+      |   |   |-- home.component.scss
+      |   |   |-- home.component.spec.ts
+      |   |   |-- home.component.ts
+      |   |   |-- home.module.ts
+      |   |   |-- home.service.spec.ts
+      |   |   |-- home.service.ts
+      |   |-- homepage
+      |   |   |-- homepage-routing.module.ts
+      |   |   |-- homepage.component.css
+      |   |   |-- homepage.component.html
+      |   |   |-- homepage.component.spec.ts
+      |   |   |-- homepage.component.ts
+      |   |   |-- homepage.module.ts
+      |   |   |-- homepage.service.spec.ts
+      |   |   |-- homepage.service.ts
+      |   |   |-- info
+      |   |-- login
+      |   |   |-- login-routing.module.ts
+      |   |   |-- login.component.css
+      |   |   |-- login.component.html
+      |   |   |-- login.component.spec.ts
+      |   |   |-- login.component.ts
+      |   |   |-- login.module.ts
+      |   |   |-- login.service.spec.ts
+      |   |   |-- login.service.ts
+      |   |-- mine
+      |   |   |-- mine-routing.module.ts
+      |   |   |-- mine.component.css
+      |   |   |-- mine.component.html
+      |   |   |-- mine.component.spec.ts
+      |   |   |-- mine.component.ts
+      |   |   |-- mine.module.ts
+      |   |   |-- mine.service.spec.ts
+      |   |   |-- mine.service.ts
+      |   |-- shared
+      |   |   |-- components
+      |   |   |-- directives
+      |   |       |-- shared.directive.spec.ts
+      |   |       |-- shared.directive.ts  
+      |   |   |-- pipes
+      |   |       |-- shared.pipe.spec.ts
+      |   |       |-- shared.pipe.ts                 
+      |   |   |-- shared.module.ts
+      |   |   |-- status-code
+      |   |   |   |-- status-code.service.spec.ts
+      |   |   |   |-- status-code.service.ts
+      |   |   |-- styles
+      |   |   |   |-- theming.scss
+      |   |   |-- tools
+      |   |       |-- tools.service.spec.ts
+      |   |       |-- tools.service.ts
+      |   |-- team
+      |   |   |-- team-routing.module.ts
+      |   |   |-- team.component.css
+      |   |   |-- team.component.html
+      |   |   |-- team.component.spec.ts
+      |   |   |-- team.component.ts
+      |   |   |-- team.module.ts
+      |   |   |-- team.service.spec.ts
+      |   |   |-- team.service.ts
+      |   |-- videos
+      |       |-- video-routing.module.ts
+      |       |-- videos.component.css
+      |       |-- videos.component.html
+      |       |-- videos.component.spec.ts
+      |       |-- videos.component.ts
+      |       |-- videos.module.ts
+      |       |-- videos.service.spec.ts
+      |       |-- videos.service.ts
+      |-- assets
+      |   |-- .gitkeep
+      |   |-- images
+      |-- environments
+          |-- environment.prod.ts
+          |-- environment.ts
+
+```
+
+
 ### 目录解析
 - app
-app目录主功能模块分别是
+app目录主要是书写程序主要模块的目录整个程序的控制器全部要早这里书写,根据h5000seed设计需求分出了7个功能模块分别是
  1. home 主要是主页模块的相关内容文件
  2. homepage 主要是个人主页模块的相关内容文件
  3. local 主要是同城模块的相关内容文件
@@ -70,14 +179,37 @@ app目录主功能模块分别是
 * styles theming.scss主要是提供程序全部的公共方法scss,如果模块下的scss需要用scss的公共方法和参数都要在.scss里面@iport 如style.css
 ```html
   /* You can add global styles to this file, and also import other style files */
-  @import "app/shared/styles/theming.scss"; //SASS混合器，函数
+  @import "app/shared/styles/theming.scss";
   
+  
+  /*********************
+  *全局样式格式化开始
+  ********************/
+  *, html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing:content-box ;
+    list-style-type: none ;
+    -webkit-box-reflect: none ;
+    font-family: ""Helvetica Neue",Helvetica,Arial,sans-serif" ;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  }
+  
+  ins{
+    height:auto;
+    display: inline;
+  }
+  
+  ...
+  ..
+  .
   
 ```
 
 ### 2个辅助类模块分别是
   1. core 主要是本程序的核心内容相关文件（只在app module注入一次）
-  2. shared 是各个功能模块的公共类需要注入的模块（各个模块都要注入）,公共类的函数service,component,directive都在shared文件夹内书写
+  2. shared 主要是各个功能模块的公共类需要注入的模块（各个模块都要注入）,公共类的函数service,component,directive都在shared文件夹内书写
   
    > 对于共享(shared)特性模块有如下建议
      
@@ -102,6 +234,19 @@ app目录主功能模块分别是
 ### appModule 
   不建议注入很多服务,服务过多对于程序启动构建快慢有着明显的影响,如果没有大功能模块注入维持不变就好
 
+### style样式书写规则
+  全部以烤串风格命名，class、id前缀全部以“seed”开头如 
+``` html
+  <seed-footer></seed-footer>
+  
+  <seed-content>
+      <div class='seed-some-name' id='seed-thing'>
+      
+      </div>
+  </seed-content>
+
+  <seed-footer></seed-footer>
+ ```
   
 ### 生命周期在ts的最下面书写如
 ``` javascript
@@ -115,7 +260,7 @@ app目录主功能模块分别是
       constructor() { }
       
       getInfo(){
-        console.log('get info...')
+      
       }
       
       ngOnInit() {
@@ -132,4 +277,18 @@ app目录主功能模块分别是
       
     }
    ```
-###命令行工具angular-cli，链接http://www.jianshu.com/p/cba3fa12f0a3
+###各种类型的文件建议用angular cli命令行创建(比较符合命名规范)链接http://www.jianshu.com/p/cba3fa12f0a3
+
+##提交到git
+完成了自己的模块后建议用命令行打包 ng build --aot --release 会生成一个dist文件夹里面有编译好的文件, 然后命令行进入dist目录下 输入http-server启动本地服务后测试正常后方可提交代码到git合并代码.
+  > http-serve node安装
+  
+    cnpm i -g http-server
+    
+
+
+
+
+
+
+ALL BY chenwenhao576

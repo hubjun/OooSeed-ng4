@@ -19,7 +19,7 @@
     <div
       *ngIf="pictureSingle?.length > 9"
       class="share-invitation-more"
-      routerLink="/homepage/{{userId}}/my-picture"
+      routerLink="/homepage/{{userid}}/my-picture"
     >
       <span>更多</span>
       <i></i>
@@ -29,13 +29,13 @@
     <div class="seed-grid">
       <div class="seed-grid-row">
         <div class="seed-grid-col" col-4 *ngFor="let item of (pictureSingle | slice:0:9)">
-          <div
+          <a
             [lazyLoad]="item.fileName"
             [defaultImage]="'/assets/images/user_default.png'"
             [errorImage]="'/assets/images/user_default.png'"
             [scrollTarget]="scrollContainer"
           >
-           </div>
+           </a>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
     <div
       *ngIf="videoSingle?.length > 9"
       class="share-invitation-more"
-      routerLink="/homepage/{{userId}}/my-video"
+      routerLink="/homepage/{{userid}}/my-video"
     >
       <span>更多</span>
       <i></i>
@@ -62,13 +62,13 @@
     <div class="seed-grid">
       <div class="seed-grid-row">
         <div class="seed-grid-col icon-live" col-4 *ngFor="let item of videoSingle">
-          <div
+          <a
             [lazyLoad]="item.fileName +'&width=100&second=1' "
             [defaultImage]="'/assets/images/user_default.png'"
             [errorImage]="'/assets/images/user_default.png'"
             [scrollTarget]="scrollContainer"
           >
-          </div>
+          </a>
           </div>
         </div>
       </div>

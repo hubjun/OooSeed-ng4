@@ -8,7 +8,6 @@ import {ToolsService} from "../../shared/tools/tools.service";
   selector: 'person-fans',
   templateUrl: './homepage-fans.component.html',
   styleUrls: ['./homepage-fans.component.scss'],
-  // changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class HomepageFansComponent implements OnInit {
   public myFans=[];

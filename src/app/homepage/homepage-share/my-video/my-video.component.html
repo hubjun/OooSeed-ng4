@@ -1,0 +1,30 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content class="seed-person-video share-picture">
+  <div class="seed-grid">
+    <div class="seed-grid-row">
+      <div class="seed-grid-col icon-live" col-4 *ngFor="let item of (videoThumbnail | async)">
+        <a
+          routerLink="/viewer"
+          [lazyLoad]="item.fileName +'&width=100&second=1'"
+          [defaultImage]="'/assets/images/user_default.png'"
+          [errorImage]="'/assets/images/user_default.png'"
+          [scrollTarget]="scrollContainer"
+        >
+        </a>
+      </div>
+    </div>
+  </div>
+  <missing-default-content
+    *ngIf="(videoThumbnail | async)?.length==0"
+  ></missing-default-content>
+  <go-down-app *ngIf="(videoThumbnail | async)?.length==20"></go-down-app>
+</seed-content>
+
+
+
+
+

@@ -4,6 +4,7 @@
 import {Component,OnInit}from'@angular/core';
 import {Router,ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
+import {AuthService} from '../../shared/service/auth.service';
 
 @Component({
   selector: 'my-content',
@@ -12,11 +13,29 @@ import {componentFactoryName} from "@angular/compiler";
 })
 
 export class MyContentComponent implements OnInit {
-
-  constructor(){
-
+  private userId: string = ''
+  constructor(
+    private router: Router,
+    private authSer: AuthService,
+  ){
+    this.userId = this.authSer.getUserid();
+  }
+  goMyFeeds(){
+    this.router.navigate(['/home/feed']);
+  }
+  goMyAlbum(){
+    this.router.navigate([`/homepage/${this.userId}/my-picture`]);
+  }
+  goMyVideo(){
+    this.router.navigate([`/homepage/${this.userId}/my-video`]);
+  }
+  goMyInfo(){
+    this.router.navigate([`/mine/my-info`]);
+  }
+  goMyDigg(){
+    this.router.navigate([`/mine/my-digg`]);
   }
   ngOnInit(){
-
+    !this.authSer.getUserid?this.router.navigate(['./login']):'';
   }
 }

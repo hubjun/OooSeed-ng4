@@ -180,7 +180,16 @@ export class ToolsService {
   showAlert(title:string,Tips:string,ok:string = '确定') {
 
   }
-
+  //弹出框定时删除
+  removeconfirm(duration?:number){
+    !duration?duration=1000:'';
+    setTimeout(()=>{
+      let a=document.getElementsByClassName('seed-confirm-bg')[0];
+      let b=document.getElementsByClassName('seed-body-Father')[0];
+      document.body.removeChild(a);
+      document.body.removeChild(b);
+    },duration)
+  }
   //弹出框确认
   presentConfirm(message:string,style?:number,confirmCallback?,cancelCallback?) {
     let confirmBg=document.createElement('div');

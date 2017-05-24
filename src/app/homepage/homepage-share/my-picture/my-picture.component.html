@@ -1,0 +1,30 @@
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content class="seed-person-picture share-picture">
+  <div class="seed-grid">
+    <div class="seed-grid-row">
+      <div class="seed-grid-col" col-4 *ngFor="let item of (gallery | async);let idx = index">
+        <a
+          routerLink="/homepage/{{userId}}/viewer/{{idx}}"
+          [lazyLoad]="item.fileName"
+          [defaultImage]="'/assets/images/user_default.png'"
+          [errorImage]="'/assets/images/user_default.png'"
+          [scrollTarget]="scrollContainer"
+        >
+        </a>
+      </div>
+    </div>
+  </div>
+  <go-down-app *ngIf="(gallery | async)?.length==30"></go-down-app>
+  <missing-default-content
+    *ngIf="(gallery | async)?.length==0"
+  ></missing-default-content>
+</seed-content>
+
+
+
+
+

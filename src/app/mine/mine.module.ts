@@ -24,6 +24,8 @@ import { MyNoticeComponent } from './my-massage/my-notice/my-notice.component';
 import { AtmeComponent } from './my-massage/atme/atme.component';
 import { DiggmeComponent } from './my-massage/diggme/diggme.component';
 import { AreaPickerComponent } from './my-edit-info/area-picker/area-picker.component';
+import { MyInfoComponent } from './my-content/my-info/my-info.component';
+import { MyDiggComponent } from './my-content/my-digg/my-digg.component';
 
 @NgModule({
   imports: [
@@ -53,6 +55,8 @@ import { AreaPickerComponent } from './my-edit-info/area-picker/area-picker.comp
     AtmeComponent,
     DiggmeComponent,
     AreaPickerComponent,
+    MyInfoComponent,
+    MyDiggComponent,
   ],
   providers:[
     LocalService,

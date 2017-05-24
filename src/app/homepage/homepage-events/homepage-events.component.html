@@ -11,7 +11,9 @@
       >
       <div class="events-list-clum">
         <div class="events-clum-top">
-          <span class="events-type">{{item.matchType }}</span>
+          <span class="events-type" *ngIf="item.matchTypeStr">
+            {{item.matchTypeStr}}
+          </span>
           <span class="events-resume">{{item.matchName}}</span>
         </div>
         <div class="events-clum-bottom">

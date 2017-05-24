@@ -12,7 +12,6 @@
            (click)="addDelete(personHeaderInfo.userId)"
       >
       <div class="person-Info">
-        <!--<div class="person-flex">-->
           <div class="person-image">
             <img
               [lazyLoad]="personHeaderInfo.iconUrl"
@@ -29,8 +28,9 @@
           </div>
           <div class="person-name">{{personHeaderInfo.nickName }}</div>
           <img
-            src="{{personHeaderInfo.authStatus==0?'../../../assets/icon/weirenzheng.png'
-            :personHeaderInfo.appImgUrl||'../../../assets/icon/yirenzheng.png'}}"
+            [lazyLoad]="personHeaderInfo.appImgtxtUrl"
+            [defaultImage]="'../../../assets/icon/weirenzheng.png'"
+            [errorImage]="'../../../assets/icon/weirenzheng.png'"
             class="person-check"
           >
           <div class="person-edit">
@@ -38,7 +38,6 @@
             <span *ngIf="personHeaderInfo.areaCityName&&personHeaderInfo.areaDistName">{{personHeaderInfo.areaCityName+'-'+personHeaderInfo.areaDistName}}</span>
             <span *ngIf="!personHeaderInfo.areaCityName||!personHeaderInfo.areaDistName">{{'暂无地址'}}</span>
           </div>
-        <!--</div>-->
       </div>
     </div>
     <div class="person-clum">

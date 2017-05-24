@@ -1,0 +1,19 @@
+<div class="seed-sliders-container" >
+  <div #container
+       class="seed-sliders-warp"
+       (swipeleft)="swipe($event.type)"
+       (swiperight)="swipe($event.type)"
+  >
+    <ng-content></ng-content>
+  </div>
+
+  <div class="seed-sliders-pagination" *ngIf="pager">
+
+    <button
+      *ngFor="let item of children;let i = index"
+      class="seed-sliders-pagination-bullet"
+      [ngClass]="{active:index == i}"
+    >
+    </button>
+  </div>
+</div>

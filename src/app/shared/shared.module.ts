@@ -37,6 +37,10 @@ import {Content} from "./components/toolbar/toolbar-content";
 import {GapBgComponent} from "./components/gap-bg/gap-bg.component";
 import { MomentModule } from "angular2-moment";
 import { SubHeaderComponent } from './components/sub-header/sub-header.component';
+import { ViewerComponent } from './components/viewer/viewer.component';
+import { SwiperContainerComponent } from './components/swiper/swiper-container/swiper-container.component';
+import { SwiperSlideComponent } from './components/swiper/swiper-slide/swiper-slide.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   imports: [
@@ -76,6 +80,10 @@ import { SubHeaderComponent } from './components/sub-header/sub-header.component
     GapBgComponent,
     SelectComponent,
     SubHeaderComponent,
+    ViewerComponent,
+    SwiperContainerComponent,
+    SwiperSlideComponent,
+    ModalComponent,
    ],
   exports: [
     CommonModule,
@@ -108,7 +116,11 @@ import { SubHeaderComponent } from './components/sub-header/sub-header.component
     FeedProfileComponent,
     CommentsComponent,
     GapBgComponent,
-    SelectComponent
+    SelectComponent,
+    ViewerComponent,
+    SwiperContainerComponent,
+    SwiperSlideComponent,
+    ModalComponent,
   ],
 
 

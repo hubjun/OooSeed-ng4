@@ -24,6 +24,8 @@ export class MineService {
   private atMeUrl = '/user/atMe';//@Me
   private diggMeUrl = '/user/diggMe';//赞我
   private areaUrl = '/dict/dictArea';//所有地区
+  private myInfoUrl = '/article/_guest/articleList';//我的咨询
+  private feedDiggUrl = '/user/feedDigg';//我的点赞
 
   constructor(
     public httpService: HttpService,
@@ -113,6 +115,16 @@ export class MineService {
   //获取地区数据
   getArea(){
     let url= this.areaUrl +'?langType=zh_CN';
+    return this.httpService.get(url).map((rs) => rs.json());
+  };
+  //获取地区数据
+  getMyInfo(userId:string, page: number, rows: number){
+    let url= this.myInfoUrl +`?userId=${userId}&publishStatus=1&page=${page}&rows=${rows}`;
+    return this.httpService.get(url).map((rs) => rs.json());
+  };
+  //获取地区数据
+  getMyDigg(userId:string, page: number, rows: number){
+    let url= this.feedDiggUrl +`?userId=${userId}&page=${page}&rows=${rows}`;
     return this.httpService.get(url).map((rs) => rs.json());
   };
 }

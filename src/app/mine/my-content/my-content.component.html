@@ -7,7 +7,7 @@
   <div class="mycontent">
     <div class="mine-new-team">
       <ul>
-        <li>
+        <li (click)="goMyFeeds()">
           <img src="../../../assets/icon/icon_myhome_post.png" class="mine-team-news">
           <div class="mine-team-clum">
             <span>我的帖子</span>
@@ -15,21 +15,21 @@
             <!--<div class="mine-news-number">99</div>-->
           </div>
         </li>
-        <li>
+        <li (click)="goMyInfo()">
           <img src="../../../assets/icon/icon_myhome_information.png" class="mine-team-news">
           <div class="mine-team-clum">
             <span>我的资讯</span>
             <img class="person-arrow" src="../../../assets/icon/arrow.png">
           </div>
         </li>
-        <li>
+        <li (click)="goMyAlbum()">
           <img src="../../../assets/icon/icon_myhome_photo.png" class="mine-team-news">
           <div class="mine-team-clum">
             <span>我的相册</span>
             <img class="person-arrow" src="../../../assets/icon/arrow.png">
           </div>
         </li>
-        <li>
+        <li (click)="goMyVideo()">
           <img src="../../../assets/icon/icon_myhome_video.png" class="mine-team-news">
           <div class="mine-team-clum">
             <span>我的视频</span>
@@ -38,10 +38,10 @@
             </div>
           </div>
         </li>
-        <li>
+        <li (click)="goMyDigg()">
           <img src="../../../assets/icon/icon_myhome_praise.png" class="mine-team-news">
           <div class="mine-team-clum">
-            <span>我的反馈</span>
+            <span>我的点赞</span>
             <img class="person-arrow" src="../../../assets/icon/arrow.png">
           </div>
         </li>

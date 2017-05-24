@@ -727,11 +727,12 @@ img.ng-lazyloaded {
 .share-picture {
   .seed-grid-col{
     padding: pxTorem(3px);
-    div {
+    a {
       background-repeat: no-repeat;
       background-size: cover;
       width: 100%;
       height: 0;
+      display: block;
       padding-top: 100%;
     }
   }

@@ -1,0 +1,8 @@
+<div class="seed-modal-wrapper"
+     [ngClass]="{'in': visibleAnimate}"
+     [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}"
+>
+  <div class="seed-modal-dialog">
+    <ng-content select=".seed-modal-content"></ng-content>
+  </div>
+</div>

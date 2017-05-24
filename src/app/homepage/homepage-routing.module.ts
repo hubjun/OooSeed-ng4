@@ -1,18 +1,12 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from "@angular/router";
 import {HomepageComponent} from "./homepage.component";
-import {HomepageShareComponent} from "./homepage-share/homepage-share.component";
-import {HomepageServiceComponent} from "./homepage-service/homepage-service.component";
-import {HomepageFansComponent} from "./homepage-fans/homepage-fans.component";
-import {HomepageEventsComponent} from "./homepage-events/homepage-events.component";
-import {MyVideoComponent} from "./my-video/my-video.component";
-import {MyPictureComponent} from "./my-picture/my-picture.component";
+import {EventsDetailComponent} from "./homepage-events/events-detail/events-detail.component";
+import {ViewerAlbumComponent} from "./homepage-share/viewer/viewer.component";
+import {MyVideoComponent} from "./homepage-share/my-video/my-video.component";
+import {MyPictureComponent} from "./homepage-share/my-picture/my-picture.component";
 import {MyCareFansComponent} from "./homepage-fans/my-care-fans/my-care-fans.component";
 import {MyFansComponent} from "./homepage-fans/my-fans/my-fans.component";
-import {EventsDetailComponent} from "./homepage-events/events-detail/events-detail.component";
-import {EventsDetailAnnounceComponent} from "./homepage-events/events-detail-announce/events-detail-announce.component";
-import {EventsDetailDetailComponent} from "app/homepage/homepage-events/events-detail-detail/events-detail-detail.component";
-import {EventsDetailRuleComponent} from "./homepage-events/events-detail-rule/events-detail-rule.component";
 
 const routes: Routes = [
   {
@@ -26,6 +20,10 @@ const routes: Routes = [
   {
     path:'my-picture',
     component:MyPictureComponent,
+  },
+  {
+    path:'viewer/:index',
+    component:ViewerAlbumComponent
   },
   {
     path:'my-care-fans',

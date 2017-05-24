@@ -1,0 +1,34 @@
+<div class="seed-sliders-container" >
+  <div #container
+      class="seed-sliders-warp"
+       *ngIf="list?.length > 0"
+       (swipeleft)="swipe($event.type)"
+       (swiperight)="swipe($event.type)"
+  >
+    <div class="seed-sliders-slide"
+         *ngFor="let item of list;let idx=index"
+
+    >
+        <div
+          class="seed-slider swipe-box"
+          [class.visible]="item.visible"
+          [class.hidden]="!item.visible"
+
+          [style.background]=" 'url('+ item.resUrl +') no-repeat center center/cover ' | safeStyle " >
+          <div class="seed-slides-title" >
+            <div >{{item.title }}</div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+  <div class="seed-sliders-pagination" *ngIf="pager">
+    <button
+      *ngFor="let item of list;let i = index"
+      class="seed-sliders-pagination-bullet"
+      [ngClass]="{active:index == i}"
+
+    >
+    </button>
+  </div>
+</div>

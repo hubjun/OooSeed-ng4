@@ -67,6 +67,7 @@ export class AreaPickerComponent implements OnInit {
         || this.chooseProv['title'] == '重庆市' 
         || this.chooseProv['title'] == '澳门特别行政区'
         || this.chooseProv['title'] == '香港'
+        || this.chooseProv['title'] == '台湾省'
         ) {
       this.ProvHascity = false;
       let data = {

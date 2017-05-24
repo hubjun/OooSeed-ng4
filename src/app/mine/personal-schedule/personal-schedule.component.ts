@@ -8,6 +8,7 @@ import {MineService} from '../mine.service'
 import {UserDataService} from '../../shared/tools/user-data.service'
 import {Subscription} from "rxjs";
 import {ToolsService} from '../../shared/tools/tools.service';
+import {AuthService} from '../../shared/service/auth.service';
 
 @Component({
   selector: 'my-content',
@@ -19,10 +20,14 @@ export class PersonalScheduleComponent implements OnInit {
   public TodySchedules:Array<any>=[];
   public LatelySchedules:Array<any>=[];
   public subscription: Subscription = new Subscription();
+  public todaycansee:boolean=false;
+  public latelycansee:boolean=false;
   constructor(
     public mineservice:MineService,
     private userservice:UserDataService,
-    public toolservice: ToolsService
+    public toolservice: ToolsService,
+    public authservice:AuthService,
+    public router: Router,
   ){
 
   }
@@ -40,8 +45,10 @@ export class PersonalScheduleComponent implements OnInit {
     this.subscription.add(
     this.mineservice.getUserNewestSchedule(params).subscribe((res) => {
       if (res.result === '0') {
+        console.log(res.data)
+        console.log(res.data.length)
+        res.data.length==0?this.todaycansee=true:this.todaycansee=false;
         this.TodySchedules = res.data;
-        console.log(res);
       }
     })
     )
@@ -53,13 +60,15 @@ export class PersonalScheduleComponent implements OnInit {
     this.mineservice.getUserLatestSchedule().subscribe((res) => {
       if (res.result === '0') {
         this.LatelySchedules = res.data;
+        console.log(res.data)
+        res.data.length==0?this.latelycansee=true:this.latelycansee=false;
         this.toolservice.hideLoading();
-        console.log(res);
       }
     })
     )
   }
   ngOnInit(){
+    !this.authservice.getUserid()?this.router.navigate(['./login']):'';
     this.getUserLatestSchedule();
     this.getUserNewestSchedule();
   }

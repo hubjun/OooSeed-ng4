@@ -1,7 +1,4 @@
 @import "../../../shared/styles/theming.scss";
-.spell-detail-inner .seed-scroll-content{
-  margin-top:0;
-}
 .spellDetailPageBody1 {
   background: color($h5, c9);
   width: 100%;
@@ -480,3 +477,43 @@
     background:color($h5,c8);
   }
 }
+
+.myLaunchSpellManager{
+  position: fixed;
+  bottom:0;
+  width:100%;
+  padding:pxTorem(20) 0;
+  border-top:1px solid color($h5,c8);
+  background:color($h5,c10);
+  div{
+    width:30%;
+    height:pxTorem(90);
+    line-height: pxTorem(90);
+    float:left;
+    border-radius: pxTorem(5);
+    text-align: center;
+    margin-left:2.5%;
+  }
+  .stopapply{
+    color:color($h5,c11);
+    @include font-dpr(30px);
+    border:1px solid color($h5,c11);
+    mask-border: 1px solid color($h5,c11);
+    box-sizing: border-box;
+  }
+  .giveUpSpell{
+    color:color($h5,c1);
+    @include font-dpr(30px);
+    border:1px solid color($h5,c1);
+    mask-border: 1px solid color($h5,c11);
+    box-sizing: border-box;
+  }
+  .LaunghAgain{
+    color:color($h5,c10);
+    @include font-dpr(30px);
+    background:color($h5,c1);
+  }
+}
+
+
+
