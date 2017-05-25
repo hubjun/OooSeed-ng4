@@ -24,7 +24,7 @@ export class SetNicknameComponent implements OnInit {
     private router: 　Router
   ) {
     this.nickNameForm = this.formBuider.group({
-      'nickName': ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), ValidationService.nickNameValidator]]
+      'nickName': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20), ValidationService.nickNameValidator]]
     })
   }
 

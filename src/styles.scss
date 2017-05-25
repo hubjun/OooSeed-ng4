@@ -5,6 +5,9 @@
 /*********************
 *全局样式格式化开始
 ********************/
+*,body, html{
+  box-sizing: border-box;
+}
 html{
   font-size: 62.5%;
   text-size-adjust: 100%;

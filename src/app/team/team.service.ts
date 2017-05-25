@@ -28,6 +28,7 @@ export class TeamService {
     orgUser: null,
     basicInfo: null
   }
+  public currentChannel: string = 'teamChannel';
   constructor(
     private httpService: HttpService,
     private toolsService: ToolsService

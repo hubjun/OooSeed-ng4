@@ -5,12 +5,30 @@
 </seed-toolbar-header>
 <seed-content class="my-spell-inner">
   <div class="my-spell-clum">
-    <div class="my-launch-spell my-spell-current" (click)="myLaunch()" [class.my-spell-current]="classTag=='LaunchClass'" [routerLink]="['my-launch']">
+    <div
+      class="my-launch-spell my-spell-current"
+      (click)="myLaunch()"
+      [class.my-spell-current]="classTag=='LaunchClass'"
+    >
       <span>我发起的</span>
     </div>
-    <div class="my-activities-spell" (click)="myActivities()" [class.my-spell-current]="classTag=='activitiesClass'" [routerLink]="['my-join']">
+    <div
+      class="my-activities-spell"
+      (click)="myActivities()"
+      [class.my-spell-current]="classTag=='activitiesClass'"
+    >
       <span>我参与的</span>
     </div>
   </div>
-  <router-outlet></router-outlet>
+  <div class="switch-spell" [ngSwitch]="classTag">
+    <div class="my-launch" *ngSwitchCase="'LaunchClass'">
+      <my-launch-spell></my-launch-spell>
+    </div>
+    <div class="my-join" *ngSwitchCase="'activitiesClass'">
+      <my-join-spell></my-join-spell>
+    </div>
+  </div>
 </seed-content>
+
+
+

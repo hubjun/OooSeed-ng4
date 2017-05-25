@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'my-launch',
+  selector: 'my-launch-spell',
   templateUrl: './my-launch.component.html',
   styleUrls: ['./my-launch.component.scss'],
 })

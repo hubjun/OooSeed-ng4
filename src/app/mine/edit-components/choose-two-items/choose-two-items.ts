@@ -14,7 +14,7 @@ import { Component,Input,Output,EventEmitter} from '@angular/core';
         <div class="change-down">
           <p>(可选2个)</p>
             <ul>
-              <li *ngFor="let item of items;let i=index;"id='{{item.id}}'(click)="chooseit(i,item.id)">{{item.title}}</li>
+              <li *ngFor="let item of items.alldata;let i=index;"id='{{item.id}}'[ngClass]="{'active':haveclass(item.id)}" (click)="chooseit(i,item.id)">{{item.title}}</li>
             </ul>
         </div>
       </div>
@@ -24,6 +24,7 @@ import { Component,Input,Output,EventEmitter} from '@angular/core';
 })
 
 export class ChooseItemsComponent {
+  public selectarr:any;
   public choosearr:any={
     data:[],
     result:'',
@@ -63,6 +64,16 @@ export class ChooseItemsComponent {
   chooseout(i){
     this.choosearr.result=i;
     this.chooseindex.emit(this.choosearr);
+  }
+  haveclass(id){
+    for(let i=0;i<this.selectarr.length;i++){
+      if(id==this.selectarr[i].lableId){
+        return true;
+      }
+    }
+  }
+  ngOnInit() {
+    this.selectarr=this.items.selected;
   }
 }
 

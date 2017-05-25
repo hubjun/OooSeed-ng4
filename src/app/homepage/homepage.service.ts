@@ -8,6 +8,7 @@ import {FeedRespVO, UserAlbumFileVO} from "../domain/interface.model";
 @Injectable()
 export class HomepageService {
   subscription: Subscription = new Subscription();
+  public checkClass='share';
 
   public PERSON_INFO='/user/_guest/userInfo';//查询个人信息
   public PERSON_PICTURE_VIDEO='/user/_guest/albumFile';//个人中心相册及视频
@@ -24,7 +25,7 @@ export class HomepageService {
   public PERSON_EVENTS_DETAIL_DETAIL='/_guest/matchInfo';//赛事详情
   public PERSON_EVENTS_DETAIL_HEADER='/_guest/matchInfoHead';//赛事详情头部信息
   private GET_USER_FEED_URL = '/feed/feed';
-  
+
 
   private _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
   private _gallery:BehaviorSubject<UserAlbumFileVO[]> = new BehaviorSubject<UserAlbumFileVO[]>([]);
@@ -109,7 +110,12 @@ export class HomepageService {
   }
   //赛事
   getEvents(obj){
-    let url=this.PERSON_EVENTS+'?userId='+obj+'&statusList=4,5,6,7';
+    let url;
+    if(obj=='all'){
+      url=this.PERSON_EVENTS+'?statusList=3,4,5,6';
+    }else{
+      url=this.PERSON_EVENTS+'?userId='+obj+'&statusList=3,4,5,6';
+    }
     return this.httpService.get(url).map((res)=>res.json());
   }
   //赛事公告

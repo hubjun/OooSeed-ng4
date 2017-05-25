@@ -3,7 +3,8 @@
     <div *ngFor="let item of object">
       <div class="detail-info-h3">
         <p>{{item.title}}</p>
-        <span>{{item.createTime|amDateFormat:'YYYY-MM-DD'}}</span>
+        <span class="let-top" *ngIf="item.top==1">置顶</span>
+        <span class="announce-time">{{item.createTime|amDateFormat:'YYYY-MM-DD'}}</span>
       </div>
       <div class="evnet-detail-info" [innerHtml]="item.content">
 

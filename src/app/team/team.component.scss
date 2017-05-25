@@ -1,40 +1,73 @@
 @import '../shared/styles/theming.scss';
 team {
+  .avatar-wrap {
+    position: relative;
+    padding-bottom: pxTorem(30);
+    .avatar-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0; //  filter: blur(5px);
+      width: auto;
+      height: auto;
+      background-size: cover;
+    }
+    .filter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: .4;
+      background-color: #000;
+    }
+    .avatar-content {
+      position: relative;
+      padding-top: pxTorem(83);
+      padding-bottom: pxTorem(38);
+      text-align: center;
+      .avatar {
+        width: pxTorem(146);
+        height: pxTorem(146);
+        margin: auto;
+        border-radius: 50%;
+        background-color: #ccc;
+      }
+      h1 {
+        margin: pxTorem(20) 0;
+        @include font-dpr(34px);
+        color: color($h5, c10);
+      }
+      p {
+        margin-top: pxTorem(20);
+        @include font-dpr(26px);
+        color: color($h5, c7);
+      }
+    }
+  }
   nav {
     position: relative;
     display: flex;
+    height: pxTorem(100);
+    line-height: pxTorem(100);
     margin-top: -20px;
+    text-align: center;
     border-top-left-radius: pxTorem(30);
     border-top-right-radius: pxTorem(30);
     background-color: #fff;
     a {
       flex: 1;
-      text-align: center;
       span {
-        height: pxTorem(100);
-        line-height: pxTorem(100);
-        border: none;
+        display: inline-block;
+        height: 100%;
         @include font-dpr(28px);
         color: color($h5, c3);
-        background-color: #fff;
-        &:first-of-type {
-          border-radius: 0;
-          border-top-left-radius: pxTorem(30);
-        }
-        &:last-of-type {
-          border-radius: 0;
-          border-top-right-radius: pxTorem(30);
-        }
-        span {
-          display: inline-block;
-          height: 100%;
-        }
       }
-    }
-    .active {
-      border-bottom: 2px solid color($h5, c1);
-      span {}
-      color: color($h5, c1);
+      .active {
+        border-bottom: 2px solid color($h5, c1);
+        color: color($h5, c1);
+      }
     }
   }
 }

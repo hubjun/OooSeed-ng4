@@ -20,8 +20,8 @@ export class EventsDetailRuleComponent implements OnInit {
   getRule(obj){
     this.subscription.add(
       this.homepageService.getRule(obj).subscribe(res=>{
-        if(res.result==0){
-          this.object=res.msg;
+        if(res.result==0&&res.data.constitution){
+          this.object=res.data.constitution;
         }else{
           this.object={mark:'无'};
         }

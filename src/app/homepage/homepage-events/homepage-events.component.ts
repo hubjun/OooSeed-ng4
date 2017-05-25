@@ -14,7 +14,6 @@ export class HomepageEventsComponent implements OnInit {
   public applying='../../../assets/icon/event_ongoing.png';
   public applyplay='../../../assets/icon/event_ongo.png';
   public applyend='../../../assets/icon/event_end.png';
-  public applyfinshed='../../../assets/icon/event_finished.png';
   public beforeapply='../../../assets/icon/event_preheating.png';
   public nowdate:number;
   public eventList=[];
@@ -53,7 +52,12 @@ export class HomepageEventsComponent implements OnInit {
   }
   ngOnInit() {
     this.nowdate=new Date().getTime();
-    this.events(this.userid);
+    console.log(this.userid,localStorage.getItem('userid'));
+    if(this.userid==localStorage.getItem('userid')){
+      this.events(this.userid);
+    }else{
+      this.events('all');
+    }
   }
 
   ngOnDestroy() {

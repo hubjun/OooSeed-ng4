@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LocalService} from "../../local/local.service";
 import {ToolsService} from "../../shared/tools/tools.service";
+import {MineService} from "../mine.service";
 
 @Component({
   selector: 'seed-my-spell',
@@ -8,21 +8,25 @@ import {ToolsService} from "../../shared/tools/tools.service";
   styleUrls: ['./my-spell.component.scss']
 })
 export class MySpellComponent implements OnInit {
-  public classTag='LaunchClass';
+  public classTag:string;
+
   constructor(
-    public localService:LocalService,
     public toolsService: ToolsService,
+    public mineService:MineService
   ) { }
 
   myLaunch(){
     this.classTag='LaunchClass';
+    this.mineService.saveClassTag='LaunchClass';
   }
   myActivities(){
     this.classTag='activitiesClass';
+    this.mineService.saveClassTag='activitiesClass';
   }
 
   ngOnInit() {
-    this.toolsService.setTitle('我的拼球')
+    this.toolsService.setTitle('我的拼球');
+    this.classTag=this.mineService.saveClassTag;
   }
 
 

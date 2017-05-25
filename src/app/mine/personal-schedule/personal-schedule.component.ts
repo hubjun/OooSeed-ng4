@@ -45,8 +45,6 @@ export class PersonalScheduleComponent implements OnInit {
     this.subscription.add(
     this.mineservice.getUserNewestSchedule(params).subscribe((res) => {
       if (res.result === '0') {
-        console.log(res.data)
-        console.log(res.data.length)
         res.data.length==0?this.todaycansee=true:this.todaycansee=false;
         this.TodySchedules = res.data;
       }
@@ -60,7 +58,6 @@ export class PersonalScheduleComponent implements OnInit {
     this.mineservice.getUserLatestSchedule().subscribe((res) => {
       if (res.result === '0') {
         this.LatelySchedules = res.data;
-        console.log(res.data)
         res.data.length==0?this.latelycansee=true:this.latelycansee=false;
         this.toolservice.hideLoading();
       }

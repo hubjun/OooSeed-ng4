@@ -1,5 +1,39 @@
-<seed-content class="gray-background no-header">
-  <team-card></team-card>
-  <team-nav></team-nav>
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content class="gray-background">
+  <div class="avatar-wrap">
+    <div class="avatar-background" [style.background]=" 'url('+ basicInfo?.iconFileUrl+') no-repeat center center/cover ' | safeStyle "
+      *ngIf="basicInfo?.iconFileUrl"></div>
+    <div class="avatar-background" [style.background]=" 'url('+ defaultTeamIcon+') no-repeat center center/cover ' | safeStyle "
+      *ngIf="!basicInfo?.iconFileUrl"></div>
+    <div class="filter"></div>
+    <div class="avatar-content">
+      <img [src]="basicInfo?.iconFileUrl||defaultTeamIcon" alt="" class="avatar">
+      <h1>{{basicInfo?.name}}</h1>
+      <p>
+        <span>{{basicInfo?.areaCityName}}</span>
+        <span>{{basicInfo?.areaDistName}}</span>
+      </p>
+    </div>
+  </div>
+  <nav (click)="switchChannel($event)">
+    <a>
+      <span data-channel="teamChannel" [class.active]="currentChannel==='teamChannel'">球队</span>
+    </a>
+    <a>
+      <span data-channel="scheduleChannel" [class.active]="currentChannel==='scheduleChannel'">赛程</span>
+    </a>
+    <a>
+      <span data-channel="fansChannel" [class.active]="currentChannel==='fansChannel'">粉丝</span>
+    </a>
+  </nav>
+  <div id="team-channel" [ngSwitch]="currentChannel">
+    <team-channel *ngSwitchCase="'teamChannel'"></team-channel>
+    <schedule-channel *ngSwitchCase="'scheduleChannel'"></schedule-channel>
+    <fans-channel *ngSwitchCase="'fansChannel'"></fans-channel>
+  </div>
   <router-outlet></router-outlet>
 </seed-content>

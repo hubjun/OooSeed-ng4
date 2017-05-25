@@ -5,7 +5,7 @@ import {Subscription} from "rxjs/Subscription";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'seed-my-join',
+  selector: 'my-join-spell',
   templateUrl: './my-join.component.html',
   styleUrls: ['./my-join.component.scss'],
 })

@@ -13,25 +13,6 @@ const routes: Routes = [
   {
     path: '',
     component: TeamComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'info',
-        pathMatch: 'full'
-      },
-      {
-        path: 'info',
-        component: TeamChannelComponent
-      },
-      {
-        path: 'schedule',
-        component: ScheduleChannelComponent
-      },
-      {
-        path: 'fans',
-        component: FansChannelComponent
-      }
-    ]
   },
   {
     path: 'players',

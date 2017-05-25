@@ -7,6 +7,7 @@ import {UserShowTokenVO} from "../domain/interface.model";
 @Injectable()
 export class MineService {
   subscription: Subscription = new Subscription();
+  public saveClassTag:string='LaunchClass';
 
   private Login_Out='/user/_logout';
   private Search_User_Info='/user/_guest/userInfo';
@@ -26,6 +27,7 @@ export class MineService {
   private areaUrl = '/dict/dictArea';//所有地区
   private myInfoUrl = '/article/_guest/articleList';//我的咨询
   private feedDiggUrl = '/user/feedDigg';//我的点赞
+  private feedUrl = '/feed/feed';//我的帖子
 
   constructor(
     public httpService: HttpService,
@@ -117,14 +119,19 @@ export class MineService {
     let url= this.areaUrl +'?langType=zh_CN';
     return this.httpService.get(url).map((rs) => rs.json());
   };
-  //获取地区数据
+  //获取我的咨询
   getMyInfo(userId:string, page: number, rows: number){
     let url= this.myInfoUrl +`?userId=${userId}&publishStatus=1&page=${page}&rows=${rows}`;
     return this.httpService.get(url).map((rs) => rs.json());
   };
-  //获取地区数据
+  //获取我的点赞
   getMyDigg(userId:string, page: number, rows: number){
     let url= this.feedDiggUrl +`?userId=${userId}&page=${page}&rows=${rows}`;
+    return this.httpService.get(url).map((rs) => rs.json());
+  };
+  //获取我的帖子
+  getMyFeed(userId:string, page: number, rows: number){
+    let url= this.feedUrl +`?userId=${userId}&page=${page}&rows=${rows}`;
     return this.httpService.get(url).map((rs) => rs.json());
   };
 }

@@ -174,11 +174,14 @@ export class LocalService {
         function onComplete(result){
           that.toolsService.hideLoading();
           that.location.position=result.position;
-         Object.assign(that.location.autoCity,{
-           "position":result.position
-         })
+          let autoCity=that.location.autoCity;
+          if(autoCity!=null){
+              Object.assign(autoCity,{
+             "position":result.position
+           })
+          }
           that.currentCityName.next(that.location.autoCity.title);
-          resolve(that.location.autoCity);
+          resolve(autoCity);
         }
         function onError(error){
            that.toolsService.hideLoading();
@@ -195,10 +198,12 @@ export class LocalService {
               that.getAreaByParentPostCode(result.adcode).then((autoCity:any)=>{
                that.location.autoCity=autoCity;
                that.location.currentCity=autoCity;
-               Object.assign(that.location.autoCity,{
+               if(autoCity!=null){
+                  Object.assign(autoCity,{
                  "position":result.position
                })
-              that.autoCity.next(that.location.autoCity);
+              }
+              that.autoCity.next(autoCity);
               that.currentCityName.next(autoCity.title);
               });
             }

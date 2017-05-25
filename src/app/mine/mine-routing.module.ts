@@ -22,6 +22,7 @@ import {DiggmeComponent} from './my-massage/diggme/diggme.component';
 import {AreaPickerComponent} from './my-edit-info/area-picker/area-picker.component';
 import {MyInfoComponent} from './my-content/my-info/my-info.component';
 import {MyDiggComponent} from './my-content/my-digg/my-digg.component';
+import {MyFeedComponent} from './my-content/my-feed/my-feed.component';
 
 
 const routes:Routes = [
@@ -76,18 +77,18 @@ const routes:Routes = [
     canActivate:[AuthGuardService],
     canActivateChild:[AuthGuardService],
     children:[
-      {
-        path:'',
-        component:MyLaunchComponent
-      },
-      {
-        path:'my-launch',
-        component:MyLaunchComponent
-      },
-      {
-        path:'my-join',
-        component:MyJoinComponent,
-      },
+      // {
+      //   path:'',
+      //   component:MyLaunchComponent
+      // },
+      // {
+      //   path:'my-launch',
+      //   component:MyLaunchComponent
+      // },
+      // {
+      //   path:'my-join',
+      //   component:MyJoinComponent,
+      // },
       {
         path:'my-content',
         component:MyContentComponent,
@@ -130,6 +131,11 @@ const routes:Routes = [
   {
     path:'my-digg',
     component:MyDiggComponent,
+    canActivate:[AuthGuardService],
+  },
+  {
+    path:'my-feed',
+    component:MyFeedComponent,
     canActivate:[AuthGuardService],
   },
 ];

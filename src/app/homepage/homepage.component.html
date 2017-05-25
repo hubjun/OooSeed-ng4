@@ -4,7 +4,7 @@
   <seed-toolbar-menu></seed-toolbar-menu>
 </seed-toolbar-header>
 <seed-content class="s eed-person-page">
-  <div class="seed-person-homepage"  *ngIf="personHeaderInfo">
+  <div class="seed-person-homepage">
     <div class="person-header">
       <img src="{{isFollowed==0?uncare:isFollowedMe==0?cared:eachcare}}"
            class="person-icon"
@@ -14,29 +14,35 @@
       <div class="person-Info">
           <div class="person-image">
             <img
-              [lazyLoad]="personHeaderInfo.iconUrl"
+              [lazyLoad]="personHeaderInfo?.iconUrl"
               [defaultImage]="'/assets/images/placeholder_head_pic.png'"
               [errorImage]="'/assets/images/placeholder_head_pic.png'"
               class="person-img"
             >
             <img
-              src="../../assets/images/{{personHeaderInfo.sex==1?'boy':
-              (personHeaderInfo.sex==2?'girl':' ')}}.png"
+              src="../../assets/images/{{personHeaderInfo?.sex==1?'boy':
+              (personHeaderInfo?.sex==2?'girl':' ')}}.png"
               class="little-icon"
-              *ngIf="personHeaderInfo.sex==1||personHeaderInfo.sex==2"
+              *ngIf="personHeaderInfo?.sex==1||personHeaderInfo?.sex==2"
             >
           </div>
-          <div class="person-name">{{personHeaderInfo.nickName }}</div>
+          <div class="person-name">{{personHeaderInfo?.nickName }}</div>
           <img
-            [lazyLoad]="personHeaderInfo.appImgtxtUrl"
+            [lazyLoad]="personHeaderInfo?.appImgtxtUrl"
             [defaultImage]="'../../../assets/icon/weirenzheng.png'"
             [errorImage]="'../../../assets/icon/weirenzheng.png'"
             class="person-check"
           >
           <div class="person-edit">
             <img src="../../assets/icon/address_white_xq.png">
-            <span *ngIf="personHeaderInfo.areaCityName&&personHeaderInfo.areaDistName">{{personHeaderInfo.areaCityName+'-'+personHeaderInfo.areaDistName}}</span>
-            <span *ngIf="!personHeaderInfo.areaCityName||!personHeaderInfo.areaDistName">{{'暂无地址'}}</span>
+            <span
+              *ngIf="personHeaderInfo?.areaCityName&&personHeaderInfo?.areaDistName">
+              {{personHeaderInfo?.areaCityName+'-'+personHeaderInfo?.areaDistName}}
+            </span>
+            <span
+              *ngIf="!personHeaderInfo?.areaCityName||!personHeaderInfo?.areaDistName">
+              {{'暂无地址'}}
+            </span>
           </div>
       </div>
     </div>

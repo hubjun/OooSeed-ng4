@@ -12,7 +12,15 @@
     box-sizing: border-box;
     height:pxTorem(176);
     overflow: hidden;
+    position: relative;
     border-bottom: 1px solid color($h5,c9);
+    .tabbox{
+      position: absolute;
+      top:0;
+      right: 0;
+      height: 100%;
+      width: 50%;
+    }
     .person-info-img{
       float:left;
       .person-header-img{

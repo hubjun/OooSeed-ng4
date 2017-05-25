@@ -143,7 +143,7 @@
         color:color($h5,c2);
         float:left;
       }
-      span{
+      .announce-time{
         height:pxTorem(40);
         line-height: pxTorem(40);
         float:right;
@@ -171,6 +171,21 @@
    }
   .detail-info-h3{
     padding:0 pxTorem(20);
+    .let-top{
+      display: inline-block;
+      float:left;
+      margin-left:pxTorem(15);
+      height:pxTorem(25);
+      @include font-dpr(16px);
+      border:1px solid #E30012;
+      border-radius: pxTorem(5);
+      text-align: center;
+      padding:0 pxTorem(10);
+      box-sizing: content-box;
+      color:#E30012;
+      margin-top:pxTorem(5);
+      line-height: pxTorem(25);
+    }
   }
   .detail-announces:after{
     content: ' ';

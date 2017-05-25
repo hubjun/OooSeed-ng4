@@ -21,7 +21,7 @@ export class MyContentComponent implements OnInit {
     this.userId = this.authSer.getUserid();
   }
   goMyFeeds(){
-    this.router.navigate(['/home/feed']);
+    this.router.navigate(['/mine/my-feed']);
   }
   goMyAlbum(){
     this.router.navigate([`/homepage/${this.userId}/my-picture`]);

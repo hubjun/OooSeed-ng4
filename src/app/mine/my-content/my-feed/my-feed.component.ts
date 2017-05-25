@@ -8,10 +8,10 @@ import { FeedRespVO } from '../../../domain/interface.model';
 
 @Component({
   selector: 'my-digg',
-  templateUrl: './my-digg.component.html',
-  styleUrls: ['./my-digg.component.scss']
+  templateUrl: './my-feed.component.html',
+  styleUrls: ['./my-feed.component.scss']
 })
-export class MyDiggComponent implements OnInit {
+export class MyFeedComponent implements OnInit {
   // feeds: any;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   private _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
@@ -28,7 +28,7 @@ export class MyDiggComponent implements OnInit {
   init() {
     this.tools.showLoading();
     let userId = this.authSer.getUserid();
-    this.mineSer.getMyDigg(userId, 1, 10)
+    this.mineSer.getMyFeed(userId, 1, 10)
       .takeUntil(this.ngUnsubscribe)
       .subscribe(res => {
         this.tools.hideLoading();

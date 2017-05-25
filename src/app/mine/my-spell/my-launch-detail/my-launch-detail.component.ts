@@ -46,10 +46,8 @@ export class MyLaunchDetailComponent implements OnInit {
           if(object.data.phone){
             this.phoneCheck=object.data.phone.slice(0,3)+'***'+
               object.data.phone.slice(-3,object.data.phone.length);
-            if(localStorage.getItem('userid')){
-              this.phoneCheck=object.data.phone;
-            }
           }
+
           if(object.data.days==0||!object.data.days){
             this.timeDate='yes';
             let timeNow=new Date().getTime();

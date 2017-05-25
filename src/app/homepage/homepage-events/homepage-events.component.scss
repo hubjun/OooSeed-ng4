@@ -60,11 +60,20 @@
     }
   }
 }
-//.seed-events:before{
-//  content: '';
-//  display: block;
-//  width:100%;
-//  height:pxTorem(15);
-//  background:color($h5,c9);
-//}
+.contentLook{
+  width:100%;
+  height:pxTorem(90);
+  margin-bottom:pxTorem(40);
+  .lookMore{
+    box-sizing: content-box;
+    margin:pxTorem(40) pxTorem(30);
+    border: 2px solid #01a87c;
+    border-radius: pxTorem(5);
+    height:pxTorem(90);
+    line-height: pxTorem(90);
+    @include font-dpr(30px);
+    color: color($h5,c1);
+    text-align: center;
+  }
+}
 

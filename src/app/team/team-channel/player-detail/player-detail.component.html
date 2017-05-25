@@ -1,4 +1,9 @@
-<seed-content class="gray-background no-header">
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
+<seed-content class="gray-background">
   <div class="player-card">
     <img [src]="player.userIconUrl||defaultUserIcon" alt="" class="avatar">
     <strong>{{player.userName}}</strong>
@@ -8,7 +13,7 @@
   </div>
   <ul class="team-grid-list list">
     <li>
-      <span *ngIf="user.weight">{{user.weight?user.weight:'0'}}</span>
+      <span>{{user.weight?user.weight:'0'}}</span>
       <em>体重(kg)</em>
     </li>
     <li>
@@ -24,7 +29,7 @@
       <em>位置</em>
     </li>
     <li>
-      <span class="number-text">{{player.playerNumberName?player.playerNumberName:'无'}}</span>
+      <span [class.number-text]="player.playerNumberName">{{player.playerNumberName?player.playerNumberName:'无'}}</span>
       <em>号码</em>
     </li>
   </ul>

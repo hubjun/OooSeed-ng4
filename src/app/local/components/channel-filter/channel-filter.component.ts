@@ -70,7 +70,7 @@ export class ChannelFilterComponent implements OnInit {
   ) {
     this.subscription.add(
       this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: any) => {
-        this.localService.currentLocalChannel=event.urlAfterRedirects;
+        this.localService.currentLocalChannel = event.urlAfterRedirects;
         let autoCity = this.localService.location.autoCity;
         let currentCity = this.localService.location.currentCity
         if (autoCity != null) {
@@ -143,32 +143,7 @@ export class ChannelFilterComponent implements OnInit {
       this.localService.filterResult.next(this.filterResult);//触发栏目数据加载事件
     }
   }
-  /**
-      * 处理按城市排序
-      *@param(city):当前城市
-      */
-  // handlerSortByCity(city) {
-  //   let areaList = city.areaList || city.dictTreeNodeList;
-  //   //若所选城市为定位城市且没有添加附近
-  //   if (city.areaId === this.localService.location.autoCity.areaId && areaList[1].id !== 2) {
-  //     let nearby = {
-  //       "id": 2,
-  //       "title": "附近",
-  //       "areaId": null
-  //     }
-  //     areaList.splice(1, 0, nearby);
-  //   }
-  //   let rangTypeResult = this.filterResult.rangType;
-  //   rangTypeResult.index = 0;
-  //   rangTypeResult.text = '全城';
-  //   rangTypeResult.areaId = city.areaId;
-  //   rangTypeResult.position = this.localService.location.position;
 
-  //   // this.filterType.rangType = areaList;
-  //   this.localService.location.currentCity = city;
-  //   this.localService.filter.areaResult = rangTypeResult;
-  //   this.localService.filterResult.next(this.filterResult);
-  // }
   /**
    * 切换到定位城市提示
    * @param(city):当前城市
@@ -181,7 +156,7 @@ export class ChannelFilterComponent implements OnInit {
       let that = this;
       this.toolsService.presentConfirm(`定位到您在${autoCity.title},要切换至${autoCity.title}吗？`, 1, function () {
         that.localService.location.currentCity = autoCity;
-        that.localService.filter.areaResult=null;
+        that.localService.filter.areaResult = null;
         that.setLocationCity(autoCity);
         that.localService.currentCityName.next(currentCity.title);//更改同城标题
       }, function () {
@@ -315,6 +290,7 @@ export class ChannelFilterComponent implements OnInit {
           userTypes.unshift(whole);
           this.filterType.userType = userTypes;
           this.filterTypeCache.userType = userTypes;
+          this.filterType.sportType = userTypes;
         }
       })
     )
@@ -345,21 +321,7 @@ export class ChannelFilterComponent implements OnInit {
           filterType.sportType = this.filterTypeCache.userType;
         }
         else {
-          this.subscription.add(
-            this.localService.getAuthCate().subscribe((res) => {
-              if (res.result === '0') {
-                let userTypes: any = res.data;
-                let whole = {
-                  "ipCateId": null,
-                  "cateName": "全部"
-                }
-                userTypes.unshift(whole);
-                this.filterType.userType = userTypes;
-                this.filterTypeCache.userType = userTypes;
-                filterType.sportType = userTypes;
-              }
-            })
-          )
+          this.getUserType();
         }
       }
     }

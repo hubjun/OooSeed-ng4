@@ -6,7 +6,7 @@
               [defaultImage]="'/assets/icon/team_default_badgebig.png'"
               [errorImage]="'/assets/icon/team_default_badgebig.png'" 
               [scrollTarget]="scrollContainer"/>
-      <i class="identity team">球队</i>
+      <!--<i class="identity team">球队</i>-->
       <span class="nickname">{{member.orgInfoVO.orgName}}</span>
     </div>
     <div class="content" *ngIf="!member.orgInfoVO" routerLink="/homepage/{{member.userId}}">
@@ -15,7 +15,7 @@
               [defaultImage]="'/assets/icon/concern_default_head.png'"
               [errorImage]="'/assets/icon/concern_default_head.png'" 
               [scrollTarget]="scrollContainer"/>
-      <i class="identity user">个人</i>
+      <!--<i class="identity user">个人</i>-->
       <span class="nickname">{{member.nickName}}</span>
     </div>
   </li>

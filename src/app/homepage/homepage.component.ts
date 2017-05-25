@@ -11,7 +11,7 @@ import {AuthService} from "../shared/service/auth.service";
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  public classTag:string='share';
+  public classTag:string;
   public personHeaderInfo:any;
   public uncare='../../assets/images/user_states_1.png';
   public cared='../../assets/images/user_states_2.png';
@@ -33,15 +33,19 @@ export class HomepageComponent implements OnInit {
 
   share(){
     this.classTag='share';
+    this.homepageService.checkClass='share';
   }
   events(){
     this.classTag='events';
+    this.homepageService.checkClass='events';
   }
   fans(){
     this.classTag='fans';
+    this.homepageService.checkClass='fans';
   }
   service(){
     this.classTag='service';
+    this.homepageService.checkClass='service';
   }
 
   addCare(obj){
@@ -87,18 +91,17 @@ export class HomepageComponent implements OnInit {
 
     this._activatedRoute.params
       .subscribe((params:Params) => {
-
         this.isFollowedMe=null;
         this.isFollowed = null;
         this.userId='';
         this.localUserId = '';
         this.classTag = 'share';
-        this.personHeaderInfo = '';
 
       this.userId=params['userId'];
       this.getInfo(params['userId']);
       });
 
+    this.classTag=this.homepageService.checkClass;
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 

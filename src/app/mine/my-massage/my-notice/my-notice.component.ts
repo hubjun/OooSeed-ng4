@@ -14,7 +14,7 @@ export class MyNoticeComponent implements OnInit {
   mesObj: any;
   tempDate: any;
   subscription: Subscription = new Subscription();
-
+  scrollContainer:any;
   constructor(
     private userService: MineService,
     private tools: ToolsService
@@ -58,6 +58,7 @@ export class MyNoticeComponent implements OnInit {
   };
 
   ngOnInit(){
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
     this.getCommentMe();
   };
 
