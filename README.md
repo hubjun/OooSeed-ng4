@@ -5,7 +5,7 @@
 ```
   >angular-cli会自动启用TreeShaking（摇树）特性，简而言之，就是把用不到的包全部剔除掉，就像从树上把枯叶子摇下来一样，加上--aot参数是让angular-cli启动预编译特性。	
 
--服务端启用GZIP
+- 服务端启用GZIP
 ```javascript
 	<Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
