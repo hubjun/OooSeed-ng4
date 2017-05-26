@@ -1,3 +1,24 @@
+### serve
+- 编辑/打包
+```javascript
+  ng build --prod --aot
+```
+  >angular-cli会自动启用TreeShaking（摇树）特性，简而言之，就是把用不到的包全部剔除掉，就像从树上把枯叶子摇下来一样，加上--aot参数是让angular-cli启动预编译特性。	
+
+-服务端启用GZIP
+```javascript
+	<Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" 
+			   compression="on"
+			   compressionMinSize="2048"
+			   noCompressionUserAgents="gozilla, traviata"
+			   compressableMimeType="text/html,text/xml,text/plain,text/css,
+					text/javascript,text/json,application/x-javascript,
+					application/javascript,application/json"/>
+```
+* 参考链接：https://my.oschina.net/mumu/blog/830742
+
 ### 目录解析
 - app
 app目录主功能模块分别是
