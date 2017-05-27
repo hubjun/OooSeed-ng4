@@ -22,7 +22,7 @@
         <div class="team-location">
           <i></i>
           <span>{{!item.place1 ? '场地待定' : item.place1}}</span>
-          <span class="team-distance">{{!item.distance ? '未定位' : (item.distance > 1000 ? (item.distance / 1000).toFixed(1)+'km' : item.distance.toFixed(0)+'m')}}</span>
+          <span class="team-distance">{{!item.distance ? '' : (item.distance > 1000 ? (item.distance / 1000).toFixed(1)+'km' : item.distance.toFixed(0)+'m')}}</span>
         </div>
 
         <p class="team-expense">

@@ -92,6 +92,7 @@ export class LocalTeamComponent implements OnInit {
 
   ToFollow(isfollow, userid) {
     let mythis=this;
+
     if(!this.authservice.getUserid()){
       mythis.ToolServices.showToast('请检查是否已登陆！');
       return;
@@ -107,9 +108,10 @@ export class LocalTeamComponent implements OnInit {
         mythis.subscription.add(
           mythis.localService.AddFollow(userid).subscribe((res) => {
             if (res.result == 0) {
+              mythis.ToolServices.showToast('关注成功！');
               mythis.getTeamIp();
             }else{
-              mythis.ToolServices.showToast('请检查是否已登陆！');
+              mythis.ToolServices.showToast('关注失败:'+res.msg);
             }
           })
         )

@@ -13,7 +13,7 @@
         <!--<div class="imglogo" ></div>-->
       </div>
       <div class="right">
-        <div class="long">{{personip.distance<=0? '未定位' : personip.distance > 1000000?'未定位':personip.distance > 1000 ? (personip.distance / 1000).toFixed(1)+'km' :personip.distance.toFixed(0)+'m'}}</div>
+        <div class="long"*ngIf="false">{{personip.distance<=0? '未定位' : personip.distance > 1000000?'未定位':personip.distance > 1000 ? (personip.distance / 1000).toFixed(1)+'km' :personip.distance.toFixed(0)+'m'}}</div>
         <div class="follow"(click)="ToFollow(personip.isFollowed,personip.userId)">
           <img [src]="personip.isFollowed==0?nofollow:personip.isFollowed==1&&personip.isFollowedMe==1?bothfollow:isfollow">
         </div>

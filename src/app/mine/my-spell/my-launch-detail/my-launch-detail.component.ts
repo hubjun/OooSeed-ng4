@@ -10,6 +10,7 @@ import {Subscription} from "rxjs/Subscription";
   styleUrls: ['./my-launch-detail.component.scss'],
 })
 export class MyLaunchDetailComponent implements OnInit {
+
   public spellDetail:any;
   public joinListCheck:string[]=[];
   public peddingListCheck:string[]=[];
