@@ -22,14 +22,6 @@ const routes:Routes = [
   {
     path: 'detail',
     component: VideoDetailComponent
-  },
-  {
-    path:'video-home',
-    component: VideoHomeComponent
-  },
-  {
-    path:'video-detail',
-    component: VideoDetailComponent
   }
 ];
 

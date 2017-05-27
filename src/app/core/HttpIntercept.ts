@@ -12,9 +12,9 @@ const   ClientType:string = '4';
 @Injectable()
 export class HttpIntercept extends Http {
 
-  private userid:string ;
-  private token:string ;
-  private HAS_LOGGED_IN:boolean = false;
+  public userid:string ;
+  public token:string ;
+  public HAS_LOGGED_IN:boolean = false;
   constructor(
     public backend: ConnectionBackend,
     public defaultOptions: RequestOptions,

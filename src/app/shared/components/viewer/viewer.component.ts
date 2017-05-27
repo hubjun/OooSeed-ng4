@@ -88,7 +88,7 @@ export class ViewerComponent implements OnInit {
     this._pager = val;
   }
 
-  private _autoplayMs: number = 3000;
+  public _autoplayMs: number = 3000;
   constructor(
     public ele:ElementRef,
     public renderer:Renderer

@@ -10,7 +10,7 @@ import {Content} from "../shared/components/toolbar/toolbar-content";
 export class HomeComponent implements OnInit {
   @ViewChild(Content) contentEle;
   constructor(
-    private tools:ToolsService
+    public tools:ToolsService
   ) {
       this.tools.setTitle('资讯')
   }

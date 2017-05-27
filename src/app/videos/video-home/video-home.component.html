@@ -6,7 +6,7 @@
 <seed-content>
   <!--<seed-slider [gallery]="bannerObj | async"></seed-slider>-->
   <div class="seed-sliders-warp">
-    <ks-swiper-container
+    <!--<ks-swiper-container
       [options]="example1SwipeOptions"
     >
       <ks-swiper-slide *ngFor="let item of bannerObj">
@@ -19,7 +19,7 @@
         </div>
       </ks-swiper-slide>
 
-    </ks-swiper-container>
+    </ks-swiper-container>-->
 
     <div class="seed-sliders-pagination">
       <button
@@ -50,6 +50,6 @@
     </ul>
   </seed-toolbar-roller>
   <gap-bg></gap-bg>
-
-  <video-card-category [tvCateObj]="cateObj" (cate)="cateIdChange($event)"></video-card-category>
+  <!--<video-card-category [tvCateObj]="cateObj" (cate)="cateIdChange($event)"></video-card-category>-->
+  <video-card-category [tvCateObj]="cateObj"></video-card-category>
 </seed-content>

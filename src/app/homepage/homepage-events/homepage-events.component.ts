@@ -13,14 +13,15 @@ export class HomepageEventsComponent implements OnInit {
   subscription: Subscription = new Subscription();
   public applying='../../../assets/icon/event_ongoing.png';
   public applyplay='../../../assets/icon/event_ongo.png';
-  public applyend='../../../assets/icon/event_end.png';
+  public applyend='../../../assets/icon/event_finished2.png';
   public beforeapply='../../../assets/icon/event_preheating.png';
   public nowdate:number;
   public eventList=[];
+  scrollContainer;
 
   @Input() userid:string;
   constructor(
-    private router: Router,
+    public router: Router,
     public homepageService:HomepageService,
     public ToolServices:ToolsService
   ) { }
@@ -52,12 +53,13 @@ export class HomepageEventsComponent implements OnInit {
   }
   ngOnInit() {
     this.nowdate=new Date().getTime();
-    console.log(this.userid,localStorage.getItem('userid'));
-    if(this.userid==localStorage.getItem('userid')){
+    // if(this.userid==localStorage.getItem('userid')){
+    //   this.events(this.userid);
+    // }else{
+    //   this.events(this.userid);
+    // }
       this.events(this.userid);
-    }else{
-      this.events('all');
-    }
+    this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 
   ngOnDestroy() {

@@ -5,9 +5,10 @@
       (click)="routerDetail(item.id,item.status)"
     >
       <img
-        [lazyLoad]="item.iconUrl"
+        [lazyLoad]="item.logoUrl"
         [defaultImage]="'/assets/images/new_default_pic.png'"
         [errorImage]="'/assets/images/new_default_pic.png'"
+        [scrollTarget]="scrollContainer"
       >
       <div class="events-list-clum">
         <div class="events-clum-top">
@@ -17,8 +18,9 @@
           <span class="events-resume">{{item.matchName}}</span>
         </div>
         <div class="events-clum-bottom">
-          <span class="events-out-time">{{item.startTime|amDateFormat:'YYYY-MM-DD'}}</span>
-          <span class="events-clock">{{item.startTime|amDateFormat:'HH:mm'}}</span>
+          <span class="events-out-time">{{item.startTime|amDateFormat:'YYYY/MM/DD'}}</span>
+          <span class="events-out-time">-</span>
+          <span class="events-clock">{{item.endTime|amDateFormat:'YYYY/MM/DD'}}</span>
           <img src="{{item.status==3?beforeapply:item.status==4?applying:(item.status==5?applyend:
           (item.status==6?applyplay:' '))}}">
         </div>

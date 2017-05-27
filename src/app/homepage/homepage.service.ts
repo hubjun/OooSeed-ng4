@@ -24,12 +24,12 @@ export class HomepageService {
   public PERSON_EVENTS_RULE='/_guest/matchConstitution';//赛事章程
   public PERSON_EVENTS_DETAIL_DETAIL='/_guest/matchInfo';//赛事详情
   public PERSON_EVENTS_DETAIL_HEADER='/_guest/matchInfoHead';//赛事详情头部信息
-  private GET_USER_FEED_URL = '/feed/feed';
+  public GET_USER_FEED_URL = '/feed/feed';
 
 
-  private _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
-  private _gallery:BehaviorSubject<UserAlbumFileVO[]> = new BehaviorSubject<UserAlbumFileVO[]>([]);
-  private _videoThumbnail:BehaviorSubject<UserAlbumFileVO[]> = new BehaviorSubject<UserAlbumFileVO[]>([]);
+  public _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
+  public _gallery:BehaviorSubject<UserAlbumFileVO[]> = new BehaviorSubject<UserAlbumFileVO[]>([]);
+  public _videoThumbnail:BehaviorSubject<UserAlbumFileVO[]> = new BehaviorSubject<UserAlbumFileVO[]>([]);
   public dataStore = {
     feeds   :[] = [],
     gallery :[] = [],
@@ -111,11 +111,12 @@ export class HomepageService {
   //赛事
   getEvents(obj){
     let url;
-    if(obj=='all'){
-      url=this.PERSON_EVENTS+'?statusList=3,4,5,6';
-    }else{
-      url=this.PERSON_EVENTS+'?userId='+obj+'&statusList=3,4,5,6';
-    }
+    // if(obj=='all'){
+    //   url=this.PERSON_EVENTS+'?statusList=3,4,5,6';
+    // }else{
+    //   url=this.PERSON_EVENTS+'?userId='+obj+'&statusList=3,4,5,6';
+    // }
+    url=this.PERSON_EVENTS+'?userId='+obj+'&statusList=3,4,5,6';
     return this.httpService.get(url).map((res)=>res.json());
   }
   //赛事公告

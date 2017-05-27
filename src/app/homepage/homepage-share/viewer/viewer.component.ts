@@ -71,7 +71,7 @@ export class ViewerAlbumComponent implements OnInit {
   public gallery:Observable<UserAlbumFileVO[]>;
   constructor(
     public homepageService:HomepageService,
-    private _activatedRoute:ActivatedRoute,
+    public _activatedRoute:ActivatedRoute,
   ) {
     this.gallery = this.homepageService.gallery;
     this.activeIndex = this._activeIndex.asObservable();
@@ -88,7 +88,6 @@ export class ViewerAlbumComponent implements OnInit {
       .subscribe((params:Params) => {
         this._activeIndex.next(params['index'])
       })
-    console.log(this.gallery)
   }
 
 }

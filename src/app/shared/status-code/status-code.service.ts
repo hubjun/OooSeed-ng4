@@ -7,7 +7,7 @@
 import {Injectable} from "@angular/core";
 @Injectable()
 export class StatusCodeService {
-  private codes = {
+  public codes = {
     "-1": "系统研发规则错误",
     "0": "成功",
     "1": "接口方系统异常",

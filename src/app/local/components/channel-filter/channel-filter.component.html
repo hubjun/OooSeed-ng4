@@ -1,7 +1,7 @@
 <div id="local-filter" class="top-gap" [class.open-filter]="isOpen">
   <div class="filter-container">
-    <div class="local-mask" (click)="hideFilter($event)"></div>
-    <ul class="entry" tappable (click)="openFilter($event)">
+    <div class="local-mask" (click)="hideFilter()"></div>
+    <ul class="entry">
       <li data-type="sportType" [class.active]="currentFilter==='sportType'">{{filterResult.sportType.text}}</li>
       <li data-type="rangType" class="line" [class.active]="currentFilter==='rangType'">{{filterResult.rangType.text}}</li>
       <li data-type="sortType" class="line" [class.active]="currentFilter==='sortType'">{{filterResult.sortType.text}}</li>

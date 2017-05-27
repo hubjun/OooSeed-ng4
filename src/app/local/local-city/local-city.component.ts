@@ -12,23 +12,23 @@ import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
   styleUrls: ['./local-city.component.scss']
 })
 export class LocalCityComponent {
-  private currertCity: DictCityVO;//当前城市
-  private currentAreaText: string;//当前区域名称
-  private currentAreaId: number;
-  private hotCity: DictCityVO[];//热门城市
-  private allCity: DictCityVO[];//全部城市
-  private locationCity: DictCityVO | any;//定位城市
-  private locationAreaText: string;//定位城市
-  private showArea: boolean = false;
-  private currentLocalChannel: string = this.localService.currentLocalChannel;
-  private letters = 'ABCDEFGHJKLMNPQRSTWXYZ'.split('');
+  public currertCity: DictCityVO;//当前城市
+  public currentAreaText: string;//当前区域名称
+  public currentAreaId: number;
+  public hotCity: DictCityVO[];//热门城市
+  public allCity: DictCityVO[];//全部城市
+  public locationCity: DictCityVO | any;//定位城市
+  public locationAreaText: string;//定位城市
+  public showArea: boolean = false;
+  public currentLocalChannel: string = this.localService.currentLocalChannel;
+  public letters = 'ABCDEFGHJKLMNPQRSTWXYZ'.split('');
 
   subscription: Subscription = new Subscription();
 
   constructor(
-    private localService: LocalService,
-    private toolsService: ToolsService,
-    private router: Router
+    public localService: LocalService,
+    public toolsService: ToolsService,
+    public router: Router
   ) {
 
   }

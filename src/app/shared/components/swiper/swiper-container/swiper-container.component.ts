@@ -9,7 +9,7 @@ import {
   styleUrls: ['./swiper-container.component.scss']
 })
 export class SwiperContainerComponent implements OnDestroy,AfterViewInit,AfterViewChecked {
-  private readonly SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+  public readonly SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   width:number;
   _timer:any;
   _length:number;
@@ -120,7 +120,7 @@ export class SwiperContainerComponent implements OnDestroy,AfterViewInit,AfterVi
   set time(val:any){
     this._autoplayMs = parseInt(val,10)
   }
-  private _autoplayMs: number = 3000;
+  public _autoplayMs: number = 3000;
 
   @Input()
   get pager(){

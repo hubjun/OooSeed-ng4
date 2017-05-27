@@ -21,7 +21,7 @@ export class SetNicknameComponent implements OnInit {
     public formBuider: FormBuilder,
     public userActivityService: UserActivityService,
     public tools: ToolsService,
-    private router: 　Router
+    public router: 　Router
   ) {
     this.nickNameForm = this.formBuider.group({
       'nickName': ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20), ValidationService.nickNameValidator]]
@@ -46,7 +46,7 @@ export class SetNicknameComponent implements OnInit {
     )
   }
   jump(){
-    this.router.navigate(['/home']);    
+    this.router.navigate(['/home']);
   }
   //设置昵称
   setNickName() {

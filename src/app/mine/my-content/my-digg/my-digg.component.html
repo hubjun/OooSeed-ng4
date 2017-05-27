@@ -4,8 +4,12 @@
   <seed-toolbar-menu></seed-toolbar-menu>
 </seed-toolbar-header>
 <seed-content>
-  <seed-feed-profile [feeds]="feeds"></seed-feed-profile>
-    <missing-default-content
-    *ngIf="(feeds | async)?.length == 0"
-  ></missing-default-content>
+  <div class="search-results"
+       infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="300"
+       [infiniteScrollContainer]="ele"
+       (scrolled)="onScroll()">
+    <seed-feed-profile [feeds]="feeds"></seed-feed-profile>
+  </div>
 </seed-content>

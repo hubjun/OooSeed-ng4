@@ -76,14 +76,14 @@ export class MyTeamComponent implements OnInit {
   //     avgWeight: 0
   //   }
   // ];
-  private myTeamsObj:Array<any>=[];
+  public myTeamsObj:Array<any>=[];
   userId: any;
   page: number = 1;
   rows: number = 10;
   constructor(
     public router:Router,
     public mineservice:MineService,
-    private userservice:UserDataService,
+    public userservice:UserDataService,
     public toolservice: ToolsService
   ){
 

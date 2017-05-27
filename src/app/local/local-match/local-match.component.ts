@@ -10,13 +10,13 @@ import { Router } from "@angular/router";
   styleUrls: ['../local-spell/local-spell.component.scss']
 })
 export class LocalMatchComponent {
-  private subscription: Subscription = new Subscription();
-  private matchs: Array<RespCityEngageVO> = [];
-  private sportTypeId: number;
-  private haveMore: boolean = false;
-  private haveData: boolean = true;
-  private scrollContainer: Element;
-  
+  public subscription: Subscription = new Subscription();
+  public matchs: Array<RespCityEngageVO> = [];
+  public sportTypeId: number;
+  public haveMore: boolean = false;
+  public haveData: boolean = true;
+  public scrollContainer: Element;
+
   public filterTypes: object = {
     sortType: [{
       id: 1,
@@ -34,9 +34,9 @@ export class LocalMatchComponent {
   }
 
   constructor(
-    private localService: LocalService,
-    private toolsService: ToolsService,
-    private router: Router
+    public localService: LocalService,
+    public toolsService: ToolsService,
+    public router: Router
   ) {
     //发送自有排序规则
     this.localService.filter.filterType.emit(this.filterTypes);

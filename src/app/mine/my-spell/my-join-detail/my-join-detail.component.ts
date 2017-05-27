@@ -3,6 +3,7 @@ import {ToolsService} from "../../../shared/tools/tools.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {LocalService} from "../../../local/local.service";
 import {Subscription} from "rxjs/Subscription";
+import {UserDataService} from "../../../shared/tools/user-data.service";
 
 @Component({
   selector: 'seed-my-join-detail',
@@ -10,23 +11,24 @@ import {Subscription} from "rxjs/Subscription";
   styleUrls: ['./my-join-detail.component.scss'],
 })
 export class MyJoinDetailComponent implements OnInit {
-  public spellDetail:string[]=[];
+  public spellDetail:any
   public haveJoin:string;
   public joinListCheck:string[]=[];
   public phoneCheck:string;
   public timeDate;any;
   public signEndTime:any;
-  private spellToggle=false;
+  public spellToggle=false;
   public fightId:string;
   public applyCheck:any;
   scrollContainer;
   subscription: Subscription = new Subscription();
 
   constructor(
-    private router: Router,
+    public router: Router,
     public LocalService: LocalService,
-    private _activatedRoute:ActivatedRoute,
+    public _activatedRoute:ActivatedRoute,
     public ToolServices:ToolsService,
+    public user:UserDataService,
   ) { }
 
   getSpellDetailData(obj){
@@ -39,7 +41,7 @@ export class MyJoinDetailComponent implements OnInit {
 
           if(object.data.joinList){
             for(let j=0;j<object.data.joinList.length;j++){
-              if(localStorage.getItem('userid')){
+              if(this.user.getUserid()){
                 if(object.data.joinList[j].userId==localStorage.getItem('userid')){
                   this.haveJoin='joined';
                   this.applyCheck=0;

@@ -13,18 +13,24 @@
         @include font-dpr(28px);
         color:color($h5,c4);
         float:left;
-        width: pxTorem(100);
+        min-width: pxTorem(120);
         margin-right:pxTorem(20);
       }
       .service-info{
         float:left;
-        max-width: pxTorem(520);
+        text-align: justify;
+        line-height: pxTorem(40);
+        padding-right:pxTorem(20);
         @include font-dpr(28px);
         color:color($h5,c2);
       }
-      img{
+      .service-img{
         width:100%;
-        box-sizing: border-box;
+        padding-right:pxTorem(20);
+        img{
+          width:100%;
+          box-sizing: border-box;
+        }
       }
     }
   }

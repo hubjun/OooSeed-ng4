@@ -24,10 +24,10 @@ export class VideoHomeComponent implements OnInit {
   // listObj: any[] = [];
 
   constructor(
-    private videoService: VideosService,
-    private router: Router,
-    private tools: ToolsService,
-    private activeRoute: ActivatedRoute,
+    public videoService: VideosService,
+    public router: Router,
+    public tools: ToolsService,
+    public activeRoute: ActivatedRoute,
     public el:ElementRef
   ) {
     // this.bannerObj = videoService.banners;
@@ -50,7 +50,7 @@ export class VideoHomeComponent implements OnInit {
       .subscribe(rs => {
         if(rs.result === '0'){
           this.bannerObj = rs.data.list;
-          console.log(this.bannerObj);
+          // console.log(this.bannerObj);
         }else {
           return;
         }
@@ -71,10 +71,10 @@ export class VideoHomeComponent implements OnInit {
     this.tools.hideLoading();
   };
 
-  cateIdChange(e){
-    // console.log(e);
-    this.router.navigate(['/videos/more', e]);
-  };
+  // cateIdChange(e){
+  //   // console.log(e);
+  //   this.router.navigate(['/videos/more', e]);
+  // };
 
   setCateWidth(){
     let ul = document.getElementsByClassName('category-ul')[0];

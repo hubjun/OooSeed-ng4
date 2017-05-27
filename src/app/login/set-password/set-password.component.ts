@@ -15,20 +15,20 @@ import { Router, ActivatedRoute } from '@angular/router';
   providers: [UserActivityService, ToolsService]
 })
 export class SetPasswordComponent implements OnInit {
-  private passwordForm: FormGroup;
-  private password: AbstractControl;
-  private repassword: AbstractControl;
-  private register;
-  private mesg: string = ''; //错误信息
-  private checkValid: boolean = false; //判断错误信息
+  public passwordForm: FormGroup;
+  public password: AbstractControl;
+  public repassword: AbstractControl;
+  public register;
+  public mesg: string = ''; //错误信息
+  public checkValid: boolean = false; //判断错误信息
   subscription: Subscription = new Subscription();
   constructor(
     public formBuilder: FormBuilder,
     public userActivityService: UserActivityService,
     public tools: ToolsService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private userData: AuthService,
+    public router: Router,
+    public route: ActivatedRoute,
+    public userData: AuthService,
   ) {
     this.passwordForm = this.formBuilder.group({
       'password': ['', [Validators.required, ValidationService.passwordValidator]],

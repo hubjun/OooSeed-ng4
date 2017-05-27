@@ -7,7 +7,7 @@
   <div class="video-detail">
   <div class="video-player page-list">
     <!--<img class="vplay" src="../../assets/icon/play.png"/>-->
-    <video src="{{videoSrc}}" id="video" poster="{{deVideoInfo.videoCover}}" preload="auto" x5-video-player-type="h5" x-webkit-airplay="true" x5-video-player-fullscreen="true">
+    <video src="{{videoSrc}}" id="video" poster="{{deVideoInfo?.videoCover}}" preload="auto" x5-video-player-type="h5" x-webkit-airplay="true" x5-video-player-fullscreen="true">
       <p>设备暂不支持</p>
     </video>
 
@@ -34,14 +34,14 @@
 
   <div class="video-content page-list">
     <div class="video-name">
-      <span>{{deVideoInfo.videoName}}</span>
+      <span>{{deVideoInfo?.videoName}}</span>
     </div>
     <!--<ion-input class="input" placeholder="Text Input"></ion-input>-->
     <div class="play-info">
       <div class="parameter">
         <div class="item-left">
           <i class="play-count"></i>
-          <span>{{deVideoInfo.playCount}}次</span>
+          <span>{{deVideoInfo?.playCount}}次</span>
         </div>
         <div class="item-right" (click)="hiddenToggle()">
           <span>简介</span>
@@ -51,16 +51,16 @@
         </div>
       </div>
       <div class="content-text" *ngIf="isTextHidden">
-        <p>&nbsp;&nbsp;{{deVideoInfo.intro || '还没有视频简介哦'}}</p>
+        <p>&nbsp;&nbsp;{{deVideoInfo?.intro || '还没有视频简介哦'}}</p>
       </div>
     </div>
   </div>
   <div class="button-box" (click)="goPersonalPage(deVideoInfo.userId)">
     <div class="uploader-info">
       <img src="../../assets/icon/concern_default_head.png" alt="" *ngIf="isHasUserIcon">
-      <img [src]="deVideoInfo.userIcon" *ngIf="!isHasUserIcon" alt="">
+      <img src="{{deVideoInfo?.userIcon || null}}" *ngIf="!isHasUserIcon" alt="">
       <!--</div>-->
-      <span>{{deVideoInfo.nickName}}</span>
+      <span>{{deVideoInfo?.nickName}}</span>
     </div>
   </div>
   <gap-bg></gap-bg>
@@ -68,7 +68,7 @@
     <div class="header">
       <span class="title">列表</span>
     </div>
-    <video-player-list [listObj]="videoCateList" *ngIf="!isRcommend"></video-player-list>
+    <video-player-list [listObj]="videoCateList" [cateID]="cateId" *ngIf="!isRcommend"></video-player-list>
   </div>
   <missing-default-content *ngIf="isRcommend"></missing-default-content>
  </div>

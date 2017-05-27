@@ -27,8 +27,8 @@ export class InfoComponent implements OnInit {
   @ViewChild('lastElement') lastElement;
 
   constructor(
-    private homeService:HomeService,
-    private tools:ToolsService,
+    public homeService:HomeService,
+    public tools:ToolsService,
   ) {
     this.gallery = this.homeService.banners;
     this.cates = this.homeService.cates;

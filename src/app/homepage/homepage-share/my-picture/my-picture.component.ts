@@ -18,7 +18,7 @@ export class MyPictureComponent implements OnInit {
   constructor(
     public homepageService:HomepageService,
     public toolsService:ToolsService,
-    private _activatedRoute:ActivatedRoute,
+    public _activatedRoute:ActivatedRoute,
   ) {
     this.gallery = this.homepageService.gallery;
   }

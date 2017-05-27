@@ -13,16 +13,16 @@ import { ToolsService } from '../../shared/tools/tools.service';
   providers: [UserActivityService,]
 })
 export class RegisterComponent implements OnInit {
-  private registerForm: FormGroup;
-  private account: AbstractControl;//手机号
-  private verifyCode: AbstractControl;//验证码
-  private isRegister: boolean = false //是否已注册
+  public registerForm: FormGroup;
+  public account: AbstractControl;//手机号
+  public verifyCode: AbstractControl;//验证码
+  public isRegister: boolean = false //是否已注册
   public invalidPhoneNumber: boolean = false;
   public phoneError: string = '';
-  private timer: string = '发送验证码';
-  subscription: Subscription = new Subscription();
+  public timer: string = '发送验证码';
+  public subscription: Subscription = new Subscription();
   constructor(
-    private router: Router,
+    public router: Router,
     public formBuilder: FormBuilder,
     public userActicityService: UserActivityService,
     public tools: ToolsService,
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
             if (!this.registerForm.controls['account'].hasError('required')) {  //如果输入框非空
               this.invalidPhoneNumber = this.registerForm.controls['account'].errors['invalidPhoneNumber'];  //取验证结果
               this.phoneError = ValidationService.getValidatorErrorMessage('invalidPhoneNumber')
-            } else { //用户名是空 
+            } else { //用户名是空
               this.phoneError = ValidationService.getValidatorErrorMessage('phoneNumberNull')
             }
           } else {

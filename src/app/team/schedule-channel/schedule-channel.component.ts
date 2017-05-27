@@ -13,13 +13,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./schedule-channel.component.scss']
 })
 export class ScheduleChannelComponent implements OnInit {
-  private subscription: Subscription = new Subscription();
-  private currentYear: number = new Date().getFullYear();
-  private newMatchs: Array<TeamMatchVO> = [];
-  private oldMatchs: Array<TeamMatchVO> = [];
-  private newMatchTotal: number;
-  private oldMatchTotal: number;
-  private params: any = {
+  public subscription: Subscription = new Subscription();
+  public currentYear: number = new Date().getFullYear();
+  public newMatchs: Array<TeamMatchVO> = [];
+  public oldMatchs: Array<TeamMatchVO> = [];
+  public newMatchTotal: number;
+  public oldMatchTotal: number;
+  public params: any = {
     teamId: null,
     status: null,
     rows: 2
@@ -27,10 +27,10 @@ export class ScheduleChannelComponent implements OnInit {
   @ViewChild(SeasonResultsComponent) seasonResults: SeasonResultsComponent;
 
   constructor(
-    private teamService: TeamService,
-    private toolsService: ToolsService,
-    private route: ActivatedRoute,
-    private router: Router
+    public teamService: TeamService,
+    public toolsService: ToolsService,
+    public route: ActivatedRoute,
+    public router: Router
   ) {
     this.route.parent.params.subscribe(params => {
       this.params.teamId = params['teamId']

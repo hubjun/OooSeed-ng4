@@ -73,12 +73,10 @@ export class EditBallComponent implements OnInit {
       this.mineService.putBallLocation(data)
         .subscribe(rs => {
           if (rs.result == 0) {
-            this.toolservice.presentConfirm('更新成功', 1);
-            this.toolservice.removeconfirm();
+            this.toolservice.showToast('更新成功');
             this.userObj.ballAge = event;
           } else {
-            this.toolservice.presentConfirm('更新失败'+rs.msg, 1);
-            this.toolservice.removeconfirm();
+            this.toolservice.showToast('更新失败'+rs.msg, 2000);
           }
           this.toolservice.hideLoading();
         })
@@ -93,8 +91,7 @@ export class EditBallComponent implements OnInit {
       if (res.result == 0) {
         this.positionitems.alldata = res.data.dicts;
       } else {
-        this.toolservice.presentConfirm('获取位置失败', 1);
-        this.toolservice.removeconfirm();
+        this.toolservice.showToast('获取位置失败', 2000);
       }
       this.toolservice.hideLoading();
     })
@@ -122,12 +119,10 @@ export class EditBallComponent implements OnInit {
       this.subscription.add(
       this.mineService.putBallLocation(data).subscribe(res => {
         if (res.result == 0) {
-          this.toolservice.presentConfirm('更新成功', 1);
-          this.toolservice.removeconfirm();
+          this.toolservice.showToast('更新成功');
           this.userObj.foot = event;
         } else {
-          this.toolservice.presentConfirm('更新失败'+res.msg, 1);
-          this.toolservice.removeconfirm();
+          this.toolservice.showToast('更新失败'+res.msg);
         }
         this.toolservice.hideLoading();
       })
@@ -143,8 +138,7 @@ export class EditBallComponent implements OnInit {
       if (res.result == 0) {
         this.tetianitems.alldata= res.data.dicts;
       } else {
-        this.toolservice.presentConfirm('获取特点失败', 1);
-        this.toolservice.removeconfirm();
+        this.toolservice.showToast('获取特点失败');
       }
       this.toolservice.hideLoading();
     })
@@ -166,12 +160,10 @@ export class EditBallComponent implements OnInit {
       this.mineService.putBallLocation(data)
         .subscribe(rs => {
           if (rs.result == 0) {
-            this.toolservice.presentConfirm('更新成功', 1);
-            this.toolservice.removeconfirm();
+            this.toolservice.showToast('更新成功');
             this.getfootballinfo();
           } else {
-            this.toolservice.presentConfirm('更新失败'+rs.msg, 1);
-            this.toolservice.removeconfirm();
+            this.toolservice.showToast('更新失败'+rs.msg);
           }
           this.toolservice.hideLoading();
         })
@@ -216,7 +208,7 @@ export class EditBallComponent implements OnInit {
           return;
         }
       } else if (res.result === '2') {
-        this.toolservice.presentConfirm('系统数据异常', 1);
+        this.toolservice.showToast('系统数据异常');
       } else {
         return;
       }

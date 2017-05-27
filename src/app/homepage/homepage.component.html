@@ -6,17 +6,15 @@
 <seed-content class="s eed-person-page">
   <div class="seed-person-homepage">
     <div class="person-header">
-      <img src="{{isFollowed==0?uncare:isFollowedMe==0?cared:eachcare}}"
+      <img src="{{isLogin?(isFollowed==0?uncare:isFollowedMe==0?cared:eachcare):uncare}}"
            class="person-icon"
-           *ngIf="auth.getUserid() != userId"
-           (click)="addDelete(personHeaderInfo.userId)"
+           *ngIf="auth.getUserid() != userId "
+           (click)="addDelete(personHeaderInfo?.userId)"
       >
       <div class="person-Info">
           <div class="person-image">
             <img
-              [lazyLoad]="personHeaderInfo?.iconUrl"
-              [defaultImage]="'/assets/images/placeholder_head_pic.png'"
-              [errorImage]="'/assets/images/placeholder_head_pic.png'"
+              src="{{personHeaderInfo.iconUrl||'../../..//assets/images/placeholder_head_pic.png'}}"
               class="person-img"
             >
             <img
@@ -31,6 +29,7 @@
             [lazyLoad]="personHeaderInfo?.appImgtxtUrl"
             [defaultImage]="'../../../assets/icon/weirenzheng.png'"
             [errorImage]="'../../../assets/icon/weirenzheng.png'"
+            [scrollTarget]="scrollContainer"
             class="person-check"
           >
           <div class="person-edit">

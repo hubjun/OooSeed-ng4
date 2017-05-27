@@ -8,14 +8,15 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class CardCategoryComponent implements OnInit {
   @Input() tvCateObj: any[];
-  @Output() cate = new EventEmitter();
+  // @Output() cate = new EventEmitter();
   constructor(
-    private router: Router,
-    private activeRouter: ActivatedRoute,
+    public router: Router,
+    public activeRouter: ActivatedRoute,
   ) { }
 
   toggleCateMore(e,cateId){
-    this.cate.emit(cateId);
+    // this.cate.emit(cateId);
+    this.router.navigate(['/videos/more', cateId]);
   };
 
   goDetail(videoId,cateId){

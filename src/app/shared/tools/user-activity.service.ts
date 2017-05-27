@@ -11,14 +11,14 @@ import { ToolsService } from './tools.service';
 
 @Injectable()
 export class UserActivityService {
-  private LOGIN_URL = '/user/_guest/login';
-  private REGISTER_URL = '/user/_guest/register';
-  private GET_SMS_CODE_URL = '/user/_guest/smsCode';
-  private VALIDATE_SMS_CODE_URL = '/user/_guest/validateSmsCode'
-  private NICKNAME_URL = '/user/_userInfo'
+  public LOGIN_URL = '/user/_guest/login';
+  public REGISTER_URL = '/user/_guest/register';
+  public GET_SMS_CODE_URL = '/user/_guest/smsCode';
+  public VALIDATE_SMS_CODE_URL = '/user/_guest/validateSmsCode'
+  public NICKNAME_URL = '/user/_userInfo'
   constructor(
-    private httpService: HttpService,
-    private tools: ToolsService
+    public httpService: HttpService,
+    public tools: ToolsService
   ) {
   }
 

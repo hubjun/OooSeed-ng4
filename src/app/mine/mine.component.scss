@@ -33,10 +33,16 @@
       float:left;
       padding-top:pxTorem(15);
       margin-left:pxTorem(30);
+      max-width: 60%;
       .info-detail-name{
         overflow: hidden;
         span{
           float:left;
+          overflow:hidden;
+          display: inline-block;
+          max-width: pxTorem(300);
+          white-space: nowrap;
+          text-overflow: ellipsis;
           @include font-dpr(32px);
           color: color($h5,c2);
         }

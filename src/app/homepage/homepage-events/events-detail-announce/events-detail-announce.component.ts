@@ -26,7 +26,6 @@ export class EventsDetailAnnounceComponent implements OnInit {
         }else{
           this.object[0]='无';
         }
-        console.log(this.object);
       })
     )
   }

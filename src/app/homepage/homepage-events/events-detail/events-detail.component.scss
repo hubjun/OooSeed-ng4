@@ -147,15 +147,16 @@
         height:pxTorem(40);
         line-height: pxTorem(40);
         float:right;
-        @include font-dpr(24px);
+        @include font-dpr(28px);
         color:color($h5,c4);
       }
     }
     .evnet-detail-info{
-      @include font-dpr(32px);
+      @include font-dpr(28px);
       line-height: pxTorem(50);
       color:color($h5,c2);
-      padding:0 pxTorem(20);
+      padding:0 pxTorem(25);
+      text-align: justify;
       margin-bottom:pxTorem(30);
       margin-top:pxTorem(30);
       overflow: hidden;
@@ -167,7 +168,11 @@
     }
   }
   .inner-detail{
-      padding:pxTorem(15) pxTorem(20) 0;
+    padding:pxTorem(15) pxTorem(25) 0;
+    text-align: justify;
+    color:color($h5,c2);
+    @include font-dpr(28px);
+    line-height: pxTorem(50);
    }
   .detail-info-h3{
     padding:0 pxTorem(20);
@@ -221,7 +226,11 @@
     color:color($h5,c10);
   }
   .event-end{
+    color:color($h5,c4);
+    background:color($h5,c9);
+  }
+  .event-pre{
     color:color($h5,c10);
-    background:color($h5,#E5E5E5);
+    background:#89D035;
   }
 }

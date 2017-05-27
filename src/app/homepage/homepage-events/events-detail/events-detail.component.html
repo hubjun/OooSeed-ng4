@@ -7,41 +7,43 @@
   <seed-content class="seed-events-detail">
     <div class="events-detail">
       <div class="events-resume" *ngIf="detailHeader">
-        <h3>{{detailHeader.matchName}}</h3>
+        <h3>{{detailHeader?.matchName}}</h3>
         <div class="news-title">
           <img
-            [lazyLoad]="detailHeader.iconUrl"
+            [lazyLoad]="detailHeader?.iconUrl"
             [defaultImage]="'/assets/images/placeholder_head_pic,png'"
             [errorImage]="'/assets/images/placeholder_head_pic,png'"
             [scrollTarget]="scrollContainer"
           >
           <div class="news-title-data">
-            <p>{{detailHeader.nickName}}</p>
-            <span>{{detailHeader.createTime|amDateFormat:'YYYY-MM-DD' }}&nbsp;&nbsp;</span><span>发布</span>
+            <p>{{detailHeader?.nickName}}</p>
+            <span>{{detailHeader?.createTime|amDateFormat:'YYYY-MM-DD' }}&nbsp;&nbsp;</span><span>发布</span>
           </div>
         </div>
         <div class="events-main-info">
           <p>
             <span>赛事时间：</span>
-            <span>{{detailHeader.startTime|amDateFormat:'YYYY-MM-DD' }} - </span>
-            <span>{{ detailHeader.endTime|amDateFormat:'YYYY-MM-DD'}}</span>
+            <span>{{detailHeader?.startTime|amDateFormat:'YYYY-MM-DD' }}</span>
+            <span>-</span>
+            <span>{{ detailHeader?.endTime|amDateFormat:'YYYY-MM-DD'}}</span>
           </p>
           <p>
             <span>报名时间：</span>
-            <span>{{detailHeader.signStartTime|amDateFormat:'YYYY-MM-DD' }} - </span>
-            <span>{{ detailHeader.signEndTime|amDateFormat:'YYYY-MM-DD'}}</span>
+            <span>{{detailHeader?.signStartTime|amDateFormat:'YYYY-MM-DD' }}</span>
+            <span>-</span>
+            <span>{{ detailHeader?.signEndTime|amDateFormat:'YYYY-MM-DD'}}</span>
           </p>
           <p>
             <span>主办方：</span>
-            <span>{{detailHeader.sponsorsList }}</span>
+            <span>{{detailHeader?.sponsorsList }}</span>
           </p>
           <p>
             <span>协办方：</span>
-            <span>{{detailHeader.corganizersList}}</span>
+            <span>{{detailHeader?.corganizersList}}</span>
           </p>
           <p>
             <span>承办方：</span>
-            <span>{{detailHeader.organizersList}}</span>
+            <span>{{detailHeader?.organizersList}}</span>
           </p>
         </div>
       </div>
@@ -82,11 +84,12 @@
   <div class="event-detail-position">
     <div
       class="event-apply"
-      [class.event-ing]="status==4"
-      [class.event-end]="status==5||status==6||status==7"
+      [class.event-ing]="status=='4'"
+      [class.event-end]="status=='5'||status=='6'"
+      [class.event-pre]="status=='3'"
       (click)="TipCommon()"
     >
-      {{status==4?'我要报名':status==5?'报名截止':status==6?'进行中':'已结束'}}
+      {{status=='4'?'我要报名':status=='5'?'报名截止':status=='6'?'进行中':'预热中'}}
     </div>
   </div>
 </div>

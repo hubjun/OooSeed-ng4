@@ -10,14 +10,14 @@ import { FootballTeam } from '../domain/interface.model';
   styleUrls: ['./team.component.scss']
 })
 export class TeamComponent {
-  private currentChannel: string = 'teamChannel';
-  private basicInfo: FootballTeam | any;
-  private defaultTeamIcon: string = this.teamService.defaultTeamIcon;
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  public currentChannel: string = 'teamChannel';
+  public basicInfo: FootballTeam;
+  public defaultTeamIcon: string = this.teamService.defaultTeamIcon;
+  public ngUnsubscribe: Subject<void> = new Subject<void>();
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private teamService: TeamService
+    public router: Router,
+    public route: ActivatedRoute,
+    public teamService: TeamService
   ) {
     this.route.params.takeUntil(this.ngUnsubscribe).subscribe(params => {
       this.getTeamBasicInfo(params['teamId']);
@@ -45,7 +45,7 @@ export class TeamComponent {
     console.log(e)
     let currentChannel = e.target.getAttribute('data-channel');
     if (currentChannel != null) {
-      this.teamService.currentChannel=currentChannel;
+      this.teamService.currentChannel = currentChannel;
       this.currentChannel = e.target.getAttribute('data-channel');
     }
   }

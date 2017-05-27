@@ -26,11 +26,11 @@ export class LoginComponent implements OnInit {
   passwordLimitLength: boolean = false;
   entrying: boolean = false;
   constructor(
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private tools: ToolsService,
-    private userData: AuthService,
-    private user: UserActivityService,
+    public router: Router,
+    public formBuilder: FormBuilder,
+    public tools: ToolsService,
+    public userData: AuthService,
+    public user: UserActivityService,
   ) {
     this.loginForm = this.formBuilder.group({
       'account': ['', [Validators.required, ValidationService.accountValidator]],

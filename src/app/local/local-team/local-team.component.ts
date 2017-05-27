@@ -6,6 +6,7 @@ import {LocalService} from '../local.service';
 import {Subscription} from "rxjs";
 import {ToolsService} from "../../shared/tools/tools.service";
 import {Router, ActivatedRoute}from '@angular/router';
+import {AuthService} from "../../shared/service/auth.service";
 
 @Component({
   selector: 'local-teamip',
@@ -58,7 +59,8 @@ export class LocalTeamComponent implements OnInit {
 
   constructor(public localService: LocalService,
               public ToolServices: ToolsService,
-              public router:Router
+              public router:Router,
+      public authservice:AuthService
   )
   {
     this.subscription.add(
@@ -89,12 +91,17 @@ export class LocalTeamComponent implements OnInit {
   }
 
   ToFollow(isfollow, userid) {
+    let mythis=this;
+    if(!this.authservice.getUserid()){
+      mythis.ToolServices.showToast('请检查是否已登陆！');
+      return;
+    }
     if(isfollow == 1 || isfollow == 3){
       this.ToolServices.presentConfirm('是否确认要关注？', 1,gofollow);
     }else {
-      this.ToolServices.presentConfirm('你已关注了！', 1);
+      return;
     }
-    let mythis=this;
+
     function gofollow(){
       if (isfollow == 1 || isfollow == 3) {
         mythis.subscription.add(
@@ -102,7 +109,7 @@ export class LocalTeamComponent implements OnInit {
             if (res.result == 0) {
               mythis.getTeamIp();
             }else{
-              mythis.ToolServices.presentConfirm('请检查是否已登陆！',1);
+              mythis.ToolServices.showToast('请检查是否已登陆！');
             }
           })
         )

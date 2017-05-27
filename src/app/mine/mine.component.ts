@@ -16,14 +16,14 @@ export class MineComponent implements OnInit {
   public defaulticon = 'assets/icon/concern_default_head.png';
   public urllist: any[] = ['./mine/my-massage', './mine/my-team', './mine/my-content', '', '', './mine/personal-schedule'];
   subscription: Subscription = new Subscription();
-  private userId:string = '';
+  public userId:string = '';
   constructor(
-    private router: Router,
+    public router: Router,
     public mineService: MineService,
     public toolsService: ToolsService,
     public ToolServices:ToolsService,
-    private user: UserDataService,
-    private auth : AuthService
+    public user: UserDataService,
+    public auth : AuthService
   ) {
     this.getUserInfomation();
   }

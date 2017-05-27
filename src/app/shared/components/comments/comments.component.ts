@@ -28,9 +28,9 @@ export class CommentsComponent implements OnDestroy {
   scrollContainer;
 
   constructor(
-    private user:UserDataService,
-    private tools:ToolsService,
-    private homeService:HomeService
+    public user:UserDataService,
+    public tools:ToolsService,
+    public homeService:HomeService
   ) {}
 
   loadComments(commentId:number,$event){

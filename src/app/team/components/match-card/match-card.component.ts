@@ -9,10 +9,10 @@ import { TeamService } from '../../team.service';
 })
 export class MatchCardComponent implements OnInit {
   @Input() matchs;//球队历史赛程
-  private scrollContainer: Element;
+  public scrollContainer: Element;
 
   constructor(
-    private teamService: TeamService
+    public teamService: TeamService
   ) { }
   ngOnInit() {
     this.scrollContainer = document.querySelector('#seed-scroll-content');

@@ -9,12 +9,12 @@ import { ToolsService } from '../../../shared/tools/tools.service';
   styleUrls: ['./match-record.component.scss']
 })
 export class MatchRecordComponent {
-  private matchs: Array<any> = [];
-  private title: string;
+  public matchs: Array<any> = [];
+  public title: string;
   constructor(
-    private teamService: TeamService,
-    private toolsService: ToolsService,
-    private route: ActivatedRoute
+    public teamService: TeamService,
+    public toolsService: ToolsService,
+    public route: ActivatedRoute
   ) {
 
     this.route.queryParams.subscribe(params => {

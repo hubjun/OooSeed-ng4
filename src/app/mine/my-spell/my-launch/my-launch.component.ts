@@ -24,7 +24,7 @@ export class MyLaunchComponent {
     rows: 10
   };
   constructor(
-    private router: Router,
+    public router: Router,
     public localService: LocalService,
     public ToolServices:ToolsService
   ) {

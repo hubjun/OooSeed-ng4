@@ -2,30 +2,32 @@
   <ul>
     <li>
       <div class="service-name">名字</div>
-      <div class="service-info">{{dealService.authName||'无'}}</div>
+      <div class="service-info">{{dealService?.authName||'无'}}</div>
     </li>
     <li>
       <div class="service-name">身份</div>
-      <div class="service-info">{{dealService.authType==1?'个人':'组织'}}</div>
+      <div class="service-info">{{dealService?.authType==1?'个人':'组织'}}</div>
     </li>
     <li>
       <div class="service-name">IP标签</div>
       <div class="service-info">
-        {{dealService.authStatus==1?'认证中':(dealService.authStatus==2?'未通过':'已通过')}}
+        {{dealService?.authStatus==1?'认证中':(dealService?.authStatus==2?'未通过':'已通过')}}
       </div>
     </li>
     <li>
       <div class="service-name">简介</div>
-      <div class="service-info">{{dealService.intro||'暂无'}}</div>
+      <div class="service-info">{{dealService?.intro||'暂无'}}</div>
     </li>
     <li>
       <div class="service-name">宣传图</div>
-      <img
-        [lazyLoad]="dealService.showImage"
-        [defaultImage]="'/assets/images/user_default.png'"
-        [errorImage]="'/assets/images/user_default.png'"
-        [scrollTarget]="scrollContainer"
-      >
+      <div class="service-img">
+        <img
+          [lazyLoad]="dealService?.showImage"
+          [defaultImage]="'../../assets/images/user_default.png'"
+          [errorImage]="'../../assets/images/user_default.png'"
+          [scrollTarget]="scrollContainer"
+        >
+      </div>
     </li>
   </ul>
   <missing-default-content

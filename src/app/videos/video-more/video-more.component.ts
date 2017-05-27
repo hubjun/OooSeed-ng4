@@ -13,8 +13,8 @@ export class VideoMoreComponent implements OnInit {
   listObj: any[] = [];
   cateId: number;
   constructor(
-    private activeRoute: ActivatedRoute,
-    private router: Router,
+    public activeRoute: ActivatedRoute,
+    public router: Router,
     public videoService: VideosService,
     public tools: ToolsService
   ) {

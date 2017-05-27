@@ -19,12 +19,12 @@ export class NewsComponent implements OnDestroy, OnInit {
   comments :ArticleCommentVO[] = [];
   recommend:ArticleVO[] = [];
   @ViewChild(Content) content;
-  private ngUnsubscribe:Subject<void> = new Subject<void>();
+  public ngUnsubscribe:Subject<void> = new Subject<void>();
   constructor(
-    private router:Router,
-    private tools:ToolsService,
-    private route:ActivatedRoute,
-    private homeService:HomeService,
+    public router:Router,
+    public tools:ToolsService,
+    public route:ActivatedRoute,
+    public homeService:HomeService,
   ) {}
 
 

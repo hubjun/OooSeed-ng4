@@ -9,10 +9,7 @@
       <div class="spellCardInfo">
         <div class="spellTeamIntroduce">
           <img
-            [lazyLoad]="spellDetail.iconUrl"
-            [defaultImage]="'/assets/images/placeholder_head_pic.png'"
-            [errorImage]="'/assets/images/placeholder_head_pic.png'"
-            [scrollTarget]="scrollContainer"
+            src="{{spellDetail.iconUrl||'../../../assets/images/placeholder_head_pic.png'}}"
             (click)="goPersonalPage(spellDetail.userId)"
           >
           <div class="spellName">

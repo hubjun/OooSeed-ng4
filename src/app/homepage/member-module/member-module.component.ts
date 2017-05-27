@@ -11,11 +11,16 @@ export class MemberModule implements OnInit {
   @Input() members;
   scrollContainer;
   constructor(
-    private router: Router,
+    public router: Router,
   ) { }
 
-  goPersonalPage(obj){
-    this.router.navigate(['/homepage', obj]);
+  goPersonalPage(obj,checkPerson){
+    if(checkPerson.orgInfoVO){
+      this.router.navigate(['/team', checkPerson.orgInfoVO.orgId])
+    }else{
+      this.router.navigate(['/homepage', obj])
+    }
+
   }
 
   ngOnInit() {

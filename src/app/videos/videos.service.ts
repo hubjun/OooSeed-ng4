@@ -6,21 +6,21 @@ import {BehaviorSubject} from "rxjs";
 
 @Injectable()
 export class VideosService {
-  private INFO_BANNER_URL = '/file/playturn';
-  private VIDEO_CATE_URL = '/video/home';
-  private VIDEO_DETAIL = '/video';
-  private VIDEO_RECOMMEND_LIST = '/video/id/list';
-  private VIDEO_HOME_MORE = '/video/homeMore';
+  public INFO_BANNER_URL = '/file/playturn';
+  public VIDEO_CATE_URL = '/video/home';
+  public VIDEO_DETAIL = '/video';
+  public VIDEO_RECOMMEND_LIST = '/video/id/list';
+  public VIDEO_HOME_MORE = '/video/homeMore';
 
-  private _bannerSlider: BehaviorSubject<AppPlayTurn[]>;
-  private _cateVideo: BehaviorSubject<catePart[]>;
-  private data = {
+  public _bannerSlider: BehaviorSubject<AppPlayTurn[]>;
+  public _cateVideo: BehaviorSubject<catePart[]>;
+  public data = {
     bannerSlider: [] = [],
     cateVideo: [] = []
   };
 
   constructor(
-    private httpService: HttpService
+    public httpService: HttpService
   ) {
     this._bannerSlider = new BehaviorSubject<AppPlayTurn[]>([]);
     this._cateVideo = new BehaviorSubject<AppPlayTurn[]>([]);

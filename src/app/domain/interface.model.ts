@@ -29,6 +29,37 @@ export class catePart {
   updateTime?: number;
 }
 
+/**
+ *视频详情
+ **/
+export class VideoDetailVO extends SNSResult<VideoDetailVO>{
+  appImgUrl?: string;
+  appImgtxtUrl?: string; //认证图文地址
+  cateId?: number;
+  cateName?: string; //视频类别名称
+  createTime?: string;
+  fileId?: number;
+  iconUrl?: string; //用户头像URL
+  intro?: string;
+  ipCateId?: number; //认证类型ID
+  isDel?: number;
+  isRecommend?: number;
+  liveId?: number; //直播Id ,
+  nickName?: string; // 用户昵称 ,
+  order?: string;
+  playCount?: number;
+  sort?: string;
+  sortValue : number;
+  status? : number;
+  userIcon?: string; //用户头像 ,
+  userId? : string;
+  videoCover?: string;
+  videoId? : number;
+  videoName?: string;
+  videoSize?: number; //视频大小 ,
+  videoTime?: string; //视频时长 ,
+  videoUrl?: string; //视频请求URL
+}
 
 /**
  *消息通知接口 ;//Notice Controller
@@ -82,7 +113,7 @@ export interface UserShowTokenVO {
   token?: string;
   userId?: string
 }
-export class UserInfoVO {
+export class UserInfoVO extends SNSResult<UserInfoVO> {
   aliasName : string; // 好友备注 ,
   appImgUrl : string; // 认证图标地址 ,
   appImgtxtUrl : string; // 认证图文地址 ,
@@ -422,6 +453,17 @@ export class TeamMatchVO extends SNSResult<TeamMatchVO> {
   sportType : number; // 运动类型ID ,
   startDate : string; // 比赛开始时间 时间戳
 }
+export class ReportTeamMatchVO extends SNSResult<ReportTeamMatchVO>{
+  flatFieldNum :number;// 平场数 ,
+  flatPercentum :number;// 平百分比数 ,
+  goalDifferenceNum :number;// 净胜球数 ,
+  goalNum :number;// 进球数 ,
+  lessNum :number;// 负球数 ,
+  negativeFieldNum :number;// 负场数 ,
+  negativePercentum :number;// 负百分比数 ,
+  winsNum :number;// 胜场数 ,
+  winsPercentum :number;// 胜百分比数
+}
 /**
  *IP推荐接口 ;//Ip Recom Conrtroller
  **/
@@ -449,10 +491,10 @@ export class RespCityEngageVO extends SNSResult<RespCityEngageVO>{
 /**
  *其他 ;//Image Controller
  **/
-export class CommonPageVo{
+export class CommonPageVo<T>{
   endRow?:number;
   hasNextPage?:boolean;
-  list?:Array<AppPlayTurn>;
+  list?:Array<T>;
   page?:number;
   pages?:number;
   rows?:number;

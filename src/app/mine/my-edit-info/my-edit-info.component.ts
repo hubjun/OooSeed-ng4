@@ -18,7 +18,7 @@ import {AuthService} from '../../shared/service/auth.service';
 })
 
 export class MyEditInfoComponent implements OnInit {
-  public defaulticon='../../assets/icon/concern_default_head.png';// 默认头像
+  public defaulticon:string='../../assets/icon/concern_default_head.png';// 默认头像
   public sexseed:boolean=false;//性别框
   public agearr:Array<any>=[];
   public heightarr:Array<any>=[];
@@ -64,8 +64,15 @@ export class MyEditInfoComponent implements OnInit {
     )
   }
   // 签名
-  editinfo(id){
-    this.router.navigate(['./mine/edit-detail',id]);
+  editinfo(type){
+    let placeHolder = '';
+    if(type == 'nickName'){
+      placeHolder = this.userObj.nickName
+    }
+    if(type == 'sign'){
+      placeHolder = this.userObj.sign
+    }
+    this.router.navigate(['./mine/edit-detail'],{queryParams:{ type: type, placeHolder: placeHolder }});
   }
   // 性别
   setGender(){
@@ -84,10 +91,9 @@ export class MyEditInfoComponent implements OnInit {
         {
           this.sexseed=false;
           this.getuserinfo();
-          this.toolservice.presentConfirm('更新性别成功',1);
-          this.toolservice.removeconfirm();
+          this.toolservice.showToast('更新性别成功');
         }else{
-          this.toolservice.presentConfirm('更新性别失败：'+res.msg,1);
+          this.toolservice.showToast('更新性别失败：'+res.msg,2000);
           this.router.navigate(['./login']);
         }
         this.toolservice.hideLoading();
@@ -99,6 +105,10 @@ export class MyEditInfoComponent implements OnInit {
   // 头像
   selectFileOnchanged(even){
     let file = even.target.files[0];
+    if(file.size>=5242880){
+      this.toolservice.showToast('头像大小不可大于5M！');
+      return;
+    }
     this.toolservice.showLoading();
     this.subscription.add(
     this.mineService.updateAvatar(file).subscribe((res) => {
@@ -108,10 +118,9 @@ export class MyEditInfoComponent implements OnInit {
           this.userObj.iconUrl = r.target.result;
         };
         reader.readAsDataURL(file);
-        this.toolservice.presentConfirm('更新头像成功',1);
-        this.toolservice.removeconfirm();
+        this.toolservice.showToast('更新头像成功');
       }else {
-        this.toolservice.presentConfirm('更新头像失败：'+res.msg,1);
+        this.toolservice.showToast('更新头像失败：'+res.msg,2000);
       }
       this.toolservice.hideLoading();
 
@@ -127,10 +136,9 @@ export class MyEditInfoComponent implements OnInit {
       this.mineService.UserInfoUpdate({age:event}).subscribe(res=>{
         if(res.result==0){
           this.userObj.userAge=event;
-          this.toolservice.presentConfirm('更新年龄成功',1);
-          this.toolservice.removeconfirm();
+          this.toolservice.showToast('更新年龄成功');
         }else{
-          this.toolservice.presentConfirm('更新年龄失败：'+res.msg,1);
+          this.toolservice.showToast('更新年龄失败：'+res.msg,2000);
           this.router.navigate(['./login']);
         }
         this.toolservice.hideLoading();
@@ -147,10 +155,9 @@ export class MyEditInfoComponent implements OnInit {
       this.mineService.UserInfoUpdate({height:event}).subscribe(res=>{
         if(res.result==0){
           this.userObj.height=event;
-          this.toolservice.presentConfirm('更新身高成功',1);
-          this.toolservice.removeconfirm();
+          this.toolservice.showToast('更新身高成功');
         }else{
-          this.toolservice.presentConfirm('更新身高失败：'+res.msg,1);
+          this.toolservice.showToast('更新身高失败：'+res.msg,2000);
           this.router.navigate(['./login']);
         }
         this.toolservice.hideLoading();
@@ -167,10 +174,9 @@ export class MyEditInfoComponent implements OnInit {
       this.mineService.UserInfoUpdate({weight:event}).subscribe(res=>{
         if(res.result==0){
           this.userObj.weight=event;
-          this.toolservice.presentConfirm('更新体重成功',1);
-          this.toolservice.removeconfirm();
+          this.toolservice.showToast('更新体重成功');
         }else{
-          this.toolservice.presentConfirm('更新体重失败：'+res.msg,1);
+          this.toolservice.showToast('更新体重失败：'+res.msg,2000);
           this.router.navigate(['./login']);
         }
         this.toolservice.hideLoading();

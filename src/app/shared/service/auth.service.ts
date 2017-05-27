@@ -4,13 +4,13 @@ import {ToolsService} from "../tools/tools.service";
 import {Router} from "@angular/router";
 @Injectable()
 export class AuthService {
-  private timestamp:any = '';
+  public timestamp:any = '';
   redirectUrl:string;
   isLoggedIn:string  = this.getLogin();
-  private HAS_LOGGED_IN = 'hasLoggedIn';
+  public HAS_LOGGED_IN = 'hasLoggedIn';
   constructor(
     public tools:ToolsService,
-    private router: Router
+    public router: Router
   ){
     console.log( this.getLogin())
   }

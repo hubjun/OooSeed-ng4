@@ -25,18 +25,16 @@ import { BadgesComponent } from './components/badges/badges.component';
 import {UserDataService} from '../shared/tools/user-data.service';
 import {MissingDefaultContentComponent} from "./components/missing-page/missing-page";
 import {SelectComponent} from "./components/selects/selects";
-import { ViewMoreComponent } from './components/view-more/view-more.component';
 import {ToolbarNavComponent} from "./components/toolbar/toolbar-nav";
 import {RouterModule} from "@angular/router";
 import { FeedProfileComponent } from './components/feed-profile/feed-profile.component';
 import {LazyLoadImageModule} from "ng-lazyload-image";
 import { CommentsComponent } from './components/comments/comments.component';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
-import {KSSwiperModule} from "angular2-swiper";
+// import {KSSwiperModule} from "angular2-swiper";
 import {Content} from "./components/toolbar/toolbar-content";
 import {GapBgComponent} from "./components/gap-bg/gap-bg.component";
 import { MomentModule } from "angular2-moment";
-import { SubHeaderComponent } from './components/sub-header/sub-header.component';
 import { ViewerComponent } from './components/viewer/viewer.component';
 import { SwiperContainerComponent } from './components/swiper/swiper-container/swiper-container.component';
 import { SwiperSlideComponent } from './components/swiper/swiper-slide/swiper-slide.component';
@@ -49,7 +47,6 @@ import { ModalComponent } from './components/modal/modal.component';
     RouterModule,
     LazyLoadImageModule,
     InfiniteScrollModule,
-    KSSwiperModule,
     MomentModule
   ],
   declarations: [
@@ -72,14 +69,11 @@ import { ModalComponent } from './components/modal/modal.component';
     RollerDirective,
     BadgesComponent,
     MissingDefaultContentComponent,
-    ViewMoreComponent,
     DownAppComponent,
     FeedProfileComponent,
     CommentsComponent,
-    ViewMoreComponent,
     GapBgComponent,
     SelectComponent,
-    SubHeaderComponent,
     ViewerComponent,
     SwiperContainerComponent,
     SwiperSlideComponent,
@@ -90,7 +84,6 @@ import { ModalComponent } from './components/modal/modal.component';
     FormsModule,
     LazyLoadImageModule,
     InfiniteScrollModule,
-    KSSwiperModule,
     MomentModule,
     Content,
     SafeStyle,
@@ -111,7 +104,6 @@ import { ModalComponent } from './components/modal/modal.component';
     RollerDirective,
     BadgesComponent,
     MissingDefaultContentComponent,
-    ViewMoreComponent,
     DownAppComponent,
     FeedProfileComponent,
     CommentsComponent,

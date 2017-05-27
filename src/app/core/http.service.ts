@@ -19,19 +19,19 @@ const  ClientType:string = '4';
 
 export class HttpService {
 
-  private APP_HOST = 'http://192.168.10.46:8089/api/v1';   //测试地址
-  //private APP_HOST = 'http://h5.13322cc.com/api/v1'; //生产地址
-  // private APP_HOST = 'http://h5.oooseed.com/api/v1'; //生产地址
-  // private APP_HOST = 'http://192.168.10.45:8089/api/v1';   //开发地址
+  public APP_HOST = 'http://192.168.10.46:8089/api/v1';   //测试地址
+  //public APP_HOST = 'http://h5.13322cc.com/api/v1'; //生产地址
+  // public APP_HOST = 'http://h5.oooseed.com/api/v1'; //生产地址
+  // public APP_HOST = 'http://192.168.10.45:8089/api/v1';   //开发地址
 
   public options = new RequestOptions({});
 
 
-  private headersUrlencode = new Headers({'Content-Type': 'application/x-www-form-urlencoded'})
+  public headersUrlencode = new Headers({'Content-Type': 'application/x-www-form-urlencoded'})
   constructor(
-    private http: Http,
-    private tools: ToolsService,
-    private userData: UserDataService
+    public http: Http,
+    public tools: ToolsService,
+    public userData: UserDataService
   ) {
     this.options.headers = new Headers();
     this.options.headers.set("X-SNS-ClientType",'4');
@@ -130,7 +130,7 @@ export class HttpService {
     return this.http.put(URL, body, this.options)
   }
 
-  private handleError(error: Response) {
+  public handleError(error: Response) {
     return Observable.throw('Server Error');
   }
 

@@ -13,7 +13,7 @@ export class RollerDirective {
 
 
   constructor(
-    private el:ElementRef
+    public el:ElementRef
   ){
   }
 
@@ -23,7 +23,7 @@ export class RollerDirective {
     }
   }
 
-  private setScroll(){
+  public setScroll(){
     let widths: number = 0;
     let parent = this.el.nativeElement.parentNode;
     let length = parent.children.length;

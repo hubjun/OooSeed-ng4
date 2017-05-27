@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../../../shared/tools/tools.service';
+import { TeamPlayerVO } from '../../../domain/interface.model';
 
 @Component({
   selector: 'player-list',
@@ -9,12 +10,12 @@ import { ToolsService } from '../../../shared/tools/tools.service';
   styleUrls: ['./player-list.component.scss']
 })
 export class PlayerListComponent {
-  private players: Array<string> = [];
-  private scrollContainer: Element;
+  public players: Array<TeamPlayerVO>=[];
+  public scrollContainer: Element;
   constructor(
-    private teamService: TeamService,
-    private toolsService: ToolsService,
-    private route: ActivatedRoute
+    public teamService: TeamService,
+    public toolsService: ToolsService,
+    public route: ActivatedRoute
   ) {
 
     this.route.params.subscribe(params => {

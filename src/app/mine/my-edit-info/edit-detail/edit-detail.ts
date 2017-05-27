@@ -27,7 +27,8 @@ export class EditDetailComponent implements OnInit {
   public title: string = '';
   public newinfo = '';
   public cansave = false;
-
+  public placeHolder: string = '请输入内容';
+  
   constructor(public userdataservice: UserDataService,
               public mineService: MineService,
               public activatedroute: ActivatedRoute,
@@ -44,8 +45,7 @@ export class EditDetailComponent implements OnInit {
   }
 
   saveinfo() {
-    if(this.newinfo==''){
-      this.toolservice.presentConfirm('修改内容不能为空！',1);
+    if(!this.cansave){
       return;
     }
     let str = '{"' + this.infotype + '":"' + this.newinfo + '"}';
@@ -54,17 +54,18 @@ export class EditDetailComponent implements OnInit {
     this.subscription.add(
     this.mineService.UserInfoUpdate(data).subscribe(res => {
       this.toolservice.hideLoading();
-      res.result == 0 ? this.router.navigate(['./mine/my-edit-info']) : this.router.navigate(['./login']);
+      res.result == 0 ? this.router.navigate(['./mine/my-edit-info']) : this.toolservice.showToast('操作失败，请从新尝试');
     })
     )
   }
 
   ngOnInit() {
     !this.authservice.getUserid?this.router.navigate(['./login']):'';
-    this.activatedroute.params.subscribe(param => {
+    this.activatedroute.queryParams.subscribe(param => {
       let infolist = ['编辑昵称', '编辑签名'];
-      param.id == 'sign' ? this.title = infolist[1] : this.title = infolist[0];
-      this.infotype = param.id;
+      param.type == 'sign' ? this.title = infolist[1] : this.title = infolist[0];
+      this.infotype = param.type;
+      this.newinfo = param.placeHolder;
     })
   }
   ngOnDestroy() {

@@ -16,8 +16,8 @@ export class MyNoticeComponent implements OnInit {
   subscription: Subscription = new Subscription();
   scrollContainer:any;
   constructor(
-    private userService: MineService,
-    private tools: ToolsService
+    public userService: MineService,
+    public tools: ToolsService
   ) {}
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad NoticePage');

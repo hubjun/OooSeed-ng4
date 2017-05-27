@@ -10,9 +10,12 @@
       <div class="mine-person">
         <div class="person-info">
           <div class="person-info-img">
-            <img [src]="userInfo.iconUrl||'/assets/images/placeholder_head_pic.png'"
+            <img
               class="person-header-img"
               (click)="goPersonalPage(userInfo.userId)"
+              [lazyLoad]="userInfo.iconUrl"
+              [defaultImage]="'/assets/images/placeholder_head_pic.png'"
+              [errorImage]="'/assets/images/placeholder_head_pic.png'"
             >
           </div>
             <div class="person-info-detail"(click)="goedit()">

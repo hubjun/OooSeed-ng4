@@ -3,8 +3,6 @@ import {SharedModule} from "../shared/shared.module";
 import {TeamRoutingModule} from "./team-routing.module";
 import {TeamComponent} from "./team.component";
 import {TeamService} from "./team.service";
-// import { TeamNavComponent } from './components/team-nav/team-nav.component';
-// import { TeamCardComponent } from './components/team-card/team-card.component';
 import { TeamChannelComponent } from './team-channel/team-channel.component';
 import { SeasonResultsComponent } from './components/season-results/season-results.component';
 import { ScheduleChannelComponent } from './schedule-channel/schedule-channel.component';
@@ -25,8 +23,6 @@ import { CircularProgressComponent } from './components/circular-progress/circul
   ],
   declarations: [
     TeamComponent,
-    // TeamNavComponent,
-    // TeamCardComponent,
     TeamChannelComponent,
     SeasonResultsComponent,
     ScheduleChannelComponent,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../../../shared/tools/tools.service';
+import { TeamPlayerVO, UserInfoVO } from '../../../domain/interface.model';
 
 @Component({
   selector: 'player-detail',
@@ -9,41 +10,38 @@ import { ToolsService } from '../../../shared/tools/tools.service';
   styleUrls: ['./player-detail.component.scss']
 })
 export class PlayerDetailComponent {
-  player: string[] = [];
-  user: string[] = [];
-  private defaultUserIcon: string = this.teamService.defaultUserIcon;
+  public player: TeamPlayerVO;
+  public user: UserInfoVO;
+  public defaultUserIcon: string = this.teamService.defaultUserIcon;
   constructor(
-    private teamService: TeamService,
-    private toolsService: ToolsService,
-    private route: ActivatedRoute
+    public teamService: TeamService,
+    public toolsService: ToolsService,
+    public route: ActivatedRoute
   ) {
     this.route.params.subscribe(params => {
-      this.getTeamPlayerDetail(params['teamId'], params['playerId']);
+      let paramsObj: object = {
+        teamId: params['teamId'],
+        playerId: params['playerId']
+      }
+      this.getTeamPlayerDetail(paramsObj);
       this.getUserInfo(params['playerId'])
     })
   }
 
   //获取球队球员在球队信息
-  getTeamPlayerDetail(teamId: string, playerId: string): void {
+  getTeamPlayerDetail(params: object): void {
     this.toolsService.showLoading();
-    let params: object = {
-      teamId: teamId,
-      playerId: playerId
-    }
     this.teamService.getTeamPlayerDetail(params).subscribe((res) => {
       this.toolsService.hideLoading();
-      if (res.result === '0') {
+      if (res.result === '0' && res.data) {
         this.player = res.data;
       }
     })
   }
   //获取球队球员个人信息
   getUserInfo(userId: string): void {
-    let param: object = {
-      userId: userId
-    }
-    this.teamService.getUserInfo(param).subscribe((res) => {
-      if (res.result === '0') {
+    this.teamService.getUserInfo(userId).subscribe((res) => {
+      if (res.result === '0' && res.data) {
         this.user = res.data;
       }
     })

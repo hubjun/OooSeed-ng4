@@ -28,13 +28,13 @@ import {Subject} from "rxjs";
   `,
 })
 export class Content{
-  private isVisible:boolean = false;
+  public isVisible:boolean = false;
   public isScrolling:boolean;
-  private unsbscribe:Subject<void> = new Subject<void>();
-  @ViewChild('content') private content:ElementRef;
+  public unsbscribe:Subject<void> = new Subject<void>();
+  @ViewChild('content') public content:ElementRef;
 
   constructor(
-    private tools:ToolsService
+    public tools:ToolsService
   ){
     this.tools.scrollTop$
       .takeUntil(this.unsbscribe)

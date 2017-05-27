@@ -3,6 +3,7 @@ import {ToolsService} from "../../../shared/tools/tools.service";
 import {LocalService} from "../../../local/local.service";
 import {Subscription} from "rxjs/Subscription";
 import {Router} from "@angular/router";
+import {UserDataService} from "../../../shared/tools/user-data.service";
 
 @Component({
   selector: 'my-join-spell',
@@ -21,9 +22,10 @@ export class MyJoinComponent implements OnInit {
     rows: 10
   };
   constructor(
-    private router: Router,
+    public router: Router,
     public localService: LocalService,
-    public ToolServices:ToolsService
+    public ToolServices:ToolsService,
+    public user:UserDataService,
   ) {
 
   }

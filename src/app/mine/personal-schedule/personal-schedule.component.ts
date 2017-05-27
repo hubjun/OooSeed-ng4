@@ -24,7 +24,7 @@ export class PersonalScheduleComponent implements OnInit {
   public latelycansee:boolean=false;
   constructor(
     public mineservice:MineService,
-    private userservice:UserDataService,
+    public userservice:UserDataService,
     public toolservice: ToolsService,
     public authservice:AuthService,
     public router: Router,

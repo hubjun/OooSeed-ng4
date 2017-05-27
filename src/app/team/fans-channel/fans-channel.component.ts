@@ -11,17 +11,17 @@ import { ToolsService } from '../../shared/tools/tools.service';
   styleUrls: ['./fans-channel.component.scss']
 })
 export class FansChannelComponent {
-  private subscription: Subscription = new Subscription();
-  private follow: Array<UserInfoVO>;
-  private fans: Array<UserInfoVO>;
-  private params = {
+  public subscription: Subscription = new Subscription();
+  public follow: Array<UserInfoVO> = [];
+  public fans: Array<UserInfoVO> = [];
+  public params = {
     userId: null,
     rows: 8
   }
   constructor(
-    private teamService: TeamService,
-    private toolsService: ToolsService,
-    private route: ActivatedRoute
+    public teamService: TeamService,
+    public toolsService: ToolsService,
+    public route: ActivatedRoute
   ) {
     this.route.parent.params.subscribe(params => {
       this.getTeamBasicInfo(params['teamId']);
@@ -35,17 +35,17 @@ export class FansChannelComponent {
         this.toolsService.hideLoading();
         if (res.result === '0' && res.data) {
           this.params.userId = res.data.orgUser;
-          this.getTeamFollow(this.params);
-          this.getTeamFans(this.params);
+          this.getTeamFollow();
+          this.getTeamFans();
         }
       })
     )
   }
 
   //获取球队关注列表
-  getTeamFollow(params: object): void {
+  getTeamFollow(): void {
     this.subscription.add(
-      this.teamService.getFollow(params).subscribe((res) => {
+      this.teamService.getFollow(this.params).subscribe((res) => {
         if (res.result === '0' && res.data) {
           let follow = res.data
           Object.assign(follow, {
@@ -57,9 +57,9 @@ export class FansChannelComponent {
     )
   }
   //获取球队粉丝列表
-  getTeamFans(params: object): void {
+  getTeamFans(): void {
     this.subscription.add(
-      this.teamService.getFans(params).subscribe((res) => {
+      this.teamService.getFans(this.params).subscribe((res) => {
         if (res.result === '0' && res.data) {
           let fans = res.data
           Object.assign(fans, {

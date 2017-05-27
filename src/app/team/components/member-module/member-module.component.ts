@@ -8,9 +8,9 @@ import { TeamService } from '../../team.service';
 })
 export class MemberModuleComponent implements OnInit {
   @Input() members;
-  private scrollContainer: Element;
+  public scrollContainer: Element;
   constructor(
-    private teamService: TeamService
+    public teamService: TeamService
   ) { }
   ngOnInit() {
     this.scrollContainer = document.querySelector('#seed-scroll-content');

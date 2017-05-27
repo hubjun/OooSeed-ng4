@@ -12,11 +12,11 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class UserDataService {
-  private HAS_LOGGED_IN = 'hasLoggedIn';
-  private timestamp:any = '';
+  public HAS_LOGGED_IN = 'hasLoggedIn';
+  public timestamp:any = '';
   constructor(
     public tools:ToolsService,
-    private router: Router
+    public router: Router
   ){
   }
 
@@ -57,7 +57,7 @@ export class UserDataService {
     this.setUserid(userid);
     this.setToken(token);
     this.setRefreshToken(refreshToken);
-    this.setLogin('true'); 
+    this.setLogin('true');
   }
 
   logout() {
@@ -68,7 +68,7 @@ export class UserDataService {
   }
 
   showLoginPage(){
-    
+
     this.router.navigate(['/login'])
     // let modal = this.modalCtrl.create(LoginPage);
     // modal.onDidDismiss(data =>{

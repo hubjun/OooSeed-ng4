@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ContentChild } from '@angular/core';
 import { TeamService } from '../team.service';
-import { FootballTeam } from '../../domain/interface.model';
+import { FootballTeam, TeamPlayerVO } from '../../domain/interface.model';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeasonResultsComponent } from '../components/season-results/season-results.component';
@@ -12,17 +12,17 @@ import { ToolsService } from '../../shared/tools/tools.service';
   styleUrls: ['./team-channel.component.scss']
 })
 export class TeamChannelComponent implements OnInit {
-  private subscription: Subscription = new Subscription();
-  private teamId: string;
-  private basicInfo: FootballTeam | any;
-  private players: Array<string> = [];//球队球员
-  private scrollContainer: Element;
-  private defaultUserIcon: string = this.teamService.defaultUserIcon;
+  public subscription: Subscription = new Subscription();
+  public teamId: string;
+  public basicInfo: FootballTeam;
+  public players: Array<TeamPlayerVO> = [];//球队球员
+  public scrollContainer: Element;
+  public defaultUserIcon: string = this.teamService.defaultUserIcon;
   @ViewChild(SeasonResultsComponent) seasonResults: SeasonResultsComponent;
   constructor(
-    private teamService: TeamService,
-    private route: ActivatedRoute,
-    private toolsService: ToolsService
+    public teamService: TeamService,
+    public route: ActivatedRoute,
+    public toolsService: ToolsService
   ) {
     this.route.parent.params.subscribe(params => {
       this.teamId = params['teamId']

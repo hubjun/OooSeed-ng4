@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LocalService} from "../local.service";
 import {ToolsService} from "../../shared/tools/tools.service";
 import {Subscription} from "rxjs/Subscription";
@@ -8,13 +8,11 @@ import {Router} from "@angular/router";
   selector: 'spell-chanel',
   templateUrl: './local-spell.component.html',
   styleUrls: ['./local-spell.component.scss'],
-  // changeDetection:ChangeDetectionStrategy.OnPush
 })
 
 export class LocalSpellComponent {
   public defaulticon = 'assets/icon/concern_default_head.png';
   public spellData:any;
-  public lessLength:any;
   public locationError:string;
   subscription: Subscription = new Subscription();
   public param:any={
@@ -46,7 +44,7 @@ export class LocalSpellComponent {
   };
 
   constructor(
-    private router: Router,
+    public router: Router,
     public localService: LocalService,
     public ToolServices:ToolsService
   ) {

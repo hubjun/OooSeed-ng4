@@ -19,7 +19,7 @@
   .my-spell-current{
     color:color($h5,c1);
     span{
-      border-bottom:pxTorem(5) solid color($h5,c1);
+      border-bottom:1px solid color($h5,c1);
     }
   }
 }

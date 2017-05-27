@@ -3,6 +3,7 @@ import {HomepageService} from "../homepage.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {ToolsService} from "../../shared/tools/tools.service";
+import {UserDataService} from "../../shared/tools/user-data.service";
 
 @Component({
   selector: 'person-fans',
@@ -12,15 +13,17 @@ import {ToolsService} from "../../shared/tools/tools.service";
 export class HomepageFansComponent implements OnInit {
   public myFans=[];
   public myCareFans=[];
-  public myFansNumber:string;
-  public myCareFansNumber:string;
+  public myFansNumber:number;
+  public myCareFansNumber:number;
   public localUserid:string;
   subscription: Subscription = new Subscription();
+
   @Input() userid:string;
   constructor(
-    private router: Router,
+    public router: Router,
     public homepageService:HomepageService,
-    public ToolServices:ToolsService
+    public ToolServices:ToolsService,
+    public user:UserDataService,
   ) {
 
   }
@@ -31,7 +34,7 @@ export class HomepageFansComponent implements OnInit {
       this.homepageService.getMycare(obj).subscribe(res=>{
         let object=res;
         if(object.result==0&&object.data.list.length>0){
-          this.myFansNumber=object.data.total;
+          this.myFansNumber=parseInt(object.data.total);
           if(object.data.list.length>8){
             for(let i=0;i<8;i++){
               this.myCareFans.push(object.data.list[i]);
@@ -69,7 +72,7 @@ export class HomepageFansComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.localUserid=localStorage.getItem('userid');
+    this.localUserid=this.user.getUserid();
     this.myFans_Careme(this.userid);
   }
 

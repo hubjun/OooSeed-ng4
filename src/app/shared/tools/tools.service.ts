@@ -9,8 +9,8 @@ import {isBoolean} from "util";
 
 @Injectable()
 export class ToolsService {
-  private loadingRunning: boolean = false;
-  private toastRunning: boolean = false;
+  public loadingRunning: boolean = false;
+  public toastRunning: boolean = false;
   scrollTopSource:Subject<any> = new Subject<any>();
   scrollTop$ = this.scrollTopSource.asObservable();
   constructor(
@@ -119,7 +119,7 @@ export class ToolsService {
     if(canadd){
       let loading=document.createElement('div');
       loading.className='myLoaing';
-      loading.innerHTML='<img src="../../../../assets/icon/loading.svg"width="50">'
+      loading.innerHTML='<img src="../../../../assets/icon/loading2.svg"width="50">'
       document.body.appendChild(loading);
     }
 

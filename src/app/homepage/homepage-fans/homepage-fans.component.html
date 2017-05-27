@@ -16,12 +16,12 @@
     </div>
     <div
       class="my-care-fans"
-      *ngIf="myCareFans?.length>0&&myCareFans[0]!='无'"
+      *ngIf="myCareFans?.length!=0&&myCareFans[0]!='无'"
     >
       <member-moduled [members]="myCareFans"></member-moduled>
     </div>
     <missing-default-content
-      *ngIf="myCareFans.length==1&&myCareFans[0]=='无'"
+      *ngIf="myCareFans?.length==1&&myCareFans[0]=='无'"
     ></missing-default-content>
   </div>
   <div class="my-care my-fans">
@@ -41,12 +41,12 @@
     </div>
     <div
       class="my-care-fans"
-      *ngIf="myFans?.length>0&&myFans[0]!='无'"
+      *ngIf="myFans?.length!=0&&myFans[0]!='无'"
     >
       <member-moduled [members]="myFans"></member-moduled>
     </div>
     <missing-default-content
-      *ngIf="myFans.length==1&&myFans[0]=='无'"
+      *ngIf="myFans?.length==1&&myFans[0]=='无'"
     ></missing-default-content>
   </div>
 </div>

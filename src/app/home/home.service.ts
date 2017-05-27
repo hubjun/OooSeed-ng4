@@ -10,27 +10,27 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class HomeService {
 
-  private RECOMMEND_URL = '/ip/cate/home';
-  private RECOMMEND_IP_URL = '/ip/recom';  //首页推荐IP列表
-  private RECOMMEND_CHANNEL_URL = '/ip/cate/home'; //首页栏目列表
-  private INFO_BANNER_URL = '/file/playturn';
-  private INFO_CATE_URL = '/article/cate';
+  public RECOMMEND_URL = '/ip/cate/home';
+  public RECOMMEND_IP_URL = '/ip/recom';  //首页推荐IP列表
+  public RECOMMEND_CHANNEL_URL = '/ip/cate/home'; //首页栏目列表
+  public INFO_BANNER_URL = '/file/playturn';
+  public INFO_CATE_URL = '/article/cate';
   public  INFO_CATE_ARTICLES_URL = '/article/articles';
-  private INFO_CATE_ARTICLE_URL = '/article/article';
-  private INFO_CATE_ARTICLE_LIST_RECOMMEND_URL = '/article/article/acticleList/recom';
-  private INFO_CATE_ARTICLE_LIST_COMMENT_URL = '/article/article/comment';
-  private FEED_GUEST_URL = '/feed/_guest';
-  private FEED_ARTICLE_URL = '/feed';
-  private FEED_ARTICLE_COMMENT_URL = '/feed/comment';
-  private FEED_ARTICLE_DIGG_URL = '/user/feed/digg';
-  private FEED_ARTICLE_COMMENT_DIGG_URL = '/user/comment/digg';
-  private _banners:BehaviorSubject<AppPlayTurn[]> = new BehaviorSubject<AppPlayTurn[]>([]) ;
-  private _cates:BehaviorSubject<ArticleCate> = new BehaviorSubject<ArticleCate>({});
+  public INFO_CATE_ARTICLE_URL = '/article/article';
+  public INFO_CATE_ARTICLE_LIST_RECOMMEND_URL = '/article/article/acticleList/recom';
+  public INFO_CATE_ARTICLE_LIST_COMMENT_URL = '/article/article/comment';
+  public FEED_GUEST_URL = '/feed/_guest';
+  public FEED_ARTICLE_URL = '/feed';
+  public FEED_ARTICLE_COMMENT_URL = '/feed/comment';
+  public FEED_ARTICLE_DIGG_URL = '/user/feed/digg';
+  public FEED_ARTICLE_COMMENT_DIGG_URL = '/user/comment/digg';
+  public _banners:BehaviorSubject<AppPlayTurn[]> = new BehaviorSubject<AppPlayTurn[]>([]) ;
+  public _cates:BehaviorSubject<ArticleCate> = new BehaviorSubject<ArticleCate>({});
   public  _articles:BehaviorSubject<ArticleVO[]> = new BehaviorSubject<ArticleVO[]>([]);
-  private _news:BehaviorSubject<ArticleVO[]> = new BehaviorSubject<ArticleVO[]>([]);
-  private _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
-  private _feed:BehaviorSubject<FeedRespVO> = new BehaviorSubject<FeedRespVO>({});
-  private _feedComment:BehaviorSubject<FeedCommentRespVO > = new BehaviorSubject<FeedCommentRespVO >({});
+  public _news:BehaviorSubject<ArticleVO[]> = new BehaviorSubject<ArticleVO[]>([]);
+  public _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
+  public _feed:BehaviorSubject<FeedRespVO> = new BehaviorSubject<FeedRespVO>({});
+  public _feedComment:BehaviorSubject<FeedCommentRespVO > = new BehaviorSubject<FeedCommentRespVO >({});
   public dataStore = {
     banners :[] = [],
     cates   :{} = {},
@@ -44,7 +44,7 @@ export class HomeService {
 
 
   constructor(
-    private httpService: HttpService
+    public httpService: HttpService
   ) {
     this.infoStore['index'] = 0;
     this.infoStore['postion'] = 0;

@@ -41,7 +41,7 @@ video-player-list-detail-info {
         }
       }
       .info {
-        height: pxTorem(79.8);
+        height: pxTorem(105);
         padding: pxTorem(18px) 0 pxTorem(20px) 0;
         .title {
           display: flex;
@@ -59,7 +59,7 @@ video-player-list-detail-info {
           justify-content: space-between;
           @include font-dpr(22px);
           color: color($h5, c5);
-          padding-top: pxTorem(20px);
+          padding-top: pxTorem(10px);
           i {
             display: inline-block;
           }

@@ -10,22 +10,24 @@ import {Subscription} from "rxjs/Subscription";
   styleUrls: ['./my-launch-detail.component.scss'],
 })
 export class MyLaunchDetailComponent implements OnInit {
-  public spellDetail:string[]=[];
+  public spellDetail:any;
   public joinListCheck:string[]=[];
   public peddingListCheck:string[]=[];
   public phoneCheck:string;
   public timeDate;any;
   public signEndTime:any;
-  private spellToggle=false;
+  public spellToggle=false;
   public fightId:string;
+
   scrollContainer;
+
   subscription: Subscription = new Subscription();
 
   constructor(
-    private router: Router,
+    public router: Router,
     public LocalService: LocalService,
-    private _activatedRoute:ActivatedRoute,
-    public ToolServices:ToolsService
+    public _activatedRoute:ActivatedRoute,
+    public ToolServices:ToolsService,
   ) { }
 
   getSpellDetailData(obj){
@@ -34,7 +36,6 @@ export class MyLaunchDetailComponent implements OnInit {
         let object=res;
         if(object.result==0){
           this.spellDetail=object.data;
-
           if(object.data.pendList){
             this.peddingListCheck=object.data.pendList;
           }
@@ -79,6 +80,7 @@ export class MyLaunchDetailComponent implements OnInit {
       });
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
+
   ngOnDestroy() {
     //取消订阅
     this.subscription.unsubscribe();

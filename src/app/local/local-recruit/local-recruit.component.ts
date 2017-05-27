@@ -29,7 +29,7 @@ export class LocalRecruitComponent implements OnInit {
       title: "最新发布"
     }]
   };
-  private params = {
+  public params = {
     sportType: null,
     rangType: 1,
     sortType: null,
@@ -40,8 +40,8 @@ export class LocalRecruitComponent implements OnInit {
     rows: 10
   };
 
-  constructor(private router: Router,
-              private localService: LocalService,
+  constructor(public router: Router,
+              public localService: LocalService,
               public ToolServices:ToolsService
   ) {
     this.subscription.add(

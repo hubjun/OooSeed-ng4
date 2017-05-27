@@ -46,10 +46,10 @@ export class LocalRecruitDetailComponent implements OnInit {
     "courtAddr": "",
     "weekSet": "0"
   };
-  private spellToggle = false;
+  public spellToggle = false;
   public defaulticon:string=this.localservice.defaulticon;// 默认头像
   constructor(
-    private route:ActivatedRoute,
+    public route:ActivatedRoute,
     public localservice:LocalService,
    public ToolServices: ToolsService
   ) {

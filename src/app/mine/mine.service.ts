@@ -9,25 +9,25 @@ export class MineService {
   subscription: Subscription = new Subscription();
   public saveClassTag:string='LaunchClass';
 
-  private Login_Out='/user/_logout';
-  private Search_User_Info='/user/_guest/userInfo';
-  private myTeamsUrl = '/_guest/team/list';
-  private USER_LATEST_SCHEDULT_URL = '/user/latestUserSchule'//获取用户最近日程
-  private USER_NEWEST_SCHEDULI_URL = '/user/scheduleInfo' //获取用户今日日程
-  private USER_INFO_UPDATE_URL='/user/_userInfo';//编辑个人信息
-  private AVATAR_URL = '/user/uploadIconFile';//上传头像
-  private USER_FOOTBALL_INGO_URL='/user/football/info';//个人足球信息
-  private USER_GET_TEDIAN='/dict/characteristics/football';//个人足球场上特点
-  private USER_GET_POSITION='/dict/position/football';//个人足球场上位置
-  private editUserFootballInfoUrl = '/user/football/info';//个人足球位置与特点修改
-  private jobHistoryUrl = '/_guest/ballResume/selectByUserId';  // 效力过球队
-  private commentMeUrl = '/user/commentMe';//我的评论
-  private atMeUrl = '/user/atMe';//@Me
-  private diggMeUrl = '/user/diggMe';//赞我
-  private areaUrl = '/dict/dictArea';//所有地区
-  private myInfoUrl = '/article/_guest/articleList';//我的咨询
-  private feedDiggUrl = '/user/feedDigg';//我的点赞
-  private feedUrl = '/feed/feed';//我的帖子
+  public Login_Out='/user/_logout';
+  public Search_User_Info='/user/_guest/userInfo';
+  public myTeamsUrl = '/_guest/team/list';
+  public USER_LATEST_SCHEDULT_URL = '/user/latestUserSchule'//获取用户最近日程
+  public USER_NEWEST_SCHEDULI_URL = '/user/scheduleInfo' //获取用户今日日程
+  public USER_INFO_UPDATE_URL='/user/_userInfo';//编辑个人信息
+  public AVATAR_URL = '/user/uploadIconFile';//上传头像
+  public USER_FOOTBALL_INGO_URL='/user/football/info';//个人足球信息
+  public USER_GET_TEDIAN='/dict/characteristics/football';//个人足球场上特点
+  public USER_GET_POSITION='/dict/position/football';//个人足球场上位置
+  public editUserFootballInfoUrl = '/user/football/info';//个人足球位置与特点修改
+  public jobHistoryUrl = '/_guest/ballResume/selectByUserId';  // 效力过球队
+  public commentMeUrl = '/user/commentMe';//我的评论
+  public atMeUrl = '/user/atMe';//@Me
+  public diggMeUrl = '/user/diggMe';//赞我
+  public areaUrl = '/dict/dictArea';//所有地区
+  public myInfoUrl = '/article/_guest/articleList';//我的咨询
+  public feedDiggUrl = '/user/feedDigg';//我的点赞
+  public feedUrl = '/feed/feed';//我的帖子
 
   constructor(
     public httpService: HttpService,

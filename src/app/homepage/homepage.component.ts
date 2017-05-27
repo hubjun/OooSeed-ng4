@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ToolsService} from "../shared/tools/tools.service";
 import {Subscription} from "rxjs/Subscription";
 import {AuthService} from "../shared/service/auth.service";
+import {UserDataService} from "../shared/tools/user-data.service";
 
 @Component({
   selector: 'app-homepage',
@@ -18,15 +19,20 @@ export class HomepageComponent implements OnInit {
   public eachcare='../../assets/images/user_states_3.png';
   public isFollowedMe:number;
   public isFollowed:number;
+  public isLogin:string;
   public userId:string='';
   public localUserId:string;
+
   scrollContainer;
+
   subscription: Subscription = new Subscription();
   constructor(
+    public router: Router,
     public auth:AuthService,
     public homepageService:HomepageService,
-    private _activatedRoute:ActivatedRoute,
+    public _activatedRoute:ActivatedRoute,
     public toolsService:ToolsService,
+    public user:UserDataService,
   ) {
 
   }
@@ -65,10 +71,14 @@ export class HomepageComponent implements OnInit {
   }
 
   addDelete(obj){
-    if(this.isFollowed==0){
-      this.addCare(obj);
+    if(this.user.getUserid()){
+      if(this.isFollowed==0){
+        this.addCare(obj);
+      }else{
+        this.deleteCare(obj);
+      }
     }else{
-      this.deleteCare(obj);
+      this.router.navigate(['/login']);
     }
   }
 
@@ -83,12 +93,12 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('userid')){
+    this.isLogin=this.user.getUserid();
+    if(this.user.getUserid()){
       this.localUserId='yes';
     }else{
       this.localUserId='';
     }
-
     this._activatedRoute.params
       .subscribe((params:Params) => {
         this.isFollowedMe=null;
@@ -96,11 +106,11 @@ export class HomepageComponent implements OnInit {
         this.userId='';
         this.localUserId = '';
         this.classTag = 'share';
+        this.personHeaderInfo='';
 
       this.userId=params['userId'];
       this.getInfo(params['userId']);
       });
-
     this.classTag=this.homepageService.checkClass;
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }

@@ -88,9 +88,9 @@
       }
     }
     .person-clum-current{
-      color: color($h5,#01A87C);
+      color: color($h5,c1);
       span{
-        border-bottom: 1px solid #01A87C;
+        border-bottom: 1px solid color($h5,c1);
       }
     }
   }

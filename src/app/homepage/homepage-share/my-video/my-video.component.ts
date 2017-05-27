@@ -16,10 +16,9 @@ export class MyVideoComponent implements OnInit {
   constructor(
     public homepageService:HomepageService,
     public toolsService:ToolsService,
-    private _activatedRoute:ActivatedRoute,
+    public _activatedRoute:ActivatedRoute,
   ) {
     this.videoThumbnail = this.homepageService.videoThumbnail;
-    console.log(this.videoThumbnail)
   }
 
 

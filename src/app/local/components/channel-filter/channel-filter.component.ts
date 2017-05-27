@@ -12,12 +12,12 @@ import { ToolsService } from '../../../shared/tools/tools.service';
   styleUrls: ['./channel-filter.component.scss']
 })
 export class ChannelFilterComponent implements OnInit {
-  private subscription: Subscription = new Subscription();
+  public subscription: Subscription = new Subscription();
   //排序器状态
-  private isOpen: boolean = false;
-  private changeCity: boolean = true;
-  private currentFilter: string;
-  // private currentChannel: string;
+  public isOpen: boolean = false;
+  public changeCity: boolean = true;
+  public currentFilter: string;
+  // public currentChannel: string;
   //排序规则
 
   public filterType = {
@@ -27,7 +27,7 @@ export class ChannelFilterComponent implements OnInit {
     userType: []
   }
   //排序结果
-  private filterResult = {
+  public filterResult = {
     sportType: {
       id: null,
       index: 0,
@@ -52,21 +52,21 @@ export class ChannelFilterComponent implements OnInit {
     }
   }
   //缓存公用排序规则
-  private filterTypeCache = {
+  public filterTypeCache = {
     sportType: [],
     userType: []
   }
   //缓存公用排序结果
-  private filterResultCache = {
+  public filterResultCache = {
     sportType: {
       index: 0,
       text: '全部'
     }
   }
   constructor(
-    private router: Router,
-    private localService: LocalService,
-    private toolsService: ToolsService
+    public router: Router,
+    public localService: LocalService,
+    public toolsService: ToolsService
   ) {
     this.subscription.add(
       this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: any) => {
@@ -229,8 +229,7 @@ export class ChannelFilterComponent implements OnInit {
   /**
    * 打开排序器
    */
-  openFilter(e: any): void {
-    console.log(this.filterType.rangType)
+  openFilter(e:any): void {
     this.currentFilter = e.target.getAttribute('data-type');
     if (this.isOpen) return
     this.isOpen = true;

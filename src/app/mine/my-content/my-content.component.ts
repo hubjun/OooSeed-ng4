@@ -13,10 +13,10 @@ import {AuthService} from '../../shared/service/auth.service';
 })
 
 export class MyContentComponent implements OnInit {
-  private userId: string = ''
+  public userId: string = ''
   constructor(
-    private router: Router,
-    private authSer: AuthService,
+    public router: Router,
+    public authSer: AuthService,
   ){
     this.userId = this.authSer.getUserid();
   }

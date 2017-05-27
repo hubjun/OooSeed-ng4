@@ -4,7 +4,7 @@
   <seed-toolbar-menu></seed-toolbar-menu>
 </seed-toolbar-header>
 <seed-content>
-<div class="seed-info-cate" *ngIf="article && article.length!=0" >
+<div class="seed-info-cate" >
   
   <div class="search-results"
        infiniteScroll
@@ -12,12 +12,9 @@
        [infiniteScrollThrottle]="300"
        [infiniteScrollContainer]="ele"
        (scrolled)="onScroll()">
-    <!--<seed-badges  [articles]="tools.setArray(articles | async)"></seed-badges>-->
-    <seed-badges  [articles]="articles"></seed-badges>
+  <!--<div class="search-results">-->
+    <seed-badges  [articles]="tools.setArray(articles | async)"></seed-badges>
   </div>
 
 </div>
-  <missing-default-content
-    *ngIf="articles?.length == 0"
-  ></missing-default-content>
 </seed-content>

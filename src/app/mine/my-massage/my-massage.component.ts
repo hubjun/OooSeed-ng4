@@ -15,7 +15,7 @@ import {AuthService} from '../../shared/service/auth.service';
 export class MyMassageComponent implements OnInit {
 
   constructor(
-    private router: Router,
+    public router: Router,
     public authservice:AuthService
   ){
 

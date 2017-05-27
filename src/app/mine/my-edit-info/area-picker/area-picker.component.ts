@@ -13,26 +13,26 @@ export class AreaPickerComponent implements OnInit {
   public ProvHascity: boolean = false;
   public allArea: any;
   public allCity: any;
-  public chooseProv: string = '';
-  public chooseCity: string = '';
+  public chooseProv: any;
+  public chooseCity: any;
   public hasChooseProv: boolean = false;
   public width: string = '0px';
   public pageLeft: string = '0px';
   public wrapHeight: string = '0px';
   public nowArea: string = 'provin';
-  private screenWidth: number = 0;
+  public screenWidth: number = 0;
   public subscription: Subscription = new Subscription();
   constructor(
-    private mineSer: MineService,
-    private router: Router,
-    private tools: ToolsService,
+    public mineSer: MineService,
+    public router: Router,
+    public tools: ToolsService,
   ) {
     this.screenWidth = document.documentElement.clientWidth;
-    
+
   }
 
   ngOnInit() {
-    
+
     this.dataInit();
   }
   dataInit() {
@@ -57,14 +57,14 @@ export class AreaPickerComponent implements OnInit {
 
   /**
    * 选择省份之后匹配该省的所有市
-   * @param i:number 
+   * @param i:number
    */
   choosingProv(i) {
     this.chooseProv = this.allArea[i];
-    if (this.chooseProv['title'] == '北京市' 
-        || this.chooseProv['title'] == '上海市' 
-        || this.chooseProv['title'] == '天津市' 
-        || this.chooseProv['title'] == '重庆市' 
+    if (this.chooseProv['title'] == '北京市'
+        || this.chooseProv['title'] == '上海市'
+        || this.chooseProv['title'] == '天津市'
+        || this.chooseProv['title'] == '重庆市'
         || this.chooseProv['title'] == '澳门特别行政区'
         || this.chooseProv['title'] == '香港'
         || this.chooseProv['title'] == '台湾省'

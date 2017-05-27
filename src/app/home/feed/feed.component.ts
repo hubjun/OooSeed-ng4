@@ -9,9 +9,9 @@ import {Observable} from "rxjs";
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnInit {
-  private feeds:Observable<FeedRespVO[]>;
+  public feeds:Observable<FeedRespVO[]>;
   constructor(
-    private homeService:HomeService
+    public homeService:HomeService
   ) {
     this.feeds = this.homeService.feeds;
   }

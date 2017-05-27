@@ -12,9 +12,9 @@ import { Subscription } from 'rxjs';
 })
 export class LocalComponent {
   public subscription: Subscription = new Subscription();
-  private currtetCityName: string = '定位中...';
+  public currtetCityName: string = '定位中...';
   constructor(
-    private localService: LocalService
+    public localService: LocalService
   ) {
     this.subscription.add(
       this.localService.currentCityName.subscribe((cityName: string) => {

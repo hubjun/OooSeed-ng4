@@ -20,11 +20,11 @@ export class ArticleComponent implements OnInit {
   @ViewChild('diggNumber') diggNumber:ElementRef;
   subscription:Subscription = new Subscription();
   constructor(
-    private route:ActivatedRoute,
-    private tools:ToolsService,
-    private homeService:HomeService,
-    private user:UserDataService,
-    private feedback:FeedbackSevice
+    public route:ActivatedRoute,
+    public tools:ToolsService,
+    public homeService:HomeService,
+    public user:UserDataService,
+    public feedback:FeedbackSevice
   ) {
     this.feedsArticle = this.homeService.feedArticle;
     this.comments = this.homeService.feedComment;

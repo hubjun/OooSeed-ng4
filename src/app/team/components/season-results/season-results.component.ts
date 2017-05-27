@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TeamService } from '../../team.service';
+import { ReportTeamMatchVO } from '../../../domain/interface.model';
 
 @Component({
   selector: 'season-results',
@@ -7,8 +8,8 @@ import { TeamService } from '../../team.service';
   styleUrls: ['./season-results.component.scss']
 })
 export class SeasonResultsComponent {
-  private result
-  private progressBarOpts: Array<any> = [{
+  public result:ReportTeamMatchVO;
+  public progressBarOpts: Array<any> = [{
     color: '#e94141',
     percent: 0,
     size: 90,

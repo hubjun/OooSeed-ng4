@@ -10,16 +10,16 @@ import { TeamEngageVO } from '../../../domain/interface.model';
   styleUrls: ['../../../team/components/match-card/match-card.component.scss','./match-detail.component.scss']
 })
 export class MatchDetailComponent implements OnInit {
-  private match: TeamEngageVO;
-  private defaultTeamIcon = this.localService.defaultTeamIcon;
+  public match: TeamEngageVO;
+  public defaultTeamIcon = this.localService.defaultTeamIcon;
   constructor(
-    private localService: LocalService,
-    private toolsService: ToolsService,
-    private router: ActivatedRoute
+    public localService: LocalService,
+    public toolsService: ToolsService,
+    public router: ActivatedRoute
   ) { }
   /**
    * 获取约战信息
-   * @param matchId ： 约战ID 
+   * @param matchId ： 约战ID
    */
   getMatchDetail(matchId: number) {
     let params = {

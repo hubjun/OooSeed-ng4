@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div *ngFor="let obj of listObj" (click)="gotoDetail($event,obj.videoId,obj.videoCover)" class="col-50 col-list">
+  <div *ngFor="let obj of listObj" (click)="toggleDetail($event,obj.videoId,obj.videoCover)" class="col-50 col-list">
     <div class="imgBox">
       <img [src]="obj.videoCover" alt="">
       <span class="videoTime">{{obj.videoTime}}</span>

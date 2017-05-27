@@ -1,4 +1,8 @@
-
+<seed-toolbar-header>
+  <seed-toolbar-home></seed-toolbar-home>
+  <seed-toolbar-title></seed-toolbar-title>
+  <seed-toolbar-menu></seed-toolbar-menu>
+</seed-toolbar-header>
 <seed-content class="spell-detail-inner">
   <div class="spellDetailPageBody1">
     <div class="spellDetailGrayBg">
@@ -54,7 +58,7 @@
               <p class="spellMarkPf">
                 {{detailObj.status==1?'招募中':(detailObj.status==2?'招募成功':(detailObj.status==3?'招募失败':(detailObj.status== 4
                 ?'已关闭':'已结束'))) }}</p>
-              <p class="spellMarkPs">
+              <p class="spellMarkPs"*ngIf="detailObj.status==1">
                 <i></i>
                 <span>{{detailObj.validTime >99?'99':(!detailObj.validTime ?'00':detailObj.validTime )}}</span>
                 <span class="spellMarkPsSpe">天{{detailObj.validTime >99?'+':' '}}</span>

@@ -1,7 +1,7 @@
 <ul>
   <li
     *ngFor="let item of members"
-    (click)="goPersonalPage(item.userId)"
+    (click)="goPersonalPage(item.userId,item)"
   >
     <div class="content">
       <img

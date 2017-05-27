@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {ToolsService} from "../../../shared/tools/tools.service";
 import {HomepageService} from "../../homepage.service";
+import {UserDataService} from "../../../shared/tools/user-data.service";
 
 @Component({
   selector: 'seed-my-care-fans',
@@ -25,10 +26,11 @@ export class MyCareFansComponent implements OnInit {
   subscription: Subscription = new Subscription();
 
   constructor(
-    private router: Router,
+    public router: Router,
     public toolsService:ToolsService,
     public homepageService:HomepageService,
-    private _activatedRoute:ActivatedRoute,
+    public _activatedRoute:ActivatedRoute,
+    public user:UserDataService,
   ) { }
 
   myFans_Careme(obj){
@@ -52,9 +54,9 @@ export class MyCareFansComponent implements OnInit {
     );
   }
 
-  careCheck(obj,event){
-    if(localStorage.getItem('userid')){//判断用户是否登录
-      if(event.target.src=='http://'+location.host+'/assets/images/subscript_icon_unfollow.png'){
+  careCheck(obj,followed,event){
+    if(this.user.getUserid()){//判断用户是否登录
+      if(followed==0){
         //H5页面只做点击关注，已关注状态后点击则不做任何操作
         this.getAddCareFans(obj,event);
       }
@@ -77,8 +79,8 @@ export class MyCareFansComponent implements OnInit {
   }
 
   mineCheck(){//要判断是否是查看自己的个人中心
-    this.isLoging=localStorage.getItem('userid');
-    if(localStorage.getItem('userid')&&localStorage.getItem('userid')==this.userId){
+    this.isLoging=this.user.getUserid();
+    if(this.user.getUserid()&&this.user.getUserid()==this.userId){
       this.myCheck='我的关注';
     }else{
       this.myCheck='他的关注';
@@ -95,7 +97,7 @@ export class MyCareFansComponent implements OnInit {
       .subscribe((params:Params) => {
         this.myFans_Careme(params['userId']);
         this.userId=params['userId'];
-        if(params['userId']==localStorage.getItem('userid')){//判断被查看个人中心的用户是否是自己
+        if(params['userId']==this.user.getUserid()){//判断被查看个人中心的用户是否是自己
           this.mineLoging='yes';
         }
         this.mineCheck();

@@ -13,33 +13,59 @@ import { FeedRespVO } from '../../../domain/interface.model';
 })
 export class MyFeedComponent implements OnInit {
   // feeds: any;
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
-  private _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
+  public ngUnsubscribe: Subject<void> = new Subject<void>();
+  public _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
+  public page: number = 1;
+  public ele: any;
+  public userId: string = '';
+  public tempArr = [];
+  public canScroll: boolean = true;
+  public scrolling: boolean = false;
   constructor(
-    private tools: ToolsService,
-    private authSer: AuthService,
-    private mineSer: MineService,
+    public tools: ToolsService,
+    public authSer: AuthService,
+    public mineSer: MineService,
   ) { }
 
   ngOnInit() {
     this.init();
-    console.log(this.feeds)
   }
   init() {
+    this.ele = document.querySelector('#seed-scroll-content');
     this.tools.showLoading();
-    let userId = this.authSer.getUserid();
-    this.mineSer.getMyFeed(userId, 1, 10)
+    this.userId = this.authSer.getUserid();
+    this.mineSer.getMyFeed(this.userId, this.page++, 10)
       .takeUntil(this.ngUnsubscribe)
       .subscribe(res => {
         this.tools.hideLoading();
         if (res.result == '0') {
-          let temp = [...res.data.list]; 
-          this._feeds.next(temp);
+          this.tempArr = [...res.data.list];
+          this._feeds.next(this.tempArr);
         }
       })
   }
   get feeds(){
    return this._feeds.asObservable();
+  }
+  onScroll(){
+    if(!this.canScroll || this.scrolling){
+      return;
+    }
+    this.scrolling = true;
+    this.mineSer.getMyFeed(this.userId, this.page++, 10)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(res => {
+        this.tools.hideLoading();
+        this.scrolling = false;
+        if (res.result == '0') {
+          this.tempArr = [...this.tempArr,...res.data.list];
+          this._feeds.next(this.tempArr);
+          if(this.tempArr.length >= res.data.total){
+              this.canScroll = false;
+              return;
+          }
+        }
+      })
   }
   ngOnDestroy(){
     this.ngUnsubscribe.next();

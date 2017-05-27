@@ -26,6 +26,7 @@ export class HomepageShareComponent implements OnInit {
     public ToolServices:ToolsService,
   ) {
     this.feeds = this.homepageService.feeds;
+
   }
 
   //获取分享图片视频

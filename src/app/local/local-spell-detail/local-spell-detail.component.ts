@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {LocalService} from "../local.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToolsService} from "../../shared/tools/tools.service";
+import {UserDataService} from "../../shared/tools/user-data.service";
 
 @Component({
   selector: 'app-local-spell-detail',
@@ -10,22 +11,23 @@ import {ToolsService} from "../../shared/tools/tools.service";
 })
 export class LocalSpellDetailComponent implements OnInit {
   public defaulticon = 'assets/icon/concern_default_head.png';
-  public spellDetail:string[]=[];
+  public spellDetail:any;
   public haveJoin:string;
   public joinListCheck:string[]=[];
   public phoneCheck:string;
   public timeDate;any;
   public signEndTime:any;
-  private spellToggle=false;
+  public spellToggle=false;
   public fightId:string;
   public applyCheck:any;
   // @Input fightId:item;
 
   constructor(
-    private router: Router,
+    public router: Router,
     public LocalService: LocalService,
-    private _activatedRoute:ActivatedRoute,
-    public toolsService:ToolsService
+    public _activatedRoute:ActivatedRoute,
+    public toolsService:ToolsService,
+    public user:UserDataService,
   ) { }
 
 
@@ -33,13 +35,14 @@ export class LocalSpellDetailComponent implements OnInit {
     this.toolsService.showLoading();
     this.LocalService.getSpellDetail(obj).subscribe((res)=>{
       if(res.result==0){
+        console.log(res.data);
         this.spellDetail=res.data;
         this.applyCheck=res.data.status;
         this.toolsService.hideLoading();
         if(res.data.joinList){
           for(let j=0;j<res.data.joinList.length;j++){
-            if(localStorage.getItem('userid')){
-              if(res.data.joinList[j].userId==localStorage.getItem('userid')){
+            if(this.user.getUserid()){
+              if(res.data.joinList[j].userId==this.user.getUserid()){
                 this.haveJoin='joined';
                 this.applyCheck=0;
               }
@@ -66,8 +69,8 @@ export class LocalSpellDetailComponent implements OnInit {
       this.spellToggle=true;
     }
   }
-  goPersonalPage(obj){
-    this.router.navigate(['/homepageOther', obj]);
+  goPersonalPage(obj:any){
+    this.router.navigate(['/homepage', obj]);
   }
   TipCommon(){
     if(this.applyCheck==1){

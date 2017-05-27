@@ -8,10 +8,10 @@ import {Response} from "@angular/http";
 import {HttpService} from "../../core/http.service";
 @Injectable()
 export  class FeedbackSevice{
-  private FRIEND_URL = '/user/friend';
+  public FRIEND_URL = '/user/friend';
 
   constructor(
-    private httpService:HttpService
+    public httpService:HttpService
   ){}
 
   //获取帖子关注fried

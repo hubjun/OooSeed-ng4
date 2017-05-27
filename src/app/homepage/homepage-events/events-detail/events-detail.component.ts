@@ -20,10 +20,10 @@ export class EventsDetailComponent implements OnInit {
   scrollContainer;
 
   constructor(
-    private router: Router,
-    private _activatedRoute:ActivatedRoute,
+    public router: Router,
+    public _activatedRoute:ActivatedRoute,
     public homepageService:HomepageService,
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     public ToolServices:ToolsService
 
   ) { }

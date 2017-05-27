@@ -9,15 +9,17 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class PlayerListComponent implements OnInit {
 
   @Input() listObj: any[];
-  @Output() change = new EventEmitter();
+  // @Output() change = new EventEmitter();
+  @Input() cateID: number;
+  // @Output() toggleList = new EventEmitter();
   constructor(
-    private router:Router
+    public router:Router
   ) { }
 
-  gotoDetail(e,id,videoCover){
+  toggleDetail(e,id,videoCover){
     // debugger
     // console.log(id);
-    this.router.navigate(['/videos/detail'], {queryParams: {videoID: id, cateID: '', videoCover: videoCover}});
+    this.router.navigate(['/videos/detail'], {queryParams: {videoID: id, cateID: this.cateID, videoCover: videoCover}});
   };
 
   ngOnInit() {

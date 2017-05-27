@@ -8,9 +8,9 @@ import {Router} from '@angular/router'
 })
 export class PlayerListDetailInfoComponent implements OnInit {
   @Input() moreObj: any[];
-  @Output() cate = new EventEmitter();
+  // @Output() cate = new EventEmitter();
   constructor(
-    private router: Router
+    public router: Router
   ) { }
 
   goMoreDetail(e,id,cateID,videoCover){

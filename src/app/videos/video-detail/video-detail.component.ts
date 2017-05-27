@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { ToolsService } from '../../shared/tools/tools.service';
 import {VideosService} from '../videos.service';
+import { VideoDetailVO } from '../../domain/interface.model';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,18 +12,18 @@ import { Subscription } from 'rxjs';
   providers: [VideosService,ToolsService]
 })
 export class VideoDetailComponent implements OnInit {
-  videoId: number;
-  cateId: number;
+  public videoId: number;
+  public cateId: number;
 
-  isPause: boolean = false;
+  public isPause: boolean = false;
   // videoRefresh: boolean = false;
-  isRcommend: boolean = false;
-  videoCover: string = "";
-  videoSrc: string = "";
-  isTextHidden: boolean = false;
-  isHasUserIcon: boolean = false;
-  deVideoInfo: any[] = [];
-  videoCateList: any[] = [];
+  public isRcommend: boolean = false;
+  public videoCover: string = "";
+  public videoSrc: string = "";
+  public isTextHidden: boolean = false;
+  public isHasUserIcon: boolean = false;
+  public deVideoInfo: any;
+  public videoCateList: any;
   subscription: Subscription = new Subscription();
 
   constructor(
@@ -213,14 +214,11 @@ export class VideoDetailComponent implements OnInit {
       //显示当前播放进度时间
       currPlayTime.innerHTML = getFormatTime(currTime);
     };
-
     //全屏
     // expand.onclick = function(){
     //   video.webkitRequestFullScreen();
     // };
   };
-
-
 
   ngOnDestroy(){
     let videos = this.el.nativeElement.querySelector('video');
