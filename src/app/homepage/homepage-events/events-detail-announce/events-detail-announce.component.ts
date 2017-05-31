@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToolsService} from "../../../shared/tools/tools.service";
 import {HomepageService} from "../../homepage.service";
 import {Subscription} from "rxjs/Subscription";
@@ -6,7 +6,8 @@ import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: 'events-detail-announce',
   templateUrl: './events-detail-announce.component.html',
-  styleUrls: ['./events-detail-announce.component.scss']
+  styleUrls: ['./events-detail-announce.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EventsDetailAnnounceComponent implements OnInit {
   public object=[];

@@ -1,7 +1,7 @@
 /**
  * Created by dell on 2017/5/9.
  */
-import { Component,Input } from '@angular/core';
+import {Component, Input, ViewEncapsulation, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   selector: 'missing-default-content',
@@ -12,10 +12,11 @@ import { Component,Input } from '@angular/core';
           <img src="../../../../assets/images/missing-picture.png">
         </p>
       </div>
-      <!--<p>{{text}}</p>-->
     </div>
   `,
   styleUrls: ['./missing-page.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MissingDefaultContentComponent {

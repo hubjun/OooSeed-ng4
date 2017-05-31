@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component,ViewEncapsulation} from '@angular/core';
 import {LocalService} from "../local.service";
 import {ToolsService} from "../../shared/tools/tools.service";
 import {Subscription} from "rxjs/Subscription";
@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   selector: 'spell-chanel',
   templateUrl: './local-spell.component.html',
   styleUrls: ['./local-spell.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class LocalSpellComponent {
@@ -54,11 +55,6 @@ export class LocalSpellComponent {
       this.localService.filterResult.subscribe((filterReuslt: any) => {
         if(filterReuslt.rangType.areaId==null){
           this.locationError='error';
-          if(!localStorage.getItem('locationError')){
-            this.ToolServices.presentConfirm('定位出错啦~',1);
-            localStorage.setItem('locationError','error');
-          }
-          this.doDataSpellInfo(this.param);
         }else{
           this.param.sportType=filterReuslt.sportType.id==null?'':filterReuslt.sportType.id;
           this.param.orderId=filterReuslt.sortType.id==null||filterReuslt.sortType.id==1?'':filterReuslt.sortType.id-1;
@@ -73,8 +69,8 @@ export class LocalSpellComponent {
             this.param.longitude=filterReuslt.rangType.position.lng;
             this.param.latitude=filterReuslt.rangType.position.lat;
           }
-          this.doDataSpellInfo(this.param);
         }
+        this.doDataSpellInfo(this.param);
       })
     );
   }

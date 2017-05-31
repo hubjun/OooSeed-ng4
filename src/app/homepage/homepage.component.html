@@ -3,7 +3,7 @@
   <seed-toolbar-title></seed-toolbar-title>
   <seed-toolbar-menu></seed-toolbar-menu>
 </seed-toolbar-header>
-<seed-content class="s eed-person-page">
+<seed-content class="seed-person-page" #container>
   <div class="seed-person-homepage">
     <div class="person-header">
       <img src="{{isLogin?(isFollowed==0?uncare:isFollowedMe==0?cared:eachcare):uncare}}"
@@ -14,7 +14,7 @@
       <div class="person-Info">
           <div class="person-image">
             <img
-              src="{{personHeaderInfo.iconUrl||'../../..//assets/images/placeholder_head_pic.png'}}"
+              src="{{personHeaderInfo?.iconUrl ||'../../..//assets/images/placeholder_head_pic.png'}}"
               class="person-img"
             >
             <img
@@ -43,6 +43,7 @@
               {{'暂无地址'}}
             </span>
           </div>
+        <!--</div>-->
       </div>
     </div>
     <div class="person-clum">
@@ -79,7 +80,7 @@
   <div class="events-switch">
     <div [ngSwitch]="classTag">
       <div *ngSwitchCase="'share'">
-        <person-share [userid]="userId"></person-share>
+        <person-share [content]="container" ></person-share>
       </div>
       <div *ngSwitchCase="'fans'">
         <person-fans [userid]="userId"></person-fans>

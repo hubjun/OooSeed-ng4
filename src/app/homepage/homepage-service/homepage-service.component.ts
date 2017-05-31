@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {HomepageService} from "../homepage.service";
 import {Subscription} from "rxjs/Subscription";
 import {ToolsService} from "../../shared/tools/tools.service";
@@ -7,6 +7,7 @@ import {ToolsService} from "../../shared/tools/tools.service";
   selector: 'person-service',
   templateUrl: './homepage-service.component.html',
   styleUrls: ['./homepage-service.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomepageServiceComponent implements OnInit {
   public dealService:any;
@@ -14,7 +15,6 @@ export class HomepageServiceComponent implements OnInit {
   scrollContainer;
 
   @Input() userid:string;
-
   constructor(
     public homepageService:HomepageService,
     public ToolServices:ToolsService

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import {Component, OnInit, ElementRef, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { ToolsService } from '../../shared/tools/tools.service';
 import {VideosService} from '../videos.service';
@@ -9,7 +9,9 @@ import { Subscription } from 'rxjs';
   selector: 'app-video-detail',
   templateUrl: './video-detail.component.html',
   styleUrls: ['./video-detail.component.scss'],
-  providers: [VideosService,ToolsService]
+  providers: [VideosService,ToolsService],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class VideoDetailComponent implements OnInit {
   public videoId: number;

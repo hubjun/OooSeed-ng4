@@ -1,7 +1,7 @@
 /**
  * Created by dell on 2017/5/5.
  */
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,ViewEncapsulation} from '@angular/core';
 import {LocalService} from '../local.service';
 import {Subscription} from "rxjs";
 import {ToolsService} from "../../shared/tools/tools.service";
@@ -11,7 +11,8 @@ import {AuthService} from "../../shared/service/auth.service";
 @Component({
   selector: 'local-teamip',
   templateUrl: './local-team.component.html',
-  styleUrls: ['./local-team.component.scss']
+  styleUrls: ['./local-team.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LocalTeamComponent implements OnInit {
   public subscription: Subscription = new Subscription();

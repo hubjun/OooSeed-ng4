@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/Router';
 import { Subscription } from "rxjs";
@@ -10,6 +10,7 @@ import { ToolsService } from '../../shared/tools/tools.service';
   selector: 'app-set-nickname',
   templateUrl: './set-nickname.component.html',
   styleUrls: ['./set-nickname.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [UserActivityService]
 })
 export class SetNicknameComponent implements OnInit {
@@ -29,7 +30,6 @@ export class SetNicknameComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tools.setTitle('设置昵称');
     this.subscription.add(
       this.nickNameForm.valueChanges
         .debounceTime(300)

@@ -10,6 +10,9 @@
        [infiniteScrollThrottle]="300"
        [infiniteScrollContainer]="ele"
        (scrolled)="onScroll()">
-    <seed-feed-profile [feeds]="feeds"></seed-feed-profile>
+    <seed-feed-profile [feeds]="feeds" *ngIf="!noInfo"></seed-feed-profile>
   </div>
+      <missing-default-content
+    *ngIf="noInfo && !loading"
+  ></missing-default-content>
 </seed-content>

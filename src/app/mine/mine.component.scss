@@ -13,16 +13,13 @@
     height:pxTorem(176);
     overflow: hidden;
     position: relative;
+    display: flex;
     border-bottom: 1px solid color($h5,c9);
     .tabbox{
-      position: absolute;
-      top:0;
-      right: 0;
       height: 100%;
-      width: 50%;
+      padding-left: 10%;
     }
     .person-info-img{
-      float:left;
       .person-header-img{
         width:pxTorem(100);
         height:pxTorem(100);
@@ -30,10 +27,9 @@
       }
     }
     .person-info-detail{
-      float:left;
       padding-top:pxTorem(15);
       margin-left:pxTorem(30);
-      max-width: 60%;
+      flex-grow: 2;
       .info-detail-name{
         overflow: hidden;
         span{

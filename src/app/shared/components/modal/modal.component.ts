@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'seed-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
 
@@ -14,7 +16,7 @@ export class ModalComponent implements OnInit {
 
   }
 
-  public show(): void {
+  public show(event): void {
     this.visible = true;
     setTimeout(() => this.visibleAnimate = true, 100);
   }

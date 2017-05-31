@@ -2,7 +2,7 @@
  * Created by dell on 2017/5/8.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { Router,ActivatedRoute} from '@angular/Router';
 import {LocalService} from '../local.service';
 import {Subscription} from "rxjs";
@@ -11,7 +11,8 @@ import {ToolsService} from "../../shared/tools/tools.service";
 @Component({
   selector: 'local-recruit-detail',
   templateUrl: './local-recruit-detail.component.html',
-  styleUrls: ['./local-recruit-detail.component.scss']
+  styleUrls: ['./local-recruit-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LocalRecruitDetailComponent implements OnInit {
   public subscription: Subscription = new Subscription();

@@ -29,7 +29,7 @@ export class HomeService {
   public  _articles:BehaviorSubject<ArticleVO[]> = new BehaviorSubject<ArticleVO[]>([]);
   public _news:BehaviorSubject<ArticleVO[]> = new BehaviorSubject<ArticleVO[]>([]);
   public _feeds:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
-  public _feed:BehaviorSubject<FeedRespVO> = new BehaviorSubject<FeedRespVO>({});
+  public _feed:BehaviorSubject<FeedRespVO[]> = new BehaviorSubject<FeedRespVO[]>([]);
   public _feedComment:BehaviorSubject<FeedCommentRespVO > = new BehaviorSubject<FeedCommentRespVO >({});
   public dataStore = {
     banners :[] = [],
@@ -156,7 +156,7 @@ export class HomeService {
       .flatMap((resp:Response) => {
         let res = resp.json()
         if (res && res.result == 0) {
-          this.dataStore.feed = res.data;
+          this.dataStore.feed = [res.data];
           this._feed.next(this.dataStore.feed)
         }
         return this.GetFeedArticleComment(feedId,1)
@@ -201,7 +201,7 @@ export class HomeService {
 
     if (operation){
       let url = this.FEED_ARTICLE_DIGG_URL;
-      return this.httpService.post(url,data).map((res) => res.json());
+      return this.httpService.postUrlencode(url,data).map((res) => res.json());
 
     }else {
       let url = this.FEED_ARTICLE_DIGG_URL + `?feedId=${feedId}&userId=${userId}`;

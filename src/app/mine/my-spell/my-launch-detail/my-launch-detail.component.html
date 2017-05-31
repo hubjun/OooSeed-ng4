@@ -38,7 +38,9 @@
         </div>
         <div class="spellExpense">
           <p>费用：</p>
-            <span>{{spellDetail.payMethod=='1'?'AA':'免费'}}</span>
+            <span>
+            {{spellDetail?.payMethod=='9001'?'AA':spellDetail?.payMethod=='9002'?'免费':'其他'}}
+            </span>
         </div>
         <div class="spellToggle" *ngIf="spellToggle">
           <div class="spellSystem" id="demo" >
@@ -170,10 +172,10 @@
         ></missing-default-content>
       </div>
     </div>
-    <div class="myLaunchSpellManager">
-      <div class="stopapply" (click)="TipCommon()">终止报名</div>
-      <div class="giveUpSpell" (click)="TipCommon()">退出拼球</div>
-      <div class="LaunghAgain" (click)="TipCommon()">再次发起</div>
-    </div>
   </div>
 </seed-content>
+<div class="myLaunchSpellManager">
+  <div class="stopapply" (click)="TipCommon()">终止报名</div>
+  <div class="giveUpSpell" (click)="TipCommon()">退出拼球</div>
+  <div class="LaunghAgain" (click)="TipCommon()">再次发起</div>
+</div>

@@ -1,6 +1,9 @@
 @import "../../shared/styles/theming";
 
 seed-home-info {
+  .seed-sliders-warp {
+    height: 21rem;
+  }
   .seed-info-roller {
     width: 100%;
     overflow: hidden;

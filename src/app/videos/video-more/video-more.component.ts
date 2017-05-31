@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {ToolsService} from '../../shared/tools/tools.service';
 import {VideosService} from '../videos.service';
@@ -6,7 +6,9 @@ import {VideosService} from '../videos.service';
 @Component({
   selector: 'app-video-more',
   templateUrl: './video-more.component.html',
-  styleUrls: ['./video-more.component.scss']
+  styleUrls: ['./video-more.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 
 export class VideoMoreComponent implements OnInit {

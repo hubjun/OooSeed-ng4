@@ -1,11 +1,15 @@
-import {Component, OnInit, ViewChild, ElementRef, Renderer, Input, ChangeDetectionStrategy} from '@angular/core';
+import {
+  Component, OnInit, ViewChild, ElementRef, Renderer, Input, ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 
 
 @Component({
   selector: 'seed-viewer',
   templateUrl: 'viewer.component.html',
   styleUrls: ['viewer.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class ViewerComponent implements OnInit {
   public list = [

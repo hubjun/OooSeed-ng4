@@ -1,7 +1,7 @@
 /**
  * Created by 陈文豪 on 2017/5/4.
  */
-import {Component, ViewChild, ElementRef,} from '@angular/core';
+import {Component, ViewChild, ElementRef, ViewEncapsulation,} from '@angular/core';
 import {ToolsService} from "../../tools/tools.service";
 import {Subject} from "rxjs";
 
@@ -13,9 +13,7 @@ import {Subject} from "rxjs";
      #content
      id="seed-scroll-content"
      class="seed-scroll-content"  
-
       (scroll)="onScroll()"    
-
      >
       <ng-content></ng-content>
     </div>
@@ -26,6 +24,7 @@ import {Subject} from "rxjs";
     >
     </div>  
   `,
+  encapsulation: ViewEncapsulation.None
 })
 export class Content{
   public isVisible:boolean = false;
@@ -43,11 +42,6 @@ export class Content{
     })
   }
 
-  infiniteScroll(callback = null){
-    if (callback == null)
-      return;
-    callback();
-  }
   get getScrollElement() {
     return this.content.nativeElement;
   }
@@ -71,20 +65,19 @@ export class Content{
     return this.content.nativeElement.scrollTo(x, y, duration, done);
   }
 
-   _onInfinityScroll(){
-     this.infiniteScroll()
-   }
+  disableScroll(){
+    let content = this.content.nativeElement;
+    if (content){
+      if(!content.classList.contains('no-scroll')){
+        content.classList.add('no-scroll')
+      }else{
+        content.classList.remove('no-scroll')
+      }
+    }
+  }
 
-   _onScroll(states:boolean){
-     this.isScrolling = states
-     console.log(this.isScrolling)
-     this.isScrolling = false;
-     console.log(this.isScrolling)
-   }
-  onScroll(event) {
-    let windowHeight = this.content.nativeElement.offsetHeight;
+  onScroll() {
     let distance = this.content.nativeElement.scrollTop;
-    let scrollHeight = this.content.nativeElement.scrollHeight;
     if(distance > 200) {
       this.isVisible = true;
     }else if(this.isVisible && distance < 200) {

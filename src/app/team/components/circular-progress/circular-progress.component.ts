@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'circular-progress',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './circular-progress.component.html',
   styleUrls: ['./circular-progress.component.scss']
 })

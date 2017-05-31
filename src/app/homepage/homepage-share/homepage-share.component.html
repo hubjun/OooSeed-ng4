@@ -3,7 +3,9 @@
     <div class="share-invitation-name">
       帖子
     </div>
-    <div class="share-invitation-more">
+    <div class="share-invitation-more"
+      routerLink="/homepage/{{userId}}/my-feed"
+    >
       <span>更多</span>
       <i></i>
     </div>
@@ -17,19 +19,22 @@
       相册
     </div>
     <div
-      *ngIf="pictureSingle?.length > 9"
       class="share-invitation-more"
-      routerLink="/homepage/{{userid}}/my-picture"
+      routerLink="/homepage/{{userId}}/my-picture"
     >
       <span>更多</span>
       <i></i>
     </div>
   </div>
-  <div class="share-picture" *ngIf="pictureSingle">
+  <div class="share-picture" *ngIf="(gallery | async).length > 0">
     <div class="seed-grid">
       <div class="seed-grid-row">
-        <div class="seed-grid-col" col-4 *ngFor="let item of (pictureSingle | slice:0:9)">
+        <div
+          class="seed-grid-col" col-4
+          *ngFor="let item of (gallery | async);let idx = index;"
+        >
           <a
+            routerLink="/homepage/{{userId}}/viewer/9/{{idx}}"
             [lazyLoad]="item.fileName"
             [defaultImage]="'/assets/images/user_default.png'"
             [errorImage]="'/assets/images/user_default.png'"
@@ -41,7 +46,7 @@
     </div>
   </div>
   <missing-default-content
-    *ngIf="pictureSingle?.length==0"
+    *ngIf="(gallery | async).length == 0"
   ></missing-default-content>
 </div>
 <div class="share-invitation">
@@ -49,19 +54,23 @@
     <div class="share-invitation-name">
       视频
     </div>
+
     <div
-      *ngIf="videoSingle?.length > 9"
+      *ngIf="(videoThumbnail | async)?.length > 9"
       class="share-invitation-more"
-      routerLink="/homepage/{{userid}}/my-video"
+      routerLink="/homepage/{{userId}}/my-video"
     >
       <span>更多</span>
       <i></i>
     </div>
   </div>
-  <div class="share-video share-picture" *ngIf="videoSingle?.length > 0">
+  <div class="share-video share-picture" *ngIf="(videoThumbnail | async)?.length > 0">
     <div class="seed-grid">
       <div class="seed-grid-row">
-        <div class="seed-grid-col icon-live" col-4 *ngFor="let item of videoSingle">
+        <div class="seed-grid-col icon-live" col-4
+             *ngFor="let item of (videoThumbnail | async)"
+             (click)="showVideoView(item.fileName)"
+        >
           <a
             [lazyLoad]="item.fileName +'&width=100&second=1' "
             [defaultImage]="'/assets/images/user_default.png'"
@@ -73,7 +82,20 @@
         </div>
       </div>
   </div>
+
   <missing-default-content
-    *ngIf="videoSingle?.length==0"
+    *ngIf="(videoThumbnail | async)?.length==0"
   ></missing-default-content>
 </div>
+
+
+
+<seed-modal #videoModal>
+  <seed-view-video class="seed-modal-content"
+                   [modal]="videoModal"
+                   [link]="src"
+                   [poster]="poster"
+                   [content]="content"
+  >
+  </seed-view-video>
+</seed-modal>

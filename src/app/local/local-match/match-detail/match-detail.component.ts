@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation} from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { LocalService } from '../../local.service';
 import { ToolsService } from '../../../shared/tools/tools.service';
@@ -7,7 +7,8 @@ import { TeamEngageVO } from '../../../domain/interface.model';
 @Component({
   selector: 'match-detail',
   templateUrl: './match-detail.component.html',
-  styleUrls: ['../../../team/components/match-card/match-card.component.scss','./match-detail.component.scss']
+  styleUrls: ['../../../team/components/match-card/match-card.component.scss','./match-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MatchDetailComponent implements OnInit {
   public match: TeamEngageVO;

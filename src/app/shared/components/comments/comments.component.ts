@@ -6,7 +6,7 @@ import {
   ViewChild,
   Input,
   Output,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ViewEncapsulation,
 } from '@angular/core';
 import {ToolsService} from "../../tools/tools.service";
 import {Subject} from "rxjs";
@@ -18,7 +18,8 @@ import {FeedCommentRespVO} from "../../../domain/interface.model";
   selector: 'seed-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class CommentsComponent implements OnDestroy {
   @Input() comments:FeedCommentRespVO[];

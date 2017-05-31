@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToolsService} from "../../../shared/tools/tools.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {LocalService} from "../../../local/local.service";
@@ -9,6 +9,7 @@ import {UserDataService} from "../../../shared/tools/user-data.service";
   selector: 'seed-my-join-detail',
   templateUrl: './my-join-detail.component.html',
   styleUrls: ['./my-join-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyJoinDetailComponent implements OnInit {
   public spellDetail:any
@@ -42,7 +43,7 @@ export class MyJoinDetailComponent implements OnInit {
           if(object.data.joinList){
             for(let j=0;j<object.data.joinList.length;j++){
               if(this.user.getUserid()){
-                if(object.data.joinList[j].userId==localStorage.getItem('userid')){
+                if(object.data.joinList[j].userId==this.user.getUserid()){
                   this.haveJoin='joined';
                   this.applyCheck=0;
                 }

@@ -20,13 +20,13 @@
       <div class="team-location">
         <i></i>
         <span>{{item.fightArea?item.fightArea:'待定'}}</span>
-        <span class="team-distance">{{item.distance?(item.distance|Distance):'未知'}}</span>
+        <!--<span class="team-distance">{{item.distance?(item.distance|Distance):'未知'}}</span>-->
         <!--<span class="team-distance">{{item.distance|Distance}}</span>-->
         <!--<span class="team-distance" *ngIf="!item.distance">未知</span>-->
       </div>
       <p class="team-expense">
         <i></i>
-        <span>{{item.fightCost}}</span>
+        <span>{{item.fightCost?item.fightCost:'待定'}}</span>
       </p>
     </div>
     <div class="team-icon">

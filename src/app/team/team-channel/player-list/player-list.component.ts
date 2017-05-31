@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../../../shared/tools/tools.service';
@@ -6,11 +6,12 @@ import { TeamPlayerVO } from '../../../domain/interface.model';
 
 @Component({
   selector: 'player-list',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './player-list.component.html',
   styleUrls: ['./player-list.component.scss']
 })
 export class PlayerListComponent {
-  public players: Array<TeamPlayerVO>=[];
+  public players: Array<TeamPlayerVO> = [];
   public scrollContainer: Element;
   constructor(
     public teamService: TeamService,

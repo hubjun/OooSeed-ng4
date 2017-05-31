@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToolsService} from "../../../shared/tools/tools.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {LocalService} from "../../../local/local.service";
@@ -8,6 +8,7 @@ import {Subscription} from "rxjs/Subscription";
   selector: 'seed-my-launch-detail',
   templateUrl: './my-launch-detail.component.html',
   styleUrls: ['./my-launch-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyLaunchDetailComponent implements OnInit {
 

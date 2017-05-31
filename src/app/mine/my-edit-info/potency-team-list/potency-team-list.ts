@@ -5,7 +5,7 @@
 /**
  * Created by dell on 2017/5/12.
  */
-import {Component, OnInit}from'@angular/core';
+import {Component, OnInit, ViewEncapsulation}from'@angular/core';
 import {Router, ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 import {MineService} from '../../mine.service'
@@ -15,7 +15,8 @@ import {ToolsService} from '../../../shared/tools/tools.service'
 @Component({
   selector: 'my-potency-team',
   templateUrl: './potency-team-list.html',
-  styleUrls: ['./potency-team-list.scss']
+  styleUrls: ['./potency-team-list.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class PotencyTeamComponent implements OnInit {

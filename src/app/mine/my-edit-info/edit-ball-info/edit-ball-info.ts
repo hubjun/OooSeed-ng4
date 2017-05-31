@@ -5,7 +5,7 @@
 /**
  * Created by dell on 2017/5/12.
  */
-import {Component, OnInit}from'@angular/core';
+import {Component, OnInit, ViewEncapsulation}from'@angular/core';
 import {Router, ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 import {MineService} from '../../mine.service';
@@ -16,7 +16,8 @@ import {Subscription} from "rxjs";
 @Component({
   selector: 'my-content',
   templateUrl: './edit-ball-info.html',
-  styleUrls: ['./edit-ball-info.scss']
+  styleUrls: ['./edit-ball-info.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class EditBallComponent implements OnInit {

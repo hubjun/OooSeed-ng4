@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TeamService } from '../team.service';
 import { UserInfoVO, FootballTeam } from '../../domain/interface.model';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { ToolsService } from '../../shared/tools/tools.service';
 
 @Component({
   selector: 'fans-channel',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './fans-channel.component.html',
   styleUrls: ['./fans-channel.component.scss']
 })

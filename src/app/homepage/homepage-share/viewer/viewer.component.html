@@ -1,17 +1,2 @@
-<seed-toolbar-header>
-  <seed-toolbar-home></seed-toolbar-home>
-  <seed-toolbar-title></seed-toolbar-title>
-  <seed-toolbar-menu></seed-toolbar-menu>
-</seed-toolbar-header>
-<seed-content class="seed-person-picture share-picture">
-      <seed-swiper-container index="{{(activeIndex | async) -1 }}">
-        <seed-swiper-slide
-          *ngFor="let item of (gallery | async);let idx=index"
-        >
 
-          <div class="seed-slider">
-            <img [src]="item.fileName">
-          </div>
-        </seed-swiper-slide>
-      </seed-swiper-container>
-</seed-content>
+<seed-photo-viewer [index]="(activeIndex | async) " [list]="(gallery | async)"></seed-photo-viewer>

@@ -5,17 +5,16 @@
   <seed-toolbar-menu></seed-toolbar-menu>
 </seed-toolbar-header>
 <seed-content>
-  <div class="mine-page" *ngIf="userInfo">
+  <div class="mine-page" >
     <div class="mine-page">
+
       <div class="mine-person">
         <div class="person-info">
           <div class="person-info-img">
             <img
               class="person-header-img"
               (click)="goPersonalPage(userInfo.userId)"
-              [lazyLoad]="userInfo.iconUrl"
-              [defaultImage]="'/assets/images/placeholder_head_pic.png'"
-              [errorImage]="'/assets/images/placeholder_head_pic.png'"
+              src="{{userInfo.iconUrl||'/assets/images/placeholder_head_pic.png'}}"
             >
           </div>
             <div class="person-info-detail"(click)="goedit()">
@@ -27,8 +26,10 @@
                 {{userInfo.areaProvName}}{{userInfo.areaCityName==userInfo.areaProvName? '': userInfo.areaCityName}}
               </div>
             </div>
-            <img class="person-arrow" src="../../assets/icon/arrow.png"(click)="goedit()">
-          <div (click)="goedit()"class="tabbox"></div>
+
+          <div (click)="goedit()"class="tabbox">
+            <img class="person-arrow" src="../../assets/icon/arrow.png">
+          </div>
         </div>
         <div class="mine-care-love">
           <div class="mine-care" (click)="goToFollowlist(userInfo.userId)">

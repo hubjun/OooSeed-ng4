@@ -8,7 +8,7 @@
     <div class="seed-grid-row">
       <div class="seed-grid-col" col-4 *ngFor="let item of (gallery | async);let idx = index">
         <a
-          routerLink="/homepage/{{userId}}/viewer/{{idx}}"
+          routerLink="/homepage/{{userId}}/viewer/{{(gallery | async).length}}/{{idx}}"
           [lazyLoad]="item.fileName"
           [defaultImage]="'/assets/images/user_default.png'"
           [errorImage]="'/assets/images/user_default.png'"

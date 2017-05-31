@@ -3,7 +3,7 @@
  */
 
 import {ToolsService} from "../../tools/tools.service";
-import { Component,Input,Output,EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'select-list',
@@ -13,6 +13,8 @@ import { Component,Input,Output,EventEmitter} from '@angular/core';
       </select>
   `,
   styleUrls: ['./selects.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 
 export class SelectComponent {

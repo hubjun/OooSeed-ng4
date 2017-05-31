@@ -41,7 +41,9 @@
         </div>
         <div class="spellExpense">
           <p>费用：</p>
-          <span>{{spellDetail?.payMethod==1?'AA':'免费'}}</span>
+          <span>
+            {{spellDetail?.payMethod=='9001'?'AA':spellDetail?.payMethod=='9002'?'免费':'其他'}}
+          </span>
         </div>
         <div class="spellToggle" *ngIf="spellToggle">
           <div class="spellSystem" id="demo" >
@@ -133,13 +135,13 @@
         ></missing-default-content>
       </div>
     </div>
-    <div class="joinFixed">
-      <div class="applyJoin" (click)="TipCommon()"
-           [class.success]="spellDetail?.status=='2'"
-           [class.failed]="spellDetail?.status=='3'"
-           [class.complete]="spellDetail?.status=='4'"
-           [class.end]="spellDetail?.status=='5'"
-      >{{haveJoin=='joined'?'已加入':(spellDetail?.status=='1'?('申请加入'):(spellDetail?.status=='2'?('拼球成功'):spellDetail?.status=='3'?('拼球失败'):(spellDetail?.status=='4')?('已关闭'):'已结束'))}}</div>
-    </div>
   </div>
 </seed-content>
+<div class="joinFixed">
+  <div class="applyJoin" (click)="TipCommon()"
+       [class.success]="spellDetail?.status=='2'"
+       [class.failed]="spellDetail?.status=='3'"
+       [class.complete]="spellDetail?.status=='4'"
+       [class.end]="spellDetail?.status=='5'"
+  >{{haveJoin=='joined'?'已加入':(spellDetail?.status=='1'?('申请加入'):(spellDetail?.status=='2'?('拼球成功'):spellDetail?.status=='3'?('拼球失败'):(spellDetail?.status=='4')?('已关闭'):'已结束'))}}</div>
+</div>

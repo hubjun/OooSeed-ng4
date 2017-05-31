@@ -1,10 +1,15 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {
+  Component, OnInit, Input, EventEmitter, Output, ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'video-card-category',
   templateUrl: './card-category.component.html',
-  styleUrls: ['./card-category.component.scss']
+  styleUrls: ['./card-category.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class CardCategoryComponent implements OnInit {
   @Input() tvCateObj: any[];

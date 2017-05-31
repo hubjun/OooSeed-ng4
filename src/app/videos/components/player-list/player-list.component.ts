@@ -1,10 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, Input, ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'video-player-list',
   templateUrl: './player-list.component.html',
-  styleUrls: ['./player-list.component.scss']
+  styleUrls: ['./player-list.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class PlayerListComponent implements OnInit {
 

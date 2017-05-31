@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../../../shared/tools/tools.service';
 
 @Component({
   selector: 'match-record',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './match-record.component.html',
   styleUrls: ['./match-record.component.scss']
 })

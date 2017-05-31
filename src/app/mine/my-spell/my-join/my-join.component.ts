@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToolsService} from "../../../shared/tools/tools.service";
 import {LocalService} from "../../../local/local.service";
 import {Subscription} from "rxjs/Subscription";
@@ -9,6 +9,7 @@ import {UserDataService} from "../../../shared/tools/user-data.service";
   selector: 'my-join-spell',
   templateUrl: './my-join.component.html',
   styleUrls: ['./my-join.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyJoinComponent implements OnInit {
   public spellData:any;
@@ -17,7 +18,7 @@ export class MyJoinComponent implements OnInit {
   public param:any={
     longitude: 0,
     latitude: 0,
-    userId: localStorage.getItem('userid'),
+    userId: this.user.getUserid(),
     page:1,
     rows: 10
   };

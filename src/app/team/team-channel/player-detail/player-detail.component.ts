@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../../../shared/tools/tools.service';
@@ -6,6 +6,7 @@ import { TeamPlayerVO, UserInfoVO } from '../../../domain/interface.model';
 
 @Component({
   selector: 'player-detail',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './player-detail.component.html',
   styleUrls: ['./player-detail.component.scss']
 })

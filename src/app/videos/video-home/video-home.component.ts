@@ -1,24 +1,21 @@
-import { Component, OnInit, ElementRef ,ViewChild} from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 import {VideosService} from '../videos.service';
 import {ToolsService} from '../../shared/tools/tools.service';
-import {Observable, Subject} from "rxjs";
 import {Router, ActivatedRoute} from '@angular/router'
-import {AppPlayTurn,catePart} from "../../domain/interface.model";
-import {KSSwiperContainer} from "angular2-swiper";
-// import {childOfKind} from "tslint";
-// import {count} from "rxjs/operator/count";
+import {AppPlayTurn} from "../../domain/interface.model";
+
 
 @Component({
   selector: 'app-video-home',
   templateUrl: './video-home.component.html',
-  styleUrls: ['./video-home.component.scss']
+  styleUrls: ['./video-home.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class VideoHomeComponent implements OnInit {
-  public bannerObj : Observable<AppPlayTurn[]>;
-  // public cateObj: Observable<catePart[]>;
+  public bannerObj : AppPlayTurn[];
   index:number = 0;
   isSlidersActive:number = 0;
-  @ViewChild(KSSwiperContainer) swiperContainer: KSSwiperContainer;
   example1SwipeOptions: any;
   cateObj: any[] = [];
   // listObj: any[] = [];
@@ -27,12 +24,7 @@ export class VideoHomeComponent implements OnInit {
     public videoService: VideosService,
     public router: Router,
     public tools: ToolsService,
-    public activeRoute: ActivatedRoute,
-    public el:ElementRef
   ) {
-    // this.bannerObj = videoService.banners;
-    // console.log(this.bannerObj);
-    // this.cateObj = videoService.cate;
     this.tools.setTitle('视频');
   }
 
@@ -50,7 +42,6 @@ export class VideoHomeComponent implements OnInit {
       .subscribe(rs => {
         if(rs.result === '0'){
           this.bannerObj = rs.data.list;
-          // console.log(this.bannerObj);
         }else {
           return;
         }
@@ -71,11 +62,6 @@ export class VideoHomeComponent implements OnInit {
     this.tools.hideLoading();
   };
 
-  // cateIdChange(e){
-  //   // console.log(e);
-  //   this.router.navigate(['/videos/more', e]);
-  // };
-
   setCateWidth(){
     let ul = document.getElementsByClassName('category-ul')[0];
     let ele = ul.getElementsByTagName('li');
@@ -89,14 +75,7 @@ export class VideoHomeComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.example1SwipeOptions = {
-      autoplay : 3000,
-      loop: true,
-      pagination: '.seed-sliders-pagination',
-    };
     this.getSliderList();
-    // this.videoService.getBannerImg();
-    // this.videoService.getCateList();
     this.getCateListInfo();
   }
 

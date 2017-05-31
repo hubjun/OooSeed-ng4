@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'channel-nav',
   templateUrl: 'channel-nav.component.html',
-  styleUrls: ['./channel-nav.component.scss']
+  styleUrls: ['./channel-nav.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ChannelNavComponent implements OnInit {
   public navs: Array<object> = [

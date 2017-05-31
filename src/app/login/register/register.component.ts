@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/Router';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
@@ -10,7 +10,8 @@ import { ToolsService } from '../../shared/tools/tools.service';
   selector: 'register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [UserActivityService,]
+  providers: [UserActivityService,],
+  encapsulation: ViewEncapsulation.None,
 })
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
@@ -34,7 +35,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tools.setTitle('注册');
     this.subscription.add(
       this.registerForm.valueChanges
         .debounceTime(300)  //开始输入之后500毫秒内只取最新的结果

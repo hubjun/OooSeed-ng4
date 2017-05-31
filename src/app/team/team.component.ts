@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TeamService } from './team.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
@@ -6,6 +6,7 @@ import { FootballTeam } from '../domain/interface.model';
 
 @Component({
   selector: 'team',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
@@ -42,7 +43,6 @@ export class TeamComponent {
    * @param e ：event
    */
   switchChannel(e): void {
-    console.log(e)
     let currentChannel = e.target.getAttribute('data-channel');
     if (currentChannel != null) {
       this.teamService.currentChannel = currentChannel;

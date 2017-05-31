@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild,ChangeDetectionStrategy, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ChangeDetectionStrategy, ElementRef, ViewEncapsulation} from '@angular/core';
 import {HomeService} from "../../home.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {FeedRespVO, FeedCommentRespVO} from "../../../domain/interface.model";
@@ -11,13 +11,15 @@ import {FeedbackSevice} from "../../../shared/service/FeedbackSevice";
   selector: 'seed-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class ArticleComponent implements OnInit {
   public feedsArticle:Observable<FeedRespVO>;
   public comments:Observable<FeedCommentRespVO[]>;
   public scrollContainer;
   @ViewChild('diggNumber') diggNumber:ElementRef;
+  course$: Observable<any>;
   subscription:Subscription = new Subscription();
   constructor(
     public route:ActivatedRoute,
@@ -33,7 +35,6 @@ export class ArticleComponent implements OnInit {
   digg(feedId:number,$event:any){
     let number = parseInt(this.diggNumber.nativeElement.innerText);
     let name = this.diggNumber.nativeElement.getAttribute('class');
-
     if(this.user.hasLoggedIn() != null && this.user.getUserid() != null){
       let userId = this.user.getUserid();
 
@@ -105,9 +106,10 @@ export class ArticleComponent implements OnInit {
     }
   }
 
+
   ngOnInit() {
     this.route.params.subscribe((params:Params) => {
-      this.homeService.GetFeedArticle(params['feedId'])
+      this.homeService.GetFeedArticle(params['feedId']);
     })
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }

@@ -1,10 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, ChangeDetectionStrategy,ViewEncapsulation} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'member-moduled',
   templateUrl: './member-module.component.html',
-  styleUrls: ['./member-module.component.scss']
+  styleUrls: ['./member-module.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class MemberModule implements OnInit {
 

@@ -1,7 +1,7 @@
 /**
  * Created by dell on 2017/5/12.
  */
-import {Component, OnInit, Input}from'@angular/core';
+import {Component, OnInit, Input, ViewEncapsulation}from'@angular/core';
 import {Router, ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 
@@ -27,7 +27,8 @@ import {componentFactoryName} from "@angular/compiler";
     </div>
 
   `,
-  styleUrls: ['./my-component.scss']
+  styleUrls: ['./my-component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MyComponent implements OnInit {

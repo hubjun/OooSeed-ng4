@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, Input} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Input, ViewEncapsulation} from '@angular/core';
 import {HomeService} from "../../../home/home.service";
 import {Observable, Subject, Subscription, BehaviorSubject} from "rxjs";
 import {AppPlayTurn, ArticleCate, ArticleVO} from "../../../domain/interface.model";
@@ -10,7 +10,8 @@ import {AuthService} from '../../../shared/service/auth.service';
 @Component({
   selector: 'my-info',
   templateUrl: './my-info.component.html',
-  styleUrls: ['./my-info.component.scss']
+  styleUrls: ['./my-info.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyInfoComponent implements OnInit {
 
@@ -24,7 +25,9 @@ export class MyInfoComponent implements OnInit {
   public userId: string = '';
   public tempArr = [];
   public canScroll: boolean = true;
-  public scrolling: boolean = true;
+  public scrolling: boolean = false;
+  public loading: boolean = true;
+  public noInfo: boolean = false;
   constructor(
     public homeService:HomeService,
     public tools:ToolsService,
@@ -42,7 +45,12 @@ export class MyInfoComponent implements OnInit {
         .takeUntil(this.ngUnsubscribe)
         .subscribe(res =>{
           this.tools.hideLoading();
+          this.loading = false;
           if(res.result == '0'){
+            if(res.data.list.length == 0){
+              this.noInfo = true;
+              return;
+            }
             this.tempArr = [...res.data.list];
              this._articles.next(this.tempArr);
           }

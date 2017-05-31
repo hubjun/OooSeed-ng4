@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import {MineService} from '../../mine.service';
 import {Subscription} from "rxjs";
 import { Router } from "@angular/Router";
@@ -7,7 +7,8 @@ import { ToolsService } from '../../../shared/tools/tools.service'
 @Component({
   selector: 'area-picker',
   templateUrl: './area-picker.component.html',
-  styleUrls: ['./area-picker.component.scss']
+  styleUrls: ['./area-picker.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AreaPickerComponent implements OnInit {
   public ProvHascity: boolean = false;

@@ -1,12 +1,15 @@
 import {
   Component, ElementRef, OnDestroy, Input, ViewChild,
-  AfterViewInit, AfterViewChecked
+  AfterViewInit, AfterViewChecked, ViewEncapsulation, ChangeDetectionStrategy
 } from '@angular/core';
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'seed-swiper-container',
   templateUrl: './swiper-container.component.html',
-  styleUrls: ['./swiper-container.component.scss']
+  styleUrls: ['./swiper-container.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class SwiperContainerComponent implements OnDestroy,AfterViewInit,AfterViewChecked {
   public readonly SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
@@ -15,70 +18,16 @@ export class SwiperContainerComponent implements OnDestroy,AfterViewInit,AfterVi
   _length:number;
   _list:Array<string> = [];
   _isStart: boolean;
-  _index:number = 5;
+  _index:number = 0;
   _isEnd: boolean;
-  children:any[] = [];
   _auto:boolean = false;
   _pager:boolean = false;
   _isSliding:boolean = false;
   _loop:boolean = false;
+  children:Subject<string[]> = new Subject<string[]>();
   @ViewChild('container') container:ElementRef;
 
-/*  public list = [
-    {
-      "playTurnId":194,
-      "resUrl":"http://192.168.10.115:5088/f/20170317/sport/sns/cms/i/8a8546789d314d5b97ae741c86264ca6.jpg",
-      "title":"足坛少了一位女球王，却多了一位奥运会女拳，她就是在伦敦奥运会女子轻量级拳击项目中斩获金牌的凯蒂.泰勒",
-      "status":1,
-      "clickUrl":"http://pc.sport.com/personal/index/feedetail/13689",
-      "resPosition":6001,
-      "resType":4,
-      "resId":"13689",
-      "sortValue":4,
-      "fileId":0,
-      "deviceType":4,
-      "visible": true
-    },
-    {
-      "playTurnId":193,
-      "resUrl":"http://192.168.10.115:5088/f/20170317/sport/sns/cms/i/8b1710726be244e79514bd744378975c.jpeg",
-      "title":"热辣资讯",
-      "status":1,
-      "resPosition":6001,
-      "resType":4,
-      "resId":"13693",
-      "sortValue":3,
-      "fileId":0,
-      "deviceType":4,
-      "visible": false,
-    },
-    {
-      "playTurnId":192,
-      "resUrl":"http://192.168.10.115:5088/f/20170317/sport/sns/cms/i/29fa51ee754a4b06962c95e9d49a5761.jpg",
-      "title":"精彩赛事资讯",
-      "status":1,
-      "resPosition":6001,
-      "resType":4,
-      "resId":"13700",
-      "sortValue":2,
-      "fileId":0,
-      "deviceType":4,
-      "visible": false,
-    },
-    {
-      "playTurnId":191,
-      "resUrl":"http://192.168.10.115:5088/f/20170317/sport/sns/cms/i/65a9d7883b70477985b7a104b7ee5f3b.jpg",
-      "title":"17投11中，砍30分，火箭捡到宝了",
-      "status":1,
-      "resPosition":6001,
-      "resType":4,
-      "resId":"13686",
-      "sortValue":1,
-      "fileId":0,
-      "deviceType":4,
-      "visible": false,
-    }
-  ]*/
+
 
   constructor(){}
 
@@ -223,7 +172,6 @@ export class SwiperContainerComponent implements OnDestroy,AfterViewInit,AfterVi
         if(this.loop){
           sliderIndex = 0;
         }else{
-          console.log(this.container.nativeElement.children[sliderIndex])
           this.setEffect(sliderIndex);
           return false;
         }
@@ -232,8 +180,9 @@ export class SwiperContainerComponent implements OnDestroy,AfterViewInit,AfterVi
         sliderIndex++;
       }
     }
-
     this.index = sliderIndex;
+    this.stopAutoPlay();
+
 
     this.container.nativeElement.style.transform =`translate3d(-${this.width * sliderIndex}px,0,0)`;
   }
@@ -281,10 +230,12 @@ export class SwiperContainerComponent implements OnDestroy,AfterViewInit,AfterVi
   getChildrenNodesLength(){
     if (this.length == 0 || typeof this.length == 'undefined'){
       setTimeout( () => {
+        let list = [];
         this.length = this.container.nativeElement.children.length;
         for(var i=0; i <this.length;i++){
-          this.children.push([i])
+          list.push([i])
         }
+        this.children.next(list)
       })
     }
 
@@ -304,7 +255,6 @@ export class SwiperContainerComponent implements OnDestroy,AfterViewInit,AfterVi
 
   ngAfterViewChecked(){
     this.getChildrenNodesLength();
-    console.log('1213')
   }
 
   ngAfterViewInit(){

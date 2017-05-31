@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, ViewChild} from '@angular/core';
 import {HomepageService} from "./homepage.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ToolsService} from "../shared/tools/tools.service";
 import {Subscription} from "rxjs/Subscription";
 import {AuthService} from "../shared/service/auth.service";
 import {UserDataService} from "../shared/tools/user-data.service";
+import {Content} from "../shared/components/toolbar/toolbar-content";
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  styleUrls: ['./homepage.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomepageComponent implements OnInit {
   public classTag:string;
@@ -19,13 +21,12 @@ export class HomepageComponent implements OnInit {
   public eachcare='../../assets/images/user_states_3.png';
   public isFollowedMe:number;
   public isFollowed:number;
+  public userId:string;
   public isLogin:string;
-  public userId:string='';
   public localUserId:string;
-
   scrollContainer;
-
   subscription: Subscription = new Subscription();
+  @ViewChild(Content) content;
   constructor(
     public router: Router,
     public auth:AuthService,
@@ -101,17 +102,19 @@ export class HomepageComponent implements OnInit {
     }
     this._activatedRoute.params
       .subscribe((params:Params) => {
-        this.isFollowedMe=null;
+/*        this.isFollowedMe=null;
         this.isFollowed = null;
         this.userId='';
         this.localUserId = '';
         this.classTag = 'share';
-        this.personHeaderInfo='';
-
-      this.userId=params['userId'];
-      this.getInfo(params['userId']);
+        this.personHeaderInfo='';*/
+        this.classTag = 'share';
+       this.content.scrollTop();
+       this.userId=params['userId'];
+       this.getInfo(params['userId']);
+       //this.classTag=this.homepageService.checkClass;
       });
-    this.classTag=this.homepageService.checkClass;
+
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 

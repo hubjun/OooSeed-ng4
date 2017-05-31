@@ -1,7 +1,7 @@
 /**
  * Created by dell on 2017/5/12.
  */
-import {Component,OnInit}from'@angular/core';
+import {Component,OnInit, ViewEncapsulation}from'@angular/core';
 import {Router,ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 import {MineService} from '../mine.service'
@@ -12,7 +12,8 @@ import {ToolsService} from '../../shared/tools/tools.service';
 @Component({
   selector: 'my-content',
   templateUrl: './my-team.component.html',
-  styleUrls: ['./my-team.component.scss']
+  styleUrls: ['./my-team.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MyTeamComponent implements OnInit {

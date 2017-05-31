@@ -1,14 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ReportTeamMatchVO } from '../../../domain/interface.model';
 
 @Component({
   selector: 'season-results',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './season-results.component.html',
   styleUrls: ['./season-results.component.scss']
 })
 export class SeasonResultsComponent {
-  public result:ReportTeamMatchVO;
+  public result: ReportTeamMatchVO;
   public progressBarOpts: Array<any> = [{
     color: '#e94141',
     percent: 0,
@@ -26,7 +27,7 @@ export class SeasonResultsComponent {
     border: 3
   }]
 
-  constructor() {}
+  constructor() { }
 
   setPercent(result): void {
     this.result = result;

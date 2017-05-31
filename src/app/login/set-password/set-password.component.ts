@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ValidationService } from "../../shared/tools/validator.service";
 import { UserActivityService } from '../../shared/tools/user-activity.service';
@@ -12,7 +12,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   selector: 'set-password',
   templateUrl: './set-password.component.html',
   styleUrls: ['./set-password.component.scss'],
-  providers: [UserActivityService, ToolsService]
+  providers: [UserActivityService, ToolsService],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SetPasswordComponent implements OnInit {
   public passwordForm: FormGroup;
@@ -37,7 +38,6 @@ export class SetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tools.setTitle('设置密码');
     this.subscription.add(
       this.route.queryParams.subscribe(param => {
         this.register = {

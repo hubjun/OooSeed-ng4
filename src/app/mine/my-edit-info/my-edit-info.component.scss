@@ -1,10 +1,47 @@
 @import '../../../app/shared/styles/theming.scss';
+
+//头像
+#avatar {
+  height: pxTorem(163);
+  position: relative;
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    opacity: 0;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  em {
+    flex: 1;
+  }
+  .avatarImg {
+    width: pxTorem(110);
+    height: pxTorem(110);
+    border-radius: 50%;
+    background-color: #fafafa;
+    position: absolute;
+    right: 2.85rem;
+    top:1.5rem;
+  }
+}
 //个人信息页
 
 .normal-list {//与球队个人信息公用
+  
   background: color($h5,c9);
   //padding-top: pxTorem(15);
   height: 100%;
+  .edit-title{
+    height: pxTorem(90);
+    background-color: #fff;
+    text-align: center;
+    line-height: pxTorem(90);
+  }
   .gap{
     height: pxTorem(15)
   }
@@ -35,35 +72,7 @@
         @include icon(17, 28, '(../../../assets/icon/icon_more.png');
       }
     }
-    //头像
-    .avatar {
-      height: pxTorem(163);
-      position: relative;
-      input[type='file'] {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 99;
-        opacity: 0;
-      }
-      label {
-        display: flex;
-        align-items: center;
-        width: 100%;
-      }
-      em {
-        flex: 1;
-      }
-      .avatarImg {
-        width: pxTorem(110);
-        height: pxTorem(110);
-        border-radius: 50%;
-        background-color: #fafafa;
-        position: absolute;
-        right: 2.85rem;
-        top:1.5rem;
-      }
-    }
+
   }
   .ageSelectWarp,
   .multi-picker {

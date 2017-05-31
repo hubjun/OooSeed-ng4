@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {HomepageService} from "../homepage.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {ToolsService} from "../../shared/tools/tools.service";
 
@@ -8,6 +8,7 @@ import {ToolsService} from "../../shared/tools/tools.service";
   selector: 'person-events',
   templateUrl: './homepage-events.component.html',
   styleUrls: ['./homepage-events.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomepageEventsComponent implements OnInit {
   subscription: Subscription = new Subscription();
@@ -31,13 +32,7 @@ export class HomepageEventsComponent implements OnInit {
       this.homepageService.getEvents(obj).subscribe(res=>{
         let object=res;
         if(object&&object.data.list.length>0){
-          if(object.data.list.length>6){
-            for(let i=0;i<6;i++){
-              this.eventList[i]=object.data.list[i];
-            }
-          }else{
             this.eventList=object.data.list;
-          }
         }else{
           this.eventList[0]='无';
         }
@@ -53,12 +48,7 @@ export class HomepageEventsComponent implements OnInit {
   }
   ngOnInit() {
     this.nowdate=new Date().getTime();
-    // if(this.userid==localStorage.getItem('userid')){
-    //   this.events(this.userid);
-    // }else{
-    //   this.events(this.userid);
-    // }
-      this.events(this.userid);
+    this.events(this.userid);
     this.scrollContainer = document.querySelector('#seed-scroll-content');
   }
 

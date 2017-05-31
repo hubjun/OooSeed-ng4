@@ -1,0 +1,6 @@
+<div class="view-video-wrapper" (window:resize)="resize($event)" (window:orientationchange)="orientationChange($event)">
+ <seed-toolbar-backbutton (click)="dismiss()"></seed-toolbar-backbutton>
+  <div class="image-on-top video">
+  <video #player [src]="link" poster="{{poster}}" controls="controls"></video>
+  </div>
+</div>

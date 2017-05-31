@@ -17,6 +17,9 @@ import {MyPictureComponent} from "./homepage-share/my-picture/my-picture.compone
 import {MyVideoComponent} from "./homepage-share/my-video/my-video.component";
 import {MyFansComponent} from "./homepage-fans/my-fans/my-fans.component";
 import {MyCareFansComponent} from "./homepage-fans/my-care-fans/my-care-fans.component";
+import {ViewVideoComponent} from "./homepage-share/view-video/view-video.component";
+import { MyFeedComponent } from './homepage-share/my-feed/my-feed.component';
+
 
 @NgModule({
   imports: [
@@ -39,6 +42,8 @@ import {MyCareFansComponent} from "./homepage-fans/my-care-fans/my-care-fans.com
     EventsDetailRuleComponent,
     EventsDetailAnnounceComponent,
     ViewerAlbumComponent,
+    ViewVideoComponent,
+    MyFeedComponent,
   ],
   providers:[HomepageService]
 })

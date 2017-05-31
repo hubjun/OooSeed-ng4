@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TeamService } from '../../team.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToolsService } from '../../../shared/tools/tools.service';
@@ -6,11 +6,12 @@ import { TeamMatchVO } from '../../../domain/interface.model';
 
 @Component({
   selector: 'match-detail',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './match-detail.component.html',
   styleUrls: ['../../components/match-card/match-card.component.scss', '../../../local/local-match/match-detail/match-detail.component.scss']
 })
 export class MatchDetailComponent {
-  public match:TeamMatchVO;
+  public match: TeamMatchVO;
   public defaultTeamIcon: string = this.teamService.defaultTeamIcon;
   constructor(
     public teamService: TeamService,

@@ -1,6 +1,6 @@
 
 import {ToolsService} from "../../../shared/tools/tools.service";
-import { Component,Input,Output,EventEmitter} from '@angular/core';
+import { Component,Input,Output,EventEmitter, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'choose-two-items',
@@ -21,6 +21,7 @@ import { Component,Input,Output,EventEmitter} from '@angular/core';
     </div>
   `,
   styleUrls: ['./choose-two-items.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class ChooseItemsComponent {

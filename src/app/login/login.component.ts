@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
   subscription: Subscription = new Subscription();
 
   ngOnInit() {
-    this.tools.setTitle('登录');
     this.subscription.add(
       this.router.events.subscribe((res) => {
         window.scrollTo(0, 0);

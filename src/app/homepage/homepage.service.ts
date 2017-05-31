@@ -3,7 +3,7 @@ import {HttpService} from "../core/http.service";
 import {ToolsService} from "../shared/tools/tools.service";
 import {Subscription} from "rxjs/Subscription";
 import {BehaviorSubject} from "rxjs";
-import {FeedRespVO, UserAlbumFileVO} from "../domain/interface.model";
+import {FeedRespVO, UserAlbumFileVO, UserInfoVO} from "../domain/interface.model";
 
 @Injectable()
 export class HomepageService {
@@ -59,9 +59,19 @@ export class HomepageService {
     let url=this.PERSON_MY_FANS+'?userId='+obj+'&rows='+20;
     return this.httpService.get(url).map((res)=>res.json());
   }
+  //我的粉丝
+  getMyfansHome(obj){
+    let url=this.PERSON_MY_FANS+'?userId='+obj+'&rows='+8;
+    return this.httpService.get(url).map((res)=>res.json());
+  }
   //我关注的人
   getMycare(obj){
     let url=this.PERSON_MY_CARE+'?userId='+obj+'&rows='+20;
+    return this.httpService.get(url).map((res)=>res.json());
+  }
+  //我关注的人
+  getMycareHome(obj){
+    let url=this.PERSON_MY_CARE+'?userId='+obj+'&rows='+8;
     return this.httpService.get(url).map((res)=>res.json());
   }
   //服务
@@ -75,7 +85,7 @@ export class HomepageService {
   get feeds(){
     return this._feeds.asObservable()
   }
-  getUserFeed(userId: string, page: number = 1, rows: number = 2) {
+  getUserFeed(userId:UserInfoVO, page: number = 1, rows: number = 2) {
     let url = this.GET_USER_FEED_URL + `?userId=${userId}&page=${page}&rows=${rows}`;
     this.httpService.get(url)
       .map(res => res.json())
@@ -111,12 +121,7 @@ export class HomepageService {
   //赛事
   getEvents(obj){
     let url;
-    // if(obj=='all'){
-    //   url=this.PERSON_EVENTS+'?statusList=3,4,5,6';
-    // }else{
-    //   url=this.PERSON_EVENTS+'?userId='+obj+'&statusList=3,4,5,6';
-    // }
-    url=this.PERSON_EVENTS+'?userId='+obj+'&statusList=3,4,5,6';
+    url=this.PERSON_EVENTS+'?userId='+obj+'&statusList=3,4,5,6&rows=6';
     return this.httpService.get(url).map((res)=>res.json());
   }
   //赛事公告
@@ -147,7 +152,7 @@ export class HomepageService {
   get videoThumbnail (){
     return this._videoThumbnail.asObservable();
   }
-  getUserAlbum(userId: string, resType: number = 2, purType: number = 1, page = 1, rows = 10) {
+  getUserAlbum(userId: UserInfoVO, resType: number = 2, purType: number = 1, page = 1, rows = 10) {
     let url = this.PERSON_PICTURE_VIDEO + `?userId=${userId}&resType=${resType}&purType=${purType}&page=${page}&rows=${rows}`;
     this.httpService.get(url)
       .map(res => res.json())

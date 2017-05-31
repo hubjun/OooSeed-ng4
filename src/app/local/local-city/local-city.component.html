@@ -8,6 +8,11 @@
     <p class="title">
       <span class="city-name">当前：{{currentAreaText}}</span>
       <i (click)="toggleCityArea()" [class.select]="showArea">选择区县</i>
+
+
+
+
+
     </p>
     <div class="city-area" *ngIf="showArea">
       <ul class="city-list">
@@ -43,12 +48,12 @@
       </li>
     </ul>
   </div>
-  <div class="letter-city" *ngFor="let cityObj of allCity">
-    <h3 id="{{cityObj.letter}}" class="title">{{cityObj.letter}}</h3>
-    <p *ngFor="let city of cityObj.citys" (click)="sortByCity(city)">
+  <dl *ngFor="let cityObj of allCity">
+    <dt id="{{cityObj.letter}}" class="title">{{cityObj.letter}}</dt>
+    <dd *ngFor="let city of cityObj.citys" (click)="sortByCity(city)">
       {{city.title}}
-    </p>
-  </div>
+    </dd>
+  </dl>
   <ul class="letter-nav">
     <li><a (click)="letterAnchorLocation('current-city')">*</a></li>
     <!--当前城市-->

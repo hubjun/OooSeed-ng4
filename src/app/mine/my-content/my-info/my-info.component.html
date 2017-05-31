@@ -13,8 +13,10 @@
        [infiniteScrollContainer]="ele"
        (scrolled)="onScroll()">
   <!--<div class="search-results">-->
-    <seed-badges  [articles]="tools.setArray(articles | async)"></seed-badges>
+    <seed-badges  [articles]="tools.setArray(articles | async)" *ngIf="!noInfo"></seed-badges>
   </div>
-
+  <missing-default-content
+    *ngIf="noInfo && !loading"
+  ></missing-default-content>
 </div>
 </seed-content>

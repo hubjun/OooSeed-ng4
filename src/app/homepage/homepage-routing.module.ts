@@ -5,6 +5,7 @@ import {EventsDetailComponent} from "./homepage-events/events-detail/events-deta
 import {ViewerAlbumComponent} from "./homepage-share/viewer/viewer.component";
 import {MyVideoComponent} from "./homepage-share/my-video/my-video.component";
 import {MyPictureComponent} from "./homepage-share/my-picture/my-picture.component";
+import {MyFeedComponent} from "./homepage-share/my-feed/my-feed.component";
 import {MyCareFansComponent} from "./homepage-fans/my-care-fans/my-care-fans.component";
 import {MyFansComponent} from "./homepage-fans/my-fans/my-fans.component";
 
@@ -22,7 +23,7 @@ const routes: Routes = [
     component:MyPictureComponent,
   },
   {
-    path:'viewer/:index',
+    path:'viewer/:rows/:index',
     component:ViewerAlbumComponent
   },
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path:'my-fans',
     component:MyFansComponent,
+  },
+  {
+    path:'my-feed',
+    component:MyFeedComponent,
   },
   {
     path:'events-detail',

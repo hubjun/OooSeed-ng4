@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subscription } from "rxjs";
 import {MineService} from '../../mine.service';
 import { ToolsService } from "../../../shared/tools/tools.service";
@@ -6,7 +6,8 @@ import { ToolsService } from "../../../shared/tools/tools.service";
 @Component({
   selector: 'diggme',
   templateUrl: './diggme.component.html',
-  styleUrls: ['../my-notice/my-notice.component.scss']
+  styleUrls: ['../my-notice/my-notice.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DiggmeComponent implements OnInit {
 

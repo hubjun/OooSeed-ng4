@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation} from '@angular/core';
 import { LocalService } from '../local.service';
 import { Subscription } from 'rxjs';
 import { RespCityEngageVO } from '../../domain/interface.model';
@@ -7,7 +7,8 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'local-match',
   templateUrl: './local-match.component.html',
-  styleUrls: ['../local-spell/local-spell.component.scss']
+  styleUrls: ['../local-spell/local-spell.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LocalMatchComponent {
   public subscription: Subscription = new Subscription();

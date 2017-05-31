@@ -256,6 +256,17 @@ export class ToolsService {
     return Array.from(val);
   }
 
+  setKeys(value){
+    let arr = [];
+    let keys = Object.keys(value);
+    keys.map((item,i) => {
+      console.log(item)
+      arr.push({[item]:value[item]})
+    })
+    value = arr;
+    return value;
+  }
+
   //回到顶部
   onBackToTop(){
     window.scrollTo(0, 0);

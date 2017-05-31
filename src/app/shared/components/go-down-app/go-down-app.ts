@@ -2,7 +2,7 @@
  * Created by dell on 2017/5/8.
  */
 
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 import {ToolsService} from "../../tools/tools.service";
 
 @Component({
@@ -13,6 +13,8 @@ import {ToolsService} from "../../tools/tools.service";
     </div>
   `,
   styleUrls: ['./go-down-app.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 
 export class DownAppComponent {

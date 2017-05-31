@@ -27,12 +27,14 @@
       <div class="team-location">
         <i></i>
         <span>{{item?.place||'暂无'}}</span>
-        <span class="team-distance" >{{locationError=='error'?'未知':(item?.distance>1000?(item?.distance/1000).toFixed(0)+'km':item?.distance.toFixed(1)+'m')}}</span>
+        <span class="team-distance" >
+          {{locationError=='error'?'未知':(item?.distance>1000?(item?.distance/1000).toFixed(1)+'km':item?.distance.toFixed(0)+'m')}}
+        </span>
       </div>
 
       <p class="team-expense">
         <i></i>
-        <span>{{item?.payMethod=='1'?'AA':'免费'}}</span>
+        <span>{{item?.payMethod=='9001'?'AA':item?.payMethod=='9002'?'免费':'其他'}}</span>
       </p>
     </div>
     <div class="team-icon">

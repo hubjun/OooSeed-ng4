@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ToolsService } from '../../../shared/tools/tools.service';
 import { AuthService } from '../../../shared/service/auth.service';
 import { MineService } from '../../../mine/mine.service';
@@ -9,7 +9,8 @@ import { FeedRespVO } from '../../../domain/interface.model';
 @Component({
   selector: 'my-digg',
   templateUrl: './my-feed.component.html',
-  styleUrls: ['./my-feed.component.scss']
+  styleUrls: ['./my-feed.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyFeedComponent implements OnInit {
   // feeds: any;
@@ -21,6 +22,8 @@ export class MyFeedComponent implements OnInit {
   public tempArr = [];
   public canScroll: boolean = true;
   public scrolling: boolean = false;
+  public noInfo: boolean = false;
+  public loading: boolean = true;
   constructor(
     public tools: ToolsService,
     public authSer: AuthService,
@@ -38,9 +41,16 @@ export class MyFeedComponent implements OnInit {
       .takeUntil(this.ngUnsubscribe)
       .subscribe(res => {
         this.tools.hideLoading();
+        this.loading = false;
         if (res.result == '0') {
+          if(res.data.list.length == 0){
+              this.noInfo = true;
+              return;
+          }
           this.tempArr = [...res.data.list];
           this._feeds.next(this.tempArr);
+        }else{
+          this.noInfo = true;
         }
       })
   }

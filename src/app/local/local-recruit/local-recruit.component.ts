@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/Router';
 import {LocalService} from '../local.service'
 import {Subscription} from "rxjs";
@@ -7,7 +7,8 @@ import {ToolsService} from "../../shared/tools/tools.service";
 @Component({
   selector: 'local-recruit',
   templateUrl: './local-recruit.component.html',
-  styleUrls: ['./local-recruit.component.scss']
+  styleUrls: ['./local-recruit.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LocalRecruitComponent implements OnInit {
   public subscription: Subscription = new Subscription();

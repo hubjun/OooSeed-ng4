@@ -1,4 +1,6 @@
 import {Component, ViewEncapsulation,} from '@angular/core';
+import 'hammerjs';
+
 
 @Component({
   selector: 'app-root',

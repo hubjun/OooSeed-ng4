@@ -31,7 +31,6 @@ import { FeedProfileComponent } from './components/feed-profile/feed-profile.com
 import {LazyLoadImageModule} from "ng-lazyload-image";
 import { CommentsComponent } from './components/comments/comments.component';
 import {InfiniteScrollModule} from "ngx-infinite-scroll";
-// import {KSSwiperModule} from "angular2-swiper";
 import {Content} from "./components/toolbar/toolbar-content";
 import {GapBgComponent} from "./components/gap-bg/gap-bg.component";
 import { MomentModule } from "angular2-moment";
@@ -39,6 +38,7 @@ import { ViewerComponent } from './components/viewer/viewer.component';
 import { SwiperContainerComponent } from './components/swiper/swiper-container/swiper-container.component';
 import { SwiperSlideComponent } from './components/swiper/swiper-slide/swiper-slide.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { PhotoViewerComponent } from './components/phtot-viewer/photo-viewer.component';
 
 @NgModule({
   imports: [
@@ -78,6 +78,7 @@ import { ModalComponent } from './components/modal/modal.component';
     SwiperContainerComponent,
     SwiperSlideComponent,
     ModalComponent,
+    PhotoViewerComponent,
    ],
   exports: [
     CommonModule,
@@ -113,9 +114,11 @@ import { ModalComponent } from './components/modal/modal.component';
     SwiperContainerComponent,
     SwiperSlideComponent,
     ModalComponent,
+    PhotoViewerComponent,
   ],
-
-
   providers:[ToolsService, StatusCodeService, UserDataService]
 })
 export class SharedModule { }
+
+
+

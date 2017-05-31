@@ -1,14 +1,16 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {Subscription} from "rxjs/Subscription";
 import {LocalService} from "../../../local/local.service";
 import {ToolsService} from "../../../shared/tools/tools.service";
 import {Router} from "@angular/router";
+import {UserDataService} from "../../../shared/tools/user-data.service";
 
 
 @Component({
   selector: 'my-launch-spell',
   templateUrl: './my-launch.component.html',
   styleUrls: ['./my-launch.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MyLaunchComponent {
@@ -19,14 +21,15 @@ export class MyLaunchComponent {
   public param:any={
     longitude: 0,
     latitude: 0,
-    userId: localStorage.getItem('userid'),
+    userId: this.user.getUserid(),
     page:1,
     rows: 10
   };
   constructor(
     public router: Router,
     public localService: LocalService,
-    public ToolServices:ToolsService
+    public ToolServices:ToolsService,
+    public user:UserDataService,
   ) {
 
   }

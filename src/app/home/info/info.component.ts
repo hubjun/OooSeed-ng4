@@ -1,15 +1,21 @@
-import {Component, OnInit, ViewChild, ElementRef, Input} from '@angular/core';
+import {
+  Component, OnInit, ViewChild, ElementRef, Input, ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 import {HomeService} from "../home.service";
 import {Observable, Subject} from "rxjs";
 import {AppPlayTurn, ArticleCate, ArticleVO} from "../../domain/interface.model";
 import {ToolsService} from "../../shared/tools/tools.service";
-import {Content} from "../../shared/components/toolbar/toolbar-content";
+import  PhotoSwipe  from 'photoswipe';
+import  * as PhotoSwipeUI_Default from "photoswipe/dist/photoswipe-ui-default.js";
+
 
 @Component({
   selector: 'seed-home-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.scss'],
-
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class InfoComponent implements OnInit {
   @Input() content;
@@ -25,6 +31,7 @@ export class InfoComponent implements OnInit {
   public  ele = document.querySelector('#seed-scroll-content');
   @ViewChild('cateEve') cateEve:ElementRef;
   @ViewChild('lastElement') lastElement;
+
 
   constructor(
     public homeService:HomeService,
@@ -86,5 +93,6 @@ export class InfoComponent implements OnInit {
     this.homeService.GetBannerInfo();
     this.homeService.GetCateInfo();
   }
+
 
 }

@@ -14,6 +14,7 @@ import {ToolsService} from "../../tools/tools.service";
    >
   
   </button>`,
+  changeDetection:ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class ToolbarMenuComponent {

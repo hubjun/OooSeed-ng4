@@ -35,7 +35,7 @@
 
       <p class="team-expense">
         <i></i>
-        <span>{{item.payMethod==1?'AA':'免费'}}</span>
+        <span>{{item?.payMethod=='9001'?'AA':item?.payMethod=='9002'?'免费':'其他'}}</span>
       </p>
     </div>
     <div class="team-icon">

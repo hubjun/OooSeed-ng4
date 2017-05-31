@@ -1,7 +1,14 @@
 seed-viewer-album {
+  .seed-sliders-container{
+    background: black;
+  }
   .seed-slider {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .pswp__button--fs,.pswp__button--share {
+    display: none;
+
   }
 }

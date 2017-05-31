@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ContentChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ContentChild, ViewEncapsulation } from '@angular/core';
 import { TeamService } from '../team.service';
 import { FootballTeam, TeamPlayerVO } from '../../domain/interface.model';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,7 @@ import { ToolsService } from '../../shared/tools/tools.service';
 
 @Component({
   selector: 'team-channel',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './team-channel.component.html',
   styleUrls: ['./team-channel.component.scss']
 })

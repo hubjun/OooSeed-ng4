@@ -2,7 +2,7 @@
 /**
  * Created by dell on 2017/5/12.
  */
-import {Component,OnInit}from'@angular/core';
+import {Component,OnInit, ViewEncapsulation}from'@angular/core';
 import {Router,ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 import {MineService} from '../mine.service'
@@ -14,7 +14,8 @@ import {AuthService} from '../../shared/service/auth.service';
 @Component({
   selector: 'my-content',
   templateUrl: './my-edit-info.component.html',
-  styleUrls: ['./my-edit-info.component.scss']
+  styleUrls: ['./my-edit-info.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MyEditInfoComponent implements OnInit {

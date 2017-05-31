@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { TeamService } from '../team.service';
 import { ToolsService } from '../../shared/tools/tools.service';
 import { TeamMatchVO } from '../../domain/interface.model';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'schedule-channel',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './schedule-channel.component.html',
   styleUrls: ['./schedule-channel.component.scss']
 })

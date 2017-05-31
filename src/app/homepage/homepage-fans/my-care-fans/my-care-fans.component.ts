@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {ToolsService} from "../../../shared/tools/tools.service";
@@ -8,7 +8,8 @@ import {UserDataService} from "../../../shared/tools/user-data.service";
 @Component({
   selector: 'seed-my-care-fans',
   templateUrl: './my-care-fans.component.html',
-  styleUrls: ['./my-care-fans.component.scss']
+  styleUrls: ['./my-care-fans.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyCareFansComponent implements OnInit {
   public userId:string;
@@ -40,13 +41,7 @@ export class MyCareFansComponent implements OnInit {
         let object=res;
         if(object.result==0&&object.data.list.length>0){
           this.myFansNumber=object.data.total;
-          if(object.data.list.length>20){
-            for(let i=0;i<20;i++){
-              this.myCareFans.push(object.data.list[i]);
-            }
-          }else{
-            this.myCareFans=object.data.list;
-          }
+          this.myCareFans=object.data.list;
         }else{
           this.myCareFans[0]='无';
         }

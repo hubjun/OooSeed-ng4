@@ -59,11 +59,13 @@ seed-content {
     left: 0;
     z-index: 1;
     display: block;
-    overflow-x: hidden;
+    // overflow-x: hidden;
     overflow-y: scroll;
     position: absolute;
+    height: 100%;
     margin-top: pxTorem(90px);
-    -webkit-overflow-scrolling: auto;
+    // -webkit-overflow-scrolling: auto;
+    -webkit-overflow-scrolling : touch;  
     will-change: scroll-position;
     contain: size style layout;
     transition-property: all;
@@ -72,6 +74,13 @@ seed-content {
     &.unfold{
       margin-top: pxTorem(180px);
     }
+    &.no-scroll {
+      overflow: hidden;
+    }
+
+  }
+  .seed-scroll-content.no-scroll{
+    overflow: hidden;
   }
 }
 seed-toolbar-roller {
@@ -166,6 +175,7 @@ seed-toolbar-nav {
   .seed-toolbar-nav {
     width: 100%;
     display: flex;
+    z-index: 12;
     background: #e5f6f2;
     @include font-dpr(34px);
     @include set-color(c2);
@@ -219,6 +229,7 @@ seed-toolbar-home {
 
 //回到顶部按钮
 #seed-scroll-top {
+  visibility: hidden;
   opacity: 0;
   z-index: 9;
   position: fixed;
@@ -226,9 +237,10 @@ seed-toolbar-home {
   height:pxTorem(90px);
   right: pxTorem(20px);
   bottom: pxTorem(50px);
-  transition: opacity  1S ease-out 0s;
+  transition: all  1S ease-out 0s;
   background: url(#{$icons-path}/scroll_top.png) no-repeat center center/contain;
   &.show {
+    visibility: visible;
     opacity: 1;
   }
 }

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit,ViewEncapsulation} from '@angular/core';
 import {LocalService} from "../local.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToolsService} from "../../shared/tools/tools.service";
@@ -8,6 +8,7 @@ import {UserDataService} from "../../shared/tools/user-data.service";
   selector: 'app-local-spell-detail',
   templateUrl: './local-spell-detail.component.html',
   styleUrls: ['./local-spell-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LocalSpellDetailComponent implements OnInit {
   public defaulticon = 'assets/icon/concern_default_head.png';
@@ -20,7 +21,6 @@ export class LocalSpellDetailComponent implements OnInit {
   public spellToggle=false;
   public fightId:string;
   public applyCheck:any;
-  // @Input fightId:item;
 
   constructor(
     public router: Router,
@@ -35,7 +35,6 @@ export class LocalSpellDetailComponent implements OnInit {
     this.toolsService.showLoading();
     this.LocalService.getSpellDetail(obj).subscribe((res)=>{
       if(res.result==0){
-        console.log(res.data);
         this.spellDetail=res.data;
         this.applyCheck=res.data.status;
         this.toolsService.hideLoading();
@@ -80,7 +79,6 @@ export class LocalSpellDetailComponent implements OnInit {
   ngOnInit() {
     this.fightId=this._activatedRoute.snapshot.params['fightId'];
     this.getSpellDetailData(this.fightId);
-    this.toolsService.setTitle('我的拼球')
   }
   ngOnDestroy() {
     this.toolsService.hideLoading();

@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LocalService } from './local.service';
 import { ToolsService } from '../shared/tools/tools.service';
 import { Router } from '@angular/Router';
 import { DictCityVO } from '../domain/interface.model';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 
 @Component({
   selector: 'local',
   templateUrl: './local.component.html',
-  styleUrls: ['./local.component.scss']
+  styleUrls: ['./local.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LocalComponent {
-  public subscription: Subscription = new Subscription();
   public currtetCityName: string = '定位中...';
+  public ngUnsubscribe: Subject<void> = new Subject<void>();
   constructor(
     public localService: LocalService
   ) {
-    this.subscription.add(
-      this.localService.currentCityName.subscribe((cityName: string) => {
-        this.currtetCityName = cityName;
-      })
-    )
+    this.localService.currentCityName.takeUntil(this.ngUnsubscribe).subscribe((cityName: string) => {
+      this.currtetCityName = cityName;
+    })
+  }
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

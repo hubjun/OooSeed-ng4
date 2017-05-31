@@ -4,13 +4,16 @@
   <seed-toolbar-menu></seed-toolbar-menu>
 </seed-toolbar-header>
 <seed-content >
-  <div class=" article-template article-template-summary padding-left-right-30" >
+  <div
+    class=" article-template article-template-summary padding-left-right-30 "
+    *ngFor="let item of (feedsArticle|async)"
+  >
     <header class="header">
       <div
         class="subscriptions-posters-icon article-template-icon"
       >
         <img
-          [lazyLoad]="(feedsArticle | async)?.userIcon"
+          [lazyLoad]="item?.userIcon"
           [defaultImage]="'/assets/images/placeholder_head_pic.png'"
           [errorImage]="'/assets/images/placeholder_head_pic.png'"
           [scrollTarget]="scrollContainer"
@@ -18,30 +21,30 @@
       </div>
       <div class=" article-template-content">
         <div class="poster-name">
-          <span>{{(feedsArticle | async)?.nickName}}</span>
+          <span>{{item?.nickName}}</span>
           <span
             class="icon-type"
-            *ngIf="(feedsArticle | async)?.appImgtxtUrl"
-            [style.background-image]="'url('+ (feedsArticle | async)?.appImgtxtUrl +' )' | safeStyle"
+            *ngIf="item?.appImgtxtUrl"
+            [style.background-image]="'url('+ item?.appImgtxtUrl +' )' | safeStyle"
           ></span>
         </div>
         <div class="source" >
-          <time class="date">{{(feedsArticle | async)?.createTm | date:'MM-dd HH:mm':'MM-dd HH:mm'}}</time>
-          <span class="separator" *ngIf="(feedsArticle | async)?.length > 0 "></span>
-          <span  *ngFor="let item of (feedsArticle | async)?.labels" class="tags">{{item.labelName}}</span>
+          <time class="date">{{item?.createTm | amDateFormat:'MM-DD HH:mm':'MM-dd HH:mm'}}</time>
+          <span class="separator" *ngIf="item != '' "></span>
+          <span  *ngFor="let item of item?.labels" class="tags">{{item.labelName}}</span>
         </div>
       </div>
       <div
-        *ngIf="(feedsArticle | async)?.userId"
-        (click)="follow(feedsArticle?.source?.value?.userId,$event)"
-        [ngClass]="{isFollow: feedsArticle.isFollow == 1}"
+        *ngIf="item?.userId"
+        (click)="follow(item?.userId,$event)"
+        [ngClass]="{isFollow: item.isFollow == 1}"
         class="button-subscription "
       >
       </div>
     </header>
     <article class="article">
-      <h3>{{(feedsArticle | async)?.title}}</h3>
-      <div class="section" *ngFor="let item of (feedsArticle | async)?.feedContents">
+      <h3>{{item?.title}}</h3>
+      <div class="section" *ngFor="let item of item?.feedContents">
         <p *ngIf="item.contentType == 1">{{item.content}}</p>
         <img
           class=""
@@ -57,12 +60,12 @@
     <div class="article-support " text-center>
       <div  class="cont" text-center>
         <div
-          (click)=" digg(feedsArticle?.source?.value?.feedId,$event)"
-          [class.isDigg]="(feedsArticle | async)?.isDigg == true"
+          (click)=" digg(item.feedId,$event)"
+          [class.isDigg]="item?.isDigg == true"
           class="icon-box"
         ></div>
       </div>
-      <div #diggNumber class="quantity-number">{{(feedsArticle | async)?.diggCount}}</div>
+      <div #diggNumber class="quantity-number">{{item?.diggCount}}</div>
     </div>
   </div>
 

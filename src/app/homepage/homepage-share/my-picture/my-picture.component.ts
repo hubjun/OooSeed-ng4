@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ToolsService} from "../../../shared/tools/tools.service";
 import {HomepageService} from "../../homepage.service";
 import {ActivatedRoute, Params} from "@angular/router";
@@ -8,7 +8,8 @@ import {UserAlbumFileVO, UserInfoVO} from "../../../domain/interface.model";
 @Component({
   selector: 'seed-my-picture',
   templateUrl: 'my-picture.component.html',
-  styleUrls: ['my-picture.component.scss']
+  styleUrls: ['my-picture.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MyPictureComponent implements OnInit {
   public userId:UserInfoVO;
@@ -24,7 +25,7 @@ export class MyPictureComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._activatedRoute.params
+    this._activatedRoute.parent.params
       .subscribe((params:Params) => {
       this.userId = params['userId'];
         if(params['userId'])

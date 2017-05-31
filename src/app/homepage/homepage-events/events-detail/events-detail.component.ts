@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {HomepageService} from "../../homepage.service";
 import {ToolsService} from "../../../shared/tools/tools.service";
@@ -7,7 +7,8 @@ import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: 'seed-events-detail',
   templateUrl: './events-detail.component.html',
-  styleUrls: ['./events-detail.component.scss']
+  styleUrls: ['./events-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EventsDetailComponent implements OnInit {
   activatedRoute: any;

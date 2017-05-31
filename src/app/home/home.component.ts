@@ -1,28 +1,16 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import {ToolsService} from "../shared/tools/tools.service";
-import {Content} from "../shared/components/toolbar/toolbar-content";
-
+import {Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation} from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
+
 })
 export class HomeComponent implements OnInit {
-  @ViewChild(Content) contentEle;
   constructor(
-    public tools:ToolsService
-  ) {
-      this.tools.setTitle('资讯')
-  }
+  ) {}
 
-  onScroll(){
-    console.log('=============')
-  }
   ngOnInit() {
-
-      console.log(this.contentEle)
-
-
   }
-
 }

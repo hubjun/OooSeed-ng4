@@ -6,8 +6,8 @@
 <seed-content class="local-seed">
 <div class="normal-list gray-background">
   <div class="list  top-gap">
-    <div class="item avatar">
-      <input  type="file" (change)="selectFileOnchanged($event)" />
+    <div class="item "id="avatar">
+      <input class="input" type="file" (change)="selectFileOnchanged($event)" />
       <p class="icon">
         <em class="name">头像</em>
            <img class="avatarImg" [src]="userObj.iconUrl||defaulticon" alt="">

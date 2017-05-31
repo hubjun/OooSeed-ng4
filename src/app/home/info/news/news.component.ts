@@ -1,10 +1,9 @@
-import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router, Params} from "@angular/router";
 import {ArticleVO, ArticleCommentVO} from "../../../domain/interface.model";
 import {HomeService} from "../../home.service";
 import {ToolsService} from "../../../shared/tools/tools.service";
 import  {Subject} from "rxjs";
-import {Response} from "@angular/http";
 import {Content} from "../../../shared/components/toolbar/toolbar-content";
 
 
@@ -12,6 +11,7 @@ import {Content} from "../../../shared/components/toolbar/toolbar-content";
   selector: 'seed-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NewsComponent implements OnDestroy, OnInit {
   articleId:ArticleVO;

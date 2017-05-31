@@ -1,5 +1,5 @@
 seed-modal {
-  top: 0;
+/*  top: 0;
   left: 0;
   display: block;
   position: absolute;
@@ -7,9 +7,9 @@ seed-modal {
   z-index: 10001;
   height: 100%;
   contain: strict;
-  z-index: 10003;
+  z-index: 10003;*/
   .seed-modal-wrapper {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 2;
@@ -19,10 +19,11 @@ seed-modal {
     opacity: .4;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    z-index: -1;
+    z-index: 1001;
     visibility: visible;
     height: 100%;
     touch-action: manipulation;
     background: rgba(0,0,0,0.6);
+    transition: all 0.4S ease-out 0s;
   }
 }

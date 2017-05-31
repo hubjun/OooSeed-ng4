@@ -76,13 +76,14 @@ local-city {
       background-color: #fff;
     }
   } //全部城市
-  .letter-city {
-    h3 {
+  dl {
+    dt {
       color: color($h5, c4);
       font-weight: bold;
     }
-    p {
+    dd {
       height: pxTorem(80);
+      margin-left: 0;
       padding-left: pxTorem(30);
       line-height: pxTorem(80);
       @include font-dpr(28px);

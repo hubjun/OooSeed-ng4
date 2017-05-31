@@ -6,7 +6,10 @@
 <seed-content class="seed-person-video share-picture">
   <div class="seed-grid">
     <div class="seed-grid-row">
-      <div class="seed-grid-col icon-live" col-4 *ngFor="let item of (videoThumbnail | async)">
+      <div class="seed-grid-col icon-live" col-4
+           *ngFor="let item of (videoThumbnail | async)"
+           (click)="showVideoView(item.fileName)"
+      >
         <a
           routerLink="/viewer"
           [lazyLoad]="item.fileName +'&width=100&second=1'"
@@ -22,6 +25,9 @@
     *ngIf="(videoThumbnail | async)?.length==0"
   ></missing-default-content>
   <go-down-app *ngIf="(videoThumbnail | async)?.length==20"></go-down-app>
+  <seed-modal #videoModal>
+    <seed-view-video class="seed-modal-content" [modal]="videoModal" [link]="src"  [poster]="poster">陈文豪</seed-view-video>
+  </seed-modal>
 </seed-content>
 
 

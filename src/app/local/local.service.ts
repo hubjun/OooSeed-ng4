@@ -12,8 +12,6 @@ declare var AMap: any;//声明
 
 @Injectable()
 export class LocalService {
-
-  subscription: Subscription = new Subscription();
   //默认深圳坐标
   public coor = {
     long: 0,
@@ -95,7 +93,6 @@ export class LocalService {
   }
   //拼球部分
   getSpellInfo(param) {
-
     let urls=this.INFO_TEAM_CARD_URL+`?sportType=${param.sportType}&orderId=${param.orderId}&cityId=${param.cityId}&raidus=${param.raidus}&areaId=${param.areaId}&longitude=${param.longitude}&latitude=${param.latitude}&page=${param.page}&rows=${param.rows}`;
     return this.httpService.get(urls).map((res) => res.json());
   }
@@ -118,7 +115,6 @@ export class LocalService {
   //获取城市信息
   getLocationCity() {
      return new Promise(resolve=>{
-     this.toolsService.showLoading();
       let map, geolocation;
       //加载地图，调用浏览器定位服务
       map = new AMap.Map('container', {
@@ -139,7 +135,6 @@ export class LocalService {
         AMap.event.addListener(geolocation, 'error', onError);//定位出错
 
         function onComplete(result){
-          that.toolsService.hideLoading();
           that.location.position=result.position;
           let autoCity=that.location.autoCity;
           if(autoCity!=null){
@@ -151,7 +146,6 @@ export class LocalService {
           resolve(autoCity);
         }
         function onError(error){
-           that.toolsService.hideLoading();
           //  console.log(error)
            that.autoCity.subscribe((result)=>{
               // console.log(result);

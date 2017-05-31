@@ -1,7 +1,7 @@
 /**
  * Created by dell on 2017/5/12.
  */
-import {Component,OnInit}from'@angular/core';
+import {Component,OnInit, ViewEncapsulation}from'@angular/core';
 import {Router,ActivatedRoute}from '@angular/router';
 import {componentFactoryName} from "@angular/compiler";
 import {AuthService} from '../../shared/service/auth.service';
@@ -9,7 +9,8 @@ import {AuthService} from '../../shared/service/auth.service';
 @Component({
   selector: 'my-content',
   templateUrl: './my-content.component.html',
-  styleUrls: ['./my-content.component.scss']
+  styleUrls: ['./my-content.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MyContentComponent implements OnInit {

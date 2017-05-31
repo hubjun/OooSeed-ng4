@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import {LocalService} from '../local.service'
 import { Subscription } from "rxjs";
 import {ToolsService} from "../../shared/tools/tools.service";
@@ -10,7 +10,8 @@ import {from} from "rxjs/observable/from";
 @Component({
   selector: 'local-teamip',
   templateUrl: './local-person.component.html',
-  styleUrls: ['./local-person.component.scss']
+  styleUrls: ['./local-person.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LocalPersonComponent implements OnInit {
   public subscription: Subscription = new Subscription();

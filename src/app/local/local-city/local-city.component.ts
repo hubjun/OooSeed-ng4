@@ -1,6 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/Router';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, Subject } from 'rxjs';
 import { LocalService } from '../local.service';
 import { ToolsService } from '../../shared/tools/tools.service';
 import { DictArea, DictCityVO } from '../../domain/interface.model';
@@ -9,11 +9,12 @@ import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 @Component({
   selector: 'local-city',
   templateUrl: './local-city.component.html',
-  styleUrls: ['./local-city.component.scss']
+  styleUrls: ['./local-city.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LocalCityComponent {
   public currertCity: DictCityVO;//当前城市
-  public currentAreaText: string;//当前区域名称
+  public currentAreaText: string = '定位中...';//当前区域名称
   public currentAreaId: number;
   public hotCity: DictCityVO[];//热门城市
   public allCity: DictCityVO[];//全部城市
@@ -22,9 +23,7 @@ export class LocalCityComponent {
   public showArea: boolean = false;
   public currentLocalChannel: string = this.localService.currentLocalChannel;
   public letters = 'ABCDEFGHJKLMNPQRSTWXYZ'.split('');
-
-  subscription: Subscription = new Subscription();
-
+  public ngUnsubscribe: Subject<void> = new Subject<void>();
   constructor(
     public localService: LocalService,
     public toolsService: ToolsService,
@@ -108,7 +107,9 @@ export class LocalCityComponent {
       this.localService.handCity.next(areaResult);//触发排序
     }
     let currentLocalChannel = this.currentLocalChannel;
-    currentLocalChannel != '' ? currentLocalChannel : '/local';
+    if (currentLocalChannel == "") {
+      currentLocalChannel = '/local';
+    }
     this.router.navigate([currentLocalChannel]);
   }
   // /**
@@ -125,13 +126,11 @@ export class LocalCityComponent {
     let opts = {
       langType: 'zh_CN'
     };
-    this.subscription.add(
-      this.localService.getHotCity(opts).subscribe(res => {
-        if (res.result === '0') {
-          this.hotCity = res.data.dictCityVOList;
-        }
-      })
-    )
+    this.localService.getHotCity(opts).takeUntil(this.ngUnsubscribe).subscribe(res => {
+      if (res.result === '0') {
+        this.hotCity = res.data.dictCityVOList;
+      }
+    })
   };
   /**
    * 查询所有城市
@@ -140,20 +139,18 @@ export class LocalCityComponent {
     let opts = {
       langType: 'zh_CN'
     };
-    this.subscription.add(
-      this.localService.getProCity(opts).subscribe(res => {
-        if (res.result === '0') {
-          let provinces = res.data.dictTreeNodeVOList;
-          let citys = [];
-          for (let i = 0; i < provinces.length; i++) {
-            for (let j = 0; j < provinces[i].dictTreeNodeList.length; j++) {
-              citys = citys.concat(provinces[i].dictTreeNodeList[j]);
-            }
+    this.localService.getProCity(opts).takeUntil(this.ngUnsubscribe).subscribe(res => {
+      if (res.result === '0') {
+        let provinces = res.data.dictTreeNodeVOList;
+        let citys = [];
+        for (let i = 0; i < provinces.length; i++) {
+          for (let j = 0; j < provinces[i].dictTreeNodeList.length; j++) {
+            citys = citys.concat(provinces[i].dictTreeNodeList[j]);
           }
-          this.sortCityByLetter(citys);
         }
-      })
-    );
+        this.sortCityByLetter(citys);
+      }
+    })
   };
   /**
    * 按字母排序城市
@@ -212,9 +209,10 @@ export class LocalCityComponent {
     this.getHotCity();
     this.getAllCity();
     this.setCurrentArea();
-    console.log(this.localService.filter.areaResult)
+    // console.log(this.localService.filter.areaResult)
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }
