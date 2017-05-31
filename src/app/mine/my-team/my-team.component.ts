@@ -112,6 +112,9 @@ export class MyTeamComponent implements OnInit {
   goTeamDetail(id){
 
   }
+  showTip(){
+    this.toolservice.presentConfirm('下载球苗APP，看更多精彩内容!');
+  }
   ngOnInit(){
    this.userId=this.userservice.getUserid();
     this.getMyTeamsInfo();

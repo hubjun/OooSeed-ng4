@@ -61,7 +61,7 @@ channel-filter {
     top: 0;
     left: 0;
     right: 0; //遮罩
-    margin-top:0!important;
+    margin-top: 0!important;
     .local-mask {
       position: fixed;
       top: 0;
@@ -112,4 +112,8 @@ channel-filter {
       }
     }
   }
+}
+
+.stop-scroll {
+  overflow: hidden!important;
 }

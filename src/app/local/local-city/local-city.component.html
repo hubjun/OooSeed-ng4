@@ -48,12 +48,14 @@
       </li>
     </ul>
   </div>
-  <dl *ngFor="let cityObj of allCity">
-    <dt id="{{cityObj.letter}}" class="title">{{cityObj.letter}}</dt>
-    <dd *ngFor="let city of cityObj.citys" (click)="sortByCity(city)">
-      {{city.title}}
-    </dd>
-  </dl>
+  <div class="letter-city">
+    <dl *ngFor="let cityObj of allCity">
+      <dt id="{{cityObj.letter}}" class="title">{{cityObj.letter}}</dt>
+      <dd *ngFor="let city of cityObj.citys" (click)="sortByCity(city)">
+        {{city.title}}
+      </dd>
+    </dl>
+  </div>
   <ul class="letter-nav">
     <li><a (click)="letterAnchorLocation('current-city')">*</a></li>
     <!--当前城市-->

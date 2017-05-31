@@ -32,7 +32,7 @@
     </ul>
   </div>
   <div class="team-miss" *ngIf="cansee">
-      <img src="../../../assets/images/default_groups_createteam.png">
+      <img (click)="showTip()" src="../../../assets/images/default_groups_createteam.png">
   </div>
   <!--<missing-default-content *ngIf="cansee"></missing-default-content>-->
 </seed-content>

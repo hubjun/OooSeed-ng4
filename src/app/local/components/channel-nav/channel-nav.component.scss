@@ -8,6 +8,7 @@ channel-nav {
     will-change: scroll-position;
     @include font-dpr(26px);
     color: color($h5, c3);
+    background-color: #fff;
     &::-webkit-scrollbar {
       display: none;
     }
@@ -18,7 +19,6 @@ channel-nav {
     overflow-x: auto;
     width: pxTorem(950);
     padding: pxTorem(30) pxTorem(30) 0 pxTorem(30);
-    background-color: #fff;
     a {
       display: inline-block; // width: pxTorem(100);
       margin-right: pxTorem(70);

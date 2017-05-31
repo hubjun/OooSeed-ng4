@@ -32,7 +32,7 @@
 //个人信息页
 
 .normal-list {//与球队个人信息公用
-  
+
   background: color($h5,c9);
   //padding-top: pxTorem(15);
   height: 100%;
@@ -61,15 +61,15 @@
       &:last-of-type {
         border-bottom: none;
       }
-      &::after {
+      &::after{
         content: '';
-        display: inline-block;
+        display: inline-block!important;
         position: absolute;
         top: 0;
         right: pxTorem(20);
         bottom: 0;
         margin: auto;
-        @include icon(17, 28, '(../../../assets/icon/icon_more.png');
+        @include icon(17, 28, '#{$icons-path}/icon_more.png');
       }
     }
 
@@ -102,6 +102,17 @@
     }
   }
 }
+//箭头
+//.normal-list .list .item::after{
+//  content: '';
+//  display: inline-block;
+//  position: absolute;
+//  top: 0;
+//  right: pxTorem(20);
+//  bottom: 0;
+//  margin: auto;
+//  @include icon(17, 28, '(../../../assets/icon/icon_more.png');
+//}
 //编辑签名
 .edit-wrap {
   .edit-content {

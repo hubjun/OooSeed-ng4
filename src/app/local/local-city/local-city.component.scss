@@ -1,5 +1,8 @@
 @import "../../shared/styles/theming.scss";
 local-city {
+  .seed-scroll-content {
+    -webkit-overflow-scrolling: auto!important;
+  }
   .title {
     padding-left: pxTorem(20);
     padding-right: pxTorem(50);
@@ -77,7 +80,11 @@ local-city {
     }
   } //全部城市
   dl {
+    margin-top: 0;
+    margin-bottom: 0;
     dt {
+      height: pxTorem(80);
+      line-height: pxTorem(80);
       color: color($h5, c4);
       font-weight: bold;
     }

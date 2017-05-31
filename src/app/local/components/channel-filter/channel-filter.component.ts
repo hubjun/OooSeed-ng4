@@ -11,7 +11,7 @@ import { ToolsService } from '../../../shared/tools/tools.service';
   styleUrls: ['./channel-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
- export class ChannelFilterComponent{
+export class ChannelFilterComponent {
   //排序器状态
   public isOpen: boolean = false;
   public changeCity: boolean = true;
@@ -70,26 +70,26 @@ import { ToolsService } from '../../../shared/tools/tools.service';
   ) {
     this.router.events.takeUntil(this.ngUnsubscribe).filter(event => event instanceof NavigationEnd).subscribe((event: any) => {
       this.localService.currentLocalChannel = event.urlAfterRedirects;//储存当前栏目，以便返回到相应栏目
-        let autoCity = this.localService.location.autoCity;
-        let currentCity = this.localService.location.currentCity
-        if (autoCity != null) {
+      let autoCity = this.localService.location.autoCity;
+      let currentCity = this.localService.location.currentCity
+      if (autoCity != null) {
         this.setRangType(currentCity);
-          this.localService.currentCityName.next(currentCity.title);
-        }
-        else {
-          this.localService.getLocationCity().then((autoCity: any) => {
+        this.localService.currentCityName.next(currentCity.title);
+      }
+      else {
+        this.localService.getLocationCity().then((autoCity: any) => {
           this.setRangType(autoCity);
-          });
-        }
-      })
+        });
+      }
+    })
     /**
      * 接收各栏目传过来的排序规则
      */
     this.localService.filter.filterType.takeUntil(this.ngUnsubscribe).subscribe((filterType: any) => {
-        this.filterType.sortType = filterType.sortType;
-        this.filterResult.sortType.text = filterType.sortType[0].title;
+      this.filterType.sortType = filterType.sortType;
+      this.filterResult.sortType.text = filterType.sortType[0].title;
       this.setSportAndUserType(filterType);
-      })
+    })
     /**
    * 手选城市后传过来的对象
    * @param(city):城市对象|区域结果对象
@@ -118,12 +118,14 @@ import { ToolsService } from '../../../shared/tools/tools.service';
           "title": "附近",
           "areaId": null
         }
+
         areaList.splice(1, 0, nearby);
       }
       let areaResult = this.localService.filter.areaResult;
 
       if (areaResult == null) {
         let rangTypeResult = this.filterResult.rangType;
+        rangTypeResult.id = 1;
         rangTypeResult.index = 0;
         rangTypeResult.text = '全城';
         rangTypeResult.areaId = city.areaId;
@@ -227,9 +229,9 @@ import { ToolsService } from '../../../shared/tools/tools.service';
  */
   setSportAndUserType(filterRule: any) {
     let filterType = this.filterType,
-        filterResult = this.filterResult,
-        filterTypeCache = this.filterTypeCache,
-        filterResultCache = this.filterResultCache;
+      filterResult = this.filterResult,
+      filterTypeCache = this.filterTypeCache,
+      filterResultCache = this.filterResultCache;
     //非个人IP栏目
     if (!filterRule.userType) {
       if (filterTypeCache.sportType.length === 0) {//无缓存
@@ -254,7 +256,7 @@ import { ToolsService } from '../../../shared/tools/tools.service';
   /**
    * 打开排序器
    */
-  openFilter(e:any): void {
+  openFilter(e: any): void {
     this.currentFilter = e.target.getAttribute('data-type');
     if (this.isOpen) return
     this.isOpen = true;
@@ -268,6 +270,7 @@ import { ToolsService } from '../../../shared/tools/tools.service';
     let currentCity = this.localService.location.currentCity;
     let areaList = currentCity.areaList || currentCity.dictTreeNodeList;
     this.filterType.rangType = areaList;
+    document.querySelector('.seed-scroll-content').classList.add('stop-scroll');
   }
 
   /**
@@ -277,6 +280,7 @@ import { ToolsService } from '../../../shared/tools/tools.service';
     this.isOpen = false;
     this.currentFilter = '';
     document.getElementById('channel').style.marginTop = '0px';
+    document.querySelector('.seed-scroll-content').classList.remove('stop-scroll');
   }
   /**
    * 获取球类排序规则
@@ -286,39 +290,39 @@ import { ToolsService } from '../../../shared/tools/tools.service';
       lang: 'zh_CN'
     }
     this.localService.getSportType(params).takeUntil(this.ngUnsubscribe).subscribe((res) => {
-        if (res.result === '0') {
-          let sportType = res.data.dicts;
-          let whole = {
-            "id": null,
-            "title": "全部"
-          }
-          sportType.unshift(whole);
-          this.filterType.sportType = sportType;
-          this.filterTypeCache.sportType = sportType;//缓存运动类型
+      if (res.result === '0') {
+        let sportType = res.data.dicts;
+        let whole = {
+          "id": null,
+          "title": "全部"
+        }
+        sportType.unshift(whole);
+        this.filterType.sportType = sportType;
+        this.filterTypeCache.sportType = sportType;//缓存运动类型
         this.filterResult.sportType.text = "全部";
         this.filterResult.sportType.index = 0;
-        }
-      })
+      }
+    })
   }
   /**
    * 获取个人IP类别
    */
   getUserType(): void {
     this.localService.getAuthCate().takeUntil(this.ngUnsubscribe).subscribe((res) => {
-        if (res.result === '0') {
-          let userTypes: any = res.data;
-          let whole = {
-            "ipCateId": null,
-            "cateName": "全部"
-          }
-          userTypes.unshift(whole);
-          this.filterType.userType = userTypes;
-          this.filterTypeCache.userType = userTypes;
-          this.filterType.sportType = userTypes;
+      if (res.result === '0') {
+        let userTypes: any = res.data;
+        let whole = {
+          "ipCateId": null,
+          "cateName": "全部"
+        }
+        userTypes.unshift(whole);
+        this.filterType.userType = userTypes;
+        this.filterTypeCache.userType = userTypes;
+        this.filterType.sportType = userTypes;
         this.filterResult.sportType.text = "全部";
         this.filterResult.sportType.index = 0;
-        }
-      })
+      }
+    })
   }
 
   ngOnDestroy() {
